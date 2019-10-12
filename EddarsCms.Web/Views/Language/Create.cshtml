@@ -1,0 +1,70 @@
+﻿@using EddarsCms.Dto.BasicDtos
+
+
+@model LanguageDto
+
+@{
+    ViewBag.PageTitle = "Dil Ekle";
+}
+
+
+
+<div class="panel">
+    <div class="panel-body">
+        @Html.Raw(ViewBag.Message)
+
+        @using (Html.BeginForm("Create", "Language", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+        {
+            var y = Model;
+            var z = 6;
+            <div class="form-group">
+                @Html.ValidationMessageFor(x => x.Name)
+                <label for="name" class=" col-sm-3 control-label float-left !important">Dil Adı</label>
+                <div class="col-sm-6">
+                    <input type="text" required class="form-control" name="Name" id="name" value="@Model.Name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.ValidationMessageFor(x => x.Url)
+                <label for="url" class="float-left col-sm-3 control-label  float-left !important">Dil Url</label>
+                <div class="col-sm-6">
+                    <input type="text" required class="form-control" name="Url" id="url" value="@Model.Url" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="image" class="col-sm-3 control-label">Dil Resim</label>
+                <div class="col-sm-6">
+                    <input type="file" class="form-control" id="image" name="file">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rowNumber" class="col-sm-3 control-label">Sıra No</label>
+                <div class="col-sm-6">
+                    <div class="input-group bootstrap-touchspin">
+                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                        <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6"><button type="submit" class="btn btn-success">Kaydet</button></div>
+        }
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        "use strict";
+        $("input[id='rowNumber']").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'glyph-icon icon-plus',
+            verticaldownclass: 'glyph-icon icon-minus'
+        });
+    });
+</script>

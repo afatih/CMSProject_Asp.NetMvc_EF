@@ -1,0 +1,176 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+@model List<BlogDto>
+@{
+    ViewBag.Title = "Bloglar";
+    ViewBag.PageTitle = "Bloglar";
+
+    LanguageService langServ = new LanguageService();
+    var languages = langServ.GetAll().Result;
+
+}
+
+
+<div class="form-group">
+    <label id="LanguageId" class="col-sm-3 control-label">Dil</label>
+    <div class="col-sm-6">
+        <select class="form-control" id="LanguageId" name="LanguageId">
+            @if (languages != null)
+            {
+                if (languages.Count > 0)
+                {
+                    foreach (var language in languages)
+                    {
+                        <option value="@language.Id">@language.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+
+
+<a href="@Url.Action("Create","Blog")" class="btn btn-primary">Yeni ekle</a>
+
+@Html.Raw(ViewBag.Message)
+
+<div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Başlık</th>
+                <th>Url</th>
+                <th>Durum</th>
+                <th>Resim</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="row-@item.Id" data-langId="lang-@item.LanguageId">
+                            <td>@item.Caption</td>
+                            <td>@item.Url</td>
+                            @if (item.State == true)
+                            {
+                                <td><button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button></td>
+                            }
+                            else
+                            {
+                                <td><button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button></td>
+
+                            }
+                            <td style="width:10%"><button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button></td>
+                            <td style="width:10%"><a href="@Url.Action("Edit","Blog",new {id=item.Id })" class="btn btn-success">Düzenle</a></td>
+                        </tr>
+
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/Blog/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("#row-" + id).remove();
+                }
+            }
+        })
+    }
+
+
+    function jsChangeState(id) {
+        var btn = $("#btn-" + id);
+        var state = btn.attr("data-state");
+        if (state == "True") {
+            $.ajax({
+                url: "/Blog/ChangeState/",
+                type: "POST",
+                data: { id: id, state: "False" },
+                success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        btn.attr("data-state", "False");
+                        btn.text("Pasif")
+                        btn.removeClass("btn-success");
+                        btn.addClass("btn-danger");
+                    }
+                }
+            })
+        }
+        else {
+            $.ajax({
+                url: "/Blog/ChangeState/",
+                type: "POST",
+                data: { id: id, state: "True" },
+                success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        btn.attr("data-state", "True");
+                        btn.text("Aktif")
+                        btn.removeClass("btn-danger");
+                        btn.addClass("btn-success");
+                    }
+                }
+            })
+        }
+    }
+
+
+    //$(function () {
+    //    var langId = "lang-" + $("select#LanguageId.form-control").val();
+    //    $.each($("tbody tr"), function () {
+    //        var rowLangId = $(this).attr("data-langId")
+    //        if (langId != rowLangId) {
+    //            $(this).hide();
+    //        } else {
+    //            $(this).show();
+    //        }
+    //    })
+    //})
+
+
+    $("select#LanguageId.form-control").change(function () {
+        var langId = "lang-" + $(this).val();
+
+        $.each($("tbody tr"), function () {
+            var rowLangId = $(this).attr("data-langId")
+            if (langId != rowLangId) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+
+        })
+
+    })
+
+
+
+</script>
+

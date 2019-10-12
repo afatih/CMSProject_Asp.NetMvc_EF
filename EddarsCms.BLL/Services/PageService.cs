@@ -1,0 +1,160 @@
+﻿using Core.DAL;
+using Core.Results;
+using EddarsCms.BLL.IServices;
+using EddarsCms.DAL;
+using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Entity.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EddarsCms.BLL.Services
+{
+    public class PageService : IPageService
+    {
+        IRepository<Page> pageRepo;
+        IUnitOfWork uow;
+
+        public PageService()
+        {
+            pageRepo = Resource.UoW.GetRepository<Page>();
+            uow = Resource.UoW;
+        }
+
+
+        public ServiceResult Add(PageDto dto)
+        {
+            pageRepo.Add(EntityFromDto(dto));
+            var result = uow.Save();
+            return result;
+
+        }
+
+        public ServiceResult Delete(int id)
+        {
+            Expression<Func<Page, bool>> exp = p => p.Id == id;
+            pageRepo.HardDelete(exp);
+            var result = uow.Save();
+            return result;
+        }
+
+        public ServiceResult<PageDto> Get(int id)
+        {
+            try
+            {
+                Expression<Func<Page, bool>> exp = p => p.Id == id;
+                var result = DtoFromEntity(pageRepo.Get(exp).SingleOrDefault());
+                return new ServiceResult<PageDto>(ProcessStateEnum.Success, "İşmeniniz başarılı", result);
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<PageDto>(ProcessStateEnum.Error, e.Message, new PageDto());
+            }
+           
+
+        }
+
+        public ServiceResult<List<PageDto>> GetAll()
+        {
+            try
+            {
+                Expression<Func<Page, bool>> exp = p => p.Id > 0;
+                var result = DtoFromEntitiy(pageRepo.Get(exp));
+                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, "İşleminiz Başarılı", result);
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, e.Message, new List<PageDto>());
+            }
+        }
+
+        public ServiceResult Update(PageDto dto)
+        {
+            Expression<Func<Page, bool>> exp = p => p.Id == dto.Id;
+            var page = pageRepo.Get(exp).SingleOrDefault();
+            page.RowNumber = dto.RowNumber;
+            page.LanguageId = dto.LanguageId;
+            page.SeoDescription = dto.SeoDescription;
+            page.SeoKeywords = dto.SeoKeywords;
+            page.SeoTitle = dto.SeoTitle;
+            //page.State = dto.State;
+            page.Url = dto.Url;
+            page.Caption = dto.Caption;
+            page.Content = dto.Content;
+            page.UpdatedDate = dto.UpdatedDate;
+            var result = uow.Save();
+            return result;
+        }
+
+        public ServiceResult ChangeState(int id,bool state)
+        {
+            Expression<Func<Page, bool>> exp = p => p.Id == id;
+            var page = pageRepo.Get(exp).SingleOrDefault();
+            page.State = state;
+            var result = uow.Save();
+            return result;
+        }
+
+
+        #region Mappings
+
+        public Page EntityFromDto(PageDto dto)
+        {
+            Page page = new Page()
+            {
+                Caption = dto.Caption,
+                Content = dto.Content,
+                LanguageId = dto.LanguageId,
+                CreatedDate = dto.CreatedDate,
+                RowNumber = dto.RowNumber,
+                SeoDescription = dto.SeoDescription,
+                SeoKeywords = dto.SeoKeywords,
+                SeoTitle = dto.SeoTitle,
+                State = dto.DefaultState,
+                UpdatedDate = dto.UpdatedDate,
+                Url = dto.Url,
+            };
+            return page;
+        }
+
+        public PageDto DtoFromEntity(Page entitiy)
+        {
+            PageDto pageDto = new PageDto()
+            {
+                Id = entitiy.Id,
+                Caption = entitiy.Caption,
+                Content = entitiy.Content,
+                LanguageId = entitiy.LanguageId,
+                RowNumber = entitiy.RowNumber,
+                SeoDescription = entitiy.SeoDescription,
+                SeoKeywords = entitiy.SeoKeywords,
+                SeoTitle = entitiy.SeoTitle,
+                State = entitiy.State,
+                Url = entitiy.Url
+            };
+            return pageDto;
+        }
+
+        public List<PageDto> DtoFromEntitiy(List<Page> pages)
+        {
+            List<PageDto> list = new List<PageDto>();
+            if (pages!=null)
+            {
+                if (pages.Count>0)
+                {
+                    foreach (var page in pages)
+                    {
+                        list.Add(DtoFromEntity(page));
+                    }
+                }
+            }
+            return list;
+        }
+
+
+        #endregion
+    }
+}
