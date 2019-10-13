@@ -142,17 +142,17 @@
     }
 
 
-    //$(function () {
-    //    var langId = "lang-" + $("select#LanguageId.form-control").val();
-    //    $.each($("tbody tr"), function () {
-    //        var rowLangId = $(this).attr("data-langId")
-    //        if (langId != rowLangId) {
-    //            $(this).hide();
-    //        } else {
-    //            $(this).show();
-    //        }
-    //    })
-    //})
+    $(function () {
+        var langId = "lang-" + $("select#LanguageId.form-control").val();
+        $.each($("tbody tr"), function () {
+            var rowLangId = $(this).attr("data-langId")
+            if (langId != rowLangId) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        })
+    })
 
 
     $("select#LanguageId.form-control").change(function () {

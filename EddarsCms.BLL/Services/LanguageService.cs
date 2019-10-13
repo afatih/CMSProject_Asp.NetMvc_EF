@@ -1,4 +1,5 @@
-﻿using Core.DAL;
+﻿using AutoMapper;
+using Core.DAL;
 using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.BLL.Services
 {
-    public class LanguageService:ILanguageService
+    public class LanguageService : ILanguageService
     {
         IRepository<Language> languageRep;
         IUnitOfWork uow;
@@ -51,20 +52,20 @@ namespace EddarsCms.BLL.Services
             {
                 return new ServiceResult<LanguageDto>(ProcessStateEnum.Error, e.Message, new LanguageDto());
             }
-           
+
         }
 
         public ServiceResult<List<LanguageDto>> GetAll()
         {
             try
             {
-                Expression<Func<Language, bool>> exp = p => p.Id >0;
+                Expression<Func<Language, bool>> exp = p => p.Id > 0;
                 var result = DtoFromEntity(languageRep.Get(exp));
                 return new ServiceResult<List<LanguageDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result);
             }
             catch (Exception e)
             {
-                return new ServiceResult<List<LanguageDto>>(ProcessStateEnum.Success,e.Message, new List<LanguageDto>());
+                return new ServiceResult<List<LanguageDto>>(ProcessStateEnum.Success, e.Message, new List<LanguageDto>());
             }
         }
 
@@ -85,34 +86,50 @@ namespace EddarsCms.BLL.Services
         #region Mappings
         public Language EntityFromDto(LanguageDto languageDto)
         {
-            Language language = new Language()
-            {
-                Name = languageDto.Name,
-                CreatedDate = languageDto.CreatedDate,
-                UpdatedDate = languageDto.UpdatedDate,
-                RowNumber = languageDto.RowNumber,
-                State = languageDto.DefaultState,
-                Url = languageDto.Url,
-                Image = languageDto.Image ?? "",
-                //Image = languageDto.Image,
 
-            };
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<LanguageDto, Language>();
+            });
+
+            IMapper iMapper = config.CreateMapper();
+            var language = iMapper.Map<LanguageDto, Language>(languageDto);
             return language;
+
+            //Language language = new Language()
+            //{
+            //    Name = languageDto.Name,
+            //    Url = languageDto.Url,
+            //    Image = languageDto.Image ?? "",
+            //    //Image = languageDto.Image,
+
+            //};
+            //return language;
         }
 
         public LanguageDto DtoFromEntity(Language language)
         {
-            LanguageDto languageDto = new LanguageDto()
+            var config = new MapperConfiguration(cfg =>
             {
-                Id = language.Id,
-                Name = language.Name,
-                State = language.State,
-                Url = language.Url,
-                Image = language.Image,
-                RowNumber = language.RowNumber,
+                cfg.CreateMap<Language, LanguageDto>();
+            });
 
-            };
+            IMapper iMapper = config.CreateMapper();
+            var languageDto = iMapper.Map<Language, LanguageDto>(language);
             return languageDto;
+
+
+            //LanguageDto languageDto = new LanguageDto()
+            //{
+            //    Id = language.Id,
+            //    Name = language.Name,
+            //    State = language.State,
+            //    Url = language.Url,
+            //    Image = language.Image,
+            //    RowNumber = language.RowNumber,
+
+            //};
+            //return languageDto;
         }
 
         public List<LanguageDto> DtoFromEntity(List<Language> languages)

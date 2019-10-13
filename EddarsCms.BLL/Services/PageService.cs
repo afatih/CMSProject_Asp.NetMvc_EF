@@ -1,4 +1,5 @@
-﻿using Core.DAL;
+﻿using AutoMapper;
+using Core.DAL;
 using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
@@ -53,7 +54,7 @@ namespace EddarsCms.BLL.Services
             {
                 return new ServiceResult<PageDto>(ProcessStateEnum.Error, e.Message, new PageDto());
             }
-           
+
 
         }
 
@@ -89,7 +90,7 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
-        public ServiceResult ChangeState(int id,bool state)
+        public ServiceResult ChangeState(int id, bool state)
         {
             Expression<Func<Page, bool>> exp = p => p.Id == id;
             var page = pageRepo.Get(exp).SingleOrDefault();
@@ -103,47 +104,67 @@ namespace EddarsCms.BLL.Services
 
         public Page EntityFromDto(PageDto dto)
         {
-            Page page = new Page()
+            var config = new MapperConfiguration(cfg =>
             {
-                Caption = dto.Caption,
-                Content = dto.Content,
-                LanguageId = dto.LanguageId,
-                CreatedDate = dto.CreatedDate,
-                RowNumber = dto.RowNumber,
-                SeoDescription = dto.SeoDescription,
-                SeoKeywords = dto.SeoKeywords,
-                SeoTitle = dto.SeoTitle,
-                State = dto.DefaultState,
-                UpdatedDate = dto.UpdatedDate,
-                Url = dto.Url,
-            };
-            return page;
+                cfg.CreateMap<PageDto, Page>();
+            });
+
+            IMapper iMapper = config.CreateMapper();
+            var language = iMapper.Map<PageDto, Page>(dto);
+            return language;
+
+
+            //Page page = new Page()
+            //{
+            //    Caption = dto.Caption,
+            //    Content = dto.Content,
+            //    LanguageId = dto.LanguageId,
+            //    //CreatedDate = dto.CreatedDate,
+            //    RowNumber = dto.RowNumber,
+            //    SeoDescription = dto.SeoDescription,
+            //    SeoKeywords = dto.SeoKeywords,
+            //    SeoTitle = dto.SeoTitle,
+            //    State = dto.DefaultState,
+            //    UpdatedDate = dto.UpdatedDate,
+            //    Url = dto.Url,
+            //};
+            //return page;
         }
 
         public PageDto DtoFromEntity(Page entitiy)
         {
-            PageDto pageDto = new PageDto()
+            var config = new MapperConfiguration(cfg =>
             {
-                Id = entitiy.Id,
-                Caption = entitiy.Caption,
-                Content = entitiy.Content,
-                LanguageId = entitiy.LanguageId,
-                RowNumber = entitiy.RowNumber,
-                SeoDescription = entitiy.SeoDescription,
-                SeoKeywords = entitiy.SeoKeywords,
-                SeoTitle = entitiy.SeoTitle,
-                State = entitiy.State,
-                Url = entitiy.Url
-            };
-            return pageDto;
+                cfg.CreateMap<Page, PageDto>();
+            });
+
+            IMapper iMapper = config.CreateMapper();
+            var language = iMapper.Map<Page, PageDto>(entitiy);
+            return language;
+
+
+            //PageDto pageDto = new PageDto()
+            //{
+            //    Id = entitiy.Id,
+            //    Caption = entitiy.Caption,
+            //    Content = entitiy.Content,
+            //    LanguageId = entitiy.LanguageId,
+            //    RowNumber = entitiy.RowNumber,
+            //    SeoDescription = entitiy.SeoDescription,
+            //    SeoKeywords = entitiy.SeoKeywords,
+            //    SeoTitle = entitiy.SeoTitle,
+            //    State = entitiy.State,
+            //    Url = entitiy.Url
+            //};
+            //return pageDto;
         }
 
         public List<PageDto> DtoFromEntitiy(List<Page> pages)
         {
             List<PageDto> list = new List<PageDto>();
-            if (pages!=null)
+            if (pages != null)
             {
-                if (pages.Count>0)
+                if (pages.Count > 0)
                 {
                     foreach (var page in pages)
                     {

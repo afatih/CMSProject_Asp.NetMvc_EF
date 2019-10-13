@@ -9,15 +9,24 @@ namespace EddarsCms.Entity
 {
     public class EntityBase
     {
-        DateTime date = DateTime.Now;
 
-        public int Id { get; set; }
-        public int LanguageId { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public int RowNumber { get; set; }
-        public bool State { get; set; }
+            public EntityBase()
+            {
+                CreatedDate = DateTime.Now;
+                UpdatedDate = DateTime.Now;
+                State = true;
+            }
 
-        //id,updatedate,createdate,rownumber
+            public int Id { get; set; }
+            public int LanguageId { get; set; }
+            public int RowNumber { get; set; }
+
+
+
+            public DateTime CreatedDate { get; set; }
+            public DateTime UpdatedDate { get; set; }
+            public bool State { get; set; }
+
+            //id,updatedate,createdate,rownumber
+        }
     }
-}

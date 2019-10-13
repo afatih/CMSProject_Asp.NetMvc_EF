@@ -1,4 +1,5 @@
-﻿using Core.DAL;
+﻿using AutoMapper;
+using Core.DAL;
 using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
@@ -103,48 +104,68 @@ namespace EddarsCms.BLL.Services
 
         public Blog EntityFromDto (BlogDto dto)
         {
-            Blog blog = new Blog()
+            var config = new MapperConfiguration(cfg =>
             {
-                AcceptComment = dto.AcceptComment,
-                BlogBegin = dto.BlogBegin,
-                Caption = dto.Caption,
-                Content = dto.Content,
-                CreatedDate = dto.CreatedDate,
-                Image = dto.Image,
-                LanguageId = dto.LanguageId,
-                RowNumber = dto.RowNumber,
-                SeoDescription = dto.SeoDescription,
-                SeoKeywords = dto.SeoKeywords,
-                SeoTitle = dto.SeoTitle,
-                State = dto.DefaultState,
-                UpdatedDate = dto.UpdatedDate,
-                Url = dto.Url
+                cfg.CreateMap<BlogDto, Blog>();
+            });
 
-            };
-            return blog;            
+            IMapper iMapper = config.CreateMapper();
+            var blog = iMapper.Map<BlogDto, Blog>(dto);
+            return blog;
+
+
+            //Blog blog = new Blog()
+            //{
+            //    AcceptComment = dto.AcceptComment,
+            //    BlogBegin = dto.BlogBegin,
+            //    Caption = dto.Caption,
+            //    Content = dto.Content,
+            //    CreatedDate = dto.CreatedDate,
+            //    Image = dto.Image,
+            //    LanguageId = dto.LanguageId,
+            //    RowNumber = dto.RowNumber,
+            //    SeoDescription = dto.SeoDescription,
+            //    SeoKeywords = dto.SeoKeywords,
+            //    SeoTitle = dto.SeoTitle,
+            //    State = dto.DefaultState,
+            //    UpdatedDate = dto.UpdatedDate,
+            //    Url = dto.Url
+
+            //};
+            //return blog;            
         }
 
         public BlogDto DtoFromEntity (Blog blog)
         {
-            BlogDto dto = new BlogDto()
+            var config = new MapperConfiguration(cfg =>
             {
-                Id = blog.Id,
-                AcceptComment = blog.AcceptComment,
-                BlogBegin = blog.BlogBegin,
-                Caption = blog.Caption,
-                Content = blog.Content,
-                CreatedDate = blog.CreatedDate,
-                Image = blog.Image,
-                LanguageId = blog.LanguageId,
-                RowNumber = blog.RowNumber,
-                SeoDescription = blog.SeoDescription,
-                SeoKeywords = blog.SeoKeywords,
-                SeoTitle = blog.SeoTitle,
-                State = blog.State,
-                UpdatedDate = blog.UpdatedDate,
-                Url = blog.Url
-            };
-            return dto;
+                cfg.CreateMap<Blog, BlogDto>();
+            });
+
+            IMapper iMapper = config.CreateMapper();
+            var blogDto = iMapper.Map<Blog, BlogDto>(blog);
+            return blogDto;
+
+
+            //BlogDto dto = new BlogDto()
+            //{
+            //    Id = blog.Id,
+            //    AcceptComment = blog.AcceptComment,
+            //    BlogBegin = blog.BlogBegin,
+            //    Caption = blog.Caption,
+            //    Content = blog.Content,
+            //    CreatedDate = blog.CreatedDate,
+            //    Image = blog.Image,
+            //    LanguageId = blog.LanguageId,
+            //    RowNumber = blog.RowNumber,
+            //    SeoDescription = blog.SeoDescription,
+            //    SeoKeywords = blog.SeoKeywords,
+            //    SeoTitle = blog.SeoTitle,
+            //    State = blog.State,
+            //    UpdatedDate = blog.UpdatedDate,
+            //    Url = blog.Url
+            //};
+            //return dto;
         }
 
         public List<BlogDto> DtoFromEntity (List<Blog> blogs)
