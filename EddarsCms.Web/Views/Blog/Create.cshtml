@@ -61,10 +61,9 @@
             </div>
 
             <div class="form-group">
-                @Html.ValidationMessageFor(x => x.BlogBegin)
                 <label for="BlogBegin" class="float-left col-sm-3 control-label ">Blog Giriş Metni</label>
                 <div class="col-sm-6">
-                    <textarea type="text" required class="form-control" name="BlogBegin" id="BlogBegin" rows="5" >@Model.BlogBegin</textarea>
+                    <textarea type="text" class="form-control" name="BlogBegin" id="BlogBegin" rows="5" >@Model.BlogBegin</textarea>
                 </div>
             </div>
 
@@ -78,21 +77,21 @@
             <div class="form-group">
                 <label for="SeoTitle" class="float-left col-sm-3 control-label ">Seo Title</label>
                 <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
+                    <input type="text"  class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="SeoKeywords" class="float-left col-sm-3 control-label ">Seo Keywords</label>
                 <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="SeoKeywords" id="SeoKeywords" value="@Model.SeoKeywords" />
+                    <input type="text"  class="form-control" name="SeoKeywords" id="SeoKeywords" value="@Model.SeoKeywords" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="SeoDescription" class="float-left col-sm-3 control-label ">Seo Description</label>
                 <div class="col-sm-6">
-                    <textarea type="text" required class="form-control" name="SeoDescription" id="SeoDescription" rows="5" >@Model.SeoDescription</textarea>
+                    <textarea type="text"  class="form-control" name="SeoDescription" id="SeoDescription" rows="5" >@Model.SeoDescription</textarea>
                 </div>
             </div>
 
@@ -128,7 +127,6 @@
             <input type="hidden" style="display:none" id="Content" name="Content" />
 
             <div class="form-group">
-                @Html.ValidationMessageFor(x => x.Content)
                 <label for="content" class="col-sm-3 control-label">Blog İçeriği</label>
                 <div class="col-sm-9">
                     <div class="example-box-wrapper">

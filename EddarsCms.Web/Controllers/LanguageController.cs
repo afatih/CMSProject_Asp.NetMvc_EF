@@ -2,6 +2,7 @@
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -176,6 +177,16 @@ namespace EddarsCms.Web.Controllers
             var result = languageServ.Delete(id);
 
                 return Json(result,JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+        public JsonResult Reorder(List<ReorderDto> list)
+        {
+
+            var result = languageServ.Reorder(list);
+            return Json(result, JsonRequestBehavior.AllowGet);
 
         }
     }

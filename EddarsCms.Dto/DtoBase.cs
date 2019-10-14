@@ -22,6 +22,5 @@ namespace EddarsCms.Dto
         public DateTime UpdatedDate { get; set; }
         public int RowNumber { get; set; }
         public bool State { get; set; }
-        public bool DefaultState { get { return true; } set { } }
     }
 }

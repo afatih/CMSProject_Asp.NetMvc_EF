@@ -37,7 +37,7 @@ namespace EddarsCms.BLL.Services
             {
                 Expression<Func<Blog, bool>> exp = p => p.Id > 0;
                 var blogs = DtoFromEntity(blogRepo.Get(exp));
-                return new ServiceResult<List<BlogDto>>(ProcessStateEnum.Success, "İşleminiz başarılı", blogs);
+                return new ServiceResult<List<BlogDto>>(ProcessStateEnum.Success, "İşleminiz başarılı", blogs.OrderBy(x => x.RowNumber).ToList());
 
             }
             catch (Exception e)

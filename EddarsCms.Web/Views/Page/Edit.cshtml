@@ -5,110 +5,186 @@
 @model PageDto
 
 @{
-    ViewBag.Title = "Sayfa Düzenle";
-    ViewBag.PageTitle = "Sayfa Düzenle";
+    ViewBag.Title = "Sayfa Ekle";
+    ViewBag.PageTitle = "Sayfa Ekle";
+
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;
 }
 
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    div img {
+        width:100px;
+    }
+</style>
 
 
+@Html.Raw(ViewBag.Message)
 
-<div class="panel">
-    <div class="panel-body">
-        @Html.Raw(ViewBag.Message)
+@using (Html.BeginForm("Edit", "Page", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-        @using (Ajax.BeginForm("Edit", "Page", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message" }, new { @class = "form-horizontal bordered-row" }))
-        {
-            @Html.AntiForgeryToken()
+    <div id="message"></div>
 
-
-            <div id="message"></div>
-
-            <div class="form-group">
-                <label id="LanguageId" class="col-sm-3 control-label">Select</label>
-                <div class="col-sm-6">
-                    <select class="form-control" id="LanguageId" name="LanguageId">
-                        @if (languages != null)
-                        {
-                            if (languages.Count > 0)
-                            {
-                                foreach (var language in languages)
-                                {
-                                    <option value="@language.Id">@language.Name</option>
-                                }
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.ValidationMessageFor(x => x.Caption)
-                <label for="Caption"  class=" col-sm-3 control-label float-left !important">Sayfa Başlık</label>
-                <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="url" class="float-left col-sm-3 control-label  float-left !important">Sayfa Url</label>
-                <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="Url" id="url" value="@Model.Url" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="SeoTitle" class="float-left col-sm-3 control-label  float-left !important">Seo Title</label>
-                <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="SeoKeywords" class="float-left col-sm-3 control-label  float-left !important">Seo Keywords</label>
-                <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="SeoKeywords" id="SeoKeywords" value="@Model.SeoKeywords" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="SeoDescription" class="float-left col-sm-3 control-label  float-left !important">Seo Description</label>
-                <div class="col-sm-6">
-                    <textarea type="text" required  class="form-control" name="SeoDescription" id="SeoDescription" rows="5">@Model.SeoDescription</textarea>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="rowNumber" class="col-sm-3 control-label">Sıra No</label>
-                <div class="col-sm-6">
-                    <div class="input-group bootstrap-touchspin">
-                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                        <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
-                    </div>
-                </div>
-            </div>
-
-            <input type="hidden" style="display:none" id="Content" name="Content" />
-
-            <div class="form-group">
-                <label for="content" class="col-sm-3 control-label">Sayfa İçeriği</label>
-                <div class="col-sm-9">
-                    <div class="example-box-wrapper">
-                        <div id="summerNoteContent">
-                            <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
+    <div class="row main-box">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <header class="main-box-header">
+                        <h3>Sayfa Ekle</h3>
+                    </header>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="LanguageId" class="control-label">Dil</label>
+                            <div>
+                                <select class="form-control" id="LanguageId" name="LanguageId">
+                                    @if (languages != null)
+                                    {
+                                        if (languages.Count > 0)
+                                        {
+                                            foreach (var language in languages)
+                                            {
+                                                <option value="@language.Id">@language.Name</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
                         </div>
 
+
+
+                        <div class="form-group">
+
+                            <label for="Caption" class="control-label float-left !important">Sayfa Başlık</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Caption)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url" class="float-left control-label  float-left !important">Sayfa Url</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Url" id="url" value="@Model.Url" />
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Url)
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="rowNumber" class="control-label">Sıra No</label>
+                            <div>
+                                <div class="input-group bootstrap-touchspin">
+                                    <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                    <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" style="display:none" id="Content" name="Content" />
+
+                        <div class="form-group">
+                            <label for="content" class="control-label">Sayfa İçeriği</label>
+                            <div>
+                                <div class="example-box-wrapper">
+                                    <div id="summerNoteContent">
+                                        <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @Html.Hidden("OldCover", Model.ImageCover)
+        @Html.Hidden("OldBig", Model.ImageBig)
+
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <header class="main-box-header">
+                        <h3>Görsel Ayarları</h3>
+                    </header>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <div>
+                                <img  src="~/Images/Pages/@Model.ImageCover" />
+                            </div>
+                            <label for="image1" class="control-label">Sayfa Kapak Resim</label>
+                            <div>
+                                <input  type="file" class="form-control" id="image1" name="file1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <img src="~/Images/Pages/@Model.ImageBig" />
+
+                            </div>
+                            <label for="image2" class="control-label">Sayfa Büyük Resim</label>
+                            <div>
+                                <input type="file" class="form-control" id="image2" name="file2">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6"><button type="submit" class="btn btn-success">Kaydet</button></div>
-        }
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <header class="main-box-header">
+                        <h3>Seo Ayarları</h3>
+                    </header>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="SeoTitle" class="float-leftcontrol-label  float-left !important">Seo Title</label>
+                            <div>
+                                <input type="text" class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="SeoDescription" class="float-leftcontrol-label  float-left !important">Seo Description</label>
+                            <div>
+                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5" value="@Model.SeoDescription"></textarea>
+                            </div>
+
+                            <div style="padding-top:10px"><button type="submit" class="btn btn-success">Kaydet</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+
+
+
+
+}
 
 
 <script>
@@ -125,7 +201,7 @@
     });
 
     $(function () {
-        $("div div div #form0 div.form-group div.col-sm-9 div.example-box-wrapper div.note-editor div.note-editable").html('@Html.Raw(Model.Content)');
+        $("div.note-editor div.note-editable").html('@Html.Raw(Model.Content)');
     })
 
     $(function () {
@@ -139,7 +215,7 @@
 
 
     $("#summerNoteContent").mouseleave(function () {
-        var summerNoteContent = $("div div div #form0 div.form-group div.col-sm-9 div.example-box-wrapper div.note-editor div.note-editable").html();
+        var summerNoteContent = $("div.note-editor div.note-editable").html();
         $("#Content").val(summerNoteContent);
     })
 

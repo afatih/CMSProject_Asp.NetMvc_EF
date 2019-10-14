@@ -5,6 +5,7 @@ using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,35 +40,77 @@ namespace EddarsCms.Web.Controllers
         [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Create(PageDto pageDto)
+        public ActionResult Create(PageDto pageDto, HttpPostedFileBase file1, HttpPostedFileBase file2)
         {
             if (!ModelState.IsValid)
             {
-                return Json("<script>jsSuccess('İşleminiz başarısız')</script>", JsonRequestBehavior.AllowGet);
+                ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
+                return View(pageDto);
             }
 
-            var message = "";
             try
             {
-                var result = pageServ.Add(pageDto);
+                if (file1 != null)
+                {
+                    if (file1.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
 
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
+                        pageDto.ImageCover = pathWidthGuid;
+                    }
+                }
+
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
+                        pageDto.ImageBig = pathWidthGuid;
+                    }
+                }
+
+                var result = pageServ.Add(pageDto);
                 if (result.State == ProcessStateEnum.Success)
                 {
                     //ViewBag.Message = result.Message;
-                    //Bu kısımda işlem başarılıysa reload atılabilir.
-                    message = "<script>jsSuccess('" + result.Message + "')</script>";
-                    return Json(message, JsonRequestBehavior.AllowGet);
+                    ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
+                    return View(new PageDto());
                 }
                 else
                 {
-                    message = "<script>jsError(" + result.Message + ")</script>";
-                    return Json(message, JsonRequestBehavior.AllowGet);
+                    ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
+                    return View(pageDto);
                 }
             }
             catch (Exception e)
             {
-                message = "<script>jsError('" + e.Message + "')</script>";
-                return Json(message, JsonRequestBehavior.AllowGet);
+                ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
+                return View(pageDto);
             }
         }
 
@@ -85,34 +128,85 @@ namespace EddarsCms.Web.Controllers
         [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Edit(PageDto pageDto)
+        public ActionResult Edit(PageDto pageDto,HttpPostedFileBase file1,HttpPostedFileBase file2,string OldCover,string OldBig)
         {
             if (!ModelState.IsValid)
             {
-                return Json("<script>jsSuccess('İşleminiz başarısız')</script>", JsonRequestBehavior.AllowGet);
+                ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
+                return View(pageDto);
             }
 
-            var message = "";
             try
             {
-                var result = pageServ.Update(pageDto);
-
-                if (result.State == ProcessStateEnum.Success)
+                if (file1 != null)
                 {
-                    //ViewBag.Message = result.Message;
-                    message = "<script>jsSuccess('" + result.Message + "')</script>";
-                    return Json(message, JsonRequestBehavior.AllowGet);
+                    if (file1.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
+                        pageDto.ImageCover = pathWidthGuid;
+                    }
                 }
                 else
                 {
-                    message = "<script>jsError(" + result.Message + ")</script>";
-                    return Json(message, JsonRequestBehavior.AllowGet);
+                    pageDto.ImageCover = OldCover;
+                }
+
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
+                        pageDto.ImageBig = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    pageDto.ImageBig = OldBig;
+                }
+
+                var result = pageServ.Update(pageDto);
+                if (result.State == ProcessStateEnum.Success)
+                {
+                    //ViewBag.Message = result.Message;
+                    ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
+                    return View(new PageDto());
+                }
+                else
+                {
+                    ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
+                    return View(pageDto);
                 }
             }
             catch (Exception e)
             {
-                message = "<script>jsError('" + e.Message + "')</script>";
-                return Json(message, JsonRequestBehavior.AllowGet);
+                ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
+                return View(pageDto);
             }
         }
 

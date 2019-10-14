@@ -11,15 +11,15 @@ namespace EddarsCms.Web.Controllers
 {
     public class HomeController : Controller
     {
-        ICategoryService _cs;
+
         public HomeController()
         {
-            _cs = new CategoryService();
+
         }
 
         public ActionResult Index()
         {
-            return View(new CategoryDto());
+            return View();
         }
 
         //[HttpPost]

@@ -11,7 +11,6 @@ namespace EddarsCms.Entity.Entities
         public string Caption { get; set; }
         public string Url { get; set; }
         public bool OpenNewTab { get; set; }
-        public int Number { get; set; }
         public int MainId { get; set; }
 
 

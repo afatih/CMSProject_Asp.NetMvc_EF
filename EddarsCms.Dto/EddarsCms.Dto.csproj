@@ -60,6 +60,7 @@
     <Compile Include="BasicDtos\SellerDto.cs" />
     <Compile Include="BasicDtos\SliderDto.cs" />
     <Compile Include="DtoBase.cs" />
+    <Compile Include="OtherDtos\ReorderDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

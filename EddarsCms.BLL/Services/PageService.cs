@@ -64,7 +64,7 @@ namespace EddarsCms.BLL.Services
             {
                 Expression<Func<Page, bool>> exp = p => p.Id > 0;
                 var result = DtoFromEntitiy(pageRepo.Get(exp));
-                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, "İşleminiz Başarılı", result);
+                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, "İşleminiz Başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)
             {
@@ -86,6 +86,8 @@ namespace EddarsCms.BLL.Services
             page.Caption = dto.Caption;
             page.Content = dto.Content;
             page.UpdatedDate = dto.UpdatedDate;
+            page.ImageBig = dto.ImageBig;
+            page.ImageCover= dto.ImageCover;
             var result = uow.Save();
             return result;
         }

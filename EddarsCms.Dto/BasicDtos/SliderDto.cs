@@ -9,8 +9,10 @@ namespace EddarsCms.Dto.BasicDtos
     public class SliderDto:DtoBase
     {
         public string Caption { get; set; }
+        public string Description { get; set; }
+        public string ButtonText { get; set; }
         public string Url { get; set; }
         public string Image { get; set; }
-        public int Number { get; set; }
+        public bool OpenNewTab { get; set; }
     }
 }

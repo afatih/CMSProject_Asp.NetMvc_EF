@@ -3,11 +3,19 @@
 
 @model List<LanguageDto>
 @{
-    ViewBag.Title = "Home Page";
+
+
+                ViewBag.Title = "Diller";
+                ViewBag.PageTitle = "Diller";
 }
 
 <a href="@Url.Action("Create","Language")" class="btn btn-primary">Yeni ekle</a>
 
+
+@*<script src="~/Content/assets/js-core/jquery-sortable.js"></script>*@
+
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 
 <div class="col-lg-12">
     <table class="table">
@@ -17,8 +25,10 @@
                 <th>İsim</th>
                 <th>Url</th>
                 <th>Resim</th>
+                <th>Sıra No</th>
                 <th></th>
                 <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -28,13 +38,15 @@
                 {
                     foreach (var language in Model)
                     {
-                        <tr id="row-@language.Id">
+                        <tr id="row-@language.Id" data-id="@language.Id">
                             <td>@language.Id</td>
                             <td>@language.Name</td>
                             <td>@language.Url</td>
                             <td style="width:10%"><img style="width:40%" src="~/Images/Language/@language.Image" /></td>
+                            <td class="rowNumber">@language.RowNumber</td>
                             <td style="width:10%"><button onclick="jsDelete(@language.Id)" class="btn btn-danger">Sil</button></td>
                             <td style="width:10%"><a href="@Url.Action("Edit","Language",new {id=language.Id })" class="btn btn-success">Düzenle</a></td>
+
                         </tr>
 
                     }
@@ -46,6 +58,7 @@
 
 
 </div>
+
 
 
 
@@ -64,6 +77,54 @@
             }
         })
     }
+
+
+    //$("tbody").sortable();
+
+
+    //$("table tbody").sortable({
+    //    update: function (event, ui) {
+    //        $(this).children().each(function (index) {
+    //            console.log($(this))
+    //            $(this).find('td .rowNumber').html(index + 1)
+    //        });
+    //    }
+    //});
+
+    var arr = new Array();
+
+    $("table tbody").sortable({
+        update: function (event, ui) {
+            $(this).children().each(function (index) {
+                $(this).find('td.rowNumber').html(index + 1)
+                var id = $(this).attr("data-id");
+                var rowNumber = $(this).find('td.rowNumber').html()
+
+                arr.push({ "id": id, "rowNumber": rowNumber });
+            });
+            console.log(arr);
+
+            $.ajax({
+                url: "/Language/Reorder/",
+                type: "POST",
+                data: { list: arr },
+                success: function (result) {
+                    if (result.State == 1) {
+                        arr = [];
+                        console.log(result)
+                        jsSuccess(result.Message);
+
+                    } else {
+                        console.log(result)
+                        jsError(result.Message);
+
+                    }
+                }
+            })
+        }
+    });
+
+
 
 
 </script>

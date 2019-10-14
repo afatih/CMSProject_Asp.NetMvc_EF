@@ -4,6 +4,7 @@ using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace EddarsCms.BLL.Services
             {
                 Expression<Func<Language, bool>> exp = p => p.Id > 0;
                 var result = DtoFromEntity(languageRep.Get(exp));
-                return new ServiceResult<List<LanguageDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result);
+                return new ServiceResult<List<LanguageDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)
             {
@@ -81,6 +82,39 @@ namespace EddarsCms.BLL.Services
             var result = uow.Save();
             return result;
         }
+
+        public ServiceResult Reorder(List<ReorderDto> list)
+        {
+            var result = new ServiceResult(ProcessStateEnum.Error, "İşlem Başarısız");
+
+            if (list!=null)
+            {
+                if (list.Count>0)
+                {
+                    foreach (var item in list)
+                    {
+                        Expression<Func<Language, bool>> exp = p => p.Id == item.Id;
+                        var entity = languageRep.Get(exp).SingleOrDefault();
+                        entity.RowNumber = item.RowNumber;
+                    }
+
+                    result = uow.Save();
+                }
+            }
+
+            return result;
+        }
+
+
+        public ServiceResult ChangeState(int id, bool state)
+        {
+            Expression<Func<Language, bool>> exp = p => p.Id == id;
+            var entity = languageRep.Get(exp).SingleOrDefault();
+            entity.State = state;
+            var result = uow.Save();
+            return result;
+        }
+
 
 
         #region Mappings
@@ -148,6 +182,10 @@ namespace EddarsCms.BLL.Services
             }
             return list;
         }
+
+       
+
+
 
 
 

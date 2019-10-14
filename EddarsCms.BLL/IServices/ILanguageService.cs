@@ -1,4 +1,6 @@
-﻿using EddarsCms.Dto.BasicDtos;
+﻿using Core.Results;
+using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace EddarsCms.BLL.IServices
 {
     public interface ILanguageService:IService<LanguageDto>
     {
-
+        ServiceResult Reorder(List<ReorderDto> list);
+        ServiceResult ChangeState(int id, bool state);
     }
 }

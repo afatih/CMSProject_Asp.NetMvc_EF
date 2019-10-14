@@ -1,5 +1,6 @@
-﻿using Core.DAL;
+﻿using Core.Results;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.BLL.IServices
 {
-    public interface ICategoryService:IService<CategoryDto>
+    public interface INewsService:IService<NewsDto>
     {
-        
-
+        ServiceResult Reorder(List<ReorderDto> list);
     }
 }

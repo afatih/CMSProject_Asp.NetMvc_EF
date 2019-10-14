@@ -13,5 +13,6 @@ namespace EddarsCms.Dto.BasicDtos
         public bool OpenNewTab { get; set; }
         public int Number { get; set; }
         public int MainId { get; set; }
+        public string MainCaption { get; set; }
     }
 }

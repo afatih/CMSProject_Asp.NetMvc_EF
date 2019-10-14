@@ -13,25 +13,31 @@
 
 }
 
-<div class="form-group">
-    <label id="LanguageId" class="col-sm-3 control-label">Dil</label>
-    <div class="col-sm-6">
-        <select class="form-control" id="LanguageId" name="LanguageId">
-            @if (languages != null)
-            {
-                if (languages.Count > 0)
+<div class="row">
+
+    <div class="col-sm-8 float-left">
+        <a href="@Url.Action("Create","Page")" class="btn btn-primary">Yeni ekle</a>
+    </div>
+    <div class="form-group float-right col-sm-4">
+        <label for="LanguageId" class="col-sm-3 control-label" style="padding-top: 8px;padding-left:40px">Dil</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="LanguageId" name="LanguageId">
+                @if (languages != null)
                 {
-                    foreach (var language in languages)
+                    if (languages.Count > 0)
                     {
-                        <option value="@language.Id">@language.Name</option>
+                        foreach (var language in languages)
+                        {
+                            <option value="@language.Id">@language.Name</option>
+                        }
                     }
                 }
-            }
-        </select>
+            </select>
+        </div>
     </div>
 </div>
 
-    <a href="@Url.Action("Create","Page")" class="btn btn-primary">Yeni ekle</a>
+
 
 @Html.Raw(ViewBag.Message)
 
@@ -54,21 +60,21 @@
                 {
                     foreach (var item in Model)
                     {
-            <tr id="row-@item.Id" data-langId="lang-@item.LanguageId">
-                <td>@item.Caption</td>
-                <td>@item.Url</td>
-                @if (item.State == true)
-                {
-                    <td><button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button></td>
-                }
-                else
-                {
-                    <td><button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button></td>
+                        <tr id="row-@item.Id" data-langId="lang-@item.LanguageId">
+                            <td>@item.Caption</td>
+                            <td>@item.Url</td>
+                            @if (item.State == true)
+                            {
+                                <td><button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button></td>
+                            }
+                            else
+                            {
+                                <td><button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button></td>
 
-                }
-                <td style="width:10%"><button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button></td>
-                <td style="width:10%"><a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-success">Düzenle</a></td>
-            </tr>
+                            }
+                            <td style="width:10%"><button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button></td>
+                            <td style="width:10%"><a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-success">Düzenle</a></td>
+                        </tr>
 
                     }
                 }
@@ -159,7 +165,6 @@
 
     $("select#LanguageId.form-control").change(function () {
         var langId = "lang-" + $(this).val();
-
         $.each($("tbody tr"), function () {
             var rowLangId = $(this).attr("data-langId")
             if (langId != rowLangId) {
@@ -167,10 +172,10 @@
             } else {
                 $(this).show();
             }
-
         })
-
     })
+
 
 </script>
 
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
