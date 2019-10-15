@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
-    public class ContactInfo
+
+    public class ContactInfo:EntityBase
     {
-        public int Id { get; set; }
         public string Adress { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
         public string Fax { get; set; }
-        public string Mail { get; set; }
+        public string EMail { get; set; }
         public string MapLocation { get; set; }
+        public string Image { get; set; }
+
+
 
     }
 }

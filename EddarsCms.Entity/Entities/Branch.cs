@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
-
     //Şube
     public class Branch:EntityBase
     {

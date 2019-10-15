@@ -108,14 +108,6 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
-        public ServiceResult ChangeState(int id, bool state)
-        {
-            Expression<Func<News, bool>> exp = p => p.Id == id;
-            var News = NewsRepo.Get(exp).SingleOrDefault();
-            News.State = state;
-            var result = uow.Save();
-            return result;
-        }
 
         public ServiceResult<List<NewsDto>> GetByLangId(int id)
         {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace EddarsCms.Entity.Entities
 {
     public class HumanResource : EntityBase

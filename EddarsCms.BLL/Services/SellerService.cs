@@ -116,14 +116,6 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
-        public ServiceResult ChangeState(int id, bool state)
-        {
-            Expression<Func<Seller, bool>> exp = p => p.Id == id;
-            var Seller = SellerRepo.Get(exp).SingleOrDefault();
-            Seller.State = state;
-            var result = uow.Save();
-            return result;
-        }
 
         public ServiceResult<List<SellerDto>> GetByLangId(int id)
         {

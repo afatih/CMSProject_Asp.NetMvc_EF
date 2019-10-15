@@ -18,6 +18,10 @@ namespace EddarsCms.DAL
         public DbSet<News> News { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Referance> Referances { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<ContactInfo> ContactInfos { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

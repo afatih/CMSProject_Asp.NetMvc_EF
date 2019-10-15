@@ -8,7 +8,7 @@ namespace EddarsCms.Entity.Entities
 {
     public class Certificate : EntityBase
     {
-        public string Caption { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
     }
