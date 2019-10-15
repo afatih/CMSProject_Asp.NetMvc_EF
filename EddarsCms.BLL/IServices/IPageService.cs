@@ -1,5 +1,6 @@
 ﻿using Core.Results;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace EddarsCms.BLL.IServices
     public interface IPageService:IService<PageDto>
     {
         ServiceResult ChangeState(int id, bool state);
+        ServiceResult Reorder(List<ReorderDto> list);
     }
 }

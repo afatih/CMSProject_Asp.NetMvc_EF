@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
+
+    //Şube
     public class Branch:EntityBase
     {
         public string Name { get; set; }
@@ -13,5 +15,9 @@ namespace EddarsCms.Entity.Entities
         public string Phone2 { get; set; }
         public string Adress { get; set; }
         public string MapLocation { get; set; }
+        public string Image { get; set; }
+        public string Email { get; set; }
+        public string Fax { get; set; }
+
     }
 }

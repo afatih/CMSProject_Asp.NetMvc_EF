@@ -120,7 +120,7 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
-        public ServiceResult GetByLangId(int id)
+        public ServiceResult<List<SliderDto>> GetByLangId(int id)
         {
             try
             {
@@ -177,6 +177,7 @@ namespace EddarsCms.BLL.Services
             }
             return list;
         }
+
         #endregion
 
 

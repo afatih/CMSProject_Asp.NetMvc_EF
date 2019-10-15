@@ -13,15 +13,16 @@
 
 }
 
-<div class="row">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 
+<div class="row">
     <div class="col-sm-8 float-left">
         <a href="@Url.Action("Create","Page")" class="btn btn-primary">Yeni ekle</a>
     </div>
     <div class="form-group float-right col-sm-4">
         <label for="LanguageId" class="col-sm-3 control-label" style="padding-top: 8px;padding-left:40px">Dil</label>
         <div class="col-sm-6">
-            <select class="form-control" id="LanguageId" name="LanguageId">
+            <select class="form-control" id="LanguageId">
                 @if (languages != null)
                 {
                     if (languages.Count > 0)
@@ -47,9 +48,7 @@
             <tr>
                 <th>Başlık</th>
                 <th>Url</th>
-                <th>Durum</th>
-                <th>Resim</th>
-                <th></th>
+                <th style="width:10%">Sıra No</th>
                 <th></th>
             </tr>
         </thead>
@@ -60,20 +59,27 @@
                 {
                     foreach (var item in Model)
                     {
-                        <tr id="row-@item.Id" data-langId="lang-@item.LanguageId">
+                        <tr id="row-@item.Id" data-id="@item.Id">
                             <td>@item.Caption</td>
                             <td>@item.Url</td>
+                            <td style="width:10%" class="rowNumber">@item.RowNumber</td>
                             @if (item.State == true)
                             {
-                                <td><button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button></td>
+                                <td style="width:22%">
+                                    <button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button>
+                                    <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                    <a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                </td>
                             }
                             else
                             {
-                                <td><button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button></td>
+                                <td style="width:22%">
+                                    <button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button>
+                                    <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                    <a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                </td>
 
                             }
-                            <td style="width:10%"><button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button></td>
-                            <td style="width:10%"><a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-success">Düzenle</a></td>
                         </tr>
 
                     }
@@ -150,30 +156,72 @@
         })
     }
 
-    $(function () {
-        var langId = "lang-" + $("select#LanguageId.form-control").val();
-        $.each($("tbody tr"), function () {
-            var rowLangId = $(this).attr("data-langId")
-            if (langId != rowLangId) {
-                $(this).hide();
-            } else {
-                $(this).show();
+    var arr = new Array();
+    $("table tbody").sortable({
+        update: function (event, ui) {
+            $(this).children().each(function (index) {
+                $(this).find('td.rowNumber').html(index + 1)
+                var id = $(this).attr("data-id");
+                var rowNumber = $(this).find('td.rowNumber').html()
+
+
+                //mevcut id ve sıra numarasını bir listeye atıyoruz.
+                arr.push({ "id": id, "rowNumber": rowNumber });
+            });
+            console.log(arr);
+
+            $.ajax({
+                url: "/Page/Reorder/",
+                type: "POST",
+                data: { list: arr },
+                success: function (result) {
+                    if (result.State == 1) {
+                        arr = [];
+                        console.log(result)
+                        jsSuccess(result.Message);
+
+                    } else {
+                        console.log(result)
+                        jsError(result.Message);
+
+                    }
+                }
+            })
+        }
+    });
+
+
+
+    $("#LanguageId").change(function () {
+        var langId = $(this).val();
+        $.ajax({
+            url: "/Page/GetByLangId",
+            type: "POST",
+            data: { id: langId },
+            success: function (result) {
+                if (result.State == 1) {
+                    $("table tbody").html("");
+                    $.each(result.Result, function (i, v) {
+                        console.log(v.State)
+                        if (v.State == true) {
+                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-success' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Aktif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Page/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+
+                            $("table tbody").append(row);
+                        } else {
+                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-danger' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Pasif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Page/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+
+                            $("table tbody").append(row);
+                        }
+                    })
+
+
+                } else {
+                    jsError(result.Message);
+                }
             }
         })
     })
 
-
-    $("select#LanguageId.form-control").change(function () {
-        var langId = "lang-" + $(this).val();
-        $.each($("tbody tr"), function () {
-            var rowLangId = $(this).attr("data-langId")
-            if (langId != rowLangId) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        })
-    })
 
 
 </script>

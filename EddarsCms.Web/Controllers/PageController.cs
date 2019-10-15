@@ -3,6 +3,7 @@ using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +16,11 @@ namespace EddarsCms.Web.Controllers
     public class PageController : Controller
     {
         IPageService pageServ;
+        ILanguageService languageServ;
         public PageController()
         {
             pageServ = new PageService();
+            languageServ = new LanguageService();
         }
 
         // GET: Page
@@ -28,7 +31,13 @@ namespace EddarsCms.Web.Controllers
             {
                 ViewBag.Message = "<script>jsError('" + pages.Message + "')</script>";
             }
-            return View(pages.Result);
+
+            var languages = languageServ.GetAll().Result;
+            var selectedLang = languages.First();
+
+            var resultForLang = pages.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
+
+            return View(resultForLang);
         }
 
         public ActionResult Create()
@@ -132,6 +141,14 @@ namespace EddarsCms.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(OldCover))
+                {
+                    pageDto.ImageCover = OldCover;
+                }
+                if (!string.IsNullOrEmpty(OldBig))
+                {
+                    pageDto.ImageBig = OldBig;
+                }
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
                 return View(pageDto);
             }
@@ -195,7 +212,7 @@ namespace EddarsCms.Web.Controllers
                 {
                     //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
-                    return View(new PageDto());
+                    return View(pageDto);
                 }
                 else
                 {
@@ -228,14 +245,20 @@ namespace EddarsCms.Web.Controllers
         }
 
 
-        
+        public JsonResult Reorder(List<ReorderDto> list)
+        {
 
+            var result = pageServ.Reorder(list);
+            return Json(result, JsonRequestBehavior.AllowGet);
 
-        // yazılacak
-        //public JsonResult ChangeState(int id,bool state)
-        //{
+        }
 
-        //}
+        public JsonResult GetByLangId(int id)
+        {
+            var result = pageServ.GetByLangId(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
     }
 }

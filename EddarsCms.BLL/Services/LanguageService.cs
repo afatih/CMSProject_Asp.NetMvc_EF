@@ -183,12 +183,10 @@ namespace EddarsCms.BLL.Services
             return list;
         }
 
-       
-
-
-
-
-
+        public ServiceResult<List<LanguageDto>> GetByLangId(int id)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

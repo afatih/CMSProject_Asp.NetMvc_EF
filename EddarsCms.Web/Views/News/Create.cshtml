@@ -13,86 +13,129 @@
     var languages = langServ.GetAll().Result;
 }
 
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+</style>
+
+@Html.Raw(ViewBag.Message)
+
+@using (Html.BeginForm("Create", "News", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="message"></div>
 
 
-<div class="panel">
-    <div class="panel-body">
-        @Html.Raw(ViewBag.Message)
-
-        @using (Html.BeginForm("Create", "News", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
-
-            <div id="message"></div>
-
-            <div class="form-group">
-                <label id="LanguageId" class="col-sm-3 control-label">Haber Dil</label>
-                <div class="col-sm-6">
-                    <select class="form-control" id="LanguageId" name="LanguageId">
-                        @if (languages != null)
-                        {
-                            if (languages.Count > 0)
-                            {
-                                foreach (var language in languages)
-                                {
-                                    <option value="@language.Id">@language.Name</option>
-                                }
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.ValidationMessageFor(x => x.Caption)
-                <label for="Caption" class=" col-sm-3 control-label">Haber Başlık</label>
-                <div class="col-sm-6">
-                    <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
-                </div>
-            </div>
-
-
-
-
-            <div class="form-group">
-                <label for="image" class="col-sm-3 control-label">Haber Resim</label>
-                <div class="col-sm-6">
-                    <input type="file" class="form-control" id="image" name="file">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="rowNumber" class="col-sm-3 control-label">Sıra No</label>
-                <div class="col-sm-6">
-                    <div class="input-group bootstrap-touchspin">
-                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                        <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
+    <div class="row main-box">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="main-box-header">
+                        <h3>Haber Ekle</h3>
                     </div>
-                </div>
-            </div>
-
-            <input type="hidden" style="display:none" id="Content" name="Content" />
-
-            <div class="form-group">
-                <label for="content" class="col-sm-3 control-label">Blog İçeriği</label>
-                <div class="col-sm-9">
-                    <div class="example-box-wrapper">
-                        <div id="summerNoteContent">
-                            <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label id="LanguageId" class=" control-label">Haber Dil</label>
+                            <div>
+                                <select class="form-control" id="LanguageId" name="LanguageId">
+                                    @if (languages != null)
+                                    {
+                                        if (languages.Count > 0)
+                                        {
+                                            foreach (var language in languages)
+                                            {
+                                                <option value="@language.Id">@language.Name</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
                         </div>
 
+
+                        <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.Caption)
+                            <label for="Caption" class=" control-label">Haber Başlık</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="rowNumber" class=" control-label">Sıra No</label>
+                            <div>
+                                <div class="input-group bootstrap-touchspin">
+                                    <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                    <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" style="display:none" id="Content" name="Content" />
+
+                        <div class="form-group">
+                            <label for="content" class=" control-label">Blog İçeriği</label>
+                            <div>
+                                <div class="example-box-wrapper">
+                                    <div id="summerNoteContent">
+                                        <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
+
                 </div>
+
             </div>
+        </div>
 
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="main-box-header">
+                        <h3>Görsel Ayarları</h3>
+                    </div>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="image" class=" control-label">Haber Resim</label>
+                            <div>
+                                <input type="file" class="form-control" id="image" name="file">
+                            </div>
+                        </div>
+                        <div><button style="margin-top:2px" type="submit" class="btn btn-success">Kaydet</button></div>
 
+                    </div>
 
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6"><button type="submit" class="btn btn-success">Kaydet</button></div>
-        }
+                </div>
+
+            </div>
+        </div>
+
     </div>
-</div>
+
+
+
+}
 
 
 <script>

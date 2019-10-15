@@ -12,5 +12,6 @@ namespace EddarsCms.BLL.IServices
     public interface INewsService:IService<NewsDto>
     {
         ServiceResult Reorder(List<ReorderDto> list);
+
     }
 }

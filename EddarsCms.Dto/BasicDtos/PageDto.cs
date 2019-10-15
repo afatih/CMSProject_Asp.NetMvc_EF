@@ -19,7 +19,6 @@ namespace EddarsCms.Dto.BasicDtos
 
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
-        public string SeoKeywords { get; set; }
 
         public string ImageCover { get; set; }
         public string ImageBig { get; set; }

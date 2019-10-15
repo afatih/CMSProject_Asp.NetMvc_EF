@@ -64,21 +64,21 @@
                             <td>@item.Caption</td>
                             <td>@item.Url</td>
                             <td>@item.MainCaption</td>
-                            <td class="rowNumber">@item.RowNumber</td>
+                            <td width="10%" class="rowNumber">@item.RowNumber</td>
                             @if (item.State == true)
                             {
-                                <td>
+                                <td width="22%">
                                     <button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button>
                                     <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                    <a href="@Url.Action("Edit","Menu",new {id=item.Id })" class="btn btn-success">Düzenle</a>
+                                    <a href="@Url.Action("Edit","Menu",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                                 </td>
                             }
                             else
                             {
-                                <td>
+                                <td width="22%">
                                     <button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button>
                                     <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                    <a href="@Url.Action("Edit","Menu",new {id=item.Id })" class="btn btn-success">Düzenle</a>
+                                    <a href="@Url.Action("Edit","Menu",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                                 </td>
 
                             }

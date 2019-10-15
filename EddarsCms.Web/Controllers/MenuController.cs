@@ -15,10 +15,12 @@ namespace EddarsCms.Web.Controllers
     public class MenuController : Controller
     {
         IMenuService menuServ;
+        ILanguageService languageServ;
 
         public MenuController()
         {
             menuServ = new MenuService();
+            languageServ = new LanguageService();
         }
 
 
@@ -29,7 +31,13 @@ namespace EddarsCms.Web.Controllers
             {
                 ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
             }
-            return View(result.Result);
+
+            var languages = languageServ.GetAll().Result;
+            var selectedLang = languages.First();
+
+            var resultForLang = result.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
+
+            return View(resultForLang);
         }
 
         public ActionResult Create()
@@ -140,13 +148,20 @@ namespace EddarsCms.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public JsonResult Reorder(List<ReorderDto> list)
         {
 
             var result = menuServ.Reorder(list);
             return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
+
+        [HttpPost]
+        public JsonResult GetByLangId(int id)
+        {
+            var result = menuServ.GetByLangId(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

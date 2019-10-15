@@ -140,6 +140,20 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
+        public ServiceResult<List<MenuDto>> GetByLangId(int id)
+        {
+            try
+            {
+                Expression<Func<Menu, bool>> exp = p => p.LanguageId == id;
+                var result = DtoFromEntity(MenuRepo.Get(exp));
+                return new ServiceResult<List<MenuDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<List<MenuDto>>(ProcessStateEnum.Success, e.Message, new List<MenuDto>());
+            }
+        }
+
 
         #region Mappings
         public Menu EntityFromDto(MenuDto dto)
@@ -183,6 +197,7 @@ namespace EddarsCms.BLL.Services
             }
             return list;
         }
+
 
         #endregion
     }

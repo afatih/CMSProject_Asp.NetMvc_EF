@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
+
+    //Bayi
     public class Seller:EntityBase
     {
         public string Name { get; set; }
@@ -15,6 +17,7 @@ namespace EddarsCms.Entity.Entities
         public string Phone { get; set; }
         public string AuthorityPlace { get; set; }
         public string Mail { get; set; }
+        public string Image { get; set; }
 
     }
 }

@@ -5,8 +5,8 @@
 @{
 
 
-                ViewBag.Title = "Diller";
-                ViewBag.PageTitle = "Diller";
+    ViewBag.Title = "Diller";
+    ViewBag.PageTitle = "Diller";
 }
 
 <a href="@Url.Action("Create","Language")" class="btn btn-primary">Yeni ekle</a>
@@ -27,7 +27,6 @@
                 <th>Resim</th>
                 <th>Sıra No</th>
                 <th></th>
-                <th></th>
 
             </tr>
         </thead>
@@ -43,9 +42,11 @@
                             <td>@language.Name</td>
                             <td>@language.Url</td>
                             <td style="width:10%"><img style="width:40%" src="~/Images/Language/@language.Image" /></td>
-                            <td class="rowNumber">@language.RowNumber</td>
-                            <td style="width:10%"><button onclick="jsDelete(@language.Id)" class="btn btn-danger">Sil</button></td>
-                            <td style="width:10%"><a href="@Url.Action("Edit","Language",new {id=language.Id })" class="btn btn-success">Düzenle</a></td>
+                            <td style="width:10%"  class="rowNumber">@language.RowNumber</td>
+                            <td style="width:14%">
+                                <button onclick="jsDelete(@language.Id)" class="btn btn-danger">Sil</button>
+                                <a href="@Url.Action("Edit","Language",new {id=language.Id })" class="btn btn-warning">Düzenle</a>
+                            </td>
 
                         </tr>
 

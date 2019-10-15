@@ -13,7 +13,7 @@ namespace EddarsCms.BLL.IServices
     {
         ServiceResult Reorder(List<ReorderDto> list);
         ServiceResult ChangeState(int id, bool state);
-        ServiceResult GetByLangId(int id);
+
         
     }
 }

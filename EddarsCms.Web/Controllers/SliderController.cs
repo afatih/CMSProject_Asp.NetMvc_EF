@@ -25,7 +25,7 @@ namespace EddarsCms.Web.Controllers
 
 
 
-        public ActionResult Index(int languageId = 0)
+        public ActionResult Index()
         {
             var result = sliderServ.GetAll();
             if (result.State != ProcessStateEnum.Success)
@@ -35,13 +35,6 @@ namespace EddarsCms.Web.Controllers
 
             var languages = languageServ.GetAll().Result;
             var selectedLang = languages.First();
-
-            if (languageId != 0)
-            {
-                selectedLang = languages.Where(x => x.Id == languageId).SingleOrDefault();
-            }
-
-
 
             var resultForLang = result.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
 

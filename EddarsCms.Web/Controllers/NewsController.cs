@@ -15,9 +15,11 @@ namespace EddarsCms.Web.Controllers
     public class NewsController : Controller
     {
         INewsService newsServ;
+        ILanguageService languageServ;
 
         public NewsController()
         {
+            languageServ = new LanguageService();
             newsServ = new NewsService();
         }
 
@@ -29,7 +31,13 @@ namespace EddarsCms.Web.Controllers
             {
                 ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
             }
-            return View(result.Result);
+
+            var languages = languageServ.GetAll().Result;
+            var selectedLang = languages.First();
+
+            var resultForLang = result.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
+
+            return View(resultForLang);
         }
 
         public ActionResult Create()
@@ -65,7 +73,7 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/Sliders/") + pathWidthGuid);
+                        file.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
                         dto.Image = pathWidthGuid;
                     }
                 }
@@ -134,7 +142,7 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/Sliders/") + pathWidthGuid);
+                        file.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
                         dto.Image = pathWidthGuid;
                     }
                 }
@@ -171,16 +179,20 @@ namespace EddarsCms.Web.Controllers
 
         }
 
-
-
-
-
+        [HttpPost]
         public JsonResult Reorder(List<ReorderDto> list)
         {
 
             var result = newsServ.Reorder(list);
             return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
+
+        [HttpPost]
+        public JsonResult GetByLangId(int id)
+        {
+            var result = newsServ.GetByLangId(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -117,6 +117,20 @@ namespace EddarsCms.BLL.Services
             return result;
         }
 
+        public ServiceResult<List<NewsDto>> GetByLangId(int id)
+        {
+            try
+            {
+                Expression<Func<News, bool>> exp = p => p.LanguageId == id;
+                var result = DtoFromEntity(NewsRepo.Get(exp));
+                return new ServiceResult<List<NewsDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<List<NewsDto>>(ProcessStateEnum.Success, e.Message, new List<NewsDto>());
+            }
+        }
+
 
         #region Mappings
         public News EntityFromDto(NewsDto dto)
@@ -160,7 +174,6 @@ namespace EddarsCms.BLL.Services
             }
             return list;
         }
-
         #endregion
     }
 }

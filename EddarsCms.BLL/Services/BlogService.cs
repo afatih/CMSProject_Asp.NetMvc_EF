@@ -4,6 +4,7 @@ using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -76,12 +77,12 @@ namespace EddarsCms.BLL.Services
             blog.BlogBegin = dto.BlogBegin;
             blog.Caption = dto.Caption;
             blog.Content = dto.Content;
-            blog.Image = dto.Image;
+            blog.ImageBig = dto.ImageBig;
+            blog.ImageCover= dto.ImageCover;
             blog.LanguageId = dto.LanguageId;
             //kaldıılabilir burdaki işlem;
             blog.RowNumber = dto.RowNumber;
             blog.SeoDescription = dto.SeoDescription;
-            blog.SeoKeywords = dto.SeoKeywords;
             blog.SeoTitle = dto.SeoTitle;
             //blog.State = dto.State;
             blog.UpdatedDate = dto.UpdatedDate;
@@ -97,6 +98,42 @@ namespace EddarsCms.BLL.Services
             blog.State = state;
             var result = uow.Save();
             return result;
+        }
+
+        public ServiceResult Reorder(List<ReorderDto> list)
+        {
+            var result = new ServiceResult(ProcessStateEnum.Error, "İşlem Başarısız");
+
+            if (list != null)
+            {
+                if (list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Expression<Func<Blog, bool>> exp = p => p.Id == item.Id;
+                        var entity = blogRepo.Get(exp).SingleOrDefault();
+                        entity.RowNumber = item.RowNumber;
+                    }
+
+                    result = uow.Save();
+                }
+            }
+
+            return result;
+        }
+
+        public ServiceResult<List<BlogDto>> GetByLangId(int id)
+        {
+            try
+            {
+                Expression<Func<Blog, bool>> exp = p => p.LanguageId == id;
+                var result = DtoFromEntity(blogRepo.Get(exp));
+                return new ServiceResult<List<BlogDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<List<BlogDto>>(ProcessStateEnum.Success, e.Message, new List<BlogDto>());
+            }
         }
 
 
@@ -185,7 +222,8 @@ namespace EddarsCms.BLL.Services
             return list;
         }
 
-        
+
+
 
         #endregion
 

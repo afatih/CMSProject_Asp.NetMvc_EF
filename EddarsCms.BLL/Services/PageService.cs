@@ -4,6 +4,7 @@ using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.DAL;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,7 @@ namespace EddarsCms.BLL.Services
             try
             {
                 Expression<Func<Page, bool>> exp = p => p.Id > 0;
-                var result = DtoFromEntitiy(pageRepo.Get(exp));
+                var result = DtoFromEntity(pageRepo.Get(exp));
                 return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, "İşleminiz Başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)
@@ -79,7 +80,6 @@ namespace EddarsCms.BLL.Services
             page.RowNumber = dto.RowNumber;
             page.LanguageId = dto.LanguageId;
             page.SeoDescription = dto.SeoDescription;
-            page.SeoKeywords = dto.SeoKeywords;
             page.SeoTitle = dto.SeoTitle;
             //page.State = dto.State;
             page.Url = dto.Url;
@@ -99,6 +99,42 @@ namespace EddarsCms.BLL.Services
             page.State = state;
             var result = uow.Save();
             return result;
+        }
+
+        public ServiceResult Reorder(List<ReorderDto> list)
+        {
+            var result = new ServiceResult(ProcessStateEnum.Error, "İşlem Başarısız");
+
+            if (list != null)
+            {
+                if (list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        Expression<Func<Page, bool>> exp = p => p.Id == item.Id;
+                        var entity = pageRepo.Get(exp).SingleOrDefault();
+                        entity.RowNumber = item.RowNumber;
+                    }
+
+                    result = uow.Save();
+                }
+            }
+
+            return result;
+        }
+
+        public ServiceResult<List<PageDto>> GetByLangId(int id)
+        {
+            try
+            {
+                Expression<Func<Page, bool>> exp = p => p.LanguageId == id;
+                var result = DtoFromEntity(pageRepo.Get(exp));
+                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<List<PageDto>>(ProcessStateEnum.Success, e.Message, new List<PageDto>());
+            }
         }
 
 
@@ -161,7 +197,7 @@ namespace EddarsCms.BLL.Services
             //return pageDto;
         }
 
-        public List<PageDto> DtoFromEntitiy(List<Page> pages)
+        public List<PageDto> DtoFromEntity(List<Page> pages)
         {
             List<PageDto> list = new List<PageDto>();
             if (pages != null)

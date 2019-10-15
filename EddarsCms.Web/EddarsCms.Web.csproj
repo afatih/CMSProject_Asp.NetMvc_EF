@@ -696,6 +696,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Images\Blogs\" />
     <Folder Include="Images\Language\" />
+    <Folder Include="Images\News\" />
     <Folder Include="Images\Pages\" />
     <Folder Include="Images\Sliders\" />
     <Folder Include="Models\" />

@@ -28,7 +28,10 @@
     }
 
     div img {
-        width:100px;
+        width: 100px !important;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-right: 5px;
     }
 </style>
 
@@ -129,7 +132,7 @@
                     <div class="main-box-body">
                         <div class="form-group">
                             <div>
-                                <img  src="~/Images/Pages/@Model.ImageCover" />
+                                <img src="~/Images/Pages/@Model.ImageCover" />
                             </div>
                             <label for="image1" class="control-label">Sayfa Kapak Resim</label>
                             <div>
@@ -169,7 +172,7 @@
                         <div class="form-group">
                             <label for="SeoDescription" class="float-leftcontrol-label  float-left !important">Seo Description</label>
                             <div>
-                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5" value="@Model.SeoDescription"></textarea>
+                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5" >@Model.SeoDescription</textarea>
                             </div>
 
                             <div style="padding-top:10px"><button type="submit" class="btn btn-success">Kaydet</button></div>
@@ -215,6 +218,11 @@
 
 
     $("#summerNoteContent").mouseleave(function () {
+        var summerNoteContent = $("div.note-editor div.note-editable").html();
+        $("#Content").val(summerNoteContent);
+    })
+
+    $("button[type=submit]").hover(function () {
         var summerNoteContent = $("div.note-editor div.note-editable").html();
         $("#Content").val(summerNoteContent);
     })

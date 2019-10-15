@@ -14,5 +14,6 @@ namespace EddarsCms.BLL.IServices
         ServiceResult<TDto> Get(int id);
         ServiceResult Delete(int id);
         ServiceResult Update(TDto dto);
+        ServiceResult<List<TDto>> GetByLangId(int id);
     }
 }

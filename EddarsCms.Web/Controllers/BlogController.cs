@@ -2,6 +2,7 @@
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,10 +15,12 @@ namespace EddarsCms.Web.Controllers
     public class BlogController : Controller
     {
         IBlogService blogServ;
+        ILanguageService languageServ;
 
         public BlogController()
         {
             blogServ = new BlogService();
+            languageServ = new LanguageService();
         }
 
         // GET: Blog
@@ -28,7 +31,13 @@ namespace EddarsCms.Web.Controllers
             {
                 ViewBag.Message = "<script>jsError('" + blogs.Message + "')</script>";
             }
-            return View(blogs.Result);
+
+            var languages = languageServ.GetAll().Result;
+            var selectedLang = languages.First();
+
+            var resultForLang = blogs.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
+
+            return View(resultForLang);
         }
 
         public ActionResult Create()
@@ -37,7 +46,7 @@ namespace EddarsCms.Web.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Create(BlogDto blogDto, HttpPostedFileBase file)
+        public ActionResult Create(BlogDto blogDto, HttpPostedFileBase file1, HttpPostedFileBase file2)
         {
             if (!ModelState.IsValid)
             {
@@ -47,9 +56,9 @@ namespace EddarsCms.Web.Controllers
 
             try
             {
-                if (file != null)
+                if (file1 != null)
                 {
-                    if (file.ContentLength > 0)
+                    if (file1.ContentLength > 0)
                     {
                         #region random guidId oluşturulduğu kısım
                         var guidId = "";
@@ -63,9 +72,31 @@ namespace EddarsCms.Web.Controllers
                         }
                         #endregion
 
-                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
-                        blogDto.Image = pathWidthGuid;
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
+                        blogDto.ImageCover = pathWidthGuid;
+                    }
+                }
+
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
+                        blogDto.ImageBig = pathWidthGuid;
                     }
                 }
 
@@ -102,13 +133,17 @@ namespace EddarsCms.Web.Controllers
 
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Edit(BlogDto blogDto, HttpPostedFileBase file,string CurrentImage)
+        public ActionResult Edit(BlogDto blogDto, HttpPostedFileBase file1, HttpPostedFileBase file2, string OldCover, string OldBig)
         {
             if (!ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(CurrentImage))
+                if (!string.IsNullOrEmpty(OldCover))
                 {
-                    blogDto.Image = CurrentImage;
+                    blogDto.ImageCover = OldCover;
+                }
+                if (!string.IsNullOrEmpty(OldBig))
+                {
+                    blogDto.ImageBig = OldBig;
                 }
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
                 return View(blogDto);
@@ -116,9 +151,9 @@ namespace EddarsCms.Web.Controllers
 
             try
             {
-                if (file != null)
+                if (file1 != null)
                 {
-                    if (file.ContentLength > 0)
+                    if (file1.ContentLength > 0)
                     {
                         #region random guidId oluşturulduğu kısım
                         var guidId = "";
@@ -132,14 +167,40 @@ namespace EddarsCms.Web.Controllers
                         }
                         #endregion
 
-                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
-                        blogDto.Image = pathWidthGuid;
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
+                        blogDto.ImageCover = pathWidthGuid;
                     }
                 }
                 else
                 {
-                    blogDto.Image = CurrentImage;
+                    blogDto.ImageCover = OldCover;
+                }
+
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/Blogs/") + pathWidthGuid);
+                        blogDto.ImageBig = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    blogDto.ImageBig = OldBig;
                 }
 
                 var result = blogServ.Update(blogDto);
@@ -175,6 +236,21 @@ namespace EddarsCms.Web.Controllers
         public JsonResult ChangeState(int id, bool state)
         {
             var result = blogServ.ChangeState(id, state);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Reorder(List<ReorderDto> list)
+        {
+
+            var result = blogServ.Reorder(list);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetByLangId(int id)
+        {
+            var result = blogServ.GetByLangId(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

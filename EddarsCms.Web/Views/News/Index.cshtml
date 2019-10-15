@@ -11,6 +11,7 @@
 
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 
 <div class="row">
     <div class="col-sm-8 float-left">
@@ -42,7 +43,6 @@
         <thead>
             <tr>
                 <th>Başlık</th>
-                <th>Resim</th>
                 <th>Sıra No</th>
                 <th></th>
             </tr>
@@ -56,16 +56,12 @@
                     {
                         <tr id="row-@item.Id" data-langId="lang-@item.LanguageId" data-id="@item.Id">
                             <td>@item.Caption</td>
-                            <td style="width:10%"><img style="width:40%" src="~/Images/Newss/@item.Image" /></td>
-                            <td class="rowNumber">@item.RowNumber</td>
-                            <td>
+                            <td width="10%" class="rowNumber">@item.RowNumber</td>
+                            <td width="16%">
                                 <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                <a href="@Url.Action("Edit","News",new {id=item.Id })" class="btn btn-success">Düzenle</a>
+                                <a href="@Url.Action("Edit","News",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                             </td>
-
-
                         </tr>
-
                     }
                 }
             }
@@ -92,37 +88,6 @@
             }
         })
     }
-
-
-    $(function () {
-        var langId = "lang-" + $("select#LanguageId.form-control").val();
-        $.each($("tbody tr"), function () {
-            var rowLangId = $(this).attr("data-langId")
-            if (langId != rowLangId) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        })
-    })
-
-
-    $("select#LanguageId.form-control").change(function () {
-        var langId = "lang-" + $(this).val();
-
-        $.each($("tbody tr"), function () {
-            var rowLangId = $(this).attr("data-langId")
-            if (langId != rowLangId) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-
-        })
-
-    })
-
-
 
     var arr = new Array();
 
@@ -161,6 +126,32 @@
         }
     });
 
+
+    $("#LanguageId").change(function () {
+        var langId = $(this).val();
+        $.ajax({
+            url: "/News/GetByLangId",
+            type: "POST",
+            data: { id: langId },
+            success: function (result) {
+                if (result.State == 1) {
+                    $("table tbody").html("");
+                    $.each(result.Result, function (i, v) {
+
+
+                        var row = " <tr id='row-" + v.Id + "' data-langId='lang-" + v.LanguageId + "' data-id='" + v.Id + "'><td>" + v.Caption + "</td><td width='10%' class='rowNumber'>" + v.RowNumber + "</td><td width='16%'><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/News/Edit/" + v.id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+
+                        $("table tbody").append(row);
+
+                    })
+
+
+                } else {
+                    jsError(result.Message);
+                }
+            }
+        })
+    })
 
 
 </script>
