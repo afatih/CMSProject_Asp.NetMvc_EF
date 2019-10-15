@@ -11,7 +11,6 @@ namespace EddarsCms.BLL.IServices
 {
     public interface ILanguageService:IService<LanguageDto>
     {
-        ServiceResult Reorder(List<ReorderDto> list);
         ServiceResult ChangeState(int id, bool state);
     }
 }

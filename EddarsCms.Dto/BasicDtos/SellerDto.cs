@@ -14,5 +14,7 @@ namespace EddarsCms.Dto.BasicDtos
         public string Phone { get; set; }
         public string AuthorityPlace { get; set; }
         public string Mail { get; set; }
+        public string Image { get; set; }
+        public string MapLocation { get; set; }
     }
 }

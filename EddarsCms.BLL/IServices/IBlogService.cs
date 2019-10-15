@@ -12,6 +12,5 @@ namespace EddarsCms.BLL.IServices
     public interface IBlogService:IService<BlogDto>
     {
         ServiceResult ChangeState(int id, bool state);
-        ServiceResult Reorder(List<ReorderDto> list);
     }
 }

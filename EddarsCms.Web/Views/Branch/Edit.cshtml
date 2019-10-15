@@ -2,11 +2,11 @@
 @using EddarsCms.BLL.Services
 
 
-@model NewsDto
+@model BranchDto
 
 @{
-    ViewBag.Title = "Haber Düzenle";
-    ViewBag.PageTitle = "Haber Düzenle";
+    ViewBag.Title = "Şube Ayarları";
+    ViewBag.PageTitle = "Şube Ayarları";
 
 
     LanguageService langServ = new LanguageService();
@@ -36,10 +36,9 @@
     }
 </style>
 
-
 @Html.Raw(ViewBag.Message)
 
-@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Branch", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -51,11 +50,11 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="main-box-header">
-                        <h3>Haber Ekle</h3>
+                        <h3>Şube Düzenle</h3>
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <label for="LanguageId" class=" control-label">Haber Dil</label>
+                            <label for="LanguageId" class=" control-label">Şube Dil</label>
                             <div>
                                 <select class="form-control" id="LanguageId" name="LanguageId">
                                     @if (languages != null)
@@ -74,15 +73,54 @@
 
 
                         <div class="form-group">
-                            @Html.ValidationMessageFor(x => x.Caption)
-                            <label for="Caption" class=" control-label">Haber Başlık</label>
+                            @Html.ValidationMessageFor(x => x.Name)
+                            <label for="Name" class=" control-label">Şube Adı</label>
                             <div>
-                                <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
+                                <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="Phone1" class=" control-label">Şube Telefon Numarası 1</label>
+                            <div>
+                                <input type="text" class="form-control" name="Phone1" id="Phone1" value="@Model.Phone1" />
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="Phone2" class=" control-label">Şube Telefon Numarası 2</label>
+                            <div>
+                                <input type="text" class="form-control" name="Phone2" id="Phone2" value="@Model.Phone2" />
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="Email" class=" control-label">Şube E-mail</label>
+                            <div>
+                                <input type="text" class="form-control" name="Email" id="Email" value="@Model.Email" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Fax" class=" control-label">Şube Fax Numarası</label>
+                            <div>
+                                <input type="text" class="form-control" name="Fax" id="Fax" value="@Model.Fax" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="MapLocation" class=" control-label">Şube Harita Lokasyonu</label>
+                            <div>
+                                <input type="text" class="form-control" name="MapLocation" id="MapLocation" value="@Model.MapLocation" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Adress" class=" control-label">Şube Adres</label>
+                            <div>
+                                <textarea class="form-control" name="Adress" id="Adress" rows="5">@Model.Adress</textarea>
+                            </div>
+                        </div>
 
 
                         <div class="form-group">
@@ -94,26 +132,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <input type="hidden" style="display:none" id="Content" name="Content" />
-
-                        <div class="form-group">
-                            <label for="content" class=" control-label">Blog İçeriği</label>
-                            <div>
-                                <div class="example-box-wrapper">
-                                    <div id="summerNoteContent">
-                                        <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
-
                 </div>
-
             </div>
         </div>
 
@@ -129,9 +149,9 @@
                     <div class="main-box-body">
                         <div class="form-group">
                             <div>
-                                <img src="~/Images/News/@Model.Image" />
+                                <img src="~/Images/Branches/@Model.Image" />
                             </div>
-                            <label for="image" class=" control-label">Haber Resim</label>
+                            <label for="image" class=" control-label">Şube Resim</label>
                             <div>
                                 <input type="file" class="form-control" id="image" name="file">
                             </div>
@@ -150,7 +170,6 @@
 
 
 }
-
 
 
 <script>
@@ -184,15 +203,6 @@
     $("#summerNoteContent").mouseleave(function () {
         var summerNoteContent = $("div#summerNoteContent div.note-editor div.note-editable").html();
         $("#Content").val(summerNoteContent);
-    })
-
-    $("button[type=submit]").hover(function () {
-        var summerNoteContent = $("div#summerNoteContent div.note-editor div.note-editable").html();
-        $("#Content").val(summerNoteContent);
-    })
-
-        $(function () {
-            $("div#summerNoteContent div.note-editor div.note-editable").html('@Html.Raw(Model.Content)');
     })
 
 </script>

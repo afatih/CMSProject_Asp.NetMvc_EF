@@ -1,4 +1,5 @@
 ﻿using Core.Results;
+using EddarsCms.Dto.OtherDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace EddarsCms.BLL.IServices
         ServiceResult Delete(int id);
         ServiceResult Update(TDto dto);
         ServiceResult<List<TDto>> GetByLangId(int id);
+        ServiceResult Reorder(List<ReorderDto> list);
     }
 }

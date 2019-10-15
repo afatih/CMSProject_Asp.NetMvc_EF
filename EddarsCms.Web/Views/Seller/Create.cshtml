@@ -2,17 +2,16 @@
 @using EddarsCms.BLL.Services
 
 
-@model NewsDto
+@model SellerDto
 
 @{
-    ViewBag.Title = "Haber Düzenle";
-    ViewBag.PageTitle = "Haber Düzenle";
+    ViewBag.Title = "Bayi Ayarları";
+    ViewBag.PageTitle = "Bayi Ayarları";
 
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;
 }
-
 
 <style>
     .main-box .main-box-header {
@@ -27,19 +26,11 @@
         padding-left: 10px;
         padding-right: 10px;
     }
-
-    div img {
-        width: 100px !important;
-        margin-bottom: 5px;
-        margin-top: 5px;
-        margin-right: 5px;
-    }
 </style>
-
 
 @Html.Raw(ViewBag.Message)
 
-@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Seller", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -51,11 +42,11 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="main-box-header">
-                        <h3>Haber Ekle</h3>
+                        <h3>Bayi Ekle</h3>
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <label for="LanguageId" class=" control-label">Haber Dil</label>
+                            <label for="LanguageId" class=" control-label">Bayi Dil</label>
                             <div>
                                 <select class="form-control" id="LanguageId" name="LanguageId">
                                     @if (languages != null)
@@ -74,15 +65,54 @@
 
 
                         <div class="form-group">
-                            @Html.ValidationMessageFor(x => x.Caption)
-                            <label for="Caption" class=" control-label">Haber Başlık</label>
+                            @Html.ValidationMessageFor(x => x.Name)
+                            <label for="Name" class=" control-label">Bayi Adı</label>
                             <div>
-                                <input type="text" required class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
+                                <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="City" class=" control-label">Bayi Şehri</label>
+                            <div>
+                                <input type="text" class="form-control" name="City" id="City" value="@Model.City" />
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="Phone" class=" control-label">Bayi Telefon Numarası</label>
+                            <div>
+                                <input type="text" class="form-control" name="Phone" id="Phone" value="@Model.Phone" />
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="Mail" class=" control-label">Bayi E-mail</label>
+                            <div>
+                                <input type="text" class="form-control" name="Mail" id="Mail" value="@Model.Mail" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AuthorityPlace" class=" control-label">Bayi Yetki Bölgesi</label>
+                            <div>
+                                <input type="text" class="form-control" name="AuthorityPlace" id="AuthorityPlace" value="@Model.AuthorityPlace" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="MapLocation" class=" control-label">Bayi Harita Lokasyonu</label>
+                            <div>
+                                <input type="text" class="form-control" name="MapLocation" id="MapLocation" value="@Model.MapLocation" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Adress" class=" control-label">Bayi Adres</label>
+                            <div>
+                                <textarea class="form-control" name="Adress" id="Adress" rows="5">@Model.Adress</textarea>
+                            </div>
+                        </div>
 
 
                         <div class="form-group">
@@ -94,31 +124,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <input type="hidden" style="display:none" id="Content" name="Content" />
-
-                        <div class="form-group">
-                            <label for="content" class=" control-label">Blog İçeriği</label>
-                            <div>
-                                <div class="example-box-wrapper">
-                                    <div id="summerNoteContent">
-                                        <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
-
                 </div>
-
             </div>
         </div>
 
-
-        <input type="text" style="display:none" name="CurrentImage" value="@Model.Image" />
 
         <div class="col-lg-4">
             <div class="panel">
@@ -128,10 +138,7 @@
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <div>
-                                <img src="~/Images/News/@Model.Image" />
-                            </div>
-                            <label for="image" class=" control-label">Haber Resim</label>
+                            <label for="image" class=" control-label">Bayi Resim</label>
                             <div>
                                 <input type="file" class="form-control" id="image" name="file">
                             </div>
@@ -150,7 +157,6 @@
 
 
 }
-
 
 
 <script>
@@ -184,15 +190,6 @@
     $("#summerNoteContent").mouseleave(function () {
         var summerNoteContent = $("div#summerNoteContent div.note-editor div.note-editable").html();
         $("#Content").val(summerNoteContent);
-    })
-
-    $("button[type=submit]").hover(function () {
-        var summerNoteContent = $("div#summerNoteContent div.note-editor div.note-editable").html();
-        $("#Content").val(summerNoteContent);
-    })
-
-        $(function () {
-            $("div#summerNoteContent div.note-editor div.note-editable").html('@Html.Raw(Model.Content)');
     })
 
 </script>

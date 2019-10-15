@@ -16,6 +16,8 @@ namespace EddarsCms.DAL
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

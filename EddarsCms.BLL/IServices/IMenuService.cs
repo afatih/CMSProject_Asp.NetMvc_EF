@@ -11,7 +11,6 @@ namespace EddarsCms.BLL.IServices
 {
     public interface IMenuService:IService<MenuDto>
     {
-        ServiceResult Reorder(List<ReorderDto> list);
         ServiceResult ChangeState(int id, bool state);
     }
 }

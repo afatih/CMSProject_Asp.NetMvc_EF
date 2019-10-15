@@ -1,10 +1,10 @@
 ﻿@using EddarsCms.Dto.BasicDtos
 @using EddarsCms.BLL.Services
 
-@model List<NewsDto>
+@model List<SellerDto>
 @{
-    ViewBag.Title = "Haberler";
-    ViewBag.PageTitle = "Haberler";
+    ViewBag.Title = "Bayi Ayarları";
+    ViewBag.PageTitle = "Bayi Ayarları";
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;
@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-sm-8 float-left">
-        <a href="@Url.Action("Create","News")" class="btn btn-primary">Yeni ekle</a>
+        <a href="@Url.Action("Create","Seller")" class="btn btn-primary">Yeni ekle</a>
     </div>
     <div class="form-group float-right col-sm-4">
         <label for="LanguageId" class="col-sm-3 control-label" style="padding-top: 8px;padding-left:40px">Dil</label>
@@ -55,11 +55,11 @@
                     foreach (var item in Model)
                     {
                         <tr id="row-@item.Id" data-langId="lang-@item.LanguageId" data-id="@item.Id">
-                            <td>@item.Caption</td>
+                            <td>@item.Name</td>
                             <td width="10%" class="rowNumber">@item.RowNumber</td>
                             <td width="16%">
                                 <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                <a href="@Url.Action("Edit","News",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                <a href="@Url.Action("Edit","Seller",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                             </td>
                         </tr>
                     }
@@ -76,7 +76,7 @@
 <script>
     function jsDelete(id) {
         $.ajax({
-            url: "/News/Delete", type: "POST", data: { id: id }, success: function (result) {
+            url: "/Seller/Delete", type: "POST", data: { id: id }, success: function (result) {
                 if (result.State != 1) {
                     jsError(result.Message);
 
@@ -107,7 +107,7 @@
             console.log(arr);
 
             $.ajax({
-                url: "/News/Reorder/",
+                url: "/Seller/Reorder/",
                 type: "POST",
                 data: { list: arr },
                 success: function (result) {
@@ -130,7 +130,7 @@
     $("#LanguageId").change(function () {
         var langId = $(this).val();
         $.ajax({
-            url: "/News/GetByLangId",
+            url: "/Seller/GetByLangId",
             type: "POST",
             data: { id: langId },
             success: function (result) {
@@ -139,7 +139,7 @@
                     $.each(result.Result, function (i, v) {
 
 
-                        var row = " <tr id='row-" + v.Id + "' data-langId='lang-" + v.LanguageId + "' data-id='" + v.Id + "'><td>" + v.Caption + "</td><td width='10%' class='rowNumber'>" + v.RowNumber + "</td><td width='16%'><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/News/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+                        var row = " <tr id='row-" + v.Id + "' data-langId='lang-" + v.LanguageId + "' data-id='" + v.Id + "'><td>" + v.Name + "</td><td width='10%' class='rowNumber'>" + v.RowNumber + "</td><td width='16%'><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Seller/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
 
                         $("table tbody").append(row);
 
