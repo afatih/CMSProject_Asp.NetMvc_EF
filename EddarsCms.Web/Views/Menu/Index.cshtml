@@ -117,7 +117,7 @@
     function jsChangeState(id) {
         var btn = $("#btn-" + id);
         var state = btn.attr("data-state");
-        if (state == "True") {
+        if (state.toLowerCase() == "true") {
             $.ajax({
                 url: "/Menu/ChangeState/",
                 type: "POST",

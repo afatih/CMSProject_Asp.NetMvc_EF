@@ -47,6 +47,7 @@
     <Compile Include="IServices\IBlogCommentService.cs" />
     <Compile Include="IServices\IBlogService.cs" />
     <Compile Include="IServices\IBranchService.cs" />
+    <Compile Include="IServices\ICategoryService.cs" />
     <Compile Include="IServices\ICertificateService.cs" />
     <Compile Include="IServices\IContactInfoService.cs" />
     <Compile Include="IServices\IContactMailService.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="IServices\IMenuService.cs" />
     <Compile Include="IServices\INewsService.cs" />
     <Compile Include="IServices\IPageService.cs" />
+    <Compile Include="IServices\IProductService.cs" />
     <Compile Include="IServices\IReferanceService.cs" />
     <Compile Include="IServices\ISellerService.cs" />
     <Compile Include="IServices\IService.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Services\BlogCommentService.cs" />
     <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\BranchService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CertificateService.cs" />
     <Compile Include="Services\ContactInfoService.cs" />
     <Compile Include="Services\ContactMailService.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReferanceService.cs" />
     <Compile Include="Services\SellerService.cs" />
     <Compile Include="Services\SliderService.cs" />
@@ -103,6 +107,9 @@
       <Project>{34AFA6CE-4043-46E8-B847-A25E0D28C6BB}</Project>
       <Name>EddarsCms.Entity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IServices\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

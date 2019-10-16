@@ -26,6 +26,8 @@ namespace EddarsCms.DAL
         public DbSet<HumanResource> HumanResources{ get; set; }
         public DbSet<InformationFromUs> InformationFromUs{ get; set; }
         public DbSet<MailInfo> MailInfos { get; set; }
+        public DbSet<Category> Categories{ get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

@@ -57,6 +57,7 @@
     <Compile Include="BasicDtos\MultimediaDto.cs" />
     <Compile Include="BasicDtos\NewsDto.cs" />
     <Compile Include="BasicDtos\PageDto.cs" />
+    <Compile Include="BasicDtos\ProductDto.cs" />
     <Compile Include="BasicDtos\ReferanceDto.cs" />
     <Compile Include="BasicDtos\SellerDto.cs" />
     <Compile Include="BasicDtos\SliderDto.cs" />

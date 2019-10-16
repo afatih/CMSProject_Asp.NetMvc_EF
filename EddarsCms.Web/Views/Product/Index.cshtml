@@ -1,0 +1,229 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+@model List<ProductDto>
+@{
+    ViewBag.Title = "Ürün Ayarları";
+    ViewBag.PageTitle = "Ürün Ayarları";
+
+    LanguageService langServ = new LanguageService();
+    var languages = langServ.GetAll().Result;
+
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+
+<div class="row">
+
+    <div class="col-sm-8 float-left">
+        <a href="@Url.Action("Create","Product")" class="btn btn-primary">Yeni ekle</a>
+    </div>
+    <div class="form-group float-right col-sm-4">
+        <label for="LanguageId" class="col-sm-3 control-label" style="padding-top: 8px;padding-left:40px">Dil</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="LanguageId" name="LanguageId">
+                @if (languages != null)
+                {
+                    if (languages.Count > 0)
+                    {
+                        foreach (var language in languages)
+                        {
+                            <option value="@language.Id">@language.Name</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.Raw(ViewBag.Message)
+
+<div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ad</th>
+                <th>Üst Ürün</th>
+                <th>Sıra No</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="row-@item.Id" data-langId="lang-@item.LanguageId" data-id="@item.Id">
+                            <td>@item.Name</td>
+                            <td>@item.MainProdName</td>
+                            <td width="10%" class="rowNumber">@item.RowNumber</td>
+                            @if (item.State == true)
+                            {
+                                <td width="22%">
+                                    <button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button>
+                                    <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                    <a href="@Url.Action("Edit","Product",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td width="22%">
+                                    <button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button>
+                                    <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                    <a href="@Url.Action("Edit","Product",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                </td>
+
+                            }
+                            @*<td style="width:10%"><button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button></td>
+                                <td style="width:10%"><a href="@Url.Action("Edit","Product",new {id=item.Id })" class="btn btn-success">Düzenle</a></td>*@
+                        </tr>
+
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/Product/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("#row-" + id).remove();
+                }
+            }
+        })
+    }
+
+
+    function jsChangeState(id) {
+        var btn = $("#btn-" + id);
+        var state = btn.attr("data-state");
+        if (state.toLowerCase() == "true") {
+            $.ajax({
+                url: "/Product/ChangeState/",
+                type: "POST",
+                data: { id: id, state: "False" },
+                success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        btn.attr("data-state", "False");
+                        btn.text("Pasif")
+                        btn.removeClass("btn-success");
+                        btn.addClass("btn-danger");
+                    }
+                }
+            })
+        }
+        else {
+            $.ajax({
+                url: "/Product/ChangeState/",
+                type: "POST",
+                data: { id: id, state: "True" },
+                success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        btn.attr("data-state", "True");
+                        btn.text("Aktif")
+                        btn.removeClass("btn-danger");
+                        btn.addClass("btn-success");
+                    }
+                }
+            })
+        }
+    }
+
+
+    var arr = new Array();
+
+    $("table tbody").sortable({
+        update: function (event, ui) {
+            $(this).children().each(function (index) {
+                $(this).find('td.rowNumber').html(index + 1)
+                var id = $(this).attr("data-id");
+                var rowNumber = $(this).find('td.rowNumber').html()
+
+                arr.push({ "id": id, "rowNumber": rowNumber });
+            });
+            console.log(arr);
+
+            $.ajax({
+                url: "/Product/Reorder/",
+                type: "POST",
+                data: { list: arr },
+                success: function (result) {
+                    if (result.State == 1) {
+                        arr = [];
+                        console.log(result)
+                        jsSuccess(result.Message);
+
+                    } else {
+                        console.log(result)
+                        jsError(result.Message);
+
+                    }
+                }
+            })
+        }
+    });
+
+
+
+    $("#LanguageId").change(function () {
+        var langId = $(this).val();
+        $.ajax({
+            url: "/Product/GetByLangId",
+            type: "POST",
+            data: { id: langId },
+            success: function (result) {
+                if (result.State == 1) {
+                    $("table tbody").html("");
+                    $.each(result.Result, function (i, v) {
+                        console.log(v.State)
+                        if (v.State == true) {
+
+
+                            var row = "   <tr id='row-" + v.Id + "' data-langId='lang-" + v.LanguageId + "' data-id='" + v.Id + "'><td>" + v.Name + "</td><td>" + v.MainProdName + "</td><td width='10%' class='rowNumber'>" + v.RowNumber + "</td><td width='22%'><button style='margin:2px' class='btn btn-success' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Aktif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px'  href='/Product/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td>";
+
+                            $("table tbody").append(row);
+                        } else {
+
+                            var row = "   <tr id='row-" + v.Id + "' data-langId='lang-" + v.LanguageId + "' data-id='" + v.Id + "'><td>" + v.Name + "</td><td>" + v.MainProdName + "</td><td width='10%' class='rowNumber'>" + v.RowNumber + "</td><td width='22%'><button style='margin:2px' class='btn btn-danger' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Pasif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Product/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td>";
+
+                            $("table tbody").append(row);
+                        }
+                    })
+
+
+                } else {
+                    jsError(result.Message);
+                }
+            }
+        })
+    })
+
+
+</script>
+

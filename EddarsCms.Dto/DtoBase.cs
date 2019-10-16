@@ -17,10 +17,10 @@ namespace EddarsCms.Dto
 
 
         public int Id { get; set; }
-        public int LanguageId { get; set; }
+        public int? LanguageId { get; set; }
         //public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public int RowNumber { get; set; }
-        public bool State { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public int? RowNumber { get; set; }
+        public bool? State { get; set; }
     }
 }

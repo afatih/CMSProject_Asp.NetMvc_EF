@@ -130,6 +130,7 @@
     <Compile Include="Controllers\BlogCommentController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CertificateController.cs" />
     <Compile Include="Controllers\ContactInfoController.cs" />
     <Compile Include="Controllers\ExportPdfsController.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReferanceController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\SliderController.cs" />
@@ -723,17 +725,25 @@
     <Content Include="Views\HumanResource\Edit.cshtml" />
     <Content Include="Views\InformationFromUs\Index.cshtml" />
     <Content Include="Views\MailInfo\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Documents\HumanResource\" />
     <Folder Include="Images\Blogs\" />
     <Folder Include="Images\Branches\" />
+    <Folder Include="Images\Categories\" />
     <Folder Include="Images\Certificates\" />
     <Folder Include="Images\ContactInfos\" />
     <Folder Include="Images\Language\" />
     <Folder Include="Images\News\" />
     <Folder Include="Images\Pages\" />
+    <Folder Include="Images\Products\" />
     <Folder Include="Images\Referances\" />
     <Folder Include="Images\Sellers\" />
     <Folder Include="Images\Sliders\" />
