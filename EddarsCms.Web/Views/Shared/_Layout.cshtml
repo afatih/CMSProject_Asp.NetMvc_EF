@@ -260,12 +260,22 @@
                         <li>
                             <a href="@Url.Action("Index","Page")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sayfa Yönetimi</span></a>
                         </li>
+
                         <li>
+                            <a href="#" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yönetimi</span></a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Blog")"><span>Blog Ayarları</span></a></li>
+                                    <li><a href="@Url.Action("Index","BlogComment")"><span>Blog Yorumları</span></a></li>
+                                </ul>
+                            </div><!-- .sidebar-submenu -->
+                        </li>
+                        @*<li>
                             <a href="@Url.Action("Index","Blog")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yönetimi</span></a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index","BlogComment")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yorumları</span></a>
-                        </li>
+                        </li>*@ 
                         <li>
                             <a href="@Url.Action("Index","Slider")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Slider Yönetimi</span></a>
                         </li>
@@ -287,8 +297,30 @@
                         <li>
                             <a href="@Url.Action("Index","Certificate")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sertifika Yönetimi</span></a>
                         </li>
+                        @*<li>
+            <a href="@Url.Action("Index","ContactInfo")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Bilgileri</span></a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","ContactMail")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Mailleri</span></a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","HumanResource")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İnsan Kaynakları</span></a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","InformationFromUs")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Bizden Haberdar Olun</span></a>
+        </li>*@
                         <li>
-                            <a href="@Url.Action("Index","ContactInfo")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim</span></a>
+                            <a href="#"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Yönetimi</span></a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","ContactInfo")" title="Alternate dashboard"><span>İletişim Bilgileri</span></a></li>
+                                    <li><a href="@Url.Action("Index","MailInfo")" title="Alternate dashboard"><span>Mail Bilgileri</span></a></li>
+                                    <li><a href="@Url.Action("Index","ContactMail")" title="View profile"><span>İletişim Mailleri</span></a></li>
+                                    <li><a href="@Url.Action("Index","HumanResource")" title="FAQ section"><span>İnsan Kaynakları</span></a></li>
+                                    <li><a href="@Url.Action("Index","InformationFromUs")" title="Auto menu"><span>Bizden Haberdar Olun</span></a></li>
+
+                                </ul>
+                            </div><!-- .sidebar-submenu -->
                         </li>
 
 

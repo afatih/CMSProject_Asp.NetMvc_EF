@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
-
     public class ContactInfo:EntityBase
     {
+        public string Name { get; set; }
         public string Adress { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
@@ -16,8 +16,6 @@ namespace EddarsCms.Entity.Entities
         public string EMail { get; set; }
         public string MapLocation { get; set; }
         public string Image { get; set; }
-
-
 
     }
 }

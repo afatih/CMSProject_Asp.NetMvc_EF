@@ -22,6 +22,10 @@ namespace EddarsCms.DAL
         public DbSet<Referance> Referances { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<ContactInfo> ContactInfos { get; set; }
+        public DbSet<ContactMail> ContactMails{ get; set; }
+        public DbSet<HumanResource> HumanResources{ get; set; }
+        public DbSet<InformationFromUs> InformationFromUs{ get; set; }
+        public DbSet<MailInfo> MailInfos { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

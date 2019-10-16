@@ -49,7 +49,11 @@
     <Compile Include="IServices\IBranchService.cs" />
     <Compile Include="IServices\ICertificateService.cs" />
     <Compile Include="IServices\IContactInfoService.cs" />
+    <Compile Include="IServices\IContactMailService.cs" />
+    <Compile Include="IServices\IHumanResourceService.cs" />
+    <Compile Include="IServices\IInformationFromUsService.cs" />
     <Compile Include="IServices\ILanguageService.cs" />
+    <Compile Include="IServices\IMailInfoService.cs" />
     <Compile Include="IServices\IMenuService.cs" />
     <Compile Include="IServices\INewsService.cs" />
     <Compile Include="IServices\IPageService.cs" />
@@ -63,7 +67,11 @@
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\CertificateService.cs" />
     <Compile Include="Services\ContactInfoService.cs" />
+    <Compile Include="Services\ContactMailService.cs" />
+    <Compile Include="Services\HumanResourceService.cs" />
+    <Compile Include="Services\InformationFromUsService.cs" />
     <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\MailInfoService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\NewsService.cs" />
     <Compile Include="Services\PageService.cs" />

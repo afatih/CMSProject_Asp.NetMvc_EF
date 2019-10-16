@@ -132,7 +132,12 @@
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\CertificateController.cs" />
     <Compile Include="Controllers\ContactInfoController.cs" />
+    <Compile Include="Controllers\ExportPdfsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Information\ContactMailController.cs" />
+    <Compile Include="Controllers\Information\HumanResourceController.cs" />
+    <Compile Include="Controllers\Information\InformationFromUsController.cs" />
+    <Compile Include="Controllers\Information\MailInfoController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -712,9 +717,16 @@
     <Content Include="Views\BlogComment\Index.cshtml" />
     <Content Include="Views\BlogComment\Edit.cshtml" />
     <Content Include="Views\ContactInfo\Index.cshtml" />
+    <Content Include="Views\ContactMail\Index.cshtml" />
+    <Content Include="Views\ContactMail\Edit.cshtml" />
+    <Content Include="Views\HumanResource\Index.cshtml" />
+    <Content Include="Views\HumanResource\Edit.cshtml" />
+    <Content Include="Views\InformationFromUs\Index.cshtml" />
+    <Content Include="Views\MailInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\HumanResource\" />
     <Folder Include="Images\Blogs\" />
     <Folder Include="Images\Branches\" />
     <Folder Include="Images\Certificates\" />
@@ -726,6 +738,7 @@
     <Folder Include="Images\Sellers\" />
     <Folder Include="Images\Sliders\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ExportPdfs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

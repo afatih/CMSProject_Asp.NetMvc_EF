@@ -8,6 +8,7 @@ namespace EddarsCms.Dto.BasicDtos
 {
     public class ContactInfoDto:DtoBase
     {
+        public string Name { get; set; }
         public string Adress { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }

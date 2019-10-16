@@ -1,0 +1,69 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+@model List<InformationFromUsDto>
+@{
+    ViewBag.Title = "Bizden Haberdar Olun";
+    ViewBag.PageTitle = "Bizden Haberdar Olun";
+}
+
+@Html.Raw(ViewBag.Message)
+
+
+<a style="margin-right:65px" class="float-right btn btn-success" href="@Url.Action("InformationFromUs","ExportPdfs")"> İndir</a>
+
+
+<div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mail Adresi</th>
+                <th>Tarih</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="row-@item.Id" data-id="@item.Id">
+                            <td>@item.Mail</td>
+                            <td width="20%">@item.Date</td>
+                            <td width="10%">
+                                <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/InformationFromUs/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("#row-" + id).remove();
+                }
+            }
+        })
+    }
+
+
+</script>
+
+

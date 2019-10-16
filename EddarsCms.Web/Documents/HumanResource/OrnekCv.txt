@@ -1,0 +1,39 @@
+$('.growl-example-5').click(function() {
+
+          $.jGrowl("jGrowl notification example with lorem ipsum dolor sic amet.", {
+              sticky: false,
+              position: 'top-right',
+              theme: 'bg-green'
+          });
+
+      });		
+
+
+<!-- jGrowl notifications -->
+<!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/jgrowl-notifications/jgrowl.css">-->
+<script type="text/javascript" src="../../assets/widgets/jgrowl-notifications/jgrowl.js"></script>
+<script type="text/javascript" src="../../assets/widgets/jgrowl-notifications/jgrowl-demo.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../../assets/widgets/jgrowl-notifications/jgrowl.css">
+
+
+<!-- Mirrored from agileui.com/demo/monarch/demo/admin-template/notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 May 2019 13:07:44 GMT -->
+<div id="jGrowl" class="top-right jGrowl"><div class="jGrowl-notification"></div></div>
+<div class="jGrowl-notification"></div>
+<div id="jGrowl" class="top-right jGrowl"><div class="jGrowl-notification"></div></div>
+
+
+
+
+<div id="jGrowl" class="top-right jGrowl"><div class="jGrowl-notification"></div></div>
+
+
+
+
+
+ $(this).children().each(function (index) {
+                //bu satırı açınca mevcut sıra numarasını ilgili kolona basıyordu ama ekranda gizli elemanların olması sıkıntı çıkardığı için sıra no kolonu kapatıldı.
+                //$(this).find('td.rowNumber').html(index + 1)
+                var id = $(this).attr("data-id");
+                var rowNumber = index+1
+

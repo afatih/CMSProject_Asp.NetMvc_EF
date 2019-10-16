@@ -53,50 +53,55 @@
                     </div>
                     <div class="main-box-body">
 
-
+                        <div class="form-group">
+                            <label for="Name" class=" control-label">Şirket Adı</label>
+                            <div>
+                                <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" />
+                            </div>
+                        </div>
 
                         <div class="form-group">
-                            <label for="Phone1" class=" control-label">Şube Telefon Numarası 1</label>
+                            <label for="Phone1" class=" control-label">Şirket Telefon Numarası 1</label>
                             <div>
                                 <input type="text" class="form-control" name="Phone1" id="Phone1" value="@Model.Phone1" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Phone2" class=" control-label">Şube Telefon Numarası 2</label>
+                            <label for="Phone2" class=" control-label">Şirket Telefon Numarası 2</label>
                             <div>
                                 <input type="text" class="form-control" name="Phone2" id="Phone2" value="@Model.Phone2" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Email" class=" control-label">Şube E-mail</label>
+                            <label for="Email" class=" control-label">Şirket E-mail</label>
                             <div>
                                 <input type="text" class="form-control" name="Email" id="Email" value="@Model.EMail" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Fax" class=" control-label">Şube Fax Numarası</label>
+                            <label for="Fax" class=" control-label">Şirket Fax Numarası</label>
                             <div>
                                 <input type="text" class="form-control" name="Fax" id="Fax" value="@Model.Fax" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="MapLocation" class=" control-label">Şube Harita Lokasyonu</label>
+                            <label for="MapLocation" class=" control-label">Şirket Harita Lokasyonu</label>
                             <div>
                                 <input type="text" class="form-control" name="MapLocation" id="MapLocation" value="@Model.MapLocation" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Adress" class=" control-label">Şube Adres</label>
+                            <label for="Adress" class=" control-label">Şirket Adres</label>
                             <div>
                                 <textarea class="form-control" name="Adress" id="Adress" rows="5">@Model.Adress</textarea>
                             </div>
                         </div>
-
+                       
                     </div>
                 </div>
             </div>
@@ -116,19 +121,19 @@
                             <div>
                                 <img src="~/Images/ContactInfos/@Model.Image" />
                             </div>
-                            <label for="image" class=" control-label">Şube Resim</label>
+                            <label for="image" class=" control-label">Şirket Resim</label>
                             <div>
                                 <input type="file" class="form-control" id="image" name="file">
                             </div>
+                            <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
                         </div>
-                        <div><button style="margin-top:2px" type="submit" class="btn btn-success">Kaydet</button></div>
-
                     </div>
-
                 </div>
 
             </div>
         </div>
+
+
 
     </div>
 
@@ -139,35 +144,7 @@
 
 <script>
 
-    /* WYSIWYG editor */
-
-    $(function () {
-        "use strict";
-        $('.wysiwyg-editor').summernote({
-            height: 350
-        });
-    });
-
-      $(function () {
-        if ('@Model.LanguageId' != 0) {
-             var languageId = @Model.LanguageId;
-        $("select#LanguageId.form-control").val(languageId);
-        }
-    })
 
 
-    $(function () {
-        "use strict";
-        $("input[id='rowNumber']").TouchSpin({
-            verticalbuttons: true,
-            verticalupclass: 'glyph-icon icon-plus',
-            verticaldownclass: 'glyph-icon icon-minus'
-        });
-    });
-
-    $("#summerNoteContent").mouseleave(function () {
-        var summerNoteContent = $("div#summerNoteContent div.note-editor div.note-editable").html();
-        $("#Content").val(summerNoteContent);
-    })
 
 </script>

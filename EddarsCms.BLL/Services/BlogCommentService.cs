@@ -45,7 +45,7 @@ namespace EddarsCms.BLL.Services
                 var result = DtoFromEntity(blogCommentRepo.Get(exp).SingleOrDefault());
                 if (result!=null)
                 {
-                    var blog = blogRepo.Get(x => x.Id == id).SingleOrDefault();
+                    var blog = blogRepo.Get(x => x.Id == result.BlogId).SingleOrDefault();
                     result.BlogName = blog.Caption;
                 }
                 return new ServiceResult<BlogCommentDto>(ProcessStateEnum.Success, "İşmeniniz başarılı", result);

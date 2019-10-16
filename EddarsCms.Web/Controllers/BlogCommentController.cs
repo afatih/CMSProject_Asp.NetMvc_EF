@@ -31,12 +31,9 @@ namespace EddarsCms.Web.Controllers
                 ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
             }
 
-            var languages = languageServ.GetAll().Result;
-            var selectedLang = languages.First();
+           
 
-            var resultForLang = result.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
-
-            return View(resultForLang);
+            return View(result.Result);
         }
 
         public ActionResult Edit(int id)
@@ -53,40 +50,6 @@ namespace EddarsCms.Web.Controllers
             return View(result.Result);
 
         }
-
-
-        //[HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        //public ActionResult Edit(BlogCommentDto dto, string CurrentImage)
-        //{
-        //    var allMenus = blogCommentServ.GetAll().Result;
-        //    ViewBag.AllMenus = allMenus;
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
-        //        return View(dto);
-        //    }
-
-        //    try
-        //    {
-        //        var result = blogCommentServ.Update(dto);
-        //        if (result.State == ProcessStateEnum.Success)
-        //        {
-        //            ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
-        //            return View(dto);
-        //        }
-        //        else
-        //        {
-        //            ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
-        //            return View(dto);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
-        //        return View(dto);
-        //    }
-        //}
 
 
         [HttpPost]

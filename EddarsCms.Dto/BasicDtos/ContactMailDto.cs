@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Dto.BasicDtos
 {
-    class ContactMailDto:DtoBase
+    public class ContactMailDto
     {
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
         public string Caption { get; set; }
         public string Content { get; set; }
+
     }
 }

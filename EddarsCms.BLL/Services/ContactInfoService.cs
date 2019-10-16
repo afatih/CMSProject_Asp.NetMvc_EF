@@ -30,7 +30,7 @@ namespace EddarsCms.BLL.Services
 
         public ServiceResult AddOrUpdate(ContactInfoDto dto)
         {
-            if (dto.Id==0)
+            if (dto.Id == 0)
             {
                 contactInfRepo.Add(EntityFromDto(dto));
                 var result = uow.Save();
@@ -39,9 +39,10 @@ namespace EddarsCms.BLL.Services
             else
             {
                 Expression<Func<ContactInfoDto, bool>> exp = p => p.Id == dto.Id;
-                var entity = contactInfRepo.Get(x=>x.Id==dto.Id).SingleOrDefault();
+                var entity = contactInfRepo.Get(x => x.Id == dto.Id).SingleOrDefault();
                 entity.UpdatedDate = dto.UpdatedDate;
                 entity.Image = dto.Image;
+                entity.Name = dto.Name;
                 entity.Phone1 = dto.Phone1;
                 entity.Phone2 = dto.Phone2;
                 entity.Adress = dto.Adress;
@@ -57,16 +58,24 @@ namespace EddarsCms.BLL.Services
 
         public ServiceResult<ContactInfoDto> Get()
         {
-            var result = contactInfRepo.Get(x => x.Id > 0).SingleOrDefault();
-            if (result!=null)
+            try
             {
-                return new ServiceResult<ContactInfoDto>(ProcessStateEnum.Success, "", DtoFromEntity(result));
+                var result = contactInfRepo.Get(x => x.Id > 0).SingleOrDefault();
+                if (result != null)
+                {
+                    return new ServiceResult<ContactInfoDto>(ProcessStateEnum.Success, "", DtoFromEntity(result));
+                }
+                else
+                {
+                    return new ServiceResult<ContactInfoDto>(ProcessStateEnum.Error, "", new ContactInfoDto());
+                }
             }
-            else
+            catch (Exception e)
             {
-                return new ServiceResult<ContactInfoDto>(ProcessStateEnum.Error, "", new ContactInfoDto());
+
+                return new ServiceResult<ContactInfoDto>(ProcessStateEnum.Error, e.Message, new ContactInfoDto());
             }
-            
+
         }
 
         #region Mappings

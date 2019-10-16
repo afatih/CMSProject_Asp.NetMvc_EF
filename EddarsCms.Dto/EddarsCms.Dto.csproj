@@ -52,6 +52,7 @@
     <Compile Include="BasicDtos\HumanResourceDto.cs" />
     <Compile Include="BasicDtos\InformationFromUsDto.cs" />
     <Compile Include="BasicDtos\LanguageDto.cs" />
+    <Compile Include="BasicDtos\MailInfoDto.cs" />
     <Compile Include="BasicDtos\MenuDto.cs" />
     <Compile Include="BasicDtos\MultimediaDto.cs" />
     <Compile Include="BasicDtos\NewsDto.cs" />

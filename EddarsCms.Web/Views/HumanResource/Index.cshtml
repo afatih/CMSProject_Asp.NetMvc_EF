@@ -1,0 +1,66 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+@model List<HumanResourceDto>
+@{
+    ViewBag.Title = "İnsan Kaynakları";
+    ViewBag.PageTitle = "İnsan Kaynakları";
+}
+
+@Html.Raw(ViewBag.Message)
+
+<div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kullanıcı Ad Soyad</th>
+                <th>Tarih</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="row-@item.Id" data-id="@item.Id">
+                            <td>@item.Name @item.Surname</td>
+                            <td width="20%">@item.Date</td>
+                            <td width="20%">
+                                <a class="btn btn-success" href="@Url.Action("DownloadFolder","HumanResource",new { filename=item.CV })"> İndir</a>
+                                <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                <a href="@Url.Action("Edit","HumanResource",new {id=item.Id })" class="btn btn-warning">İncele</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/HumanResource/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("#row-" + id).remove();
+                }
+            }
+        })
+    }
+
+
+</script>
+

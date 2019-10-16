@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace EddarsCms.Entity.Entities
 {
-    public class ContactMail : EntityBase
+    public class ContactMail 
     {
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }

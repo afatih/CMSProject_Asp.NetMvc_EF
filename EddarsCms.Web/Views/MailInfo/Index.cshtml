@@ -1,0 +1,173 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+
+@model MailInfoDto
+
+@{
+    ViewBag.Title = "Mail Ayarları";
+    ViewBag.PageTitle = "Mail Ayarları";
+}
+
+
+
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    div img {
+        width: 100px !important;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    .ozel {
+        color: #03a9f4;
+        font-weight: 600;
+    }
+
+    .main-box h2 {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+@Html.Raw(ViewBag.Message)
+
+@*@using (Html.BeginForm("Index", "MailInfo", FormMethod.Post, new { @class = "form-horizontal bordered-row", enctype = "multipart/form-data" }))
+{*@
+
+    @using (Ajax.BeginForm("Index", "MailInfo", new AjaxOptions {HttpMethod="POST",UpdateTargetId="message" }, new { @class = "form-horizontal bordered-row"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="message"></div>
+
+        <input type="text" style="display:none" name="Id" value="@Model.Id" />
+
+
+        <div class="row main-box">
+            <div class="col-lg-6">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="main-box-header">
+                            <h3>Mail Bilgileri</h3>
+                        </div>
+                        <div class="main-box-body">
+
+                            <div class="form-group">
+                                <label for="SenderMail" class=" control-label">Gönderici Mail Adresi</label>
+                                <div>
+                                    <input type="text" class="form-control" name="SenderMail" id="SenderMail" value="@Model.SenderMail" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="SenderMailPass" class=" control-label">Gönderici Mail Şifresi</label>
+                                <div>
+                                    <input type="text" class="form-control" name="SenderMailPass" id="SenderMailPass" value="@Model.SenderMailPass" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ReceiverMail" class=" control-label">Alıcı Mail Adresi</label>
+                                <div>
+                                    <input type="text" class="form-control" name="ReceiverMail" id="ReceiverMail" value="@Model.ReceiverMail" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Caption" class=" control-label">Mesaj Başlığı</label>
+                                <div>
+                                    <input type="text" class="form-control" name="Caption" id="Caption" value="@Model.Caption" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Host" class=" control-label">Host</label>
+                                <div>
+                                    <input type="text" class="form-control" name="Host" id="Host" value="@Model.Host" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Port" class=" control-label">Port Numarası</label>
+                                <div>
+                                    <input type="text" class="form-control" name="Port" id="Port" value="@Model.Port" />
+                                </div>
+                                <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6">
+                <div class="panel">
+                    <div class="panel-body">
+                        <header class="main-box-header clearfix">
+                            <h3>Mail Ayarları Hakkında Bilmeniz Gerekenler !</h3>
+                        </header>
+                        <div class="main-box" id="gallery-photos-lightbox">
+
+                            <div class="main-box-body clearfix ui-sortable" id="gallery-photos">
+                                <h2 class="ozel">Alıcı Mail Ayarları</h2>
+                                <p>
+                                    <b>Alıcı Maili:</b> Web sitenizdeki formlardan (iletişim formu, teklif formu, mesaj formu, bildiri formu vs) gelen bilgilerin hangi mail adresine gönderileceğini seçebildiğiniz alandır.
+                                </p>
+                                <p>
+                                    <b>Mail Başlığı:</b> Web sitenizdeki formlardan (iletişim formu, teklif formu, mesaj formu, bildiri formu vs) gelen bilgilerin hangi başlık ile gönderileceğini seçebildiğiniz alandır.
+                                </p>
+                                <h2 class="ozel">Gönderici Mail Ayarları</h2>
+                                <p>
+                                    <b>Gönderici Mail:</b> Web siteniz üzerinde topladığınız verileri hangi mail ile alıcı mailine göndermek istediğinizi ayarlayabilirsiniz.
+                                </p>
+                                <p>
+                                    <b>Host:</b> Web sitenizde kullanıcıdan aldığınız bilgileri hangi mail ile alıcı mailine göndermek istiyorsanız, bu mailin sunucu adresini yazmalısınız.<br>
+                                    //örn: webmail.anexbilisim.com
+                                </p>
+                                <p>
+                                    <b>Şifre:</b> Gönderici Mail adresinizin şifresidir.<br>
+                                    //örn: webmail.anexbilisim.com
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    }
+
+
+    <script>
+
+
+
+
+    </script>
