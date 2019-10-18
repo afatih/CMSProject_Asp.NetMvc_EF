@@ -84,7 +84,8 @@ namespace EddarsCms.BLL.Services
                                    UpdatedDate = cr1.UpdatedDate,
                                    Video1 = cr1.Video1,
                                    Video2 = cr1.Video2,
-                                   Video3 = cr1.Video3
+                                   Video3 = cr1.Video3,
+                                    Description=cr1.Description
                                });
 
 
@@ -118,6 +119,8 @@ namespace EddarsCms.BLL.Services
             Category.Video1= dto.Video1;
             Category.Video2= dto.Video2;
             Category.Video3= dto.Video3;
+            Category.Description= dto.Description;
+             
             var result = uow.Save();
             return result;
         }

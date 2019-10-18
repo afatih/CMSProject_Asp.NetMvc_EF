@@ -22,6 +22,13 @@ namespace EddarsCms.Web.Controllers
             return View();
         }
 
+
+        public ActionResult Index2()
+        {
+            return View();
+        }
+
+
         //[HttpPost]
         //public ActionResult Index(CategoryDto category)
         //{

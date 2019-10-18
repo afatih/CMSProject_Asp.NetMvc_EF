@@ -5,8 +5,7 @@
 @model BlogDto
 
 @{
-    ViewBag.Title = "Blog Ayarları";
-    ViewBag.PageTitle = "Blog Ayarları";
+    ViewBag.PageTitle = "Blog Yönetimi";
 
 
     LanguageService langServ = new LanguageService();
@@ -87,7 +86,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="BlogBegin" class="float-left control-label ">Blog Giriş Metni</label>
+                            <label for="BlogBegin" class="float-left control-label ">Blog Özet</label>
                             <div>
                                 <textarea type="text" class="form-control" name="BlogBegin" id="BlogBegin" rows="5">@Model.BlogBegin</textarea>
                             </div>

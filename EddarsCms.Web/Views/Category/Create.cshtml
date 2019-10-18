@@ -5,7 +5,6 @@
 @model CategoryDto
 
 @{
-    ViewBag.Title = "Kategori Ayarları";
     ViewBag.PageTitle = "Kategori Ayarları";
 
 
@@ -48,7 +47,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="main-box-header">
-                        <h3>Category Ekle</h3>
+                        <h3>Kategori Ekle</h3>
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
@@ -96,6 +95,14 @@
                                 <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="Description" class="float-left control-label ">Kategori Özet</label>
+                            <div>
+                                <textarea type="text" class="form-control" name="Description" id="Description" rows="5">@Model.Description</textarea>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="Video1" class=" control-label">Video 1</label>

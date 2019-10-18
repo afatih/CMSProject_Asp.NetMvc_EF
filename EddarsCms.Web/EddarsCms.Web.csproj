@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Controllers\BlogCommentController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
@@ -660,6 +661,7 @@
     <Content Include="Content\assets\icons\typicons\typiconsfb26.eot" />
     <Content Include="Content\assets\icons\typicons\typiconsfb26.ttf" />
     <Content Include="Content\assets\icons\typicons\typiconsfb26.woff" />
+    <Content Include="Areas\Management\Views\web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -742,9 +744,13 @@
     <Content Include="Views\Duty\Index.cshtml" />
     <Content Include="Views\Duty\Create.cshtml" />
     <Content Include="Views\Duty\Edit.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Management\Controllers\" />
+    <Folder Include="Areas\Management\Models\" />
+    <Folder Include="Areas\Management\Views\Shared\" />
     <Folder Include="Documents\HumanResource\" />
     <Folder Include="Images\Blogs\" />
     <Folder Include="Images\Branches\" />
@@ -791,6 +797,10 @@
     <ProjectReference Include="..\EddarsCms.Dto\EddarsCms.Dto.csproj">
       <Project>{65c0c1d1-29f7-416b-a14a-298d27f20f97}</Project>
       <Name>EddarsCms.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EddarsCrms.UserSide\EddarsCrms.UserSide.csproj">
+      <Project>{19e63b6e-062c-498a-9de4-a511c92ca739}</Project>
+      <Name>EddarsCrms.UserSide</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

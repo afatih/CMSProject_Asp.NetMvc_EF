@@ -3,8 +3,7 @@
 
 @model List<BlogDto>
 @{
-    ViewBag.Title = "Bloglar";
-    ViewBag.PageTitle = "Bloglar";
+    ViewBag.PageTitle = "Blog Yönetimi";
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;

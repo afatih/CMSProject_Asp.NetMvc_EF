@@ -85,6 +85,7 @@ namespace EddarsCms.BLL.Services
             News.Content = dto.Content;
             News.SeoTitle = dto.SeoTitle;
             News.SeoDescription = dto.SeoDescription;
+            News.Description = dto.Description;
 
             var result = uow.Save();
             return result;

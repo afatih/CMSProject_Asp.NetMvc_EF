@@ -18,5 +18,7 @@ namespace EddarsCms.Entity.Entities
         public string Video1 { get; set; }
         public string Video2 { get; set; }
         public string Video3 { get; set; }
+
+        public string Description { get; set; }
     }
 }

@@ -3,8 +3,7 @@
 
 @model List<MenuDto>
 @{
-    ViewBag.Title = "Menuler";
-    ViewBag.PageTitle = "Menuler";
+    ViewBag.PageTitle = "Menu Ayarları";
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;

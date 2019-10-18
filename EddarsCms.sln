@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EddarsCms.Dto", "EddarsCms.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EddarsCms.BLL", "EddarsCms.BLL\EddarsCms.BLL.csproj", "{70033DDB-59E2-4C44-9C92-729B852E44CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EddarsCrms.UserSide", "EddarsCrms.UserSide\EddarsCrms.UserSide.csproj", "{19E63B6E-062C-498A-9DE4-A511C92CA739}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{70033DDB-59E2-4C44-9C92-729B852E44CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70033DDB-59E2-4C44-9C92-729B852E44CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70033DDB-59E2-4C44-9C92-729B852E44CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E63B6E-062C-498A-9DE4-A511C92CA739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E63B6E-062C-498A-9DE4-A511C92CA739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E63B6E-062C-498A-9DE4-A511C92CA739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E63B6E-062C-498A-9DE4-A511C92CA739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

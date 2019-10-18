@@ -3,8 +3,7 @@
 
 @model List<NewsDto>
 @{
-    ViewBag.Title = "Haberler";
-    ViewBag.PageTitle = "Haberler";
+    ViewBag.PageTitle = "Haber Ayarları";
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;

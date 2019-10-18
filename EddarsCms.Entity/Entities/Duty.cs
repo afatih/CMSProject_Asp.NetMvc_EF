@@ -14,6 +14,7 @@ namespace EddarsCms.Entity.Entities
         public string SeoDescription { get; set; }
         public string Content { get; set; }
 
+        public string Description { get; set; }
         public string ImageCover { get; set; }
         public string ImageBig { get; set; }
     }

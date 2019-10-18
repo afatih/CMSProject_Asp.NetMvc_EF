@@ -89,6 +89,7 @@ namespace EddarsCms.BLL.Services
             duty.UpdatedDate = dto.UpdatedDate;
             duty.ImageBig = dto.ImageBig;
             duty.ImageCover = dto.ImageCover;
+            duty.Description = dto.Description;
             var result = uow.Save();
             return result;
         }

@@ -5,7 +5,6 @@
 @model CategoryDto
 
 @{
-    ViewBag.Title = "Kategori Ayarları";
     ViewBag.PageTitle = "Kategori Ayarları";
 
 
@@ -61,7 +60,7 @@
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <label id="LanguageId" class="control-label">Category Dil</label>
+                            <label id="LanguageId" class="control-label">Kategori Dil</label>
                             <div>
                                 <select class="form-control" id="LanguageId" name="LanguageId">
                                     @if (languages != null)
@@ -100,9 +99,16 @@
 
                         <div class="form-group">
                             @Html.ValidationMessageFor(x => x.Name)
-                            <label for="Name" class=" control-label">Category Başlık</label>
+                            <label for="Name" class=" control-label">Kategori Başlık</label>
                             <div>
                                 <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Description" class="float-left control-label ">Kategori Özet</label>
+                            <div>
+                                <textarea type="text" class="form-control" name="Description" id="Description" rows="5">@Model.Description</textarea>
                             </div>
                         </div>
 

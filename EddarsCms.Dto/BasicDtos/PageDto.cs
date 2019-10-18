@@ -23,6 +23,8 @@ namespace EddarsCms.Dto.BasicDtos
         public string ImageCover { get; set; }
         public string ImageBig { get; set; }
 
+        public string Description { get; set; }
+
 
     }
 }
