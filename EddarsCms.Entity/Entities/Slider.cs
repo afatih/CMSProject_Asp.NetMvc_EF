@@ -12,8 +12,10 @@ namespace EddarsCms.Entity.Entities
         public string Description { get; set; }
         public string ButtonText { get; set; }
         public string Url { get; set; }
-        public string Image { get; set; }
         public bool OpenNewTab { get; set; }
+
+        public string ImageCover { get; set; }
+        public string ImageBig { get; set; }
 
     }
 }

@@ -34,10 +34,6 @@ namespace EddarsCms.Web.Controllers.Information
 
         public ActionResult Edit(int id)
         {
-            var allMenus = contactMailServ.GetAll().Result;
-            ViewBag.AllMenus = allMenus;
-
-
             var result = contactMailServ.Get(id);
             if (result.State != ProcessStateEnum.Success)
             {

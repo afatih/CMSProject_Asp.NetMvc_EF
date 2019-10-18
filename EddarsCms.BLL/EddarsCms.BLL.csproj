@@ -57,12 +57,14 @@
     <Compile Include="IServices\IMailInfoService.cs" />
     <Compile Include="IServices\IMenuService.cs" />
     <Compile Include="IServices\INewsService.cs" />
+    <Compile Include="IServices\INotificationService.cs" />
     <Compile Include="IServices\IPageService.cs" />
     <Compile Include="IServices\IProductService.cs" />
     <Compile Include="IServices\IReferanceService.cs" />
     <Compile Include="IServices\ISellerService.cs" />
     <Compile Include="IServices\IService.cs" />
     <Compile Include="IServices\ISliderService.cs" />
+    <Compile Include="IServices\ISocialMediaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BlogCommentService.cs" />
     <Compile Include="Services\BlogService.cs" />
@@ -77,11 +79,13 @@
     <Compile Include="Services\MailInfoService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\NewsService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReferanceService.cs" />
     <Compile Include="Services\SellerService.cs" />
     <Compile Include="Services\SliderService.cs" />
+    <Compile Include="Services\SocialMediaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -108,8 +112,6 @@
       <Name>EddarsCms.Entity</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IServices\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

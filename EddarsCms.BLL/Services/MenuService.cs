@@ -62,33 +62,24 @@ namespace EddarsCms.BLL.Services
         {
             try
             {
-                Expression<Func<Menu, bool>> exp = p => p.Id > 0;
-                var result = DtoFromEntity(MenuRepo.Get(exp));
-                if (result != null)
-                {
-                    if (result.Count > 0)
-                    {
-                        foreach (var menu in result)
-                        {
-                            if (menu.MainId != 0)
-                            {
-                                Expression<Func<Menu, bool>> expMain = p => p.Id == menu.MainId;
-                                var mainMenu = MenuRepo.Get(expMain).SingleOrDefault();
-                                if (mainMenu!=null)
-                                {
-                                    menu.MainCaption = mainMenu.Caption;
-                                }
 
-                            }
-                            else
-                            {
-                                menu.MainCaption = "Ana Menü";
-                            }
+                var menus = MenuRepo.Get(x => x.Id >= 0);
+                var result = (from m1 in menus
+                               join m2 in menus on m1.MainId equals m2.Id into p
+                               from m2 in p.DefaultIfEmpty()
+                               select new MenuDto
+                               {
+                                   Id = m1.Id,
+                                   Caption = m1.Caption,
+                                   MainId = m1.MainId,
+                                   MainCaption = m2==null?"Ana Menü":m2.Caption,
+                                   LanguageId = m1.LanguageId,
+                                   RowNumber = m1.RowNumber,
+                                   OpenNewTab = m1.OpenNewTab,
+                                   State = m1.State,
+                                   Url = m1.Url
+                               });
 
-                        }
-                    }
-
-                }
                 return new ServiceResult<List<MenuDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)
@@ -144,8 +135,22 @@ namespace EddarsCms.BLL.Services
         {
             try
             {
-                Expression<Func<Menu, bool>> exp = p => p.LanguageId == id;
-                var result = DtoFromEntity(MenuRepo.Get(exp));
+                var menus = MenuRepo.Get(x => x.LanguageId==id);
+                var result = (from m1 in menus
+                              join m2 in menus on m1.MainId equals m2.Id into p
+                              from m2 in p.DefaultIfEmpty()
+                              select new MenuDto
+                              {
+                                  Id = m1.Id,
+                                  Caption = m1.Caption,
+                                  MainId = m1.MainId,
+                                  MainCaption = m2 == null ? "Ana Menü" : m2.Caption,
+                                  LanguageId = m1.LanguageId,
+                                  RowNumber = m1.RowNumber,
+                                  OpenNewTab = m1.OpenNewTab,
+                                  State = m1.State,
+                                  Url = m1.Url
+                              });
                 return new ServiceResult<List<MenuDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)

@@ -93,9 +93,10 @@
 
 
                         <div class="form-group">
+
                             <label id="MainCatId" class="control-label">Ürün Kategorisi</label>
                             <div>
-                                <select class="form-control" id="MainCatId" name="MainCatId">
+                                <select class="form-control" required id="MainCatId" name="MainCatId">
                                     @if (allCategories != null)
                                     {
                                         if (allCategories.Count > 0)
@@ -108,14 +109,19 @@
                                     }
                                 </select>
                             </div>
+                            <div>
+                                @Html.ValidationMessageFor(x => x.MainCatId)
+                            </div>
                         </div>
 
 
                         <div class="form-group">
-                            @Html.ValidationMessageFor(x => x.Name)
                             <label for="Name" class=" control-label">Ürün Adı</label>
                             <div>
                                 <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
+                            </div>
+                            <div>
+                                @Html.ValidationMessageFor(x => x.Name)
                             </div>
                         </div>
 
@@ -201,9 +207,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="image2" class="control-label">Ürün Küçük Resim</label>
+                            <label for="image2" class="control-label">Ürün Küçük Resim 1</label>
                             <div>
                                 <input type="file" class="form-control" id="image2" name="file2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image3" class="control-label">Ürün Küçük Resim 2</label>
+                            <div>
+                                <input type="file" class="form-control" id="image3" name="file3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image4" class="control-label">Ürün Küçük Resim 3</label>
+                            <div>
+                                <input type="file" class="form-control" id="image4" name="file4">
                             </div>
                         </div>
                     </div>

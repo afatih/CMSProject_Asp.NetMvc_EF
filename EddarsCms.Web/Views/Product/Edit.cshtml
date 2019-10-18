@@ -33,7 +33,7 @@
         margin-left: 10px;
         margin-right: 10px;
     }
-    div img {
+    .form-group div img {
         width: 100px !important;
         margin-bottom: 5px;
         margin-top: 5px;
@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label id="MainCatId" class="control-label">Ürün Kategorisi</label>
                             <div>
-                                <select class="form-control" id="MainCatId" name="MainCatId">
+                                <select class="form-control" required id="MainCatId" name="MainCatId">
                                     @if (allCategories != null)
                                     {
                                         if (allCategories.Count > 0)
@@ -196,6 +196,8 @@
 
         <input type="text" name="OldBig" value="@Model.ImageBig" style="display:none" />
         <input type="text" name="OldSmall" value="@Model.ImageSmall" style="display:none" />
+        <input type="text" name="Old3" value="@Model.Image3" style="display:none" />
+        <input type="text" name="Old4" value="@Model.Image4" style="display:none" />
 
 
         <div class="col-lg-4">
@@ -209,7 +211,7 @@
                             <div>
                                 <img src="~/Images/Products/@Model.ImageBig" />
                             </div>
-                           
+
                             <label for="image1" class="control-label">Ürün Büyük Resim</label>
                             <div>
                                 <input type="file" class="form-control" id="image1" name="file1">
@@ -219,10 +221,30 @@
                             <div>
                                 <img src="~/Images/Products/@Model.ImageSmall" />
                             </div>
-                            
-                            <label for="image2" class="control-label">Ürün Küçük Resim</label>
+
+                            <label for="image2" class="control-label">Ürün Küçük Resim 1</label>
                             <div>
                                 <input type="file" class="form-control" id="image2" name="file2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <img src="~/Images/Products/@Model.Image3" />
+                            </div>
+
+                            <label for="image3" class="control-label">Ürün Küçük Resim 2</label>
+                            <div>
+                                <input type="file" class="form-control" id="image3" name="file3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <img src="~/Images/Products/@Model.Image4" />
+                            </div>
+
+                            <label for="image4" class="control-label">Ürün Küçük Resim 3</label>
+                            <div>
+                                <input type="file" class="form-control" id="image4" name="file4">
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,242 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+
+@model SocialMediaDto
+
+@{
+    ViewBag.Title = "Sosyal Medya Ayarları";
+    ViewBag.PageTitle = "Sosyal Medya Ayarları";
+
+
+    LanguageService langServ = new LanguageService();
+    var languages = langServ.GetAll().Result;
+}
+
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+
+@Html.Raw(ViewBag.Message)
+
+@using (Ajax.BeginForm("Edit", "SocialMedia", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal bordered-row" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="message"></div>
+
+
+    <div class="row main-box">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="main-box-header">
+                        <h3>Sosyal Medya Ekle</h3>
+                    </div>
+                    <div class="main-box-body">
+
+
+                        <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.Name)
+                            <label for="Name" class=" control-label">Sosyal Medya Adı</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Name" id="Name" value="@Model.Name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Url" class=" control-label">Sosyal Medya Url</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Url" id="Url" value="@Model.Url" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Icon">Sosyal Medya Icon</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i id="showIcon"></i></span>
+                                <input type="text" class="form-control" id="Icon" name="Icon" value="@Model.Icon">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="rowNumber" class=" control-label">Sıra No</label>
+                            <div>
+                                <div class="input-group bootstrap-touchspin">
+                                    <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                    <input id="rowNumber" class="form-control" type="text" value="@Model.RowNumber" name="RowNumber" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span><span class="input-group-btn-vertical"><button class="btn btn-default bootstrap-touchspin-up" type="button"><i class="glyph-icon icon-chevron-up"></i></button><button class="btn btn-default bootstrap-touchspin-down" type="button"><i class="glyph-icon icon-chevron-down"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="margin-top:50px" class="form-group">
+                            <div class="col-lg-12">
+                                <label style="margin-top:10px">İcon Ayarları</label>
+
+                            </div>
+                            @*<div class="col-lg-8 float-right">
+                                <div class="col-lg-4" style="text-align:right">
+                                    <label style="margin-top:5px">İcon Ara</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control " type="text" />
+                                </div>
+                                <div class="col-lg-2">
+                                    <button class="btn btn-warning">Ara</button>
+                                </div>
+                            </div>*@
+
+
+
+                            <div>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook" title="icon-facebook"></i></a>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook-square" title="icon-facebook-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-flickr" title="icon-flickr"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-foursquare" title="icon-foursquare"></i></a>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google" title="icon-google"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus" title="icon-google-plus"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus-square" title="icon-google-plus-square"></i></a>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-instagram" title="icon-instagram"></i></a>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin" title="icon-linkedin"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin-square" title="icon-linkedin-square"></i></a>
+
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-openid" title="icon-openid"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-pagelines" title="icon-pagelines"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-skype" title="icon-skype"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-slack" title="icon-slack"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-spotify" title="icon-spotify"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-stumbleupon" title="icon-stumbleupon"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-stumbleupon-circle" title="icon-stumbleupon-circle"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tencent-weibo" title="icon-tencent-weibo"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr" title="icon-tumblr"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr-square" title="icon-tumblr-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitch" title="icon-twitch"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter" title="icon-twitter"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter-square" title="icon-twitter-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vimeo-square" title="icon-vimeo-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vine" title="icon-vine"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vk" title="icon-vk"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-wechat" title="icon-wechat"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-weibo" title="icon-weibo"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-wordpress" title="icon-wordpress"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-yahoo" title="icon-yahoo"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-yelp" title="icon-yelp"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube" title="icon-youtube"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-play" title="icon-youtube-play"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-square" title="icon-youtube-square"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <header class="main-box-header">
+                        <h3>Seo Ayarları</h3>
+                    </header>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="SeoTitle" class="float-leftcontrol-label  float-left !important">Seo Title</label>
+                            <div>
+                                <input type="text" class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="SeoDescription" class="float-leftcontrol-label  float-left !important">Seo Description</label>
+                            <div>
+                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5">@Model.SeoDescription</textarea>
+                            </div>
+
+                            <div style="padding-top:10px"><button type="submit" class="btn btn-success">Kaydet</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+}
+
+
+<script>
+
+    /* WYSIWYG editor */
+
+    $(function () {
+           var languageId = '@Model.LanguageId';
+        if (languageId != 0) {
+
+        $("select#LanguageId.form-control").val(languageId);
+        }
+    })
+
+
+
+    $(function () {
+        "use strict";
+        $("input[id='rowNumber']").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'glyph-icon icon-plus',
+            verticaldownclass: 'glyph-icon icon-minus'
+        });
+    });
+
+
+    function jsSetIcon() {
+        alert('asdasd')
+    }
+
+
+    function jsSetIcon(item) {
+        var icon = $(item).children().attr("class")
+        var iconTitle = $(item).children().attr("title")
+        var oldClass = $("#showIcon").attr("class");
+
+        $("#showIcon").removeClass(oldClass);
+        $("#showIcon").addClass(icon);
+        $("#Icon").val(icon);
+    }
+
+    $(function () {
+        var currentIcon = '@Model.Icon';
+        $("#showIcon").addClass(currentIcon);
+    })
+
+
+</script>
+
+<style>
+
+    #showIcon {
+        width: 25px !important;
+        height: 20px !important;
+    }
+</style>

@@ -46,7 +46,7 @@ namespace EddarsCms.Web.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Create(NewsDto dto, HttpPostedFileBase file)
+        public ActionResult Create(NewsDto dto, HttpPostedFileBase file1, HttpPostedFileBase file2)
         {
             if (!ModelState.IsValid)
             {
@@ -56,9 +56,9 @@ namespace EddarsCms.Web.Controllers
 
             try
             {
-                if (file != null)
+                if (file1 != null)
                 {
-                    if (file.ContentLength > 0)
+                    if (file1.ContentLength > 0)
                     {
                         #region random guidId oluşturulduğu kısım
                         var guidId = "";
@@ -72,9 +72,30 @@ namespace EddarsCms.Web.Controllers
                         }
                         #endregion
 
-                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
-                        dto.Image = pathWidthGuid;
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
+                        dto.ImageCover = pathWidthGuid;
+                    }
+                }
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
+                        dto.ImageBig = pathWidthGuid;
                     }
                 }
 
@@ -111,13 +132,17 @@ namespace EddarsCms.Web.Controllers
 
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Edit(NewsDto dto, HttpPostedFileBase file, string CurrentImage)
+        public ActionResult Edit(NewsDto dto, HttpPostedFileBase file1, HttpPostedFileBase file2, string OldCover, string OldBig)
         {
             if (!ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(CurrentImage))
+                if (!string.IsNullOrEmpty(OldCover))
                 {
-                    dto.Image = CurrentImage;
+                    dto.ImageCover = OldCover;
+                }
+                if (!string.IsNullOrEmpty(OldBig))
+                {
+                    dto.ImageBig = OldBig;
                 }
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
                 return View(dto);
@@ -125,9 +150,9 @@ namespace EddarsCms.Web.Controllers
 
             try
             {
-                if (file != null)
+                if (file1 != null)
                 {
-                    if (file.ContentLength > 0)
+                    if (file1.ContentLength > 0)
                     {
                         #region random guidId oluşturulduğu kısım
                         var guidId = "";
@@ -141,14 +166,40 @@ namespace EddarsCms.Web.Controllers
                         }
                         #endregion
 
-                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file.FileName);
-                        file.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
-                        dto.Image = pathWidthGuid;
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
+                        file1.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
+                        dto.ImageCover = pathWidthGuid;
                     }
                 }
                 else
                 {
-                    dto.Image = CurrentImage;
+                    dto.ImageCover= OldCover;
+                }
+
+                if (file2 != null)
+                {
+                    if (file2.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
+                        file2.SaveAs(Server.MapPath("~/Images/News/") + pathWidthGuid);
+                        dto.ImageBig = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    dto.ImageBig = OldBig;
                 }
 
                 var result = newsServ.Update(dto);

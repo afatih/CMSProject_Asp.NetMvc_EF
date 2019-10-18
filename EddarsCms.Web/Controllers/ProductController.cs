@@ -53,7 +53,7 @@ namespace EddarsCms.Web.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Create(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2)
+        public ActionResult Create(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
         {
            
 
@@ -110,6 +110,50 @@ namespace EddarsCms.Web.Controllers
                     }
                 }
 
+                if (file3 != null)
+                {
+                    if (file3.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file3.FileName);
+                        file3.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.Image3 = pathWidthGuid;
+                    }
+                }
+
+                if (file4 != null)
+                {
+                    if (file4.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file4.FileName);
+                        file4.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.Image4 = pathWidthGuid;
+                    }
+                }
+
                 var result = productServ.Add(ProductDto);
 
                 var allProducts = productServ.GetAll().Result;
@@ -161,7 +205,7 @@ namespace EddarsCms.Web.Controllers
 
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Edit(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2, string OldBig, string OldSmall)
+        public ActionResult Edit(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4, string OldBig, string OldSmall, string Old3, string Old4)
         {
 
             if (!ModelState.IsValid)
@@ -173,6 +217,14 @@ namespace EddarsCms.Web.Controllers
                 if (!string.IsNullOrEmpty(OldBig))
                 {
                     ProductDto.ImageBig = OldBig;
+                }
+                if (!string.IsNullOrEmpty(Old3))
+                {
+                    ProductDto.Image3 = Old3;
+                }
+                if (!string.IsNullOrEmpty(Old4))
+                {
+                    ProductDto.Image4= Old4;
                 }
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
                 return View(ProductDto);
@@ -230,6 +282,58 @@ namespace EddarsCms.Web.Controllers
                 else
                 {
                     ProductDto.ImageSmall = OldSmall;
+                }
+
+                if (file3 != null)
+                {
+                    if (file3.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file3.FileName);
+                        file3.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.Image3 = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    ProductDto.Image3= Old3;
+                }
+
+                if (file4 != null)
+                {
+                    if (file4.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file4.FileName);
+                        file4.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.Image4 = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    ProductDto.Image4 = Old4;
                 }
 
                 var result = productServ.Update(ProductDto);

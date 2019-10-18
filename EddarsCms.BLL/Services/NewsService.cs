@@ -77,11 +77,15 @@ namespace EddarsCms.BLL.Services
             Expression<Func<News, bool>> exp = p => p.Id == dto.Id;
             var News = NewsRepo.Get(exp).SingleOrDefault();
             News.LanguageId = dto.LanguageId;
-            News.Caption = dto.Caption;
-            News.Image = dto.Image;
-            News.Content = dto.Content;
             News.UpdatedDate = dto.UpdatedDate;
             News.RowNumber = dto.RowNumber;
+            News.Caption = dto.Caption;
+            News.ImageBig = dto.ImageBig;
+            News.ImageCover = dto.ImageCover;
+            News.Content = dto.Content;
+            News.SeoTitle = dto.SeoTitle;
+            News.SeoDescription = dto.SeoDescription;
+
             var result = uow.Save();
             return result;
         }

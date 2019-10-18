@@ -13,5 +13,6 @@ namespace EddarsCms.BLL.IServices
         ServiceResult<List<HumanResourceDto>> GetAll();
         ServiceResult<HumanResourceDto> Get(int id);
         ServiceResult Delete(int id);
+        ServiceResult Add(HumanResourceDto dto);
     }
 }

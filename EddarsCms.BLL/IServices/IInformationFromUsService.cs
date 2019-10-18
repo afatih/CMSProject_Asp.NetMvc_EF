@@ -12,5 +12,6 @@ namespace EddarsCms.BLL.IServices
     {
         ServiceResult<List<InformationFromUsDto>> GetAll();
         ServiceResult Delete(int id);
+        ServiceResult Add(InformationFromUsDto dto);
     }
 }

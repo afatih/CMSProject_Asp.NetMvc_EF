@@ -19,13 +19,35 @@ namespace EddarsCms.BLL.Services
     {
         IRepository<BlogComment> blogCommentRepo;
         IRepository<Blog> blogRepo;
+        IRepository<Notification> notRepo;
         IUnitOfWork uow;
 
         public BlogCommentService()
         {
             blogCommentRepo = Resource.UoW.GetRepository<BlogComment>();
+            notRepo = Resource.UoW.GetRepository<Notification>();
             blogRepo = Resource.UoW.GetRepository<Blog>();
             uow = Resource.UoW;
+        }
+
+        public ServiceResult Add(BlogCommentDto dto)
+        {
+
+            blogCommentRepo.Add(EntityFromDto(dto));
+            var result = uow.Save();
+            if (result.State==ProcessStateEnum.Success)
+            {
+                Notification not = new Notification()
+                {
+                    Caption = "Yeni blog yorumu var",
+                    Date = dto.Date,
+                    Description = "Kullanıcı Adı: " + dto.UserName +", BlogId: "+dto.BlogId+ ", Yorum:" + dto.Comment,
+                    Icon = "bg-orange icon-notification glyph-icon icon-user"
+                };
+                notRepo.Add(not);
+                var result2 = uow.Save();
+            }
+            return result;
         }
 
 
@@ -61,16 +83,8 @@ namespace EddarsCms.BLL.Services
         {
             try
             {
-                Expression<Func<BlogComment, bool>> exp = p => p.Id > 0;
-                var result = DtoFromEntity(blogCommentRepo.Get(exp));
-
                 var blogComments = blogCommentRepo.Get(x => x.Id > 0);
                 var blogs = blogRepo.Get(x => x.Id > 0);
-                //nullable kontrolu yapılacak
-                //if (blogs)
-                //{
-
-                //}
                 var result2 = (from bc in blogComments
                                join b in blogs on bc.BlogId equals b.Id
                                select new BlogCommentDto
@@ -103,8 +117,24 @@ namespace EddarsCms.BLL.Services
         {
             try
             {
-                Expression<Func<BlogComment, bool>> exp = p => p.LanguageId == id;
-                var result = DtoFromEntity(blogCommentRepo.Get(exp));
+                var blogComments = blogCommentRepo.Get(x => x.LanguageId == id);
+                var blogs = blogRepo.Get(x => x.Id>0);
+                var result = (from bc in blogComments
+                               join b in blogs on bc.BlogId equals b.Id
+                               select new BlogCommentDto
+                               {
+                                   BlogName = b.Caption,
+                                   UserName = bc.UserName,
+                                   UserEmail = bc.UserEmail,
+                                   Id = bc.Id,
+                                   BlogId = bc.BlogId,
+                                   Comment = bc.Comment,
+                                   Date = bc.Date,
+                                   LanguageId = bc.LanguageId,
+                                   RowNumber = bc.RowNumber,
+                                   State = bc.State
+                               });
+
                 return new ServiceResult<List<BlogCommentDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }
             catch (Exception e)
@@ -166,7 +196,8 @@ namespace EddarsCms.BLL.Services
             return list;
         }
 
-       
+      
+
         #endregion
     }
 }

@@ -18,12 +18,36 @@ namespace EddarsCms.BLL.Services
     {
 
         IRepository<InformationFromUs> infoRepo;
+        IRepository<Notification> notRepo;
         IUnitOfWork uow;
 
         public InformationFromUsService()
         {
-            infoRepo = Resource.UoW.GetRepository<InformationFromUs>();
             uow = Resource.UoW;
+            infoRepo = uow.GetRepository<InformationFromUs>();
+            notRepo = uow.GetRepository<Notification>();
+
+        }
+
+
+
+        public ServiceResult Add(InformationFromUsDto dto)
+        {
+            infoRepo.Add(EntityFromDto(dto));
+            var result = uow.Save();
+            if (result.State == ProcessStateEnum.Success)
+            {
+                Notification not = new Notification()
+                {
+                    Caption = "Yeni Bizden Haberdar Olun maili var",
+                    Date = dto.Date,
+                    Description = "Kullanıcı Mail: " + dto.Mail + ", Tarih: " + dto.Date.ToString("dd MMMM yyyy"),
+                    Icon = "bg-purple icon-notification glyph-icon icon-user"
+                };
+                notRepo.Add(not);
+                var result2 = uow.Save();
+            }
+            return result;
         }
 
 

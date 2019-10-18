@@ -17,12 +17,14 @@ namespace EddarsCms.BLL.Services
 {
     public class ProductService : IProductService
     {
-        IRepository<Product> ProductRepo;
+        IRepository<Product> productRepo;
+        IRepository<Category> categoryRepo;
         IUnitOfWork uow;
 
         public ProductService()
         {
-            ProductRepo = Resource.UoW.GetRepository<Product>();
+            productRepo = Resource.UoW.GetRepository<Product>();
+            categoryRepo = Resource.UoW.GetRepository<Category>();
             uow = Resource.UoW;
         }
 
@@ -30,7 +32,7 @@ namespace EddarsCms.BLL.Services
 
         public ServiceResult Add(ProductDto dto)
         {
-            ProductRepo.Add(EntityFromDto(dto));
+            productRepo.Add(EntityFromDto(dto));
             var result = uow.Save();
             return result;
         }
@@ -38,7 +40,7 @@ namespace EddarsCms.BLL.Services
         public ServiceResult Delete(int id)
         {
             Expression<Func<Product, bool>> exp = p => p.Id == id;
-            ProductRepo.HardDelete(exp);
+            productRepo.HardDelete(exp);
             var result = uow.Save();
             return result;
         }
@@ -48,7 +50,7 @@ namespace EddarsCms.BLL.Services
             try
             {
                 Expression<Func<Product, bool>> exp = p => p.Id == id;
-                var result = DtoFromEntity(ProductRepo.Get(exp).SingleOrDefault());
+                var result = DtoFromEntity(productRepo.Get(exp).SingleOrDefault());
                 return new ServiceResult<ProductDto>(ProcessStateEnum.Success, "İşmeniniz başarılı", result);
             }
             catch (Exception e)
@@ -63,17 +65,17 @@ namespace EddarsCms.BLL.Services
             try
             {
 
-                var products = ProductRepo.Get(x => x.Id >= 0);
-                var categories = ProductRepo.Get(x => x.Id >= 0);
+                var products = productRepo.Get(x => x.Id >= 0);
+                var categories = categoryRepo.Get(x => x.Id >= 0);
 
                 var result = (from p1 in products
-                              join p2 in products on p1.MainProdId equals p2.Id into p
-                              from p2 in p.DefaultIfEmpty()
+                              join c in categories on p1.MainCatId equals c.Id into p
+                              from c in p.DefaultIfEmpty()
                               select new ProductDto
                               {
                                   Id = p1.Id,
                                   MainProdId = p1.MainProdId,
-                                  MainProdName = p2 == null ? "Ana Menü" : p2.Name,
+                                  MainCatName= c == null ? "" : c.Name,
                                   MainCatId = p1.MainCatId,
                                   Name = p1.Name,
                                   ImageBig = p1.ImageBig,
@@ -104,7 +106,7 @@ namespace EddarsCms.BLL.Services
         public ServiceResult Update(ProductDto dto)
         {
             Expression<Func<Product, bool>> exp = p => p.Id == dto.Id;
-            var Product = ProductRepo.Get(exp).SingleOrDefault();
+            var Product = productRepo.Get(exp).SingleOrDefault();
             Product.LanguageId = dto.LanguageId;
             Product.UpdatedDate = dto.UpdatedDate;
             Product.RowNumber = dto.RowNumber;
@@ -116,6 +118,8 @@ namespace EddarsCms.BLL.Services
             Product.SeoDescription = dto.SeoDescription;
             Product.ImageBig = dto.ImageBig;
             Product.ImageSmall = dto.ImageSmall;
+            Product.Image3 = dto.Image3;
+            Product.Image4 = dto.Image4;
             Product.Video1 = dto.Video1;
             Product.Video2 = dto.Video2;
             Product.Video3 = dto.Video3;
@@ -136,7 +140,7 @@ namespace EddarsCms.BLL.Services
                     foreach (var item in list)
                     {
                         Expression<Func<Product, bool>> exp = p => p.Id == item.Id;
-                        var entity = ProductRepo.Get(exp).SingleOrDefault();
+                        var entity = productRepo.Get(exp).SingleOrDefault();
                         entity.RowNumber = item.RowNumber;
                     }
                     result = uow.Save();
@@ -148,7 +152,7 @@ namespace EddarsCms.BLL.Services
         public ServiceResult ChangeState(int id, bool state)
         {
             Expression<Func<Product, bool>> exp = p => p.Id == id;
-            var Product = ProductRepo.Get(exp).SingleOrDefault();
+            var Product = productRepo.Get(exp).SingleOrDefault();
             Product.State = state;
             var result = uow.Save();
             return result;
@@ -159,28 +163,34 @@ namespace EddarsCms.BLL.Services
             try
             {
                 Expression<Func<Product, bool>> exp = p => p.LanguageId == id;
-                var categories = ProductRepo.Get(exp);
 
-                var result = (from cr1 in categories
-                              join cr2 in categories on cr1.MainCatId equals cr2.Id into p
-                              from cr2 in p.DefaultIfEmpty()
+                var products = productRepo.Get(exp);
+                var categories = categoryRepo.Get(x => x.Id >= 0);
+
+                var result = (from p1 in products
+                              join c in categories on p1.MainCatId equals c.Id into p
+                              from c in p.DefaultIfEmpty()
                               select new ProductDto
                               {
-                                  Id = cr1.Id,
-                                  MainCatId = cr1.MainCatId,
-                                  MainCatName = cr2 == null ? "Ana Menü" : cr2.Name,
-                                  Name = cr1.Name,
-                                  ImageBig = cr1.ImageBig,
-                                  ImageSmall = cr1.ImageSmall,
-                                  LanguageId = cr1.LanguageId,
-                                  RowNumber = cr1.RowNumber,
-                                  SeoDescription = cr1.SeoDescription,
-                                  SeoTitle = cr1.SeoTitle,
-                                  State = cr1.State,
-                                  UpdatedDate = cr1.UpdatedDate,
-                                  Video1 = cr1.Video1,
-                                  Video2 = cr1.Video2,
-                                  Video3 = cr1.Video3
+                                  Id = p1.Id,
+                                  MainProdId = p1.MainProdId,
+                                  MainCatName = c == null ? "" : c.Name,
+                                  MainCatId = p1.MainCatId,
+                                  Name = p1.Name,
+                                  ImageBig = p1.ImageBig,
+                                  ImageSmall = p1.ImageSmall,
+                                  LanguageId = p1.LanguageId,
+                                  RowNumber = p1.RowNumber,
+                                  SeoDescription = p1.SeoDescription,
+                                  SeoTitle = p1.SeoTitle,
+                                  State = p1.State,
+                                  UpdatedDate = p1.UpdatedDate,
+                                  Video1 = p1.Video1,
+                                  Video2 = p1.Video2,
+                                  Video3 = p1.Video3,
+                                  Caption = p1.Caption,
+                                  Content = p1.Content,
+                                  Description = p1.Description
                               });
                 return new ServiceResult<List<ProductDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result.OrderBy(x => x.RowNumber).ToList());
             }

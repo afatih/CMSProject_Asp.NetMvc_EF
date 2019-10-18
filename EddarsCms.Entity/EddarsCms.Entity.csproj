@@ -65,11 +65,13 @@
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Multimedia.cs" />
     <Compile Include="Entities\News.cs" />
+    <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Page.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Referance.cs" />
     <Compile Include="Entities\Seller.cs" />
     <Compile Include="Entities\Slider.cs" />
+    <Compile Include="Entities\SocialMedia.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

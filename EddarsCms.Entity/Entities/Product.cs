@@ -16,6 +16,8 @@ namespace EddarsCms.Entity.Entities
         public string Description { get; set; }
         public string ImageBig { get; set; }
         public string ImageSmall { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
         public string Video1 { get; set; }
         public string Video2 { get; set; }
         public string Video3 { get; set; }

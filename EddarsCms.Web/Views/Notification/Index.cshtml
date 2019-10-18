@@ -1,0 +1,104 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+@model List<NotificationDto>
+@{
+    ViewBag.Title = "Bildirimler";
+    ViewBag.PageTitle = "Bildirimler";
+
+
+    //NotificationService notServ = new NotificationService();
+    //var result = notServ.DeleteAll();
+
+
+
+}
+
+@Html.Raw(ViewBag.Message)
+
+<style>
+
+
+    .icon-notification {
+        line-height: 26px;
+        float: left;
+        width: 26px;
+        height: 26px;
+        margin: 0 10px 0 0;
+        text-align: center;
+        border-radius: 50px;
+    }
+</style>
+
+<div class="float-right" style="margin-right:48px">
+    <button class="btn btn-danger" onclick="jsDeleteAll()">Hepsini Sil</button>
+</div>
+
+<div class="col-lg-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Başlık</th>
+                <th>Tarih</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="row-@item.Id" data-id="@item.Id">
+                            <td><span class="@item.Icon"></span>@item.Caption</td>
+                            <td width="20%">@item.Date</td>
+                            <td width="15%">
+                                <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
+                                <a href="@Url.Action("Edit","Notification",new {id=item.Id })" class="btn btn-warning">İncele</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/Notification/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("#row-" + id).remove();
+                }
+            }
+        })
+    }
+
+
+    function jsDeleteAll() {
+        $.ajax({
+            url: "/Notification/DeleteAll", type: "POST", success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+                }
+                else {
+                    jsSuccess(result.Message);
+                    $("table tbody").html('');
+                }
+            }
+        })
+    }
+
+
+</script>
+

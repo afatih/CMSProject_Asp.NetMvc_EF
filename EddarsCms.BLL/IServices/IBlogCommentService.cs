@@ -10,6 +10,7 @@ namespace EddarsCms.BLL.IServices
 {
     public interface IBlogCommentService
     {
+        ServiceResult Add(BlogCommentDto dto);
         ServiceResult<List<BlogCommentDto>> GetAll();
         ServiceResult<BlogCommentDto> Get(int id);
         ServiceResult Delete(int id);

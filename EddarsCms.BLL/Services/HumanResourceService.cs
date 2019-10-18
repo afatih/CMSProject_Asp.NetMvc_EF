@@ -17,12 +17,34 @@ namespace EddarsCms.BLL.Services
     public class HumanResourceService:IHumanResourceService
     {
         IRepository<HumanResource> HumanResourceRepo;
+        IRepository<Notification> notRepo;
         IUnitOfWork uow;
 
         public HumanResourceService()
         {
-            HumanResourceRepo = Resource.UoW.GetRepository<HumanResource>();
             uow = Resource.UoW;
+            HumanResourceRepo = uow.GetRepository<HumanResource>();
+            notRepo = uow.GetRepository<Notification>();
+     
+        }
+
+        public ServiceResult Add(HumanResourceDto dto)
+        {
+            HumanResourceRepo.Add(EntityFromDto(dto));
+            var result = uow.Save();
+            if (result.State == ProcessStateEnum.Success)
+            {
+                Notification not = new Notification()
+                {
+                    Caption = "Yeni iş başvurusu var",
+                    Date = dto.Date,
+                    Description = "Kullanıcı Adı ve Soyadı: " + dto.Name+" "+dto.Surname + ", Tarih:" + dto.Date.ToString("dd MMMM yyyy"),
+                    Icon = "bg-green icon-notification glyph-icon icon-user"
+                };
+                notRepo.Add(not);
+                var result2 = uow.Save();
+            }
+            return result;
         }
 
 

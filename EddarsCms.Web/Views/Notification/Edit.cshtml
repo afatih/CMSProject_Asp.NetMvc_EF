@@ -1,0 +1,116 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+
+@model NotificationDto
+
+@{
+    ViewBag.Title = "Bildirimler";
+    ViewBag.PageTitle = "Bildirimler";
+}
+
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+    label {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+@Html.Raw(ViewBag.Message)
+
+<style>
+
+
+    .icon-notification {
+        line-height: 26px;
+        float: left;
+        width: 26px;
+        height: 26px;
+        margin: 0 10px 0 0;
+        text-align: center;
+        border-radius: 50px;
+    }
+
+
+    .icon-facebook:before {
+        content: "\f09a";
+        position:relative;
+        bottom:20px;
+    }
+</style>
+
+<input type="text" style="display:none" id="id" value="@Model.Id" />
+
+<div id="message"></div>
+
+<div class="row main-box">
+
+
+    <div class="col-lg-8">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="main-box-header">
+                    <h3>Bildirim Detay</h3>
+                </div>
+                <div class="main-box-body">
+
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Bildirim Başlık</label>
+                        <label class="col-lg-9" style="font-weight:normal"><span class="@Model.Icon"></span>@Model.Caption</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Bildirim Açıklaması</label>
+                        <label class="col-lg-9" style="font-weight:normal">@Model.Description</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Tarih</label>
+                        <label class="col-lg-9" style="font-weight:normal">@Model.Date.ToString("dd MMMM yyyy")</label>
+                    </div>
+
+                    <div>
+                        <button  style="margin-top:15px;margin-left:10px" onclick="jsDelete('@Model.Id')" class="btn btn-danger">Sil</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/Notification/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+                }
+                else {
+                    jsSuccess(result.Message);
+                    window.location = "/Notification/Index"
+                }
+            }
+        })
+    }
+
+
+</script>

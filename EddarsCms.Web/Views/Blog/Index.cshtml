@@ -171,11 +171,9 @@
                 success: function (result) {
                     if (result.State == 1) {
                         arr = [];
-                        console.log(result)
                         jsSuccess(result.Message);
 
                     } else {
-                        console.log(result)
                         jsError(result.Message);
 
                     }

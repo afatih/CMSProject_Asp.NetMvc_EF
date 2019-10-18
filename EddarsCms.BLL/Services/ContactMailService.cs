@@ -17,14 +17,35 @@ namespace EddarsCms.BLL.Services
     public class ContactMailService:IContactMailService
     {
         IRepository<ContactMail> contactMailRepo;
+        IRepository<Notification> notRepo;
         IUnitOfWork uow;
 
         public ContactMailService()
         {
-            contactMailRepo = Resource.UoW.GetRepository<ContactMail>();
             uow = Resource.UoW;
+            contactMailRepo = uow.GetRepository<ContactMail>();
+            notRepo = uow.GetRepository<Notification>();
+
         }
 
+        public ServiceResult Add(ContactMailDto dto)
+        {
+            contactMailRepo.Add(EntityFromDto(dto));
+            var result = uow.Save();
+            if (result.State == ProcessStateEnum.Success)
+            {
+                Notification not = new Notification()
+                {
+                    Caption = "Yeni mail var",
+                    Date = dto.Date,
+                    Description = "Kullanıcı Adı Soyadı: " + dto.Name+" "+dto.Surname + ", Başlık: " + dto.Caption + ", Mail:" + dto.Content + ", Tarih:" + dto.Date.ToString("dd MMMM yyyy"),
+                    Icon = "bg-blue icon-notification glyph-icon icon-user"
+                };
+                notRepo.Add(not);
+                var result2 = uow.Save();
+            }
+            return result;
+        }
 
         public ServiceResult Delete(int id)
         {

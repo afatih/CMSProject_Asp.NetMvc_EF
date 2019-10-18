@@ -82,7 +82,8 @@ namespace EddarsCms.BLL.Services
             Slider.ButtonText = dto.ButtonText;
             Slider.UpdatedDate = dto.UpdatedDate;
             Slider.Url = dto.Url;
-            Slider.Image = dto.Image;
+            Slider.ImageBig = dto.ImageBig;
+            Slider.ImageCover = dto.ImageCover;
             Slider.RowNumber = dto.RowNumber;
             Slider.OpenNewTab = dto.OpenNewTab;
             var result = uow.Save();

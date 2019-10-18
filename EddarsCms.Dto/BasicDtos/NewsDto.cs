@@ -9,7 +9,11 @@ namespace EddarsCms.Dto.BasicDtos
     public class NewsDto:DtoBase
     {
         public string Caption { get; set; }
-        public string Image { get; set; }
         public string Content { get; set; }
+        public string SeoTitle { get; set; }
+        public string SeoDescription { get; set; }
+
+        public string ImageCover { get; set; }
+        public string ImageBig { get; set; }
     }
 }

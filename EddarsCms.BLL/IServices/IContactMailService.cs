@@ -10,6 +10,7 @@ namespace EddarsCms.BLL.IServices
 {
     public interface IContactMailService
     {
+        ServiceResult Add(ContactMailDto dto);
         ServiceResult<List<ContactMailDto>> GetAll();
         ServiceResult<ContactMailDto> Get(int id);
         ServiceResult Delete(int id);

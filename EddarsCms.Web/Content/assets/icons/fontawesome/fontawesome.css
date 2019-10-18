@@ -460,6 +460,18 @@
 .icon-twitter:before {
     content: "\f099";
 }
+
+
+/*i#showIcon {
+    position: relative;
+    bottom: 50px;
+}
+
+
+span.input-group-addon .icon-facebook:before{
+
+}*/
+
 .icon-facebook:before {
     content: "\f09a";
 }
@@ -1062,6 +1074,8 @@
 }
 .icon-flickr:before {
     content: "\f16e";
+    position:relative;
+    bottom:5px;
 }
 .icon-adn:before {
     content: "\f170";

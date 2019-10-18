@@ -112,24 +112,58 @@
         <div class="col-lg-4">
             <div class="panel">
                 <div class="panel-body">
-                    <div class="main-box-header">
+                    <header class="main-box-header">
                         <h3>Görsel Ayarları</h3>
-                    </div>
+                    </header>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <label for="image" class=" control-label">Haber Resim</label>
+                            <label for="image1" class="control-label">Haber Kapak Resim</label>
                             <div>
-                                <input type="file" class="form-control" id="image" name="file">
+                                <input type="file" class="form-control" id="image1" name="file1">
                             </div>
                         </div>
-                        <div><button style="margin-top:2px" type="submit" class="btn btn-success">Kaydet</button></div>
-
+                        <div class="form-group">
+                            <label for="image2" class="control-label">Haber Büyük Resim</label>
+                            <div>
+                                <input type="file" class="form-control" id="image2" name="file2">
+                            </div>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
+
+
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <header class="main-box-header">
+                        <h3>Seo Ayarları</h3>
+                    </header>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="SeoTitle" class="float-leftcontrol-label  float-left !important">Seo Title</label>
+                            <div>
+                                <input type="text" class="form-control" name="SeoTitle" id="SeoTitle" value="@Model.SeoTitle" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="SeoDescription" class="float-leftcontrol-label  float-left !important">Seo Description</label>
+                            <div>
+                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5">@Model.SeoDescription</textarea>
+                            </div>
+
+                            <div style="padding-top:10px"><button type="submit" class="btn btn-success">Kaydet</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
     </div>
 
@@ -149,9 +183,10 @@
         });
     });
 
-      $(function () {
-        if ('@Model.LanguageId' != 0) {
-             var languageId = @Model.LanguageId;
+    $(function () {
+           var languageId = '@Model.LanguageId';
+        if (languageId != 0) {
+            
         $("select#LanguageId.form-control").val(languageId);
         }
     })

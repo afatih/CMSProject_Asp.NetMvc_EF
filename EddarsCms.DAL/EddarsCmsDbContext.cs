@@ -28,6 +28,8 @@ namespace EddarsCms.DAL
         public DbSet<MailInfo> MailInfos { get; set; }
         public DbSet<Category> Categories{ get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {
