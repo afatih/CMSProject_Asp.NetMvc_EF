@@ -49,6 +49,7 @@
     <Compile Include="BasicDtos\CertificateDto.cs" />
     <Compile Include="BasicDtos\ContactInfoDto.cs" />
     <Compile Include="BasicDtos\ContactMailDto.cs" />
+    <Compile Include="BasicDtos\DutyDto.cs" />
     <Compile Include="BasicDtos\HumanResourceDto.cs" />
     <Compile Include="BasicDtos\InformationFromUsDto.cs" />
     <Compile Include="BasicDtos\LanguageDto.cs" />

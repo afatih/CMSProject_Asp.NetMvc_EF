@@ -26,6 +26,7 @@ namespace EddarsCms.BLL.Services
 
         public ServiceResult DeleteAll()
         {
+            //Bu kısım hepsini silecek şekilde güncellenecek....
             notRepo.HardDelete(x => x.Id < 12);
             var result = uow.Save();
             return result;

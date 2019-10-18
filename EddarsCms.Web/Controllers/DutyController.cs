@@ -12,48 +12,48 @@ using System.Web.Mvc;
 
 namespace EddarsCms.Web.Controllers
 {
-    public class PageController : Controller
+    public class DutyController : Controller
     {
-        IPageService pageServ;
+        IDutyService dutyServ;
         ILanguageService languageServ;
-        public PageController()
+        public DutyController()
         {
-            pageServ = new PageService();
+            dutyServ = new DutyService();
             languageServ = new LanguageService();
         }
 
-        // GET: Page
+        // GET: Duty
         public ActionResult Index()
         {
-            var pages = pageServ.GetAll();
-            if (pages.State != ProcessStateEnum.Success)
+            var dutys = dutyServ.GetAll();
+            if (dutys.State != ProcessStateEnum.Success)
             {
-                ViewBag.Message = "<script>jsError('" + pages.Message + "')</script>";
+                ViewBag.Message = "<script>jsError('" + dutys.Message + "')</script>";
             }
 
             var languages = languageServ.GetAll().Result;
             var selectedLang = languages.First();
 
-            var resultForLang = pages.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
+            var resultForLang = dutys.Result.Where(x => x.LanguageId == selectedLang.Id).ToList();
 
             return View(resultForLang);
         }
 
         public ActionResult Create()
         {
-            return View(new PageDto());
+            return View(new DutyDto());
         }
 
 
         [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PageDto pageDto, HttpPostedFileBase file1, HttpPostedFileBase file2)
+        public ActionResult Create(DutyDto dutyDto, HttpPostedFileBase file1, HttpPostedFileBase file2)
         {
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
-                return View(pageDto);
+                return View(dutyDto);
             }
 
             try
@@ -75,8 +75,8 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
-                        file1.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
-                        pageDto.ImageCover = pathWidthGuid;
+                        file1.SaveAs(Server.MapPath("~/Images/Duties/") + pathWidthGuid);
+                        dutyDto.ImageCover = pathWidthGuid;
                     }
                 }
 
@@ -97,59 +97,59 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
-                        file2.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
-                        pageDto.ImageBig = pathWidthGuid;
+                        file2.SaveAs(Server.MapPath("~/Images/Duties/") + pathWidthGuid);
+                        dutyDto.ImageBig = pathWidthGuid;
                     }
                 }
 
-                var result = pageServ.Add(pageDto);
+                var result = dutyServ.Add(dutyDto);
                 if (result.State == ProcessStateEnum.Success)
                 {
                     //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
-                    return View(new PageDto());
+                    return View(new DutyDto());
                 }
                 else
                 {
                     ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
-                    return View(pageDto);
+                    return View(dutyDto);
                 }
             }
             catch (Exception e)
             {
                 ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
-                return View(pageDto);
+                return View(dutyDto);
             }
         }
 
         public ActionResult Edit(int id)
         {
-            var page = pageServ.Get(id);
-            if (page.State != ProcessStateEnum.Success)
+            var duty = dutyServ.Get(id);
+            if (duty.State != ProcessStateEnum.Success)
             {
-                ViewBag.Message = page.Message;
+                ViewBag.Message = duty.Message;
             }
-            return View(page.Result);
+            return View(duty.Result);
         }
 
 
         [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PageDto pageDto, HttpPostedFileBase file1, HttpPostedFileBase file2, string OldCover, string OldBig)
+        public ActionResult Edit(DutyDto dutyDto, HttpPostedFileBase file1, HttpPostedFileBase file2, string OldCover, string OldBig)
         {
             if (!ModelState.IsValid)
             {
                 if (!string.IsNullOrEmpty(OldCover))
                 {
-                    pageDto.ImageCover = OldCover;
+                    dutyDto.ImageCover = OldCover;
                 }
                 if (!string.IsNullOrEmpty(OldBig))
                 {
-                    pageDto.ImageBig = OldBig;
+                    dutyDto.ImageBig = OldBig;
                 }
                 ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
-                return View(pageDto);
+                return View(dutyDto);
             }
 
             try
@@ -171,13 +171,13 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file1.FileName);
-                        file1.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
-                        pageDto.ImageCover = pathWidthGuid;
+                        file1.SaveAs(Server.MapPath("~/Images/Duties/") + pathWidthGuid);
+                        dutyDto.ImageCover = pathWidthGuid;
                     }
                 }
                 else
                 {
-                    pageDto.ImageCover = OldCover;
+                    dutyDto.ImageCover = OldCover;
                 }
 
                 if (file2 != null)
@@ -197,32 +197,32 @@ namespace EddarsCms.Web.Controllers
                         #endregion
 
                         var pathWidthGuid = guidId + "_" + Path.GetFileName(file2.FileName);
-                        file2.SaveAs(Server.MapPath("~/Images/Pages/") + pathWidthGuid);
-                        pageDto.ImageBig = pathWidthGuid;
+                        file2.SaveAs(Server.MapPath("~/Images/Duties/") + pathWidthGuid);
+                        dutyDto.ImageBig = pathWidthGuid;
                     }
                 }
                 else
                 {
-                    pageDto.ImageBig = OldBig;
+                    dutyDto.ImageBig = OldBig;
                 }
 
-                var result = pageServ.Update(pageDto);
+                var result = dutyServ.Update(dutyDto);
                 if (result.State == ProcessStateEnum.Success)
                 {
                     //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
-                    return View(pageDto);
+                    return View(dutyDto);
                 }
                 else
                 {
                     ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
-                    return View(pageDto);
+                    return View(dutyDto);
                 }
             }
             catch (Exception e)
             {
                 ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
-                return View(pageDto);
+                return View(dutyDto);
             }
         }
 
@@ -230,7 +230,7 @@ namespace EddarsCms.Web.Controllers
         [HttpPost]
         public JsonResult Delete(int id)
         {
-            var result = pageServ.Delete(id);
+            var result = dutyServ.Delete(id);
 
             return Json(result, JsonRequestBehavior.AllowGet);
 
@@ -239,7 +239,7 @@ namespace EddarsCms.Web.Controllers
         [HttpPost]
         public JsonResult ChangeState(int id, bool state)
         {
-            var result = pageServ.ChangeState(id, state);
+            var result = dutyServ.ChangeState(id, state);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -247,14 +247,14 @@ namespace EddarsCms.Web.Controllers
         public JsonResult Reorder(List<ReorderDto> list)
         {
 
-            var result = pageServ.Reorder(list);
+            var result = dutyServ.Reorder(list);
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
 
         public JsonResult GetByLangId(int id)
         {
-            var result = pageServ.GetByLangId(id);
+            var result = dutyServ.GetByLangId(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

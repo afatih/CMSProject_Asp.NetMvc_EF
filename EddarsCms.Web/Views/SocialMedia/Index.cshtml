@@ -11,6 +11,8 @@
 
 }
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 
 <div class="row">
@@ -56,7 +58,7 @@
                     foreach (var item in Model)
                     {
                         <tr id="row-@item.Id" data-langId="lang-@item.LanguageId" data-id="@item.Id">
-                            <td ><i style="width:20px !important;height:20px !important" class="@item.Icon" ></i>@item.Name</td>
+                            <td ><i class="@item.Icon" ></i>@item.Name</td>
                             <td>@item.Url</td>
                             <td width="10%" class="rowNumber">@item.RowNumber</td>
                             <td width="16%">
@@ -73,7 +75,15 @@
 
 </div>
 
-
+<style>
+    td i {
+        border: none !important;
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+        bottom: 17px;
+    }
+</style>
 
 <script>
     function jsDelete(id) {

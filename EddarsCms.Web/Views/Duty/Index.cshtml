@@ -1,10 +1,10 @@
 ﻿@using EddarsCms.Dto.BasicDtos
 @using EddarsCms.BLL.Services
 
-@model List<PageDto>
+@model List<DutyDto>
 @{
-    ViewBag.Title = "Sayfa Ayarları";
-    ViewBag.PageTitle = "Sayfa Ayarları";
+    ViewBag.Title = "Hizmet Ayarları";
+    ViewBag.PageTitle = "Hizmet Ayarları";
 
     LanguageService langServ = new LanguageService();
     var languages = langServ.GetAll().Result;
@@ -17,7 +17,7 @@
 
 <div class="row">
     <div class="col-sm-8 float-left">
-        <a href="@Url.Action("Create","Page")" class="btn btn-primary">Yeni ekle</a>
+        <a href="@Url.Action("Create","Duty")" class="btn btn-primary">Yeni ekle</a>
     </div>
     <div class="form-group float-right col-sm-4">
         <label for="LanguageId" class="col-sm-3 control-label" style="padding-top: 8px;padding-left:40px">Dil</label>
@@ -68,7 +68,7 @@
                                 <td style="width:22%">
                                     <button class="btn btn-success" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Aktif</button>
                                     <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                    <a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                    <a href="@Url.Action("Edit","Duty",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                                 </td>
                             }
                             else
@@ -76,7 +76,7 @@
                                 <td style="width:22%">
                                     <button class="btn btn-danger" onclick="jsChangeState(@item.Id)" id="btn-@item.Id" data-state='@item.State'>Pasif</button>
                                     <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
-                                    <a href="@Url.Action("Edit","Page",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
+                                    <a href="@Url.Action("Edit","Duty",new {id=item.Id })" class="btn btn-warning">Düzenle</a>
                                 </td>
 
                             }
@@ -100,7 +100,7 @@
         var state = btn.attr("data-state");
         if (state.toLowerCase() == "true") {
             $.ajax({
-                url: "/Page/ChangeState/",
+                url: "/Duty/ChangeState/",
                 type: "POST",
                 data: { id: id, state: "False" },
                 success: function (result) {
@@ -119,7 +119,7 @@
         }
         else {
             $.ajax({
-                url: "/Page/ChangeState/",
+                url: "/Duty/ChangeState/",
                 type: "POST",
                 data: { id: id, state: "True" },
                 success: function (result) {
@@ -143,7 +143,7 @@
 
     function jsDelete(id) {
         $.ajax({
-            url: "/Page/Delete", type: "POST", data: { id: id }, success: function (result) {
+            url: "/Duty/Delete", type: "POST", data: { id: id }, success: function (result) {
                 if (result.State != 1) {
                     jsError(result.Message);
 
@@ -171,7 +171,7 @@
             console.log(arr);
 
             $.ajax({
-                url: "/Page/Reorder/",
+                url: "/Duty/Reorder/",
                 type: "POST",
                 data: { list: arr },
                 success: function (result) {
@@ -193,7 +193,7 @@
     $("#LanguageId").change(function () {
         var langId = $(this).val();
         $.ajax({
-            url: "/Page/GetByLangId",
+            url: "/Duty/GetByLangId",
             type: "POST",
             data: { id: langId },
             success: function (result) {
@@ -202,11 +202,11 @@
                     $.each(result.Result, function (i, v) {
                         console.log(v.State)
                         if (v.State == true) {
-                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-success' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Aktif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Page/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-success' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Aktif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Duty/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
 
                             $("table tbody").append(row);
                         } else {
-                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-danger' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Pasif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Page/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
+                            var row = "<tr id=" + v.Id + " data-id=" + v.Id + "><td>" + v.Caption + "</td><td>" + v.Url + "</td><td style='width:10%' class='rowNumber'>" + v.RowNumber + "</td><td style='width:22%'><button style='margin:2px' class='btn btn-danger' onclick='jsChangeState(" + v.Id + ")' id='btn-" + v.Id + "' data-state='" + v.State + "'>Pasif</button><button style='margin:2px' onclick='jsDelete(" + v.Id + ")' class='btn btn-danger'>Sil</button><a style='margin:2px' href='/Duty/Edit/" + v.Id + "' class='btn btn-warning'>Düzenle</a></td></tr>";
 
                             $("table tbody").append(row);
                         }

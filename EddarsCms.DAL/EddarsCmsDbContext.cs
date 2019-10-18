@@ -30,6 +30,7 @@ namespace EddarsCms.DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Duty> Duties { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

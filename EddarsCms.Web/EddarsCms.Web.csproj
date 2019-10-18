@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CertificateController.cs" />
     <Compile Include="Controllers\ContactInfoController.cs" />
+    <Compile Include="Controllers\DutyController.cs" />
     <Compile Include="Controllers\ExportPdfsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Information\ContactMailController.cs" />
@@ -738,6 +739,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
     <Content Include="Views\Notification\Edit.cshtml" />
+    <Content Include="Views\Duty\Index.cshtml" />
+    <Content Include="Views\Duty\Create.cshtml" />
+    <Content Include="Views\Duty\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -747,6 +751,7 @@
     <Folder Include="Images\Categories\" />
     <Folder Include="Images\Certificates\" />
     <Folder Include="Images\ContactInfos\" />
+    <Folder Include="Images\Duties\" />
     <Folder Include="Images\Language\" />
     <Folder Include="Images\News\" />
     <Folder Include="Images\Pages\" />

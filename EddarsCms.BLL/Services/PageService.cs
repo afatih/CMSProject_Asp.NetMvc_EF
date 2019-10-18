@@ -150,23 +150,6 @@ namespace EddarsCms.BLL.Services
             IMapper iMapper = config.CreateMapper();
             var language = iMapper.Map<PageDto, Page>(dto);
             return language;
-
-
-            //Page page = new Page()
-            //{
-            //    Caption = dto.Caption,
-            //    Content = dto.Content,
-            //    LanguageId = dto.LanguageId,
-            //    //CreatedDate = dto.CreatedDate,
-            //    RowNumber = dto.RowNumber,
-            //    SeoDescription = dto.SeoDescription,
-            //    SeoKeywords = dto.SeoKeywords,
-            //    SeoTitle = dto.SeoTitle,
-            //    State = dto.DefaultState,
-            //    UpdatedDate = dto.UpdatedDate,
-            //    Url = dto.Url,
-            //};
-            //return page;
         }
 
         public PageDto DtoFromEntity(Page entitiy)
@@ -179,22 +162,6 @@ namespace EddarsCms.BLL.Services
             IMapper iMapper = config.CreateMapper();
             var language = iMapper.Map<Page, PageDto>(entitiy);
             return language;
-
-
-            //PageDto pageDto = new PageDto()
-            //{
-            //    Id = entitiy.Id,
-            //    Caption = entitiy.Caption,
-            //    Content = entitiy.Content,
-            //    LanguageId = entitiy.LanguageId,
-            //    RowNumber = entitiy.RowNumber,
-            //    SeoDescription = entitiy.SeoDescription,
-            //    SeoKeywords = entitiy.SeoKeywords,
-            //    SeoTitle = entitiy.SeoTitle,
-            //    State = entitiy.State,
-            //    Url = entitiy.Url
-            //};
-            //return pageDto;
         }
 
         public List<PageDto> DtoFromEntity(List<Page> pages)

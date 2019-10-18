@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label for="Icon">Sosyal Medya Icon</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i id="showIcon"></i></span>
+                                <span class="input-group-addon" style="width: 42px" ><i id="showIcon"></i></span>
                                 <input type="text" class="form-control" id="Icon" name="Icon" value="@Model.Icon">
                             </div>
                         </div>
@@ -238,5 +238,16 @@
     #showIcon {
         width: 25px !important;
         height: 20px !important;
+        position: absolute;
+        bottom: 16px;
+        border: none;
     }
+
+    /*span.input-group-addon {
+        width: 42px !important;
+        height: 33px !important;
+    }*/
+
+   
+
 </style>
