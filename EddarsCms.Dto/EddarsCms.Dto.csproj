@@ -65,6 +65,7 @@
     <Compile Include="BasicDtos\SliderDto.cs" />
     <Compile Include="BasicDtos\SocialMediaDto.cs" />
     <Compile Include="DtoBase.cs" />
+    <Compile Include="OtherDtos\LangInfoDto.cs" />
     <Compile Include="OtherDtos\ReorderDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

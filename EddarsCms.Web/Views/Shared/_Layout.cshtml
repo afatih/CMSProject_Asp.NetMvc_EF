@@ -1,1306 +1,731 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<!-- Mirrored from agileui.com/demo/monarch/demo/admin-template/icons.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 May 2019 13:07:20 GMT -->
+﻿@using EddarsCrms.UserSide;
+
+
+
+<style>
+    #langList {
+        top: -22px;
+        position: absolute;
+        left: 90px;
+    }
+</style>
+
+
+@{
+    Layout = null;
+}
+
 <head>
-    <style>
+    <title>POFO – Creative Agency, Corporate and Portfolio Multi-purpose Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="ThemeZaa">
+    <!-- description -->
+    <meta name="description" content="POFO is a highly creative, modern, visually stunning and Bootstrap responsive multipurpose agency and portfolio HTML5 template with 25 ready home page demos.">
+    <!-- keywords -->
+    <meta name="keywords" content="creative, modern, clean, bootstrap responsive, html5, css3, portfolio, blog, agency, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, personal, masonry, grid, coming soon, faq">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/UserContent/imagesfavicon.png">
 
-        /* Loading Spinner */
-        .spinner {
-            margin: 0;
-            width: 70px;
-            height: 18px;
-            margin: -35px 0 0 -9px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            text-align: center
-        }
-
-            .spinner > div {
-                width: 18px;
-                height: 18px;
-                background-color: #333;
-                border-radius: 100%;
-                display: inline-block;
-                -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-                animation: bouncedelay 1.4s infinite ease-in-out;
-                -webkit-animation-fill-mode: both;
-                animation-fill-mode: both
-            }
-
-            .spinner .bounce1 {
-                -webkit-animation-delay: -.32s;
-                animation-delay: -.32s
-            }
-
-            .spinner .bounce2 {
-                -webkit-animation-delay: -.16s;
-                animation-delay: -.16s
-            }
-
-        -webkit-keyframes bouncedelay {
-            0%,80%,100%
-
-        {
-            -webkit-transform: scale(0.0)
-        }
-
-        40% {
-            -webkit-transform: scale(1.0)
-        }
-
-        }
-
-        keyframes bouncedelay {
-            0%,80%,100%
-
-        {
-            transform: scale(0.0);
-            -webkit-transform: scale(0.0)
-        }
-
-        40% {
-            transform: scale(1.0);
-            -webkit-transform: scale(1.0)
-        }
-        }
-    </style>
-
-    <meta charset="UTF-8">
-    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Eddars Yazılım CMS </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Favicons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/assets/images/icons/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/assets/images/icons/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/assets/images/icons/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="~/Content/assets/images/icons/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="~/Content/assets/images/icons/favicon.png">
-
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap/css/bootstrap.css">
-
-    <!-- HELPERS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/animate.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/backgrounds.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/boilerplate.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/border-radius.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/grid.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/page-transitions.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/spacing.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/typography.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/utils.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/colors.css">
-    <!-- ELEMENTS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/badges.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/buttons.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/content-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/dashboard-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/forms.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/images.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/info-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/invoice.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/loading-indicators.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/menus.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/panel-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/response-messages.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/responsive-tables.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/ribbon.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/social-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/tables.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/tile-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/elements/timeline.css">
-
-    <!-- ICONS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/icons/fontawesome/fontawesome.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/icons/linecons/linecons.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/icons/spinnericon/spinnericon.css">
-
-    <!-- WIDGETS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/accordion-ui/accordion.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/calendar/calendar.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/carousel/carousel.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/charts/justgage/justgage.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/charts/morris/morris.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/charts/piegage/piegage.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/charts/xcharts/xcharts.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/chosen/chosen.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/colorpicker/colorpicker.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/datatable/datatable.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/datepicker/datepicker.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/datepicker-ui/datepicker.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/dialog/dialog.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/dropdown/dropdown.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/dropzone/dropzone.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/file-input/fileinput.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/input-switch/inputswitch.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/input-switch/inputswitch-alt.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/ionrangeslider/ionrangeslider.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/jcrop/jcrop.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/jgrowl-notifications/jgrowl.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/loading-bar/loadingbar.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/maps/vector-maps/vectormaps.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/markdown/markdown.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/modal/modal.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/multi-select/multiselect.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/multi-upload/fileupload.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/nestable/nestable.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/noty-notifications/noty.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/popover/popover.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/pretty-photo/prettyphoto.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/progressbar/progressbar.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/range-slider/rangeslider.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/slidebars/slidebars.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/slider-ui/slider.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/summernote-wysiwyg/summernote-wysiwyg.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/tabs-ui/tabs.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/theme-switcher/themeswitcher.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/timepicker/timepicker.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/tocify/tocify.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/tooltip/tooltip.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/touchspin/touchspin.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/uniform/uniform.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/wizard/wizard.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/widgets/xeditable/xeditable.css">
-    <!-- SNIPPETS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/chat.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/files-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/login-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/notification-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/progress-box.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/todo.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/user-profile.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/snippets/mobile-navigation.css">
-    <!-- APPLICATIONS -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/applications/mailbox.css">
-    <!-- Admin theme -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/themes/admin/layout.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/themes/admin/color-schemes/default.css">
-    <!-- Components theme -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/themes/components/default.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/themes/components/border-radius.css">
-    <!-- Admin responsive -->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/responsive-elements.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/helpers/admin-responsive.css">
-    <!-- JS Core -->
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-core.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-ui-core.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-ui-widget.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-ui-mouse.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-ui-position.js"></script>
-    <!--<script type="text/javascript" src="~/Content/assets/js-core/transition.js"></script>-->
-    <script type="text/javascript" src="~/Content/assets/js-core/modernizr.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js-core/jquery-cookie.js"></script>
-
-    <!-- jGrowl notifications -->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/jgrowl-notifications/jgrowl.css">-->
-    <script type="text/javascript" src="~/Content/assets/widgets/jgrowl-notifications/jgrowl.js"></script>
-    <script type="text/javascript" src="~/Content/assets/widgets/jgrowl-notifications/jgrowl-demo.js"></script>
-
-
-    <!--<TouchSpin>-->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/touchspin/touchspin.css">-->
-    <script type="text/javascript" src="~/Content/assets/widgets/touchspin/touchspin.js"></script>
-    <script type="text/javascript" src="~/Content/assets/widgets/touchspin/touchspin-demo.js"></script>
-
-    <!-- Bootstrap Summernote WYSIWYG editor -->
-    <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/summernote-wysiwyg/summernote-wysiwyg.css">-->
-    <script type="text/javascript" src="~/Content/assets/widgets/summernote-wysiwyg/summernote-wysiwyg.js"></script>
-
-
-    <script>
-
-        function jsSuccess(message) {
-            $.jGrowl(message, {
-                sticky: false,
-                position: 'top-right',
-                theme: 'bg-green'
-            });
-        }
-
-        function jsError(message) {
-            $.jGrowl(message, {
-                sticky: false,
-                position: 'top-right',
-                theme: 'bg-red'
-            });
-        }
-
-    </script>
-
-
-    <script type="text/javascript">
-        $(window).load(function () {
-            setTimeout(function () {
-                $('#loading').fadeOut(400, "linear");
-            }, 300);
-        });</script>
-
+    <link rel="apple-touch-icon" href="~/UserContent/imagesapple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/UserContent/imagesapple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/UserContent/imagesapple-touch-icon-114x114.png">
+    <!-- animation -->
+    <link rel="stylesheet" href="~/UserContent/css/animate.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/UserContent/css/bootstrap.min.css" />
+    <!-- et line icon -->
+    <link rel="stylesheet" href="~/UserContent/css/et-line-icons.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="~/UserContent/css/font-awesome.min.css" />
+    <!-- themify icon -->
+    <link rel="stylesheet" href="~/UserContent/css/themify-icons.css">
+    <!-- swiper carousel -->
+    <link rel="stylesheet" href="~/UserContent/css/swiper.min.css">
+    <!-- justified gallery -->
+    <link rel="stylesheet" href="~/UserContent/css/justified-gallery.min.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/UserContent/css/magnific-popup.css" />
+    <!-- revolution slider -->
+    <link rel="stylesheet" type="text/css" href="~/UserContent/revolution/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/UserContent/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/UserContent/revolution/css/navigation.css">
+    <!-- bootsnav -->
+    <link rel="stylesheet" href="~/UserContent/css/bootsnav.css">
+    <!-- style -->
+    <link rel="stylesheet" href="~/UserContent/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/UserContent/css/responsive.css" />
+    <!--[if IE]>
+        <script src="~/UserContent/js/html5shiv.js"></script>
+    <![endif]-->
 </head>
-
+<!-- start header -->
 <body>
-    <div id="sb-site">
-        <div class="sb-slidebar bg-black sb-left sb-style-overlay">
-            <div class="scrollable-content scrollable-slim-sidebar">
-                <div class="pad10A">
-                    <div class="divider-header">Online</div>
-                    <ul class="chat-box">
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial1.jpg" alt="">
-                                <div class="small-badge bg-green"></div>
-                            </div>
-                            <b>
-                                Grace Padilla
-                            </b>
-                            <p>On the other hand, we denounce...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial2.jpg" alt="">
-                                <div class="small-badge bg-green"></div>
-                            </div>
-                            <b>
-                                Carl Gamble
-                            </b>
-                            <p>Dislike men who are so beguiled...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial3.jpg" alt="">
-                                <div class="small-badge bg-green"></div>
-                            </div>
-                            <b>
-                                Michael Poole
-                            </b>
-                            <p>Of pleasure of the moment, so...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial4.jpg" alt="">
-                                <div class="small-badge bg-green"></div>
-                            </div>
-                            <b>
-                                Bill Green
-                            </b>
-                            <p>That they cannot foresee the...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial5.jpg" alt="">
-                                <div class="small-badge bg-green"></div>
-                            </div>
-                            <b>
-                                Cheryl Soucy
-                            </b>
-                            <p>Pain and trouble that are bound...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                    </ul>
-                    <div class="divider-header">Idle</div>
-                    <ul class="chat-box">
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial6.jpg" alt="">
-                                <div class="small-badge bg-orange"></div>
-                            </div>
-                            <b>
-                                Jose Kramer
-                            </b>
-                            <p>Equal blame belongs to those...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial7.jpg" alt="">
-                                <div class="small-badge bg-orange"></div>
-                            </div>
-                            <b>
-                                Dan Garcia
-                            </b>
-                            <p>Weakness of will, which is same...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial8.jpg" alt="">
-                                <div class="small-badge bg-orange"></div>
-                            </div>
-                            <b>
-                                Edward Bridges
-                            </b>
-                            <p>These cases are perfectly simple...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                    </ul>
-                    <div class="divider-header">Offline</div>
-                    <ul class="chat-box">
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial1.jpg" alt="">
-                                <div class="small-badge bg-red"></div>
-                            </div>
-                            <b>
-                                Randy Herod
-                            </b>
-                            <p>In a free hour, when our power...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                        <li>
-                            <div class="status-badge">
-                                <img class="img-circle" width="40" src="~/Content/assets/image-resources/people/testimonial2.jpg" alt="">
-                                <div class="small-badge bg-red"></div>
-                            </div>
-                            <b>
-                                Patricia Bagley
-                            </b>
-                            <p>when nothing prevents our being...</p>
-                            <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="sb-slidebar bg-black sb-right sb-style-overlay">
-            <div class="scrollable-content scrollable-slim-sidebar">
-                <div class="pad15A">
-                    <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-1" class="popover-title">
-                        Cloud status
-                        <span class="caret"></span>
-                    </a>
-                    <div id="sidebar-toggle-1" class="collapse in">
-                        <div class="pad15A container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="text-center font-gray pad5B text-transform-upr font-size-12">New visits</div>
-                                    <div class="chart-alt-3 font-gray-dark" data-percent="55"><span>55</span>%</div>
+
+
+    <header>
+        <!-- start navigation -->
+        @Html.Partial("_Navigation")
+        <!-- end navigation -->
+        @Html.Partial("_NavigationSocialM")
+        <!-- end navigation -->
+    </header>   
+
+    @RenderBody()
+    <!-- end header -->
+    @*<!-- start slider section -->
+        <section class="no-padding main-slider height-100 mobile-height wow fadeIn ">
+            <div class="swiper-full-screen swiper-container height-100 width-100 black-move">
+                <div class="swiper-wrapper">
+                    <!-- start slider item -->
+                    <div class="swiper-slide cover-background" style="background-image:url('/UserContent/images/homepage-8-slider-img-3.jpg');">
+                        <div class="container position-relative full-screen">
+                            <div class="col-md-12 slider-typography text-center text-md-left">
+                                <div class="slider-text-middle-main">
+                                    <div class="slider-text-middle">
+                                        <h1 class="alt-font text-extra-dark-gray font-weight-700 letter-spacing-minus-1 line-height-80 width-55 margin-35px-bottom lg-width-60 md-width-70 lg-line-height-auto sm-width-100 sm-margin-15px-bottom">We combine design, thinking and technical</h1>
+                                        <p class="text-extra-dark-gray text-large margin-four-bottom width-40 lg-width-50 md-width-60 sm-width-100 sm-margin-15px-bottom">Everything you could possibly want it to do and not only that, beautifully carefully designed.</p>
+                                        <div class="btn-dual"><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-dark-gray btn-rounded btn-small no-margin-lr">Purchase Pofo</a><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-transparent-dark-gray btn-rounded btn-small margin-20px-lr sm-margin-5px-top">Download now</a></div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="text-center font-gray pad5B text-transform-upr font-size-12">Bounce rate</div>
-                                    <div class="chart-alt-3 font-gray-dark" data-percent="46"><span>46</span>%</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="text-center font-gray pad5B text-transform-upr font-size-12">Server load</div>
-                                    <div class="chart-alt-3 font-gray-dark" data-percent="92"><span>92</span>%</div>
-                                </div>
-                            </div>
-                            <div class="divider mrg15T mrg15B"></div>
-                            <div class="text-center">
-                                <a href="#" class="btn center-div btn-info mrg5T btn-sm text-transform-upr updateEasyPieChart">
-                                    <i class="glyph-icon icon-refresh"></i>
-                                    Update charts
-                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
-                    <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-6" class="popover-title">
-                        Latest transfers
-                        <span class="caret"></span>
-                    </a>
-                    <div id="sidebar-toggle-6" class="collapse in">
-                        <ul class="files-box">
-                            <li>
-                                <i class="files-icon glyph-icon font-red icon-file-archive-o"></i>
-                                <div class="files-content">
-                                    <b>blog_export.zip</b>
-                                    <div class="files-date">
-                                        <i class="glyph-icon icon-clock-o"></i>
-                                        added on <b>22.10.2014</b>
+                    <!-- end slider item -->
+                    <!-- start slider item -->
+                    <div class="swiper-slide cover-background" style="background-image:url('/UserContent/images/homepage-8-slider-img-2.jpg');">
+                        <div class="container position-relative full-screen">
+                            <div class="col-md-12 slider-typography text-center text-md-left">
+                                <div class="slider-text-middle-main">
+                                    <div class="slider-text-middle">
+                                        <h1 class="alt-font text-extra-dark-gray font-weight-700 letter-spacing-minus-1 line-height-80 width-55 margin-35px-bottom lg-width-60 md-width-70 lg-line-height-auto sm-width-100 sm-margin-15px-bottom">We always stay on the cutting edge of digital</h1>
+                                        <p class="text-extra-dark-gray text-large margin-four-bottom width-40 lg-width-50 md-width-60 sm-width-100 sm-margin-15px-bottom">Everything you could possibly want it to do and not only that, beautifully carefully designed.</p>
+                                        <div class="btn-dual"><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-dark-gray btn-rounded btn-small no-margin-lr">Purchase Pofo</a><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-transparent-dark-gray btn-rounded btn-small margin-20px-lr sm-margin-5px-tb">Download now</a></div>
                                     </div>
                                 </div>
-                                <div class="files-buttons">
-                                    <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                        <i class="glyph-icon icon-cloud-download"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                        <i class="glyph-icon icon-times"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <i class="files-icon glyph-icon icon-file-code-o"></i>
-                                <div class="files-content">
-                                    <b>homepage-test.html</b>
-                                    <div class="files-date">
-                                        <i class="glyph-icon icon-clock-o"></i>
-                                        added  <b>19.10.2014</b>
-                                    </div>
-                                </div>
-                                <div class="files-buttons">
-                                    <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                        <i class="glyph-icon icon-cloud-download"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                        <i class="glyph-icon icon-times"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <i class="files-icon glyph-icon font-yellow icon-file-image-o"></i>
-                                <div class="files-content">
-                                    <b>monthlyReport.jpg</b>
-                                    <div class="files-date">
-                                        <i class="glyph-icon icon-clock-o"></i>
-                                        added on <b>10.9.2014</b>
-                                    </div>
-                                </div>
-                                <div class="files-buttons">
-                                    <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                        <i class="glyph-icon icon-cloud-download"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                        <i class="glyph-icon icon-times"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <i class="files-icon glyph-icon font-green icon-file-word-o"></i>
-                                <div class="files-content">
-                                    <b>new_presentation.doc</b>
-                                    <div class="files-date">
-                                        <i class="glyph-icon icon-clock-o"></i>
-                                        added on <b>5.9.2014</b>
-                                    </div>
-                                </div>
-                                <div class="files-buttons">
-                                    <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                        <i class="glyph-icon icon-cloud-download"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                        <i class="glyph-icon icon-times"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="clear"></div>
-                    <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-3" class="popover-title">
-                        Tasks for today
-                        <span class="caret"></span>
-                    </a>
-                    <div id="sidebar-toggle-3" class="collapse in">
-                        <ul class="progress-box">
-                            <li>
-                                <div class="progress-title">
-                                    New features development
-                                    <b>87%</b>
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="87">
-                                    <div class="progressbar-value bg-azure">
-                                        <div class="progressbar-overlay"></div>
+                    <!-- end slider item -->
+                    <!-- start slider item -->
+                    <div class="swiper-slide cover-background" style="background-image:url('/UserContent/images/homepage-8-slider-img-1.jpg');">
+                        <div class="container position-relative full-screen">
+                            <div class="col-md-12 slider-typography text-center text-md-left">
+                                <div class="slider-text-middle-main">
+                                    <div class="slider-text-middle">
+                                        <h1 class="alt-font text-extra-dark-gray font-weight-700 letter-spacing-minus-1 line-height-80 width-55 margin-35px-bottom lg-width-60 md-width-70 lg-line-height-auto sm-width-100 sm-margin-15px-bottom">We crafts stunning and intuitive apps</h1>
+                                        <p class="text-extra-dark-gray text-large margin-four-bottom width-40 lg-width-50 md-width-60 sm-width-100 sm-margin-15px-bottom">Everything you could possibly want it to do and not only that, beautifully carefully designed.</p>
+                                        <div class="btn-dual"><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-dark-gray btn-rounded btn-small no-margin-lr">Purchase Pofo</a><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-transparent-dark-gray btn-rounded btn-small margin-20px-lr sm-margin-5px-tb">Download now</a></div>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <b class="pull-right">66%</b>
-                                <div class="progress-title">
-                                    Finishing uploading files
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end slider item -->
+                </div>
+                <!-- start slider pagination -->
+                <div class="swiper-pagination swiper-full-screen-pagination"></div>
+                <div class="swiper-button-next swiper-button-black-highlight d-none"></div>
+                <div class="swiper-button-prev swiper-button-black-highlight d-none"></div>
+                <!-- end slider pagination -->
+            </div>
+        </section>
+        <!-- end slider section -->
+        <!-- start section -->
+        <section class="wow fadeIn">
 
-                                </div>
-                                <div class="progressbar-smaller progressbar" data-value="66">
-                                    <div class="progressbar-value bg-red">
-                                        <div class="progressbar-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <!-- start feature box item -->
+                    <div class="col-12 col-md-4 feature-box-1 sm-margin-30px-bottom wow fadeIn last-paragraph-no-margin">
+                        <div class="margin-15px-bottom alt-font">
+                            <h3 class="char-value text-deep-pink letter-spacing-minus-1 text-medium-gray font-weight-600">01.</h3>
+                            <span class="text-large text-extra-dark-gray line-height-22 padding-20px-left md-padding-15px w-100 d-table-cell align-middle">Creativity.<br> Discover talent.</span>
+                        </div>
+                        <p class="width-90 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry.</p>
+                    </div>
+                    <!-- end feature box item -->
+                    <!-- start feature box item -->
+                    <div class="col-12 col-md-4 feature-box-1 sm-margin-30px-bottom wow fadeIn last-paragraph-no-margin" data-wow-delay="0.2s">
+                        <div class="margin-15px-bottom alt-font">
+                            <h3 class="char-value text-deep-pink letter-spacing-minus-1 text-medium-gray font-weight-600">02.</h3>
+                            <span class="text-large text-extra-dark-gray line-height-22 padding-20px-left w-100 d-table-cell align-middle">Technology.<br> Expert analysis.</span>
+                        </div>
+                        <p class="width-90 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry.</p>
+                    </div>
+                    <!-- end feature box item -->
+                    <!-- start feature box item -->
+                    <div class="col-12 col-md-4 feature-box-1 wow fadeIn last-paragraph-no-margin" data-wow-delay="0.4s">
+                        <div class="margin-15px-bottom alt-font">
+                            <h3 class="char-value text-deep-pink letter-spacing-minus-1 text-medium-gray font-weight-600">03.</h3>
+                            <span class="text-large text-extra-dark-gray line-height-22 padding-20px-left w-100 d-table-cell align-middle">Discover.<br> Explore work.</span>
+                        </div>
+                        <p class="width-90 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry.</p>
+                    </div>
+                    <!-- end feature box item -->
+                </div>
+            </div>
+        </section>
+        <!-- end section -->
+        <!-- start feature section -->
+        <section class="p-0 wow fadeIn bg-light-gray">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-6 cover-background wow fadeInLeft md-height-450px" style="background-image:url('/UserContent/images/services-classic-03.jpg');"></div>
+                    <div class="col-12 col-lg-6 padding-five-all md-padding-ten-all sm-padding-50px-tb md-padding-15px-lr wow fadeInRight ">
+                        <div class="row m-0">
+                            <div class="col-12 col-xl-11 margin-five-bottom lg-margin-six-bottom md-margin-40px-bottom sm-margin-30px-bottom sm-no-padding-lr">
+                                <h4 class="alt-font text-extra-dark-gray font-weight-600 text-center text-lg-left md-width-70 mx-auto mx-lg-0 md-no-margin-bottom sm-width-100">We are delivering beautiful digital products for you</h4>
+                            </div>
+                            <!-- start feature box item -->
+                            <div class="col-12 col-xl-6 col-lg-12 col-md-6 margin-six-bottom md-margin-30px-bottom last-paragraph-no-margin sm-no-padding-lr">
+                                <div class="feature-box-5 position-relative">
+                                    <i class="icon-desktop text-medium-gray icon-medium"></i>
+                                    <div class="feature-content">
+                                        <div class="text-extra-dark-gray margin-5px-bottom alt-font font-weight-600">Elegant / Unique design</div>
+                                        <p class="width-95 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="progress-title">
-                                    Creating tutorials
-                                    <b>58%</b>
+                            </div>
+                            <!-- end feature box item -->
+                            <!-- start feature box item -->
+                            <div class="col-12 col-xl-6 col-lg-12 col-md-6 margin-six-bottom md-margin-30px-bottom last-paragraph-no-margin sm-no-padding-lr">
+                                <div class="feature-box-5 position-relative">
+                                    <i class="icon-pricetags text-medium-gray icon-medium"></i>
+                                    <div class="feature-content">
+                                        <div class="text-extra-dark-gray margin-5px-bottom alt-font font-weight-600">Different Layout Type</div>
+                                        <p class="width-95 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    </div>
                                 </div>
-                                <div class="progressbar-smaller progressbar" data-value="58">
-                                    <div class="progressbar-value bg-blue-alt"></div>
+                            </div>
+                            <!-- end feature box item -->
+                            <!-- start feature box item -->
+                            <div class="col-12 col-xl-6 col-lg-12 col-md-6 md-margin-six-bottom md-no-margin-bottom sm-margin-30px-bottom last-paragraph-no-margin sm-no-padding-lr">
+                                <div class="feature-box-5 position-relative">
+                                    <i class="icon-chat text-medium-gray icon-medium"></i>
+                                    <div class="feature-content">
+                                        <div class="text-extra-dark-gray margin-5px-bottom alt-font font-weight-600">Make it Simple</div>
+                                        <p class="width-95 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="progress-title">
-                                    Frontend bonus theme
-                                    <b>74%</b>
+                            </div>
+                            <!-- end feature box item -->
+                            <!-- start feature box item -->
+                            <div class="col-12 col-xl-6 col-lg-12 col-md-6 last-paragraph-no-margin">
+                                <div class="feature-box-5 position-relative ">
+                                    <i class="icon-mobile text-medium-gray icon-medium"></i>
+                                    <div class="feature-content">
+                                        <div class="text-extra-dark-gray margin-5px-bottom alt-font font-weight-600">True Responsiveness</div>
+                                        <p class="width-95 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    </div>
                                 </div>
-                                <div class="progressbar-smaller progressbar" data-value="74">
-                                    <div class="progressbar-value bg-purple"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                    <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-4" class="popover-title">
-                        Pending notifications
-                        <span class="bs-label bg-orange tooltip-button" title="Label example">New</span>
-                        <span class="caret"></span>
-                    </a>
-                    <div id="sidebar-toggle-4" class="collapse in">
-                        <ul class="notifications-box notifications-box-alt">
-                            <li>
-                                <span class="bg-purple icon-notification glyph-icon icon-users"></span>
-                                <span class="notification-text">This is an error notification</span>
-                                <div class="notification-time">
-                                    a few seconds ago
-                                    <span class="glyph-icon icon-clock-o"></span>
-                                </div>
-                                <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                    <i class="glyph-icon icon-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                                <span class="notification-text">This is a warning notification</span>
-                                <div class="notification-time">
-                                    <b>15</b> minutes ago
-                                    <span class="glyph-icon icon-clock-o"></span>
-                                </div>
-                                <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                    <i class="glyph-icon icon-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="bg-green icon-notification glyph-icon icon-random"></span>
-                                <span class="notification-text font-green">A success message example.</span>
-                                <div class="notification-time">
-                                    <b>2 hours</b> ago
-                                    <span class="glyph-icon icon-clock-o"></span>
-                                </div>
-                                <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                    <i class="glyph-icon icon-arrow-right"></i>
-                                </a>
-                            </li>
-                        </ul>
+                            </div>
+                            <!-- end feature box item -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="loading">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
+        </section>
+        <!-- end feature section -->
+        <!-- start counter section -->
+        <section class="wow fadeIn">
+            <div class="container">
+                <div class="row">
+                    <!-- start counter item-->
+                    <div class="col-12 col-lg-3 col-md-6 text-center md-margin-30px-bottom wow fadeInUp">
+                        <div class="counter-feature-box-1 w-100 border-all padding-5px-all">
+                            <div class="counter-box bg-white d-flex justify-content-center flex-column h-100">
+                                <i class="icon-heart icon-medium text-medium-gray margin-15px-bottom"></i>
+                                <h6 class="d-block font-weight-600 text-extra-dark-gray alt-font mb-0 timer" data-speed="2000" data-to="4650">4650</h6>
+                                <span>Happy Clients</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end counter item-->
+                    <!-- start counter item-->
+                    <div class="col-12 col-lg-3 col-md-6 text-center md-margin-30px-bottom wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="counter-feature-box-1 w-100 border-all padding-5px-all">
+                            <div class="counter-box bg-white d-flex justify-content-center flex-column h-100">
+                                <i class="icon-laptop icon-medium text-medium-gray margin-15px-bottom"></i>
+                                <h6 class="d-block font-weight-600 text-extra-dark-gray alt-font mb-0 timer" data-speed="2000" data-to="3790">3790</h6>
+                                <span>Project Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end counter item-->
+                    <!-- start counter item-->
+                    <div class="col-12 col-lg-3 col-md-6 text-center sm-margin-30px-bottom wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="counter-feature-box-1 w-100 border-all padding-5px-all">
+                            <div class="counter-box bg-white d-flex justify-content-center flex-column h-100">
+                                <i class="icon-camera icon-medium text-medium-gray margin-15px-bottom"></i>
+                                <h6 class="d-block font-weight-600 text-extra-dark-gray alt-font mb-0 timer" data-speed="2000" data-to="5580">5580</h6>
+                                <span>Photo Capture</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end counter item-->
+                    <!-- start counter item-->
+                    <div class="col-12 col-lg-3 col-md-6 text-center wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="counter-feature-box-1 w-100 border-all padding-5px-all">
+                            <div class="counter-box bg-white d-flex justify-content-center flex-column h-100">
+                                <i class="icon-chat icon-medium text-medium-gray margin-15px-bottom"></i>
+                                <h6 class="d-block font-weight-600 text-extra-dark-gray alt-font mb-0 timer" data-speed="2000" data-to="8580">8580</h6>
+                                <span>Telephonic Talk</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end counter item-->
+                </div>
             </div>
-        </div>
-        <div id="page-wrapper">
-            <div id="page-header" class="bg-gradient-9">
-                <div id="mobile-navigation">
-                    <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar"><span></span></button>
-                    <a href="@Url.Action("Index","Home")" class="logo-content-small" title="MonarchUI"></a>
+        </section>
+        <!-- end counter section -->
+        <!-- start recent work section -->
+        <section class="bg-light-gray wow fadeIn">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-5 col-md-6 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                        <div class="alt-font text-medium-gray margin-5px-bottom text-uppercase text-small">Our recent works</div>
+                        <h5 class="alt-font text-extra-dark-gray font-weight-600 mb-0">New stunning projects for our amazing clients</h5>
+                    </div>
                 </div>
-                <div id="header-logo" class="logo-bg">
-                    <a href="@Url.Action("Index","Home")" class="logo-content-big" title="MonarchUI">
-                        Monarch <i>UI</i>
-                        <span>The perfect solution for user interfaces</span>
-                    </a>
-                    <a href="@Url.Action("Index","Home")" class="logo-content-small" title="MonarchUI">
-                        Monarch <i>UI</i>
-                        <span>The perfect solution for user interfaces</span>
-                    </a>
-                    <a id="close-sidebar" href="#" title="Close sidebar">
-                        <i class="glyph-icon icon-angle-left"></i>
-                    </a>
-                </div>
-                <div id="header-nav-left">
-                    <div class="user-account-btn dropdown">
-                        <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                            <img width="28" src="~/Content/assets/image-resources/gravatar.jpg" alt="Profile image">
-                            <span>Thomas Barnes</span>
-                            <i class="glyph-icon icon-angle-down"></i>
-                        </a>
-                        <div class="dropdown-menu float-left">
-                            <div class="box-sm">
-                                <div class="login-box clearfix">
-                                    <div class="user-img">
-                                        <a href="#" title="" class="change-img">Change photo</a>
-                                        <img src="~/Content/assets/image-resources/gravatar.jpg" alt="">
-                                    </div>
-                                    <div class="user-info">
-                                        <span>
-                                            Thomas Barnes
-                                            <i>UX/UI developer</i>
-                                        </span>
-                                        <a href="#" title="Edit profile">Edit profile</a>
-                                        <a href="#" title="View notifications">View notifications</a>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <ul class="reset-ul mrg5B">
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View login page example
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View lockscreen example
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View account details
-
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="pad5A button-pane button-pane-alt text-center">
-                                    <a href="#" class="btn display-block font-normal btn-danger">
-                                        <i class="glyph-icon icon-power-off"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- #header-nav-left -->
-                <div id="header-nav-right">
-
-                    <div class="hide" id="popover-search">
-                        <div class="pad5A box-md">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search terms here ...">
-                                <span class="input-group-btn">
-                                    <a class="btn btn-primary" href="#">Search</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="hdr-btn" id="fullscreen-btn" title="Fullscreen">
-                        <i class="glyph-icon icon-arrows-alt"></i>
-                    </a>
-                    <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Chat sidebar">
-                        <i class="glyph-icon icon-linecons-paper-plane"></i>
-                    </a>
-                    <div class="dropdown" id="notifications-btn">
-                        <a data-toggle="dropdown" href="#" title="">
-                            <span class="small-badge bg-yellow"></span>
-                            <i class="glyph-icon icon-linecons-megaphone"></i>
-                        </a>
-                        <div class="dropdown-menu box-md float-right">
-                            <div class="display-block clearfix pad10A">
-                                Bildirimler
-                                
-                            </div>
-                            <div class="scrollable-content scrollable-slim-box">
-                                <ul class="no-border notifications-box">
-                                    <li>
-                                        <span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-warning icon-notification glyph-icon icon-users"></span>
-                                        <span class="notification-text font-blue">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-green icon-notification glyph-icon icon-sitemap"></span>
-                                        <span class="notification-text font-green">A success message example.</span>
-                                        <div class="notification-time">
-                                            <b>2 hours</b> ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-azure icon-notification glyph-icon icon-random"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                                        <span class="notification-text">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-blue icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text font-blue">Alternate notification styling.</span>
-                                        <div class="notification-time">
-                                            <b>2 hours</b> ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-green icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text font-green">A success message example.</span>
-                                        <div class="notification-time">
-                                            <b>2 hours</b> ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-clock-o"></span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="pad10A button-pane button-pane-alt text-center">
-                                <a href="@Url.Action("Index","Notification")" class="btn btn-primary" title="View all notifications">
-                                    Tüm Bildirimleri Gör
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown" id="progress-btn">
-                        <a data-toggle="dropdown" href="#" title="">
-                            <span class="small-badge bg-azure"></span>
-                            <i class="glyph-icon icon-linecons-params"></i>
-                        </a>
-                        <div class="dropdown-menu pad0A box-sm float-right" id="progress-dropdown">
-                            <div class="scrollable-content scrollable-slim-box">
-                                <ul class="no-border progress-box progress-box-links">
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">23%</b>
-                                            <div class="progress-title">
-                                                Finishing uploading files
-
+                <div class="row">
+                    <div class="col-12 p-0 sm-padding-15px-lr">
+                        <div class="filter-content overflow-hidden">
+                            <ul class="portfolio-grid work-3col gutter-large hover-option6 lightbox-portfolio">
+                                <li class="grid-sizer"></li>
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item27.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-01.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item27.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="progressbar-smaller progressbar" data-value="23">
-                                                <div class="progressbar-value bg-blue-alt">
-                                                    <div class="progressbar-overlay"></div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-01.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">Herbal Beauty Salon</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Branding and Identity</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">91%</b>
-                                            <div class="progress-title">
-                                                Roadmap progress
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin" data-wow-delay="0.2s">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item29.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-02.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item29.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="progressbar-smaller progressbar" data-value="91">
-                                                <div class="progressbar-value bg-red">
-                                                    <div class="progressbar-overlay"></div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-02.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">Tailoring Interior</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Branding and Brochure</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">58%</b>
-                                            <div class="progress-title">
-                                                Images upload
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin" data-wow-delay="0.4s">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item28.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-03.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item28.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="progressbar-smaller progressbar" data-value="58">
-                                                <div class="progressbar-value bg-green"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">74%</b>
-                                            <div class="progress-title">
-                                                WordPress migration
-                                            </div>
-                                            <div class="progressbar-smaller progressbar" data-value="74">
-                                                <div class="progressbar-value bg-purple"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">91%</b>
-                                            <div class="progress-title">
-                                                Agile development procedures
-                                            </div>
-                                            <div class="progressbar-smaller progressbar" data-value="91">
-                                                <div class="progressbar-value bg-black">
-                                                    <div class="progressbar-overlay"></div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-03.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">Designblast Inc</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Web and Photography</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">58%</b>
-                                            <div class="progress-title">
-                                                Systems integration
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item30.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-04.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item30.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="progressbar-smaller progressbar" data-value="58">
-                                                <div class="progressbar-value bg-azure"></div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-04.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">HardDot Stone</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Branding and Identity</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">
-                                            <b class="pull-right">97%</b>
-                                            <div class="progress-title">
-                                                Code optimizations
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin" data-wow-delay="0.2s">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item31.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-05.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item31.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="progressbar-smaller progressbar" data-value="97">
-                                                <div class="progressbar-value bg-yellow"></div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-05.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">Crop Identity</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Branding and Brochure</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="pad5A button-pane button-pane-alt text-center">
-                                <a href="#" class="btn display-block font-normal hover-green" title="View all notifications">
-                                    View all notifications
-                                </a>
-                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                                <!-- start portfolio item -->
+                                <li class="grid-item wow zoomIn last-paragraph-no-margin" data-wow-delay="0.4s">
+                                    <figure>
+                                        <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
+                                            <img src="~/UserContent/images/portfolio-item32.jpg" alt="" />
+                                            <div class="portfolio-icon">
+                                                <a href="single-project-page-06.html"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                <a class="gallery-link" title="Lightbox gallery image title..." href="~/UserContent/imagesportfolio-item32.jpg"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <figcaption class="bg-white">
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <a href="single-project-page-06.html"><span class="line-height-normal font-weight-600 text-small alt-font margin-5px-bottom text-extra-dark-gray text-uppercase d-block">Violator Series</span></a>
+                                                        <p class="text-medium-gray text-extra-small text-uppercase">Web and Photography</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </li>
+                                <!-- end portfolio item -->
+                            </ul>
                         </div>
                     </div>
-                    <div class="dropdown" id="cloud-btn">
-                        <a href="#" data-placement="bottom" class="tooltip-button sb-toggle-right" title="Statistics Sidebar">
-                            <i class="glyph-icon icon-linecons-cloud"></i>
-                        </a>
-                    </div>
-                    <div class="dropdown" id="dashnav-btn">
-                        <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
-                            <i class="glyph-icon icon-linecons-cog"></i>
-                        </a>
-                        <div class="dropdown-menu float-right">
-                            <div class="box-sm">
-                                <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                    <a href="#" class="btn vertical-button hover-blue-alt" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                        </span>
-                                        Dashboard
-                                    </a>
-                                    <a href="#" class="btn vertical-button hover-green" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                        </span>
-                                        Widgets
-                                    </a>
-                                    <a href="#" class="btn vertical-button hover-orange" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                        </span>
-                                        Tables
-                                    </a>
-                                    <a href="#" class="btn vertical-button hover-orange" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                        </span>
-                                        Charts
-                                    </a>
-                                    <a href="#" class="btn vertical-button hover-purple" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                        </span>
-                                        Buttons
-                                    </a>
-                                    <a href="#" class="btn vertical-button hover-azure" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                        </span>
-                                        Panels
-                                    </a>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                    <a href="#" class="btn vertical-button remove-border btn-info" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                        </span>
-                                        Dashboard
-                                    </a>
-                                    <a href="#" class="btn vertical-button remove-border btn-danger" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                        </span>
-                                        Widgets
-                                    </a>
-                                    <a href="#" class="btn vertical-button remove-border btn-purple" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                        </span>
-                                        Tables
-                                    </a>
-                                    <a href="#" class="btn vertical-button remove-border btn-azure" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                        </span>
-                                        Charts
-                                    </a>
-                                    <a href="#" class="btn vertical-button remove-border btn-yellow" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                        </span>
-                                        Buttons
-                                    </a>
-                                    <a href="#" class="btn vertical-button remove-border btn-warning" title="">
-                                        <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                            <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                        </span>
-                                        Panels
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!-- #header-nav-right -->
-            </div>
-            <div id="page-sidebar">
-                <div class="scroll-sidebar">
-
-                    <ul id="sidebar-menu">
-                        <li class="header"><span>İçerik</span></li>
-                        <li>
-                            <a href="@Url.Action("Index","Notification")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Bildirimler</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Duty")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Hizmet Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Language")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Dil Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Category")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Kategori Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Product")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Ürün Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Page")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sayfa Yönetimi</span></a>
-                        </li>
-
-                        <li>
-                            <a href="#" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yönetimi</span></a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li><a href="@Url.Action("Index","Blog")"><span>Blog Ayarları</span></a></li>
-                                    <li><a href="@Url.Action("Index","BlogComment")"><span>Blog Yorumları</span></a></li>
-                                </ul>
-                            </div><!-- .sidebar-submenu -->
-                        </li>
-                        @*<li>
-            <a href="@Url.Action("Index","Blog")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yönetimi</span></a>
-        </li>
-        <li>
-            <a href="@Url.Action("Index","BlogComment")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Blog Yorumları</span></a>
-        </li>*@
-                        <li>
-                            <a href="@Url.Action("Index","Slider")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Slider Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Menu")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Menü Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","News")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Haber Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Branch")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Şube Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Seller")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Bayi Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Referance")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Referans Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Certificate")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sertifika Yönetimi</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","SocialMedia")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sosyal Medya</span></a>
-                        </li>
-                        @*<li>
-            <a href="@Url.Action("Index","ContactInfo")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Bilgileri</span></a>
-        </li>
-        <li>
-            <a href="@Url.Action("Index","ContactMail")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Mailleri</span></a>
-        </li>*@
-                        <li>
-                            <a href="@Url.Action("Index","HumanResource")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>İnsan Kaynakları</span></a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","InformationFromUs")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Bizden Haberdar Olun</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyph-icon icon-linecons-diamond"></i><span>İletişim Yönetimi</span></a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li><a href="@Url.Action("Index","ContactInfo")" title="Alternate dashboard"><span>İletişim Bilgileri</span></a></li>
-                                    <li><a href="@Url.Action("Index","MailInfo")" title="Alternate dashboard"><span>Mail Bilgileri</span></a></li>
-                                    <li><a href="@Url.Action("Index","ContactMail")" title="View profile"><span>İletişim Mailleri</span></a></li>
-
-                                </ul>
-                            </div><!-- .sidebar-submenu -->
-                        </li>
-
-
-                        <li class="header"><span>Extra</span></li>
-                        <li>
-                            <a href="#" title="Pages">
-                                <i class="glyph-icon icon-linecons-fire"></i>
-                                <span>Pages</span>
-                                <span class="bs-label badge-yellow">NEW</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li><a href="index-alt.html" title="Alternate dashboard"><span>Alternate dashboard</span></a></li>
-                                    <li><a href="view-profile.html" title="View profile"><span>View profile</span></a></li>
-                                    <li><a href="faq-section.html" title="FAQ section"><span>FAQ section</span></a></li>
-                                    <li><a href="auto-menu.html" title="Auto menu"><span>Auto menu</span></a></li>
-                                    <li><a href="invoice.html" title="Invoice"><span>Invoice</span></a></li>
-                                    <li><a href="admin-blog.html" title="Blog posts list"><span>Blog posts list</span></a></li>
-                                    <li><a href="admin-pricing.html" title="Pricing tables"><span>Pricing tables</span></a></li>
-                                    <li><a href="portfolio-gallery.html" title="Portfolio gallery"><span>Portfolio gallery</span></a></li>
-                                    <li><a href="portfolio-masonry.html" title="Portfolio masonry"><span>Portfolio masonry</span></a></li>
-                                    <li><a href="slidebars.html" title="Slidebars"><span>Slidebars</span></a></li>
-                                </ul>
-                            </div><!-- .sidebar-submenu -->
-                        </li>
-
-                    </ul><!-- #sidebar-menu -->
-
                 </div>
             </div>
-
-            <div id="page-content-wrapper">
-                <div id="page-content">
-
-                    <div class="container">
-
-                        <div id="page-title">
-                            <h2>@ViewBag.PageTitle</h2>
-                            @*<p>MonarchUI comes packed with a lot of table options variations.</p>*@
-                            <div id="theme-options" class="admin-options">
-                                <a href="javascript:void(0);" class="btn btn-primary theme-switcher tooltip-button" data-placement="left" title="Color schemes and layout options">
-                                    <i class="glyph-icon icon-linecons-cog icon-spin"></i>
+        </section>
+        <!-- end recent work section -->
+        <!-- start full width feature box -->
+        <section class="p-0 wow fadeIn border-color-extra-light-gray border-bottom md-no-border-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- start features box item -->
+                    <div class="col-12 col-lg-3 col-md-6 d-flex align-items-center text-center border-right border-bottom border-color-extra-light-gray wow fadeInUp last-paragraph-no-margin">
+                        <div class="padding-fifteen-all sm-no-padding-lr sm-padding-30px-tb width-100">
+                            <i class="icon-desktop icon-large text-deep-pink"></i>
+                            <span class="d-block alt-font font-weight-600 text-extra-dark-gray margin-25px-top md-margin-15px-top margin-5px-bottom">Elegant / Unique design</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard text.</p>
+                        </div>
+                    </div>
+                    <!-- end features box item -->
+                    <!-- start features box item -->
+                    <div class="col-12 col-lg-3 col-md-6 d-flex align-items-center text-center border-right border-bottom border-color-extra-light-gray wow fadeInUp last-paragraph-no-margin md-no-border-right" data-wow-delay="0.2s">
+                        <div class="padding-fifteen-all sm-no-padding-lr sm-padding-30px-tb width-100">
+                            <i class="icon-pricetags icon-large text-deep-pink"></i>
+                            <span class="d-block alt-font font-weight-600 text-extra-dark-gray margin-25px-top md-margin-15px-top margin-5px-bottom">Different Layout Type</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard text.</p>
+                        </div>
+                    </div>
+                    <!-- end features box item -->
+                    <!-- start features box item -->
+                    <div class="col-12 col-lg-3 col-md-6 d-flex align-items-center text-center border-right border-bottom border-color-extra-light-gray wow fadeInUp last-paragraph-no-margin sm-no-border-right" data-wow-delay="0.4s">
+                        <div class="padding-fifteen-all sm-no-padding-lr sm-padding-30px-tb width-100">
+                            <i class="icon-target icon-large text-deep-pink"></i>
+                            <span class="d-block alt-font font-weight-600 text-extra-dark-gray margin-25px-top md-margin-15px-top margin-5px-bottom">Testing for Perfection</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard text.</p>
+                        </div>
+                    </div>
+                    <!-- end features box item -->
+                    <!-- start features box item -->
+                    <div class="col-12 col-lg-3 col-md-6 d-flex align-items-center text-center border-right border-bottom border-color-extra-light-gray wow fadeInUp md-no-border-right last-paragraph-no-margin" data-wow-delay="0.6s">
+                        <div class="padding-fifteen-all sm-no-padding-lr sm-padding-30px-tb width-100">
+                            <i class="icon-mobile icon-large text-deep-pink"></i>
+                            <span class="d-block alt-font font-weight-600 text-extra-dark-gray margin-25px-top md-margin-15px-top margin-5px-bottom">True Responsiveness</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard text.</p>
+                        </div>
+                    </div>
+                    <!-- end features box item -->
+                </div>
+            </div>
+        </section>
+        <!-- end full width feature box -->
+        <!-- start section -->
+        <section class="wow fadeIn">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-5 col-md-6 margin-five-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                        <div class="alt-font text-medium-gray margin-5px-bottom text-uppercase text-small">Why Choose Us?</div>
+                        <h5 class="alt-font text-extra-dark-gray font-weight-600">We deliver 100% and provide instant response</h5>
+                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center"><img src="~/UserContent/images/screen.jpg" alt=""></div>
+                </div>
+            </div>
+        </section>
+        <!-- end section -->
+        <!-- start services section -->
+        <section class="wow fadeIn bg-extra-dark-gray">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6 text-center md-margin-50px-bottom sm-margin-30px-bottom">
+                        <a class="popup-youtube" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
+                            <img src="~/UserContent/images/image-4.jpg" alt="" class="w-100">
+                            <div class="icon-play">
+                                <div class="absolute-middle-center">
+                                    <img src="~/UserContent/images/icon-play.png" alt="">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-lg-6 last-paragraph-no-margin">
+                        <div class="padding-twelve-left text-center text-lg-left md-no-padding-lr">
+                            <h5 class="alt-font text-white-2">We provide high quality and cost effective services</h5>
+                            <p class="text-extra-large width-90 font-weight-300 text-extra-light-gray md-width-100">Since our foundation in 2005 our goal has been to use digital technology to create experiences.</p>
+                            <p class="width-90 md-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry. Lorem Ipsum has been the industry's standard dummy text since. Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                            <a href="services-classic.html" class="btn btn-small btn-rounded btn-transparent-white margin-30px-top">Explore services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end services section -->
+        <!-- start testimonial section -->
+        <section class="bg-light-gray wow fadeIn">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-5 col-md-6 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                        <div class="alt-font text-medium-gray margin-5px-bottom text-uppercase text-small">What people say</div>
+                        <h5 class="alt-font text-extra-dark-gray font-weight-600 mb-0">We have received tons of awesome testimonials</h5>
+                    </div>
+                </div>
+                <div class="row position-relative">
+                    <div class="swiper-container swiper-pagination-bottom black-move blog-slider swiper-three-slides">
+                        <div class="swiper-wrapper">
+                            <!-- start testimonial item -->
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <img src="~/UserContent/images/avtar-14.jpg" class="rounded-circle width-40 margin-25px-bottom md-margin-15px-bottom" alt="" />
+                                    <p class="md-margin-15px-bottom sm-margin-20px-bottom">I wanted to hire the best and after looking at several other companies, I knew Jacob was the perfect guy for the job. He is a true professional.</p>
+                                    <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">Shoko Mugikura</span>
+                                    <span class="text-light-gray2 text-extra-small text-uppercase text-medium-gray">Design Manager</span>
+                                </div>
+                            </div>
+                            <!-- end testimonial item -->
+                            <!-- start testimonial item -->
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <img src="~/UserContent/images/avtar-13.jpg" class="rounded-circle width-40 margin-25px-bottom md-margin-15px-bottom" alt="" />
+                                    <p class="md-margin-15px-bottom sm-margin-20px-bottom">Trust us we looked for a very long time and wasted thousands of dollars testing other teams, freelancers, and outsource companies.</p>
+                                    <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">Alexander Harvard</span>
+                                    <span class="text-light-gray2 text-extra-small text-uppercase text-medium-gray">Co Founder / CEO</span>
+                                </div>
+                            </div>
+                            <!-- end testimonial item -->
+                            <!-- start testimonial item -->
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <img src="~/UserContent/images/avtar-15.jpg" class="rounded-circle width-40 margin-25px-bottom md-margin-15px-bottom" alt="" />
+                                    <p class="md-margin-15px-bottom sm-margin-20px-bottom">This is an excellent company! I personally enjoyed the energy and the professional support the whole team gave to us into creating website.</p>
+                                    <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">Lindsay Swanson</span>
+                                    <span class="text-light-gray2 text-extra-small text-uppercase text-medium-gray">Creative Director</span>
+                                </div>
+                            </div>
+                            <!-- end testimonial item -->
+                            <!-- start testimonial item -->
+                            <div class="col-12 col-lg-4 col-md-6 swiper-slide md-margin-four-bottom">
+                                <div class="margin-half-all bg-white box-shadow-light text-center padding-fourteen-all sm-padding-30px-all">
+                                    <img src="~/UserContent/images/avtar-16.jpg" class="rounded-circle width-40 margin-25px-bottom md-margin-15px-bottom" alt="" />
+                                    <p class="md-margin-15px-bottom sm-margin-20px-bottom">Their team are easy to work with and helped me make amazing websites in a short amount of time. Thanks again guys for all your hard work.</p>
+                                    <span class="text-extra-dark-gray text-small text-uppercase d-block line-height-10 alt-font font-weight-600">Herman Miller</span>
+                                    <span class="text-light-gray2 text-extra-small text-uppercase text-medium-gray">Creative Director</span>
+                                </div>
+                            </div>
+                            <!-- end testimonial item -->
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-three-slides h-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end testimonial section -->
+        <!-- start blog section -->
+        <section class="wow fadeIn">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-5 col-md-6 margin-eight-bottom md-margin-40px-bottom sm-margin-30px-bottom text-center">
+                        <div class="alt-font text-medium-gray margin-5px-bottom text-uppercase text-small">Latest Blogs</div>
+                        <h5 class="alt-font text-extra-dark-gray font-weight-600 mb-0">Publish what you think, don't put it on social media</h5>
+                    </div>
+                </div>
+                <div class="row hover-option4 blog-post-style3">
+                    <!-- start blog post item -->
+                    <div class="grid-item col-12 col-md-6 col-lg-4 md-margin-30px-bottom text-center text-md-left wow fadeInUp">
+                        <div class="blog-post bg-light-gray">
+                            <div class="blog-post-images overflow-hidden position-relative">
+                                <a href="blog-post-layout-01.html">
+                                    <img src="~/UserContent/images/blog-img3.jpg" alt="">
+                                    <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
                                 </a>
-                                <div id="theme-switcher-wrapper">
-                                    <div class="scroll-switcher">
-                                        <h5 class="header">Layout options</h5>
-                                        <ul class="reset-ul">
-                                            <li>
-                                                <label for="boxed-layout">Boxed layout</label>
-                                                <input type="checkbox" data-toggletarget="boxed-layout" id="boxed-layout" class="input-switch-alt">
-                                            </li>
-                                            <li>
-                                                <label for="fixed-header">Fixed header</label>
-                                                <input type="checkbox" data-toggletarget="fixed-header" id="fixed-header" class="input-switch-alt">
-                                            </li>
-                                            <li>
-                                                <label for="fixed-sidebar">Fixed sidebar</label>
-                                                <input type="checkbox" data-toggletarget="fixed-sidebar" id="fixed-sidebar" class="input-switch-alt">
-                                            </li>
-                                            <li>
-                                                <label for="closed-sidebar">Closed sidebar</label>
-                                                <input type="checkbox" data-toggletarget="closed-sidebar" id="closed-sidebar" class="input-switch-alt">
-                                            </li>
-                                        </ul>
-                                        <div class="boxed-bg-wrapper hide">
-                                            <h5 class="header">
-                                                Boxed Page Background
-                                                <a class="set-background-style" data-header-bg="" title="Remove all styles" href="javascript:void(0);">Clear</a>
-                                            </h5>
-                                            <div class="theme-color-wrapper clearfix">
-                                                <h5>Patterns</h5>
-                                                <a class="tooltip-button set-background-style pattern-bg-3" data-header-bg="pattern-bg-3" title="Pattern 3" href="javascript:void(0);">Pattern 3</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-4" data-header-bg="pattern-bg-4" title="Pattern 4" href="javascript:void(0);">Pattern 4</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-5" data-header-bg="pattern-bg-5" title="Pattern 5" href="javascript:void(0);">Pattern 5</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-6" data-header-bg="pattern-bg-6" title="Pattern 6" href="javascript:void(0);">Pattern 6</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-7" data-header-bg="pattern-bg-7" title="Pattern 7" href="javascript:void(0);">Pattern 7</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-8" data-header-bg="pattern-bg-8" title="Pattern 8" href="javascript:void(0);">Pattern 8</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-9" data-header-bg="pattern-bg-9" title="Pattern 9" href="javascript:void(0);">Pattern 9</a>
-                                                <a class="tooltip-button set-background-style pattern-bg-10" data-header-bg="pattern-bg-10" title="Pattern 10" href="javascript:void(0);">Pattern 10</a>
-                                                <div class="clear"></div>
-                                                <h5 class="mrg15T">Solids &amp;Images</h5>
-                                                <a class="tooltip-button set-background-style bg-black" data-header-bg="bg-black" title="Black" href="javascript:void(0);">Black</a>
-                                                <a class="tooltip-button set-background-style bg-gray mrg10R" data-header-bg="bg-gray" title="Gray" href="javascript:void(0);">Gray</a>
-                                                <a class="tooltip-button set-background-style full-bg-1" data-header-bg="full-bg-1 fixed-bg" title="Image 1" href="javascript:void(0);">Image 1</a>
-                                                <a class="tooltip-button set-background-style full-bg-2" data-header-bg="full-bg-2 fixed-bg" title="Image 2" href="javascript:void(0);">Image 2</a>
-                                                <a class="tooltip-button set-background-style full-bg-3" data-header-bg="full-bg-3 fixed-bg" title="Image 3" href="javascript:void(0);">Image 3</a>
-                                                <a class="tooltip-button set-background-style full-bg-4" data-header-bg="full-bg-4 fixed-bg" title="Image 4" href="javascript:void(0);">Image 4</a>
-                                                <a class="tooltip-button set-background-style full-bg-5" data-header-bg="full-bg-5 fixed-bg" title="Image 5" href="javascript:void(0);">Image 5</a>
-                                                <a class="tooltip-button set-background-style full-bg-6" data-header-bg="full-bg-6 fixed-bg" title="Image 6" href="javascript:void(0);">Image 6</a>
-                                            </div>
-                                        </div>
-                                        <h5 class="header">
-                                            Header Style
-                                            <a class="set-adminheader-style" data-header-bg="bg-gradient-9" title="Remove all styles" href="javascript:void(0);">Clear</a>
-                                        </h5>
-                                        <div class="theme-color-wrapper clearfix">
-                                            <h5>Solids</h5>
-                                            <a class="tooltip-button set-adminheader-style bg-primary" data-header-bg="bg-primary font-inverse" title="Primary" href="javascript:void(0);">Primary</a>
-                                            <a class="tooltip-button set-adminheader-style bg-green" data-header-bg="bg-green font-inverse" title="Green" href="javascript:void(0);">Green</a>
-                                            <a class="tooltip-button set-adminheader-style bg-red" data-header-bg="bg-red font-inverse" title="Red" href="javascript:void(0);">Red</a>
-                                            <a class="tooltip-button set-adminheader-style bg-blue" data-header-bg="bg-blue font-inverse" title="Blue" href="javascript:void(0);">Blue</a>
-                                            <a class="tooltip-button set-adminheader-style bg-warning" data-header-bg="bg-warning font-inverse" title="Warning" href="javascript:void(0);">Warning</a>
-                                            <a class="tooltip-button set-adminheader-style bg-purple" data-header-bg="bg-purple font-inverse" title="Purple" href="javascript:void(0);">Purple</a>
-                                            <a class="tooltip-button set-adminheader-style bg-black" data-header-bg="bg-black font-inverse" title="Black" href="javascript:void(0);">Black</a>
-                                            <div class="clear"></div>
-                                            <h5 class="mrg15T">Gradients</h5>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-1" data-header-bg="bg-gradient-1 font-inverse" title="Gradient 1" href="javascript:void(0);">Gradient 1</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-2" data-header-bg="bg-gradient-2 font-inverse" title="Gradient 2" href="javascript:void(0);">Gradient 2</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-3" data-header-bg="bg-gradient-3 font-inverse" title="Gradient 3" href="javascript:void(0);">Gradient 3</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-4" data-header-bg="bg-gradient-4 font-inverse" title="Gradient 4" href="javascript:void(0);">Gradient 4</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-5" data-header-bg="bg-gradient-5 font-inverse" title="Gradient 5" href="javascript:void(0);">Gradient 5</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-6" data-header-bg="bg-gradient-6 font-inverse" title="Gradient 6" href="javascript:void(0);">Gradient 6</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-7" data-header-bg="bg-gradient-7 font-inverse" title="Gradient 7" href="javascript:void(0);">Gradient 7</a>
-                                            <a class="tooltip-button set-adminheader-style bg-gradient-8" data-header-bg="bg-gradient-8 font-inverse" title="Gradient 8" href="javascript:void(0);">Gradient 8</a>
-                                        </div>
-                                        <h5 class="header">
-                                            Sidebar Style
-                                            <a class="set-sidebar-style" data-header-bg="" title="Remove all styles" href="javascript:void(0);">Clear</a>
-                                        </h5>
-                                        <div class="theme-color-wrapper clearfix">
-                                            <h5>Solids</h5>
-                                            <a class="tooltip-button set-sidebar-style bg-primary" data-header-bg="bg-primary font-inverse" title="Primary" href="javascript:void(0);">Primary</a>
-                                            <a class="tooltip-button set-sidebar-style bg-green" data-header-bg="bg-green font-inverse" title="Green" href="javascript:void(0);">Green</a>
-                                            <a class="tooltip-button set-sidebar-style bg-red" data-header-bg="bg-red font-inverse" title="Red" href="javascript:void(0);">Red</a>
-                                            <a class="tooltip-button set-sidebar-style bg-blue" data-header-bg="bg-blue font-inverse" title="Blue" href="javascript:void(0);">Blue</a>
-                                            <a class="tooltip-button set-sidebar-style bg-warning" data-header-bg="bg-warning font-inverse" title="Warning" href="javascript:void(0);">Warning</a>
-                                            <a class="tooltip-button set-sidebar-style bg-purple" data-header-bg="bg-purple font-inverse" title="Purple" href="javascript:void(0);">Purple</a>
-                                            <a class="tooltip-button set-sidebar-style bg-black" data-header-bg="bg-black font-inverse" title="Black" href="javascript:void(0);">Black</a>
-                                            <div class="clear"></div>
-                                            <h5 class="mrg15T">Gradients</h5>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-1" data-header-bg="bg-gradient-1 font-inverse" title="Gradient 1" href="javascript:void(0);">Gradient 1</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-2" data-header-bg="bg-gradient-2 font-inverse" title="Gradient 2" href="javascript:void(0);">Gradient 2</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-3" data-header-bg="bg-gradient-3 font-inverse" title="Gradient 3" href="javascript:void(0);">Gradient 3</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-4" data-header-bg="bg-gradient-4 font-inverse" title="Gradient 4" href="javascript:void(0);">Gradient 4</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-5" data-header-bg="bg-gradient-5 font-inverse" title="Gradient 5" href="javascript:void(0);">Gradient 5</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-6" data-header-bg="bg-gradient-6 font-inverse" title="Gradient 6" href="javascript:void(0);">Gradient 6</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-7" data-header-bg="bg-gradient-7 font-inverse" title="Gradient 7" href="javascript:void(0);">Gradient 7</a>
-                                            <a class="tooltip-button set-sidebar-style bg-gradient-8" data-header-bg="bg-gradient-8 font-inverse" title="Gradient 8" href="javascript:void(0);">Gradient 8</a>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="post-details padding-40px-all md-padding-20px-all">
+                                <a href="blog-post-layout-01.html" class="alt-font post-title text-medium text-extra-dark-gray w-100 d-block lg-width-100 margin-15px-bottom">I like the body. I like to design everything to do with the body.</a>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy...</p>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-20px-tb"></div>
+                                <div class="author">
+                                    <span class="text-medium-gray text-uppercase text-extra-small d-xl-inline-block d-block md-margin-10px-top">by <a href="blog-grid.html" class="text-medium-gray">Jay Benjamin</a>&nbsp;&nbsp;|&nbsp;&nbsp;20 April 2017</span>
                                 </div>
                             </div>
                         </div>
-
-                        @RenderBody()
-
                     </div>
-
+                    <!-- end blog post item -->
+                    <!-- start blog post item -->
+                    <div class="grid-item col-12 col-md-6 col-lg-4 md-margin-30px-bottom text-center text-md-left wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="blog-post bg-light-gray">
+                            <div class="blog-post-images overflow-hidden position-relative">
+                                <a href="blog-post-layout-01.html">
+                                    <img src="~/UserContent/images/blog-img1.jpg" alt="">
+                                    <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
+                                </a>
+                            </div>
+                            <div class="post-details padding-40px-all md-padding-20px-all">
+                                <a href="blog-post-layout-01.html" class="alt-font post-title text-medium text-extra-dark-gray w-100 d-block lg-width-100 margin-15px-bottom">Styles come and go. Design is a language, not a style.</a>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy...</p>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-20px-tb"></div>
+                                <div class="author">
+                                    <span class="text-medium-gray text-uppercase text-extra-small d-xl-inline-block d-block md-margin-10px-top">by <a href="blog-grid.html" class="text-medium-gray">Herman Miller</a>&nbsp;&nbsp;|&nbsp;&nbsp;20 April 2017</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end blog post item -->
+                    <!-- start blog post item -->
+                    <div class="grid-item col-12 col-md-6 col-lg-4 text-center text-md-left wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="blog-post bg-light-gray">
+                            <div class="blog-post-images overflow-hidden position-relative">
+                                <a href="blog-post-layout-01.html">
+                                    <img src="~/UserContent/images/blog-img2.jpg" alt="">
+                                    <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
+                                </a>
+                            </div>
+                            <div class="post-details padding-40px-all md-padding-20px-all">
+                                <a href="blog-post-layout-01.html" class="alt-font post-title text-medium text-extra-dark-gray w-100 d-block lg-width-100 margin-15px-bottom">Recognizing the need is the primary condition for design.</a>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum standard dummy....</p>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-20px-tb"></div>
+                                <div class="author">
+                                    <span class="text-medium-gray text-uppercase text-extra-small d-xl-inline-block d-block md-margin-10px-top">by <a href="blog-grid.html" class="text-medium-gray">Hugh Macleod</a>&nbsp;&nbsp;|&nbsp;&nbsp;15 March 2017</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end blog post item -->
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- end blog section -->*@
 
-        <!-- Input switch -->
-        <!--<link rel="stylesheet" type="text/css" href="../../assets/widgets/input-switch/inputswitch.css">-->
-        <script type="text/javascript" src="~/Content/assets/widgets/input-switch/inputswitch.js"></script>
-        <script type="text/javascript">
-            /* Input switch */
-
-            $(function () {
-                "use strict";
-                $('.input-switch').bootstrapSwitch();
-            });
-        </script>
-
-        <!-- WIDGETS -->
-        <script type="text/javascript" src="~/Content/assets/bootstrap/js/bootstrap.js"></script>
-        <!-- Bootstrap Dropdown -->
-        <!-- <script type="text/javascript" src="~/Content/assets/widgets/dropdown/dropdown.js"></script> -->
-        <!-- Bootstrap Tooltip -->
-        <!-- <script type="text/javascript" src="~/Content/assets/widgets/tooltip/tooltip.js"></script> -->
-        <!-- Bootstrap Popover -->
-        <!-- <script type="text/javascript" src="~/Content/assets/widgets/popover/popover.js"></script> -->
-        <!-- Bootstrap Progress Bar -->
-        <script type="text/javascript" src="~/Content/assets/widgets/progressbar/progressbar.js"></script>
-        <!-- Bootstrap Buttons -->
-        <!-- <script type="text/javascript" src="~/Content/assets/widgets/button/button.js"></script> -->
-        <!-- Bootstrap Collapse -->
-        <!-- <script type="text/javascript" src="~/Content/assets/widgets/collapse/collapse.js"></script> -->
-        <!-- Superclick -->
-        <script type="text/javascript" src="~/Content/assets/widgets/superclick/superclick.js"></script>
-        <!-- Input switch alternate -->
-        <script type="text/javascript" src="~/Content/assets/widgets/input-switch/inputswitch-alt.js"></script>
-        <!-- Slim scroll -->
-        <script type="text/javascript" src="~/Content/assets/widgets/slimscroll/slimscroll.js"></script>
-        <!-- Slidebars -->
-        @*<script type="text/javascript" src="~/Content/assets/widgets/slidebars/slidebars.js"></script>
-            <script type="text/javascript" src="~/Content/assets/widgets/slidebars/slidebars-demo.js"></script>*@
-        <!-- PieGage -->
-        @*<script type="text/javascript" src="~/Content/assets/widgets/charts/piegage/piegage.js"></script>
-            <script type="text/javascript" src="~/Content/assets/widgets/charts/piegage/piegage-demo.js"></script>*@
-        <!-- Screenfull -->
-        @*<script type="text/javascript" src="~/Content/assets/widgets/screenfull/screenfull.js"></script>*@
-        <!-- Content box -->
-        @*<script type="text/javascript" src="~/Content/assets/widgets/content-box/contentbox.js"></script>*@
-        <!-- Overlay -->
-        <script type="text/javascript" src="~/Content/assets/widgets/overlay/overlay.js"></script>
-        <!-- Widgets init for demo -->
-        @*<script type="text/javascript" src="~/Content/assets/js-init/widgets-init.js"></script>*@
-        <!-- Theme layout -->
-        <script type="text/javascript" src="~/Content/assets/themes/admin/layout.js"></script>
-        <!-- Theme switcher -->
-        <script type="text/javascript" src="~/Content/assets/widgets/theme-switcher/themeswitcher.js"></script>
+    @Html.Partial("_Footer")
 
 
-    </div>
 
-    <div id="jGrowl" class="top-right jGrowl">
-        <div class="jGrowl-notification">
-        </div>
-    </div>
 </body>
-<!-- Mirrored from agileui.com/demo/monarch/demo/admin-template/tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 May 2019 13:08:04 GMT -->
-</html>
+<!-- start scroll to top -->
+<!-- end scroll to top -->
+<!-- javascript libraries -->
+<script type="text/javascript" src="~/UserContent/js/jquery.js"></script>
+<script type="text/javascript" src="~/UserContent/js/modernizr.js"></script>
+<script type="text/javascript" src="~/UserContent/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="~/UserContent/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="~/UserContent/js/skrollr.min.js"></script>
+<script type="text/javascript" src="~/UserContent/js/smooth-scroll.js"></script>
+<script type="text/javascript" src="~/UserContent/js/jquery.appear.js"></script>
+<!-- menu navigation -->
+<script type="text/javascript" src="~/UserContent/js/bootsnav.js"></script>
+<script type="text/javascript" src="~/UserContent/js/jquery.nav.js"></script>
+<!-- animation -->
+<script type="text/javascript" src="~/UserContent/js/wow.min.js"></script>
+<!-- page scroll -->
+<script type="text/javascript" src="~/UserContent/js/page-scroll.js"></script>
+<!-- swiper carousel -->
+<script type="text/javascript" src="~/UserContent/js/swiper.min.js"></script>
+<!-- counter -->
+<script type="text/javascript" src="~/UserContent/js/jquery.count-to.js"></script>
+<!-- parallax -->
+<script type="text/javascript" src="~/UserContent/js/jquery.stellar.js"></script>
+<!-- magnific popup -->
+<script type="text/javascript" src="~/UserContent/js/jquery.magnific-popup.min.js"></script>
+<!-- portfolio with shorting tab -->
+<script type="text/javascript" src="~/UserContent/js/isotope.pkgd.min.js"></script>
+<!-- images loaded -->
+<script type="text/javascript" src="~/UserContent/js/imagesloaded.pkgd.min.js"></script>
+<!-- pull menu -->
+<script type="text/javascript" src="~/UserContent/js/classie.js"></script>
+<script type="text/javascript" src="~/UserContent/js/hamburger-menu.js"></script>
+<!-- counter -->
+<script type="text/javascript" src="~/UserContent/js/counter.js"></script>
+<!-- fit video -->
+<script type="text/javascript" src="~/UserContent/js/jquery.fitvids.js"></script>
+<!-- skill bars -->
+<script type="text/javascript" src="~/UserContent/js/skill.bars.jquery.js"></script>
+<!-- justified gallery -->
+<script type="text/javascript" src="~/UserContent/js/justified-gallery.min.js"></script>
+<!-- pie chart -->
+<script type="text/javascript" src="~/UserContent/js/jquery.easypiechart.min.js"></script>
+<!-- instagram -->
+<script type="text/javascript" src="~/UserContent/js/instafeed.min.js"></script>
+<!-- retina -->
+<script type="text/javascript" src="~/UserContent/js/retina.min.js"></script>
 
-
-<script>
-    $(function () {
-        $.ajax({
-            url: "/Notification/GetNotifications",
-            type: "POST",
-            success: function (result) {
-                if (result.State == 1) {
-                    var box = $(".no-border.notifications-box").empty()
-                    box.empty();
-                    $.each(result.Result, function (i, v) {
-                        var row = "<a href='/Notification/Edit/"+v.Id+"'><li><span class='" + v.Icon + "'></span><span class='notification-text'>" + v.Caption + "</span><div class='notification-time'>" + v.DateString + "<span class='glyph-icon icon-clock-o'></span></div></li></a>";
-                        box.append(row);
-
-                    })
-                }
-            }
-        })
-    })
-
-
-</script>
+<!-- revolution -->
+<script type="text/javascript" src="~/UserContent/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<!-- revolution slider extensions (load below extensions JS files only on local file systems to make the slider work! The following part can be removed on server for on demand loading) -->
+<!--<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="~/UserContent/revolution/js/extensions/revolution.extension.video.min.js"></script>-->
+<!-- setting -->
+<script type="text/javascript" src="~/UserContent/js/main.js"></script>

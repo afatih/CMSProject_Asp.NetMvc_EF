@@ -12,10 +12,11 @@ namespace EddarsCrms.UserSide
     public class SqlProgress:IDisposable
     {
         private readonly SqlConnection con = new SqlConnection();
+        private readonly GeneralSettings general = new GeneralSettings();
         
         public SqlProgress()
         {
-            con.ConnectionString = ConfigurationManager.ConnectionStrings[0].ConnectionString;
+            con.ConnectionString = general.ConString;
         }
 
         public SqlProgress(string _dataSource, string _initialCatalog, string _userId, string _pass)

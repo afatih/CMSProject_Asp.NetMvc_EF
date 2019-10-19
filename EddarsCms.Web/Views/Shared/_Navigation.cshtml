@@ -1,0 +1,306 @@
+﻿@using EddarsCrms.UserSide;
+@using EddarsCms.Dto.OtherDtos;
+
+@helper langSelector()
+{
+    string curLang = "tr"; ;
+    if (this.ViewContext.RouteData.Values["lang"] != null)
+    {
+        curLang = this.ViewContext.RouteData.Values["lang"].ToString();
+    }
+
+    var enabledLangsList = LanguageOperation.GetAllLangs();
+
+    var targetPath = string.Format("{0}/{1}{2}",
+        ViewContext.RouteData.Values["controller"].ToString(),
+        ViewContext.RouteData.Values["action"].ToString(),
+        Request.Url.Query);
+    var hostRoot = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
+    var targetUrlMask = string.Format("{0}/{{0}}/{1}", hostRoot, targetPath);
+
+    <li class="dropdown special" style="margin-left: 15px;">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            @(curLang)
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu lang-selector">
+            @foreach (LangInfoDto lang in enabledLangsList)
+            {
+                <li><a href="@(string.Format(targetUrlMask, lang.Name))">@lang.Name</a></li>
+            }
+        </ul>
+    </li>
+}
+
+<nav class="navbar navbar-default bootsnav navbar-top header-dark background-transparent navbar-expand-lg">
+    <div class="container nav-header-container">
+        <!-- start logo -->
+        <div class="col-auto pl-lg-0">
+            <a href="index.html" title="Pofo" class="logo"><img src="~/UserContent/images/logo.png" data-rjs="~/UserContent/imageslogo@2x.png" class="logo-dark default" alt="Pofo"><img src="~/UserContent/images/logo-white.png" data-rjs="~/UserContent/imageslogo-white@2x.png" alt="Pofo" class="logo-light"></a>
+        </div>
+        <!-- end logo -->
+        <div class="col accordion-menu pr-0 pr-md-3">
+            <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
+                <span class="sr-only">toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-end" id="navbar-collapse-toggle-1">
+                <ul id="accordion" class="nav navbar-nav no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
+                    <!-- start menu item -->
+                    <li class="dropdown megamenu-fw">
+                        <a href="#">Anasayfa</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+
+                    </li>
+
+                    <!-- end menu item -->
+                    <li class="dropdown simple-dropdown">
+                        <a href="#">Kurumsal</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <!-- start sub menu -->
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (var item in Fronted.PageList())
+                            {
+                                <li>
+                                    <a href="@Url.Action("Kurumsal","Detay", new { @id=item.Id})"> @item.Caption</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown simple-dropdown">
+                        <a href="#">Hizmetlerimiz</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <!-- start sub menu -->
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (var item in Fronted.DutyList())
+                            {
+                                <li>
+                                    <a href="@Url.Action("Hizmet","Detay", new { @id=item.Id})"> @item.Caption</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown simple-dropdown">
+                        <a href="#" title="Blog">Blog</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <!-- start sub menu -->
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (var item in Fronted.BlogList())
+                            {
+                                <li>
+                                    <a href="@Url.Action("Bloglar","Detay", new { @id=item.Id})"> @item.Caption</a>
+                                </li>
+                            }
+                        </ul>
+                        <!-- end sub menu -->
+                    </li>
+                    <li class="dropdown megamenu-fw">
+                        <a href="#">Elements</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <!-- start sub menu -->
+                        <div class="menu-back-div dropdown-menu megamenu-content mega-menu collapse mega-menu-full icon-list-menu">
+                            <ul>
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">General elements</li>
+                                        <li><a href="accordions.html"><i class="ti-layout-accordion-separated"></i> Accordions</a></li>
+                                        <li><a href="buttons.html"><i class="ti-mouse"></i> Buttons</a></li>
+                                        <li><a href="team.html"><i class="ti-user"></i> Team</a></li>
+                                        <li><a href="team-carousel.html"><i class="ti-layout-slider-alt"></i> Team carousel</a></li>
+                                        <li><a href="clients.html"><i class="ti-id-badge"></i> Clients</a></li>
+                                        <li><a href="client-carousel.html"><i class="ti-layout-slider"></i> Client carousel</a></li>
+                                        <li><a href="subscribe.html"><i class="ti-bookmark"></i> Subscribe</a></li>
+                                        <li><a href="call-to-action.html"><i class="ti-headphone-alt"></i> Call to action</a></li>
+                                        <li><a href="tab.html"><i class="ti-layout-tab"></i> Tab</a></li>
+                                        <li><a href="google-map.html"><i class="ti-location-pin"></i> Google map</a></li>
+                                        <li><a href="text-slider.html"><i class="ti-layout-media-overlay"></i> Text slider</a></li>
+                                        <li><a href="contact-form.html"><i class="ti-clipboard"></i> Contact form</a></li>
+                                        <li><a href="image-gallery.html"><i class="ti-gallery"></i> Image gallery</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column -->
+                                <!-- start sub menu column -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Infographics / icons</li>
+                                        <li><a href="process-bar.html"><i class="icon-hourglass"></i> Process bar</a></li>
+                                        <li><a href="icon-with-text.html"><i class="ti-layout-media-left"></i> Icon with text</a></li>
+                                        <li><a href="overline-icon-box.html"><i class="ti-layout-placeholder"></i> Overline icon box</a></li>
+                                        <li><a href="custom-icon-with-text.html"><i class="ti-layout-cta-btn-left"></i> Custom icon with text</a></li>
+                                        <li><a href="counters.html"><i class="ti-timer"></i> Counters</a></li>
+                                        <li><a href="countdown.html"><i class="ti-alarm-clock"></i> Countdown</a></li>
+                                        <li><a href="pie-charts.html"><i class="ti-pie-chart"></i> Pie charts</a></li>
+                                        <li><a href="text-box.html"><i class="ti-layout-cta-left"></i> Text box</a></li>
+                                        <li><a href="fancy-text-box.html"><i class="ti-layout-cta-center"></i> Fancy text box</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Interactive Elements</li>
+                                        <li><a href="testimonials.html"><i class="ti-thought"></i> Testimonials</a></li>
+                                        <li><a href="testimonials-carousel.html"><i class="ti-comments"></i> Testimonials carousel</a></li>
+                                        <li><a href="video.html"><i class="ti-video-camera"></i> Video</a></li>
+                                        <li><a href="interactive-banners.html"><i class="ti-image"></i> Interactive banners</a></li>
+                                        <li><a href="services.html"><i class="ti-headphone-alt"></i> Services</a></li>
+                                        <li><a href="portfolio-slider.html"><i class="ti-layout-slider-alt"></i> Portfolio slider</a></li>
+                                        <li><a href="info-banner.html"><i class="ti-layout-slider"></i> Info banner</a></li>
+                                        <li><a href="rotate-box.html"><i class="ti-layout-width-full"></i> Rotate box</a></li>
+                                        <li><a href="process-step.html"><i class="ti-stats-up"></i> Process step</a></li>
+                                        <li><a href="blog-posts.html"><i class="ti-comment-alt"></i> Blog posts</a></li>
+                                        <li><a href="instagram.html"><i class="ti-instagram"></i> Instagram</a></li>
+                                        <li><a href="parallax-scrolling.html"><i class="ti-exchange-vertical"></i> Parallax scrolling</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Text & containers</li>
+                                        <li><a href="heading.html"><i class="ti-text"></i> Heading</a></li>
+                                        <li><a href="dropcaps.html"><i class="ti-layout-accordion-list"></i> Dropcaps</a></li>
+                                        <li><a href="columns.html"><i class="ti-layout-column3-alt"></i> Columns</a></li>
+                                        <li><a href="blockquote.html"><i class="ti-quote-left"></i> Blockquote</a></li>
+                                        <li><a href="highlights.html"><i class="ti-underline"></i> Highlights</a></li>
+                                        <li><a href="message-box.html"><i class="ti-layout-media-right-alt"></i> Message box</a></li>
+                                        <li><a href="social-icons.html"><i class="ti-signal"></i> Social icons</a></li>
+                                        <li><a href="lists.html"><i class="ti-list"></i> Lists</a></li>
+                                        <li><a href="seperators.html"><i class="ti-layout-line-solid"></i> Separators</a></li>
+                                        <li><a href="pricing-table.html"><i class="ti-layout-grid2-thumb"></i> Pricing table</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                            </ul>
+                            <!-- end sub menu -->
+                        </div>
+                    </li>
+                    <li class="dropdown megamenu-fw">
+                        <a href="#">Features</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <!-- start sub menu -->
+                        <div class="menu-back-div dropdown-menu megamenu-content mega-menu collapse mega-menu-full">
+                            <ul>
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Header Styles</li>
+                                        <li><a href="transparent-header.html">Transparent header</a></li>
+                                        <li><a href="white-header.html">White header</a></li>
+                                        <li><a href="dark-header.html">Dark header</a></li>
+                                        <li><a href="header-with-top-bar.html">Header with top bar</a></li>
+                                        <li><a href="header-with-sticky-top-bar.html">Header with sticky top bar</a></li>
+                                        <li><a href="header-with-push.html">Header with push</a></li>
+                                        <li><a href="center-navigation.html">Center navigation</a></li>
+                                        <li><a href="center-logo.html">Center logo</a></li>
+                                        <li><a href="top-logo.html">Top logo</a></li>
+                                        <li><a href="one-page-navigation.html">One page navigation</a></li>
+                                        <li><a href="hamburger-menu.html">Hamburger menu</a></li>
+                                        <li><a href="hamburger-menu-modern.html">Hamburger menu modern</a></li>
+                                        <li><a href="hamburger-menu-half.html">Hamburger menu half</a></li>
+                                        <li><a href="left-menu-classic.html">Left menu classic</a></li>
+                                        <li><a href="left-menu-modern.html">Left menu modern</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column -->
+                                <!-- start sub menu column -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Footer</li>
+                                        <li><a href="footer-standard.html">Footer standard</a></li>
+                                        <li><a href="footer-standard-dark.html">Footer standard dark</a></li>
+                                        <li><a href="footer-classic.html">Footer classic</a></li>
+                                        <li><a href="footer-classic-dark.html">Footer classic dark</a></li>
+                                        <li><a href="footer-clean.html">Footer clean</a></li>
+                                        <li><a href="footer-clean-dark.html">Footer clean dark</a></li>
+                                        <li><a href="footer-modern.html">Footer modern</a></li>
+                                        <li><a href="footer-modern-dark.html">Footer modern dark</a></li>
+                                        <li><a href="footer-center-logo.html">Footer center logo </a></li>
+                                        <li><a href="footer-center-logo-dark.html">Footer center logo dark</a></li>
+                                        <li><a href="footer-strip.html">Footer strip</a></li>
+                                        <li><a href="footer-strip-dark.html">Footer strip dark</a></li>
+                                        <li><a href="footer-center-logo-02.html">Footer center logo 02</a></li>
+                                        <li><a href="footer-center-logo-02-dark.html">Footer center logo 02 dark</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Page Title</li>
+                                        <li><a href="page-title-left-alignment.html">Left alignment</a></li>
+                                        <li><a href="page-title-right-alignment.html">Right alignment</a></li>
+                                        <li><a href="page-title-center-alignment.html">Center alignment</a></li>
+                                        <li><a href="page-title-dark-style.html">Dark style</a></li>
+                                        <li><a href="page-title-big-typography.html">Big typography</a></li>
+                                        <li><a href="page-title-parallax-image-background.html">Parallax image background</a></li>
+                                        <li><a href="page-title-background-breadcrumbs.html">Image after breadcrumbs</a></li>
+                                        <li><a href="page-title-gallery-background.html">Gallery background</a></li>
+                                        <li><a href="page-title-background-video.html">Background video</a></li>
+                                        <li><a href="page-title-mini-version.html">Mini version</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                                <!-- start sub menu column  -->
+                                <li class="mega-menu-column col-lg-3">
+                                    <!-- start sub menu item  -->
+                                    <ul>
+                                        <li class="dropdown-header">Gallery</li>
+                                        <li><a href="single-image-lightbox.html">Single image lightbox</a></li>
+                                        <li><a href="lightbox-gallery.html">Lightbox gallery</a></li>
+                                        <li><a href="zoom-gallery.html">Zoom gallery</a></li>
+                                        <li><a href="popup-with-form.html">Popup with form</a></li>
+                                        <li><a href="modal-popup.html">Modal popup</a></li>
+                                        <li><a href="open-youtube-video.html">Open youtube video</a></li>
+                                        <li><a href="open-vimeo-video.html">Open vimeo video</a></li>
+                                        <li><a href="open-google-map.html">Open google map</a></li>
+                                    </ul>
+                                    <!-- end sub menu item  -->
+                                </li>
+                                <!-- end sub menu column  -->
+                            </ul>
+                            <!-- end sub menu -->
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-auto pr-lg-0">
+            <div class="header-searchbar">
+                <a href="#search-header" class="header-search-form"><i class="fas fa-search search-button"></i></a>
+                <!-- search input-->
+                <form id="search-header" method="post" action="http://www.themezaa.com/html/pofo/search-result.html" name="search-header" class="mfp-hide search-form-result">
+                    <div class="search-form position-relative">
+                        <button type="submit" class="fas fa-search close-search search-button"></button>
+                        <input type="text" name="search" class="search-input" placeholder="Enter your keywords..." autocomplete="off">
+                    </div>
+                </form>
+            </div>
+            <div class="heder-menu-button d-none d-lg-inline-block">
+                <button class="navbar-toggle mobile-toggle right-menu-button" type="button" id="showRightPush">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div id="langList" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: -5px;">
+                    @langSelector()
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
