@@ -50,6 +50,7 @@
     <Compile Include="BasicDtos\ContactInfoDto.cs" />
     <Compile Include="BasicDtos\ContactMailDto.cs" />
     <Compile Include="BasicDtos\DutyDto.cs" />
+    <Compile Include="BasicDtos\FixedAreaDto.cs" />
     <Compile Include="BasicDtos\HumanResourceDto.cs" />
     <Compile Include="BasicDtos\InformationFromUsDto.cs" />
     <Compile Include="BasicDtos\LanguageDto.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="BasicDtos\SellerDto.cs" />
     <Compile Include="BasicDtos\SliderDto.cs" />
     <Compile Include="BasicDtos\SocialMediaDto.cs" />
+    <Compile Include="BasicDtos\UserDto.cs" />
     <Compile Include="DtoBase.cs" />
     <Compile Include="OtherDtos\LangInfoDto.cs" />
     <Compile Include="OtherDtos\ReorderDto.cs" />

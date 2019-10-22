@@ -49,6 +49,7 @@ namespace EddarsCms.BLL.Services
                 entity.MapLocation = dto.MapLocation;
                 entity.EMail = dto.EMail;
                 entity.Fax = dto.Fax;
+                entity.Description = dto.Description;
 
                 var result = uow.Save();
                 return result;

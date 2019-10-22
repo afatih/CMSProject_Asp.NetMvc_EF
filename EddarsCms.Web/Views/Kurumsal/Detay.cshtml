@@ -1,0 +1,79 @@
+﻿@using EddarsCms.Dto.BasicDtos
+
+
+@model PageDto
+
+
+<!-- start page title section -->
+<section class="wow fadeIn cover-background background-position-top top-space" style="background-image:url('/Images/Pages/@Model.ImageCover');">
+    <div class="opacity-medium bg-extra-dark-gray"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 d-flex flex-column text-center justify-content-center page-title-large padding-30px-tb">
+                <!-- start sub title -->
+                @*<span class="d-block text-white-2 opacity6 alt-font margin-5px-bottom">@Model.Description</span>*@
+                <!-- end sub title -->
+                <!-- start page title -->
+                <h1 class="alt-font text-white-2 font-weight-600 mb-0">@Model.Caption</h1>
+                <!-- end page title -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title section -->
+<!-- start story section -->
+<section class="wow fadeIn">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 md-margin-30px-bottom wow fadeInLeft">
+                @Html.Raw(Model.Content)
+            </div>
+            
+        </div>
+        <div class="divider-full bg-extra-light-gray margin-seven-bottom margin-eight-top"></div>
+        <!-- start feature box -->
+        @*<div class="row">
+            <!-- start feature box item -->
+            <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp">
+                <div class="row m-0">
+                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                        <i class="icon-desktop text-medium-gray icon-extra-medium top-6"></i>
+                    </div>
+                    <div class="col-12 col-lg-9 col-md-8 p-0">
+                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Digital Solutions</span>
+                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end feature box item -->
+            <!-- start feature box item -->
+            <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp" data-wow-delay="0.2s">
+                <div class="row m-0">
+                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                        <i class="icon-book-open text-medium-gray icon-extra-medium top-6"></i>
+                    </div>
+                    <div class="col-12 col-lg-9 col-md-8 p-0">
+                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">SEO Marketing</span>
+                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end feature box item -->
+            <!-- start feature box item -->
+            <div class="col-12 col-md-4 text-center text-md-left wow fadeInUp" data-wow-delay="0.4s">
+                <div class="row m-0">
+                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                        <i class="icon-gift text-medium-gray icon-extra-medium top-6"></i>
+                    </div>
+                    <div class="col-12 col-lg-9 col-md-8 p-0">
+                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Creative Strategy</span>
+                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end feature box item -->
+        </div>*@
+        <!-- start feature box -->
+    </div>
+</section>
+<!-- end story section -->

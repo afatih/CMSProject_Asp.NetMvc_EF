@@ -39,9 +39,12 @@
                             <td>@language.Id</td>
                             <td>@language.Name</td>
                             <td>@language.Url</td>
-                            <td style="width:10%"  class="rowNumber">@language.RowNumber</td>
+                            <td style="width:10%" class="rowNumber">@language.RowNumber</td>
                             <td style="width:14%">
-                                <button onclick="jsDelete(@language.Id)" class="btn btn-danger">Sil</button>
+                                @if (language.Id != 1)
+                                {
+                                    <button onclick="jsDelete(@language.Id)" class="btn btn-danger">Sil</button>
+                                }
                                 <a href="@Url.Action("Edit","Language",new {id=language.Id })" class="btn btn-warning">Düzenle</a>
                             </td>
 

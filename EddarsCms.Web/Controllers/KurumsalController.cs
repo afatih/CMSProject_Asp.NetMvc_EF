@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EddarsCms.UserSides;
+using EddarsCms.Web.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,16 @@ namespace EddarsCms.Web.Controllers
     public class KurumsalController : Controller
     {
         // GET: Kurumsal
+        [Internationalization]
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Detay(int id,string url)
+        {
+            var page = Fronted.GetPage(id);
+            return View(page);
         }
 
     }

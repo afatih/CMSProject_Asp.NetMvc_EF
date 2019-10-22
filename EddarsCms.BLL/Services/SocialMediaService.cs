@@ -81,6 +81,7 @@ namespace EddarsCms.BLL.Services
             socialMedia.RowNumber = dto.RowNumber;
             socialMedia.Name = dto.Name;
             socialMedia.Url = dto.Url;
+            socialMedia.IconFull = dto.IconFull;
             socialMedia.Icon = dto.Icon;
             var result = uow.Save();
             return result;

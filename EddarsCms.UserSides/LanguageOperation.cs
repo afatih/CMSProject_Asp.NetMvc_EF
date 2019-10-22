@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace EddarsCrms.UserSide
+namespace EddarsCms.UserSides
 {
     public class LanguageOperation
     {
@@ -60,7 +60,8 @@ namespace EddarsCrms.UserSide
                             var lang = new LangInfoDto()
                             {
                                 Id = dr.IsNull("Id") ? 0 : Convert.ToInt32(dr["Id"]),
-                                Name = dr.IsNull("Name") ? "" : dr["Name"].ToString()
+                                Name = dr.IsNull("Name") ? "" : dr["Name"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
                             };
                             list.Add(lang);
 

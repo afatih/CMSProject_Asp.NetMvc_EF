@@ -127,8 +127,9 @@
             </div>
         </div>
 
-        @Html.Hidden("OldCover", Model.ImageCover)
-        @Html.Hidden("OldBig", Model.ImageBig)
+
+        <input type="text" style="display:none" name="OldCover" value="@Model.ImageCover" />
+        <input type="text" style="display:none" name="OldBig" value="@Model.ImageBig" />
 
         <div class="col-lg-4">
             <div class="panel">
@@ -143,7 +144,7 @@
                             </div>
                             <label for="image1" class="control-label">Sayfa Kapak Resim</label>
                             <div>
-                                <input  type="file" class="form-control" id="image1" name="file1">
+                                <input type="file" class="form-control" id="image1" name="file1">
                             </div>
                         </div>
                         <div class="form-group">
@@ -179,7 +180,7 @@
                         <div class="form-group">
                             <label for="SeoDescription" class="float-leftcontrol-label  float-left !important">Seo Description</label>
                             <div>
-                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5" >@Model.SeoDescription</textarea>
+                                <textarea type="text" class="form-control" name="SeoDescription" id="SeoDescription" rows="5">@Model.SeoDescription</textarea>
                             </div>
 
                             <div style="padding-top:10px"><button type="submit" class="btn btn-success">Kaydet</button></div>

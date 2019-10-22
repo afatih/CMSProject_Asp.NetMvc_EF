@@ -48,37 +48,83 @@
                 </div>
                 <div class="main-box-body">
 
-
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Mesaj Başlık</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Caption</label>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Kullanıcı Ad Soyad</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Name @Model.Surname</label>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Kullanıcı Telefon</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Phone</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Mesaj Başlık</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Caption</label>
+                            </div>
+                        </div>
                     </div>
 
 
+
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Kullanıcı Mail</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Mail</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Kullanıcı Ad Soyad</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Name @Model.Surname</label>
+                            </div>
+                        </div>
                     </div>
 
+
+
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Mesaj Tarihi</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Date</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Kullanıcı Telefon</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Phone</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Kullanıcı Mail</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Mail</label>
+                            </div>
+                        </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Mesaj</label>
-                        <label class="col-lg-9" style="font-weight:normal">@Model.Content</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Mesaj Tarihi</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Date</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label control-label">Mesaj</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <label style="font-weight:normal">@Model.Content</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button style="margin-top:15px;margin-left:10px" onclick="jsDelete('@Model.Id')" class="btn btn-danger">Sil</button>
                     </div>
 
 
@@ -96,9 +142,20 @@
 
 
 
-
 <script>
+    function jsDelete(id) {
+        $.ajax({
+            url: "/ContactMail/Delete", type: "POST", data: { id: id }, success: function (result) {
+                if (result.State != 1) {
+                    jsError(result.Message);
+                }
+                else {
+                    jsSuccess(result.Message);
+                    window.location = "/Management/ContactMail/Index"
+                }
+            }
+        })
+    }
 
-   
 
 </script>

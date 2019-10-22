@@ -11,6 +11,7 @@ namespace EddarsCms.Dto
         public DtoBase()
         {
             UpdatedDate = DateTime.Now;
+            CreatedDate = DateTime.Now;
             State = true;
         }
 
@@ -18,7 +19,7 @@ namespace EddarsCms.Dto
 
         public int Id { get; set; }
         public int? LanguageId { get; set; }
-        //public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int? RowNumber { get; set; }
         public bool? State { get; set; }

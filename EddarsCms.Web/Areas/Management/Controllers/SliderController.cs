@@ -3,6 +3,7 @@ using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
+using EddarsCms.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace EddarsCms.Web.Areas.Management.Controllers
 {
+    [SecurityManagement]
     public class SliderController : Controller
     {
         ISliderService sliderServ;
@@ -109,7 +111,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
+                    ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
                     return View(dto);
                 }
             }
@@ -211,7 +213,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
+                    ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
                     return View(dto);
                 }
             }

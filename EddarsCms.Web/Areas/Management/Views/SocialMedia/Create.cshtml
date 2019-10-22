@@ -26,11 +26,21 @@
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    div.input-group span.input-group-addon {
+        width: 35px;
+    }
 </style>
+
+
+
+
+
+<script src="~/Areas/Management/Content/jquery.unobtrusive-ajax.min.js"></script>
 
 @Html.Raw(ViewBag.Message)
 
-@using (Ajax.BeginForm("Create", "SocialMedia", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal bordered-row" }))
+@using (Ajax.BeginForm("Create", "SocialMedia", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message" }, new { @class = "form-horizontal bordered-row" }))
 {
     @Html.AntiForgeryToken()
 
@@ -65,8 +75,10 @@
                         <div class="form-group">
                             <label for="Icon">Sosyal Medya Icon</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i id="showIcon"></i></span>
+                                <span class="input-group-addon"><i id="showIcon" style="margin-right:10px"></i></span>
                                 <input type="text" class="form-control" id="Icon" name="Icon" value="@Model.Icon">
+
+                                <input type="text" id="IconFull" name="IconFull" value="@Model.IconFull" style="display:none">
                             </div>
                         </div>
 
@@ -105,45 +117,33 @@
 
                             <div>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook" title="icon-facebook"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook" title="facebook"></i></a>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook-square" title="icon-facebook-square"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-flickr" title="icon-flickr"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-foursquare" title="icon-foursquare"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-facebook-square" title="facebook-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-foursquare" title="foursquare"></i></a>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google" title="icon-google"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus" title="icon-google-plus"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus-square" title="icon-google-plus-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google" title="google"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus" title="google-plus"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-google-plus-square" title="google-plus-square"></i></a>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-instagram" title="icon-instagram"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-instagram" title="instagram"></i></a>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin" title="icon-linkedin"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin-square" title="icon-linkedin-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin" title="linkedin"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-linkedin-square" title="linkedin-square"></i></a>
 
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-openid" title="icon-openid"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-pagelines" title="icon-pagelines"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-skype" title="icon-skype"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-slack" title="icon-slack"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-spotify" title="icon-spotify"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-stumbleupon" title="icon-stumbleupon"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-stumbleupon-circle" title="icon-stumbleupon-circle"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tencent-weibo" title="icon-tencent-weibo"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr" title="icon-tumblr"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr-square" title="icon-tumblr-square"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitch" title="icon-twitch"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter" title="icon-twitter"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter-square" title="icon-twitter-square"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vimeo-square" title="icon-vimeo-square"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vine" title="icon-vine"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vk" title="icon-vk"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-wechat" title="icon-wechat"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-weibo" title="icon-weibo"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-wordpress" title="icon-wordpress"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-yahoo" title="icon-yahoo"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-yelp" title="icon-yelp"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube" title="icon-youtube"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-play" title="icon-youtube-play"></i></a>
-                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-square" title="icon-youtube-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-skype" title="skype"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-slack" title="slack"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-spotify" title="spotify"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr" title="tumblr"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-tumblr-square" title="tumblr-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitch" title="twitch"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter" title="twitter"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-twitter-square" title="twitter-square"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-vk" title="vk"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-yahoo" title="yahoo"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube" title="youtube"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-play" title="youtube-play"></i></a>
+                                <a onclick="jsSetIcon(this)"><i class="glyph-icon tooltip-button demo-icon icon-youtube-square" title="youtube-square"></i></a>
                             </div>
                         </div>
                     </div>
@@ -211,7 +211,6 @@
 
 
 
-
     function jsSetIcon(item) {
         var icon = $(item).children().attr("class")
         var iconTitle = $(item).children().attr("title")
@@ -219,11 +218,18 @@
 
         $("#showIcon").removeClass(oldClass);
         $("#showIcon").addClass(icon);
-        $("#Icon").val(icon);
+        if (iconTitle == "facebook") {
+            $("#Icon").val("facebook-f");
+            $("#IconFull").val(icon);
+        } else {
+            $("#Icon").val(iconTitle);
+            $("#IconFull").val(icon);
+        }
+
     }
 
     $(function () {
-        var currentIcon = '@Model.Icon';
+        var currentIcon = '@Model.IconFull';
         $("#showIcon").addClass(currentIcon);
     })
 
@@ -235,5 +241,9 @@
     #showIcon {
         width: 25px !important;
         height: 20px !important;
+        position: absolute;
+        bottom: 18px;
+        border: none;
+        left: 9px;
     }
 </style>

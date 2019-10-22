@@ -1,5 +1,5 @@
 ﻿using EddarsCms.Dto.OtherDtos;
-using EddarsCrms.UserSide;
+using EddarsCms.UserSides;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,7 +31,7 @@ namespace EddarsCms.Web.Filters
         public void SetLanguageToSession(string lang)
         {
 
-            HttpContext.Current.Session["lang"] = _ourLanguages.Where(x => x.Name == lang).SingleOrDefault();
+            HttpContext.Current.Session["lang"] = _ourLanguages.Where(x => x.Url == lang).SingleOrDefault();
             //System.Web.HttpContext.Current.Response.Cookies.Add(new HttpCookie("lang", lang));
 
             //System.Web.HttpContext.Current.Response.Cookies.Add(new HttpCookie("langId", _ourLanguages.Where(x=>x.Name==lang).SingleOrDefault().Id.ToString()));
@@ -50,7 +50,7 @@ namespace EddarsCms.Web.Filters
 
 
             // Set default locale
-            _defaultLang = _ourLanguages.Where(x => x.Id == 1).SingleOrDefault().Name;
+            _defaultLang = _ourLanguages.Where(x => x.Id == 1).SingleOrDefault().Url;
 
             // Get locale from route values
             string lang = (string)filterContext.RouteData.Values["lang"] ?? _defaultLang;
@@ -60,7 +60,7 @@ namespace EddarsCms.Web.Filters
 
 
             // If we haven't found appropriate culture - seet default locale then
-            if (_ourLanguages.Where(x => x.Name == lang).Count() == 0)
+            if (_ourLanguages.Where(x => x.Url == lang).Count() == 0)
             {
                 SetLanguageToSession(lang);
             }

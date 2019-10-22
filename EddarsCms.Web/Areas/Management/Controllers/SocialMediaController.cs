@@ -3,6 +3,7 @@ using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
+using EddarsCms.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace EddarsCms.Web.Areas.Management.Controllers
 {
+    [SecurityManagement]
     public class SocialMediaController : Controller
     {
         ISocialMediaService socialMediaServ;
@@ -63,7 +65,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                 }
                 else
                 {
-                    message = "<script>jsError(" + result.Message + ")</script>";
+                    message = "<script>jsError('" + result.Message + "')</script>";
                     return Json(message, JsonRequestBehavior.AllowGet);
                 }
             }

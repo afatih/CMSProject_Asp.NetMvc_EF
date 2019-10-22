@@ -92,7 +92,7 @@ namespace EddarsCms.BLL.Services
             catch (Exception e)
             {
 
-                return new ServiceResult<List<NotificationDto>>(ProcessStateEnum.Error, "İşlem başarısız", new List<NotificationDto>());
+                return new ServiceResult<List<NotificationDto>>(ProcessStateEnum.Error, e.Message, new List<NotificationDto>());
             }
             
 

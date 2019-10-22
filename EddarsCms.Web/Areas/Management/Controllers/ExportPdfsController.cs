@@ -1,5 +1,6 @@
 ﻿using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
+using EddarsCms.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace EddarsCms.Web.Areas.Management.Controllers
 {
+    [SecurityManagement]
     public class ExportPdfsController : Controller
     {
 

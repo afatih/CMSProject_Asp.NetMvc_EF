@@ -1,0 +1,114 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+
+@model UserDto
+
+@{
+    ViewBag.PageTitle = "Kullanıcı Ayarları";
+}
+
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+
+<script src="~/Areas/Management/Content/jquery.unobtrusive-ajax.min.js"></script>
+
+
+@Html.Raw(ViewBag.Message)
+
+@using (Ajax.BeginForm("Create", "User", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message" }, new { @class = "form-horizontal bordered-row"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="message"></div>
+
+    <div class="row main-box">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="main-box-header">
+                        <h3>Kullanıcı Ekle</h3>
+                    </div>
+                    <div class="main-box-body">
+
+
+                        <div class="form-group">
+                            <label for="Name" class="  control-label">İsim</label>
+                            <div>
+                                <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Surname" class="float-left  control-label  float-left !important">Soyisim</label>
+                            <div>
+                                <input type="text" class="form-control" name="Surname" id="Surname" value="@Model.Surname" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.UserName)
+                            <label for="UserName" class="  control-label">Kullanıcı Adı</label>
+                            <div>
+                                <input type="text" required class="form-control" name="UserName" id="UserName" value="@Model.UserName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.Password)
+                            <label for="Password" class="  control-label">Kullanıcı Parola</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Password" id="Password" value="@Model.Password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password2" class="  control-label">Kullanıcı Parola Tekrar</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Password2" id="Password2" value="@Model.Password2" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EMail" class="  control-label">E-Mail</label>
+                            <div>
+                                <input type="text" class="form-control" name="EMail" id="EMail" value="@Model.EMail" />
+                            </div>
+                        </div>
+
+
+
+                        <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+
+        </div>
+
+
+    </div>
+
+
+
+}
+
+<script type="text/javascript">
+   
+</script>

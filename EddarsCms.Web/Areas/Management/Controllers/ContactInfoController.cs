@@ -2,6 +2,7 @@
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
+using EddarsCms.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace EddarsCms.Web.Areas.Management.Controllers
 {
+    [SecurityManagement]
     public class ContactInfoController : Controller
     {
         IContactInfoService contactInfServ;
@@ -76,7 +78,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "<script>jsError(" + result.Message + ")</script>";
+                    ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
                     return View(dto);
                 }
             }

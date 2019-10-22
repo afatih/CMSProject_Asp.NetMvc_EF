@@ -18,5 +18,6 @@ namespace EddarsCms.Dto.BasicDtos
         public int RowNumber { get; set; }
         public int LanguageId { get; set; }
         public bool State { get; set; }
+        public string WebSite { get; set; }
     }
 }

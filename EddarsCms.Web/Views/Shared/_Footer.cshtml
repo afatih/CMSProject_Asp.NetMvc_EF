@@ -1,49 +1,102 @@
-﻿<!-- start footer -->
-<footer class="footer-standard-dark bg-extra-dark-gray">
-    <div class="footer-widget-area padding-five-tb sm-padding-30px-tb">
+﻿@using EddarsCms.UserSides
+@using EddarsCms.Common
+
+@{
+    var socialMedias = Fronted.SocialMediaList();
+    var contactInfo = Fronted.GetContactInfo();
+    var blog3 = Fronted.BlogList().OrderByDescending(x => x.Id).Take(3).ToList();
+}
+
+
+<!-- start footer -->
+<footer class="footer-classic-dark bg-extra-dark-gray padding-five-bottom sm-padding-30px-bottom">
+    <div class="bg-dark-footer padding-50px-tb sm-padding-30px-tb">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 widget border-right border-color-medium-dark-gray md-no-border-right md-margin-30px-bottom sm-text-center">
-                    <!-- start logo -->
-                    <a href="index.html" class="margin-20px-bottom d-inline-block"><img class="footer-logo" src="~/UserContent/images/logo-white.png" data-rjs="~/UserContent/imageslogo-white@2x.png" alt=""></a>
-                    <!-- end logo -->
-                    <p class="text-small width-95 sm-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <!-- start social media -->
+            <div class="row align-items-center">
+                <!-- start slogan -->
+                <div class="col-lg-4 col-md-5 text-center alt-font sm-margin-15px-bottom">
+                    London based highly creative studio
+                </div>
+                <!-- end slogan -->
+                <!-- start logo -->
+                <div class="col-lg-4 col-md-2 text-center sm-margin-10px-bottom">
+                    <a href="index.html"><img class="footer-logo" src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="images/logo-white@2x.png" alt="Pofo"></a>
+                </div>
+                <!-- end logo -->
+                <!-- start social media -->
+                <div class="col-lg-4 col-md-5 text-center">
+                    <span class="alt-font margin-20px-right">On social networks</span>
                     <div class="social-icon-style-8 d-inline-block vertical-align-middle">
-                        <ul class="small-icon no-margin-bottom">
-                            <li><a class="facebook text-white-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                            <li><a class="twitter text-white-2" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a class="google text-white-2" href="https://plus.google.com/" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a class="instagram text-white-2" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram no-margin-right" aria-hidden="true"></i></a></li>
+                        <ul class="small-icon mb-0">
+                            @if (socialMedias != null)
+                            {
+                                if (socialMedias.Count > 0)
+                                {
+                                    foreach (var item in socialMedias)
+                                    {
+                                        //class facebook vardı onceden sildik
+                                        <li><a class="instagram text-white-2" href="@item.Url" target="_blank"><i class="fab fa-@item.Icon"></i></a></li>
+                                    }
+                                }
+                            }
+
+
                         </ul>
                     </div>
-                    <!-- end social media -->
                 </div>
-                <!-- start additional links -->
-                <div class="col-lg-3 col-md-6 widget border-right border-color-medium-dark-gray padding-45px-left md-padding-15px-left md-no-border-right md-margin-30px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">Additional Links</div>
-                    <ul class="list-unstyled">
-                        <li><a class="text-small" href="home-classic-corporate.html">Home Classic Corporate</a></li>
-                        <li><a class="text-small" href="home-creative-business.html">Home Creative Business</a></li>
-                        <li><a class="text-small" href="home-creative-designer.html">Home Creative Designer</a></li>
-                        <li><a class="text-small" href="home-portfolio-minimal.html">Home Portfolio Minimal</a></li>
-                        <li><a class="text-small" href="home-portfolio-parallax.html">Home Portfolio  parallax</a></li>
-                        <li><a class="text-small" href="home-portfolio-personal.html">Home Portfolio Personal</a></li>
+                <!-- end social media -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-widget-area padding-five-top padding-30px-bottom sm-padding-30px-top">
+        <div class="container">
+            <div class="row">
+                <!-- start about -->
+                <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left last-paragraph-no-margin">
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Hakkımızda</div>
+                    <p class="text-small width-95 sm-width-100">@contactInfo.Description</p>
+                </div>
+                <!-- end about -->
+                <!-- start blog post -->
+                <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom">
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600 text-center text-md-left">En Son Eklenen Bloglar</div>
+                    <ul class="latest-post position-relative">
+                        @if (blog3 != null)
+                        {
+                            if (blog3.Count > 0)
+                            {
+                                foreach (var item in blog3)
+                                {
+                                    <li class="media border-bottom border-color-medium-dark-gray">
+                                        <figure>
+                                            <a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })"><img style="width:60px" src="~/Images/Blogs/@item.ImageBig" alt=""></a>
+                                        </figure>
+                                        <div class="media-body text-small"><a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })" class="d-block mb-1">@item.Caption</a> <span class="clearfix"></span>@item.CreatedDate.ToString("dd MMMM yyyy")| by <a href="blog-grid.html">Herman Miller</a></div>
+                                    </li>
+                                }
+
+                            }
+                        }
+
                     </ul>
                 </div>
-                <!-- end additional links -->
-                <!-- start contact information -->
-                <div class="col-lg-3 col-md-6 widget border-right border-color-medium-dark-gray padding-45px-left md-padding-15px-left md-clear-both md-no-border-right sm-margin-30px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">Contact Info</div>
-                    <p class="text-small d-block margin-15px-bottom width-80 sm-width-100">POFO Design Agency<br> 301 The Greenhouse, Custard Factory, London, E2 8DY.</p>
-                    <div class="text-small">Email: <a href="mailto:sales@domain.com">sales@domain.com</a></div>
-                    <div class="text-small">Phone: +44 (0) 123 456 7890</div>
-                    <a href="contact-us-modern.html" class="text-small text-uppercase text-decoration-underline">View Direction</a>
+                <!-- end blog post -->
+                <!-- start newsletter -->
+                <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left">
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Bizden Haberdar Olun</div>
+                    <p class="text-small width-90 sm-width-100">Şirketimizle alakalı güncel gelişmeleri takip edebilmek için aşağıdaki alanı doldurunuz...</p>
+                    <form id="subscribenewsletterform" action="javascript:void(0)" method="post">
+                        <div class="position-relative newsletter width-95">
+                            <div id="success-subscribe-newsletter" class="mx-0"></div>
+                            <input type="text" id="email" name="email" class="bg-transparent text-small m-0 border-color-medium-dark-gray" placeholder="E Posta adresinizi giriniz...">
+                            <button id="button-subscribe-newsletter" onclick="jsSendInfoMail()" type="submit" class="btn btn-arrow-small position-absolute border-color-medium-dark-gray"><i class="fas fa-caret-right no-margin-left"></i></button>
+                        </div>
+                    </form>
                 </div>
-                <!-- end contact information -->
+                <!-- end newsletter -->
                 <!-- start instagram -->
-                <div class="col-lg-3 col-md-6 widget padding-45px-left md-padding-15px-left text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">Instagram portfolio</div>
+                <div class="col-lg-3 col-md-6 widget md-margin-5px-bottom text-center text-md-left">
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">Follow us Instagram</div>
                     <div class="instagram-follow-api">
                         <ul id="instaFeed-footer"></ul>
                     </div>
@@ -52,18 +105,40 @@
             </div>
         </div>
     </div>
-    <div class="bg-dark-footer padding-50px-tb text-center sm-padding-30px-tb">
-        <div class="container">
+    <div class="container">
+        <div class="footer-bottom border-top border-color-medium-dark-gray padding-30px-top">
             <div class="row">
                 <!-- start copyright -->
-                <div class="col-md-6 text-md-left text-small text-center">&copy; 2019 POFO is Proudly Powered by <a href="http://www.themezaa.com/" target="_blank" class="text-dark-gray">ThemeZaa</a></div>
-                <div class="col-md-6 text-md-right text-small text-center">
-                    <a href="javascript:void(0);" class="text-dark-gray">Term and Condition</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);" class="text-dark-gray">Privacy Policy</a>
-                </div>
+                <div class="col-lg-6 col-md-6 text-small text-md-left text-center">POFO - Portfolio Concept Theme</div>
+                <div class="col-lg-6 col-md-6 text-small text-md-right text-center">&COPY; 2019 POFO is Proudly Powered by <a href="http://www.themezaa.com/" target="_blank" title="ThemeZaa">ThemeZaa</a></div>
                 <!-- end copyright -->
             </div>
         </div>
     </div>
 </footer>
 <!-- end footer -->
-<a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
+
+
+<script>
+    function jsSendInfoMail() {
+        var email = $("#email").val();
+        $.ajax({
+            url: "/Home/SendInfoMail",
+            type: "POST",
+            data: { Mail: email },
+            success: function (result) {
+                if (result > 0) {
+                    jsSuccess('İşleminiz başarılı')
+                    $("#email").val('')
+                } else {
+                    jsError('İşleminiz başarısız')
+                }
+            },
+            error: function () {
+                jsError('İşleminiz başarısız')
+            }
+
+        })
+    }
+
+</script>

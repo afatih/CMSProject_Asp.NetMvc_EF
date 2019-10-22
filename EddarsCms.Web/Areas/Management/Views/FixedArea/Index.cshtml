@@ -1,0 +1,333 @@
+﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.BLL.Services
+
+
+@model FixedAreaDto
+
+@{
+    ViewBag.Title = "İletişim Ayarları";
+    ViewBag.PageTitle = "İletişim Ayarları";
+
+
+    LanguageService langServ = new LanguageService();
+    var languages = langServ.GetAll().Result;
+}
+
+<script src="~/Areas/Management/Content/jquery.unobtrusive-ajax.min.js"></script>
+
+<style>
+    .main-box .main-box-header {
+        font-size: 1.3em;
+        line-height: 29px;
+        margin: 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .main-box .main-box-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .form-group div img {
+        width: 100px !important;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+</style>
+
+@Html.Raw(ViewBag.Message)
+
+@using (Ajax.BeginForm("Index", "FixedArea", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message" }, new { @class = "form-horizontal bordered-row" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="message"></div>
+
+    <input type="text" style="display:none" name="Id" value="@Model.Id" />
+
+
+    <div class="row main-box">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-body">
+
+                    <div class="main-box-header">
+                        <h3>Ana Sayfa</h3>
+                    </div>
+                    <div class="main-box-body">
+
+                        <div class="form-group">
+                            <label id="LanguageId" class="control-label">Blog Dil</label>
+                            <div>
+                                <select class="form-control" id="LanguageId" name="LanguageId">
+                                    @if (languages != null)
+                                    {
+                                        if (languages.Count > 0)
+                                        {
+                                            foreach (var language in languages)
+                                            {
+                                                <option value="@language.Id">@language.Name</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AnaSayfa" class=" control-label">@Model.AnaSayfa</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfa" id="AnaSayfa" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AnaSayfaKurumsal" class=" control-label">@Model.AnaSayfaKurumsal</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaKurumsal" id="AnaSayfaKurumsal" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AnaSayfaHizmetlerimiz" class=" control-label">@Model.AnaSayfaHizmetlerimiz</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaHizmetlerimiz" id="AnaSayfaHizmetlerimiz" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AnaSayfaIletisim" class=" control-label">@Model.AnaSayfaIletisim</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaIletisim" id="AnaSayfaIletisim" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AnaSayfaUrunlerBaslik" class=" control-label">@Model.AnaSayfaUrunlerBaslik</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaUrunlerBaslik" id="AnaSayfaUrunlerBaslik" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="AnaSayfaBlogBaslik" class=" control-label">@Model.AnaSayfaBlogBaslik</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaBlogBaslik" id="AnaSayfaBlogBaslik" />
+                            </div>
+                        </div>
+
+                        @*
+            public string AnaSayfa { get; set; }
+            public string AnaSayfaKurumsal { get; set; }
+            public string AnaSayfaHizmetlerimiz { get; set; }
+            public string AnaSayfaIletisim { get; set; }
+            public string AnaSayfaUrunlerBaslik { get; set; }
+            public string AnaSayfaBlogBaslik { get; set; }*@
+
+
+                    </div>
+
+                    <div class="main-box-header">
+                        <h3>İletişim Sayfası</h3>
+                    </div>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <label for="IletisimBilgiBaslik" class=" control-label">@Model.IletisimBilgiBaslik</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimBilgiBaslik" id="IletisimBilgiBaslik" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimAdresBaslik" class=" control-label">@Model.IletisimAdresBaslik</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimAdresBaslik" id="IletisimAdresBaslik" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimFormBaslik" class=" control-label">@Model.IletisimFormBaslik</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimFormBaslik" id="IletisimFormBaslik" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimIsim" class=" control-label">@Model.IletisimIsim</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimIsim" id="IletisimIsim" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimKonu" class=" control-label">@Model.IletisimKonu</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimKonu" id="IletisimKonu" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimTelefon" class=" control-label">@Model.IletisimTelefon</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimTelefon" id="IletisimTelefon" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimMesaj" class=" control-label">@Model.IletisimMesaj</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimMesaj" id="IletisimMesaj" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IletisimGonder" class=" control-label">@Model.IletisimGonder</label>
+                            <div>
+                                <input type="text" class="form-control" name="IletisimGonder" id="IletisimGonder" />
+                            </div>
+                        </div>
+
+                        @*
+            public string AnaSayfa { get; set; }
+            public string AnaSayfaKurumsal { get; set; }
+            public string AnaSayfaHizmetlerimiz { get; set; }
+            public string AnaSayfaIletisim { get; set; }
+            public string AnaSayfaUrunlerBaslik { get; set; }
+            public string AnaSayfaBlogBaslik { get; set; }*@
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="main-box-header">
+                        <h3>Sayfa adı seçilebilir bu alandan</h3>
+                    </div>
+                    <div class="main-box-body">
+                        <div class="form-group">
+                            <div class="clearfix">
+                                <ul class="nav nav-tabs nav-tabs-right float-left">
+                                    <li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Messages</a></li>
+                                </ul>
+                            </div>
+
+
+                            @*<div>
+            <img src="~/Images/FixedAreas/@Model.Image" />
+        </div>
+        <label for="image" class=" control-label">Şirket Resim</label>
+        <div>
+            <input type="file" class="form-control" id="image" name="file">
+        </div>*@
+                            <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script>
+
+    $(function () {
+        var langId = $("select#LanguageId.form-control").val();
+        $.ajax({
+            url: "FixedArea/GetFixedAreaById",
+            type: "POST",
+            data: { id: langId },
+            success: function (result) {
+                if (result.State != 3) {
+                    $("#IletisimFormBaslik").val(result.Result.IletisimFormBaslik)
+                    $("#IletisimGonder").val(result.Result.IletisimGonder)
+                    $("#IletisimIsim").val(result.Result.IletisimIsim)
+                    $("#IletisimKonu").val(result.Result.IletisimKonu)
+                    $("#IletisimTelefon").val(result.Result.IletisimTelefon)
+                    $("#IletisimMesaj").val(result.Result.IletisimMesaj)
+                    $("#IletisimBilgiBaslik").val(result.Result.IletisimBilgiBaslik)
+                    $("#IletisimAdresBaslik").val(result.Result.IletisimAdresBaslik)
+                    $("#AnaSayfa").val(result.Result.AnaSayfa)
+                    $("#AnaSayfaKurumsal").val(result.Result.AnaSayfaKurumsal)
+                    $("#AnaSayfaHizmetlerimiz").val(result.Result.AnaSayfaHizmetlerimiz)
+                    $("#AnaSayfaIletisim").val(result.Result.AnaSayfaIletisim)
+                    $("#AnaSayfaUrunlerBaslik").val(result.Result.AnaSayfaUrunlerBaslik)
+                    $("#AnaSayfaBlogBaslik").val(result.Result.AnaSayfaBlogBaslik)
+                } else if (result.State == 2) {
+                    $("#IletisimFormBaslik").val('')
+                    $("#IletisimGonder").val('')
+                    $("#IletisimIsim").val('')
+                    $("#IletisimKonu").val('')
+                    $("#IletisimTelefon").val('')
+                    $("#IletisimMesaj").val('')
+                    $("#IletisimBilgiBaslik").val('')
+                    $("#IletisimAdresBaslik").val('')
+                    $("#AnaSayfa").val('')
+                    $("#AnaSayfaKurumsal").val('')
+                    $("#AnaSayfaHizmetlerimiz").val('')
+                    $("#AnaSayfaIletisim").val('')
+                    $("#AnaSayfaUrunlerBaslik").val('')
+                    $("#AnaSayfaBlogBaslik").val('')
+
+                } else {
+                    jsError(result.Message);
+                }
+            }
+        })
+    })
+
+    $("select#LanguageId.form-control").change(function () {
+        var langId = $(this).val();
+        $.ajax({
+            url: "FixedArea/GetFixedAreaById",
+            type: "POST",
+            data: { id: langId },
+            success: function (result) {
+                console.log(result)
+                if (result.State != 3) {
+                    $("#IletisimFormBaslik").val(result.Result.IletisimFormBaslik)
+                    $("#IletisimGonder").val(result.Result.IletisimGonder)
+                    $("#IletisimIsim").val(result.Result.IletisimIsim)
+                    $("#IletisimKonu").val(result.Result.IletisimKonu)
+                    $("#IletisimTelefon").val(result.Result.IletisimTelefon)
+                    $("#IletisimMesaj").val(result.Result.IletisimMesaj)
+                    $("#IletisimBilgiBaslik").val(result.Result.IletisimBilgiBaslik)
+                    $("#IletisimAdresBaslik").val(result.Result.IletisimAdresBaslik)
+                    $("#AnaSayfa").val(result.Result.AnaSayfa)
+                    $("#AnaSayfaKurumsal").val(result.Result.AnaSayfaKurumsal)
+                    $("#AnaSayfaHizmetlerimiz").val(result.Result.AnaSayfaHizmetlerimiz)
+                    $("#AnaSayfaIletisim").val(result.Result.AnaSayfaIletisim)
+                    $("#AnaSayfaUrunlerBaslik").val(result.Result.AnaSayfaUrunlerBaslik)
+                    $("#AnaSayfaBlogBaslik").val(result.Result.AnaSayfaBlogBaslik)
+                } else if (result.State == 2) {
+                    $("#IletisimFormBaslik").val('')
+                    $("#IletisimGonder").val('')
+                    $("#IletisimIsim").val('')
+                    $("#IletisimKonu").val('')
+                    $("#IletisimTelefon").val('')
+                    $("#IletisimMesaj").val('')
+                    $("#IletisimBilgiBaslik").val('')
+                    $("#IletisimAdresBaslik").val('')
+                    $("#AnaSayfa").val('')
+                    $("#AnaSayfaKurumsal").val('')
+                    $("#AnaSayfaHizmetlerimiz").val('')
+                    $("#AnaSayfaIletisim").val('')
+                    $("#AnaSayfaUrunlerBaslik").val('')
+                    $("#AnaSayfaBlogBaslik").val('')
+
+                } else {
+                    jsError(result.Message);
+                }
+            }
+        })
+    })
+    
+
+
+</script>

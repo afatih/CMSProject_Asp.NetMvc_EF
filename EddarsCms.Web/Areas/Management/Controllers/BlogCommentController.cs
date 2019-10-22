@@ -3,6 +3,7 @@ using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
+using EddarsCms.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace EddarsCms.Web.Areas.Management.Controllers
 {
+    [SecurityManagement]
     public class BlogCommentController : Controller
     {
         IBlogCommentService blogCommentServ;

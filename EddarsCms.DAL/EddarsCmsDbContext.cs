@@ -31,6 +31,8 @@ namespace EddarsCms.DAL
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Duty> Duties { get; set; }
+        public DbSet<FixedArea> FixedAreas { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public EddarsCmsDbContext():base("EddarsDbCon")
         {

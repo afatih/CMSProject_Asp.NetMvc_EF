@@ -15,6 +15,7 @@ namespace EddarsCms.Dto.BasicDtos
         [Required(ErrorMessage = "Bu alanı doldurmanız zorunludur")]
         public string Url { get; set; }
 
+        public DateTime Date { get; set; }
 
         public string BlogBegin { get; set; }
         public string Content { get; set; }

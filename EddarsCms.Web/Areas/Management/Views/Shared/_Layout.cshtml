@@ -592,14 +592,14 @@
             <div id="page-header" class="bg-gradient-9">
                 <div id="mobile-navigation">
                     <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar"><span></span></button>
-                    <a href="@Url.Action("Index","Home")" class="logo-content-small" title="MonarchUI"></a>
+                    <a href="@Url.Action("Index","HomePage")" class="logo-content-small" title="MonarchUI"></a>
                 </div>
                 <div id="header-logo" class="logo-bg">
-                    <a href="@Url.Action("Index","Home")" class="logo-content-big" title="MonarchUI">
+                    <a href="@Url.Action("Index","HomePage")" class="logo-content-big" title="MonarchUI">
                         Monarch <i>UI</i>
                         <span>The perfect solution for user interfaces</span>
                     </a>
-                    <a href="@Url.Action("Index","Home")" class="logo-content-small" title="MonarchUI">
+                    <a href="@Url.Action("Index","HomePage")" class="logo-content-small" title="MonarchUI">
                         Monarch <i>UI</i>
                         <span>The perfect solution for user interfaces</span>
                     </a>
@@ -607,63 +607,64 @@
                         <i class="glyph-icon icon-angle-left"></i>
                     </a>
                 </div>
-                <div id="header-nav-left">
-                    <div class="user-account-btn dropdown">
-                        <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                            <img width="28" src="~/Areas/Management/Content/assets/image-resources/gravatar.jpg" alt="Profile image">
-                            <span>Thomas Barnes</span>
-                            <i class="glyph-icon icon-angle-down"></i>
-                        </a>
-                        <div class="dropdown-menu float-left">
-                            <div class="box-sm">
-                                <div class="login-box clearfix">
-                                    <div class="user-img">
-                                        <a href="#" title="" class="change-img">Change photo</a>
-                                        <img src="~/Areas/Management/Content/assets/image-resources/gravatar.jpg" alt="">
-                                    </div>
-                                    <div class="user-info">
-                                        <span>
-                                            Thomas Barnes
-                                            <i>UX/UI developer</i>
-                                        </span>
-                                        <a href="#" title="Edit profile">Edit profile</a>
-                                        <a href="#" title="View notifications">View notifications</a>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <ul class="reset-ul mrg5B">
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View login page example
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View lockscreen example
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="glyph-icon float-right icon-caret-right"></i>
-                                            View account details
-
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="pad5A button-pane button-pane-alt text-center">
-                                    <a href="#" class="btn display-block font-normal btn-danger">
-                                        <i class="glyph-icon icon-power-off"></i>
-                                        Logout
-                                    </a>
-                                </div>
+                @*<div id="header-nav-left">
+           <div class="user-account-btn dropdown">
+                <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
+                    <img width="28" src="~/Areas/Management/Content/assets/image-resources/gravatar.jpg" alt="Profile image">
+                    <span>Thomas Barnes</span>
+                    <i class="glyph-icon icon-angle-down"></i>
+                </a>
+                <div class="dropdown-menu float-left">
+                    <div class="box-sm">
+                        <div class="login-box clearfix">
+                            <div class="user-img">
+                                <a href="#" title="" class="change-img">Change photo</a>
+                                <img src="~/Areas/Management/Content/assets/image-resources/gravatar.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <span>
+                                    Thomas Barnes
+                                    <i>UX/UI developer</i>
+                                </span>
+                                <a href="#" title="Edit profile">Edit profile</a>
+                                <a href="#" title="View notifications">View notifications</a>
                             </div>
                         </div>
+                        <div class="divider"></div>
+                        <ul class="reset-ul mrg5B">
+                            <li>
+                                <a href="#">
+                                    <i class="glyph-icon float-right icon-caret-right"></i>
+                                    View login page example
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyph-icon float-right icon-caret-right"></i>
+                                    View lockscreen example
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyph-icon float-right icon-caret-right"></i>
+                                    View account details
+
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="pad5A button-pane button-pane-alt text-center">
+                            <a href="#" class="btn display-block font-normal btn-danger">
+                                <i class="glyph-icon icon-power-off"></i>
+                                Logout
+                            </a>
+                        </div>
                     </div>
-                </div><!-- #header-nav-left -->
+                </div>
+            </div>
+        </div>*@
+                <!-- #header-nav-left -->
                 <div id="header-nav-right">
 
                     <div class="hide" id="popover-search">
@@ -683,14 +684,14 @@
                         <i class="glyph-icon icon-linecons-paper-plane"></i>
                     </a>
                     <div class="dropdown" id="notifications-btn">
-                        <a data-toggle="dropdown" href="#" title="">
+                        <a data-toggle="dropdown" href="#" title="Bildirimler">
                             <span class="small-badge bg-yellow"></span>
                             <i class="glyph-icon icon-linecons-megaphone"></i>
                         </a>
                         <div class="dropdown-menu box-md float-right">
                             <div class="display-block clearfix pad10A">
                                 Bildirimler
-                                
+
                             </div>
                             <div class="scrollable-content scrollable-slim-box">
                                 <ul class="no-border notifications-box">
@@ -983,7 +984,9 @@
                             </div>
                         </div>
                     </div>
-
+                    <a class="header-btn" id="logout-btn" href="@Url.Action("LogOut","HomePage")" title="Çıkış Yap">
+                        <i class="glyph-icon icon-linecons-lock"></i>
+                    </a>
                 </div><!-- #header-nav-right -->
             </div>
             <div id="page-sidebar">
@@ -992,7 +995,13 @@
                     <ul id="sidebar-menu">
                         <li class="header"><span>İçerik</span></li>
                         <li>
+                            <a href="@Url.Action("Index","User")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Kullanıcı Yönetimi</span></a>
+                        </li>
+                        <li>
                             <a href="@Url.Action("Index","Notification")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Bildirimler</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","FixedArea")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Sabit Alanlar</span></a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index","Duty")" title="Elements"><i class="glyph-icon icon-linecons-diamond"></i><span>Hizmet Yönetimi</span></a>
@@ -1296,7 +1305,7 @@
                     var box = $(".no-border.notifications-box").empty()
                     box.empty();
                     $.each(result.Result, function (i, v) {
-                        var row = "<a href='/Notification/Edit/"+v.Id+"'><li><span class='" + v.Icon + "'></span><span class='notification-text'>" + v.Caption + "</span><div class='notification-time'>" + v.DateString + "<span class='glyph-icon icon-clock-o'></span></div></li></a>";
+                        var row = "<a href='/Management/Notification/Edit/"+v.Id+"'><li><span class='" + v.Icon + "'></span><span class='notification-text'>" + v.Caption + "</span><div class='notification-time'>" + v.DateString + "<span class='glyph-icon icon-clock-o'></span></div></li></a>";
                         box.append(row);
 
                     })
