@@ -9,10 +9,10 @@ using EddarsCms.Web.Filters;
 
 namespace EddarsCms.Web.Controllers
 {
+    [Internationalization]
     public class BloglarController : Controller
     {
         // GET: Bloglar
-        [Internationalization]
         public ActionResult Index()
         {
             return View();

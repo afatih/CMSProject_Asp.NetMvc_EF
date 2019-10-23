@@ -55,7 +55,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Create(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
+        public ActionResult Create(ProductDto ProductDto, HttpPostedFileBase file0, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
         {
            
 
@@ -68,6 +68,28 @@ namespace EddarsCms.Web.Areas.Management.Controllers
 
             try
             {
+                if (file0 != null)
+                {
+                    if (file0.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file0.FileName);
+                        file0.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.ImageCover = pathWidthGuid;
+                    }
+                }
+
                 if (file1 != null)
                 {
                     if (file1.ContentLength > 0)
@@ -207,11 +229,15 @@ namespace EddarsCms.Web.Areas.Management.Controllers
 
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Edit(ProductDto ProductDto, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4, string OldBig, string OldSmall, string Old3, string Old4)
+        public ActionResult Edit(ProductDto ProductDto, HttpPostedFileBase file0, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4, string OldCover, string OldBig, string OldSmall, string Old3, string Old4)
         {
 
             if (!ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(OldCover))
+                {
+                    ProductDto.ImageCover = OldCover;
+                }
                 if (!string.IsNullOrEmpty(OldSmall))
                 {
                     ProductDto.ImageSmall = OldSmall;
@@ -234,6 +260,32 @@ namespace EddarsCms.Web.Areas.Management.Controllers
 
             try
             {
+                if (file0 != null)
+                {
+                    if (file0.ContentLength > 0)
+                    {
+                        #region random guidId oluşturulduğu kısım
+                        var guidId = "";
+                        string harfler = "ABCDEFGHIJKLMNOPRSTUVYZ";
+                        Random rnd = new Random();
+                        for (int i = 0; i <= 3; i++)
+                        {
+                            var harf = harfler[rnd.Next(harfler.Length)];
+                            var sayi = rnd.Next(1, 10);
+                            guidId += harf + sayi.ToString();
+                        }
+                        #endregion
+
+                        var pathWidthGuid = guidId + "_" + Path.GetFileName(file0.FileName);
+                        file0.SaveAs(Server.MapPath("~/Images/Products/") + pathWidthGuid);
+                        ProductDto.ImageCover = pathWidthGuid;
+                    }
+                }
+                else
+                {
+                    ProductDto.ImageCover = OldCover;
+                }
+
                 if (file1 != null)
                 {
                     if (file1.ContentLength > 0)

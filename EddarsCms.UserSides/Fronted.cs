@@ -239,6 +239,7 @@ namespace EddarsCms.UserSides
                                 Image3 = dr.IsNull("Image3") ? "" : dr["Image3"].ToString(),
 
                                 RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
 
                             };
                             list.Add(Product);
@@ -267,16 +268,16 @@ namespace EddarsCms.UserSides
                             Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
                             Description = dr.IsNull("Description") ? "" : dr["Description"].ToString(),
                             Content = dr.IsNull("Content") ? "" : dr["Content"].ToString(),
-                            ImageSmall = dr.IsNull("ImageSmall") ? "" : dr["ImageSmall"].ToString(),
+                            ImageCover = dr.IsNull("ImageCover") ? "" : dr["ImageCover"].ToString(),
                             ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
+                            ImageSmall = dr.IsNull("ImageSmall") ? "" : dr["ImageSmall"].ToString(),
                             Image3 = dr.IsNull("Image3") ? "" : dr["Image3"].ToString(),
                             Image4 = dr.IsNull("Image4") ? "" : dr["Image4"].ToString(),
-                            MainCatName = dr.IsNull("Image4") ? "" : dr["Image4"].ToString(),
-                            MainProdName = dr.IsNull("MainProdName") ? "" : dr["MainProdName"].ToString(),
                             Name = dr.IsNull("Name") ? "" : dr["Name"].ToString(),
                             Video1 = dr.IsNull("Video1") ? "" : dr["Video1"].ToString(),
                             Video2 = dr.IsNull("Video2") ? "" : dr["Video2"].ToString(),
                             Video3 = dr.IsNull("Video3") ? "" : dr["Video3"].ToString(),
+                            Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
 
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
                         };
@@ -473,6 +474,7 @@ namespace EddarsCms.UserSides
                             AnaSayfa = dr.IsNull("AnaSayfa") ? "" : dr["AnaSayfa"].ToString(),
                             AnaSayfaKurumsal = dr.IsNull("AnaSayfaKurumsal") ? "" : dr["AnaSayfaKurumsal"].ToString(),
                             AnaSayfaHizmetlerimiz = dr.IsNull("AnaSayfaHizmetlerimiz") ? "" : dr["AnaSayfaHizmetlerimiz"].ToString(),
+                            AnaSayfaUrunlerimiz = dr.IsNull("AnaSayfaUrunlerimiz") ? "" : dr["AnaSayfaUrunlerimiz"].ToString(),
                             AnaSayfaIletisim = dr.IsNull("AnaSayfaIletisim") ? "" : dr["AnaSayfaIletisim"].ToString(),
                             AnaSayfaUrunlerBaslik = dr.IsNull("AnaSayfaUrunlerBaslik") ? "" : dr["AnaSayfaUrunlerBaslik"].ToString(),
                             AnaSayfaBlogBaslik = dr.IsNull("AnaSayfaBlogBaslik") ? "" : dr["AnaSayfaBlogBaslik"].ToString(),

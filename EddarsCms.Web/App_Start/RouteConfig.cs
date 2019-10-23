@@ -14,6 +14,7 @@ namespace EddarsCms.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+
             routes.MapRoute(
                name: "DefaultLocalizedWithUrl",
                url: "{lang}/{controller}/{action}/{id}/{url}",
@@ -41,7 +42,16 @@ namespace EddarsCms.Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-          
+
+
+        //    //localhost8080/hakkimizda girince aşşağıdaki routing dediğimiz gibi istediğimiz aksiyona götürür ama 1 den fazla kontroller ve aksıyon varsa işe yaramaz gibi?
+        //    routes.MapRoute(
+        //    name: "DefaultWithUrl1",
+        //    url: "{url}",
+        //    defaults: new { controller = "Kurumsal", action = "Detay", url = UrlParameter.Optional }
+        //);
+
+
         }
     }
 }

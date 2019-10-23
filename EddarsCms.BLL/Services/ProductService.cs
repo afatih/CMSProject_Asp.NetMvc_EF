@@ -117,6 +117,7 @@ namespace EddarsCms.BLL.Services
             Product.SeoTitle = dto.SeoTitle;
             Product.SeoDescription = dto.SeoDescription;
             Product.ImageBig = dto.ImageBig;
+            Product.ImageCover = dto.ImageCover;
             Product.ImageSmall = dto.ImageSmall;
             Product.Image3 = dto.Image3;
             Product.Image4 = dto.Image4;
@@ -126,6 +127,7 @@ namespace EddarsCms.BLL.Services
             Product.Content = dto.Content;
             Product.Description = dto.Description;
             Product.Caption = dto.Caption;
+            Product.Url = dto.Url;
             var result = uow.Save();
             return result;
         }

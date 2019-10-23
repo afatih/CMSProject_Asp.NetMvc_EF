@@ -96,6 +96,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="AnaSayfaUrunlerimiz" class=" control-label">@Model.AnaSayfaUrunlerimiz</label>
+                            <div>
+                                <input type="text" class="form-control" name="AnaSayfaUrunlerimiz" id="AnaSayfaUrunlerimiz" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="AnaSayfaIletisim" class=" control-label">@Model.AnaSayfaIletisim</label>
                             <div>
                                 <input type="text" class="form-control" name="AnaSayfaIletisim" id="AnaSayfaIletisim" />
@@ -114,13 +121,6 @@
                             </div>
                         </div>
 
-                        @*
-            public string AnaSayfa { get; set; }
-            public string AnaSayfaKurumsal { get; set; }
-            public string AnaSayfaHizmetlerimiz { get; set; }
-            public string AnaSayfaIletisim { get; set; }
-            public string AnaSayfaUrunlerBaslik { get; set; }
-            public string AnaSayfaBlogBaslik { get; set; }*@
 
 
                     </div>
@@ -178,15 +178,6 @@
                             </div>
                         </div>
 
-                        @*
-            public string AnaSayfa { get; set; }
-            public string AnaSayfaKurumsal { get; set; }
-            public string AnaSayfaHizmetlerimiz { get; set; }
-            public string AnaSayfaIletisim { get; set; }
-            public string AnaSayfaUrunlerBaslik { get; set; }
-            public string AnaSayfaBlogBaslik { get; set; }*@
-
-
                     </div>
                 </div>
             </div>
@@ -215,14 +206,6 @@
                                 </ul>
                             </div>
 
-
-                            @*<div>
-            <img src="~/Images/FixedAreas/@Model.Image" />
-        </div>
-        <label for="image" class=" control-label">Şirket Resim</label>
-        <div>
-            <input type="file" class="form-control" id="image" name="file">
-        </div>*@
                             <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
                         </div>
                     </div>
@@ -238,59 +221,23 @@
 <script>
 
     $(function () {
+        GetFicedAreas();
+    })
+
+    $("select#LanguageId.form-control").change(function () {
+        GetFicedAreas();
+    })
+
+
+    function GetFicedAreas() {
         var langId = $("select#LanguageId.form-control").val();
         $.ajax({
             url: "FixedArea/GetFixedAreaById",
             type: "POST",
             data: { id: langId },
             success: function (result) {
-                if (result.State != 3) {
-                    $("#IletisimFormBaslik").val(result.Result.IletisimFormBaslik)
-                    $("#IletisimGonder").val(result.Result.IletisimGonder)
-                    $("#IletisimIsim").val(result.Result.IletisimIsim)
-                    $("#IletisimKonu").val(result.Result.IletisimKonu)
-                    $("#IletisimTelefon").val(result.Result.IletisimTelefon)
-                    $("#IletisimMesaj").val(result.Result.IletisimMesaj)
-                    $("#IletisimBilgiBaslik").val(result.Result.IletisimBilgiBaslik)
-                    $("#IletisimAdresBaslik").val(result.Result.IletisimAdresBaslik)
-                    $("#AnaSayfa").val(result.Result.AnaSayfa)
-                    $("#AnaSayfaKurumsal").val(result.Result.AnaSayfaKurumsal)
-                    $("#AnaSayfaHizmetlerimiz").val(result.Result.AnaSayfaHizmetlerimiz)
-                    $("#AnaSayfaIletisim").val(result.Result.AnaSayfaIletisim)
-                    $("#AnaSayfaUrunlerBaslik").val(result.Result.AnaSayfaUrunlerBaslik)
-                    $("#AnaSayfaBlogBaslik").val(result.Result.AnaSayfaBlogBaslik)
-                } else if (result.State == 2) {
-                    $("#IletisimFormBaslik").val('')
-                    $("#IletisimGonder").val('')
-                    $("#IletisimIsim").val('')
-                    $("#IletisimKonu").val('')
-                    $("#IletisimTelefon").val('')
-                    $("#IletisimMesaj").val('')
-                    $("#IletisimBilgiBaslik").val('')
-                    $("#IletisimAdresBaslik").val('')
-                    $("#AnaSayfa").val('')
-                    $("#AnaSayfaKurumsal").val('')
-                    $("#AnaSayfaHizmetlerimiz").val('')
-                    $("#AnaSayfaIletisim").val('')
-                    $("#AnaSayfaUrunlerBaslik").val('')
-                    $("#AnaSayfaBlogBaslik").val('')
-
-                } else {
-                    jsError(result.Message);
-                }
-            }
-        })
-    })
-
-    $("select#LanguageId.form-control").change(function () {
-        var langId = $(this).val();
-        $.ajax({
-            url: "FixedArea/GetFixedAreaById",
-            type: "POST",
-            data: { id: langId },
-            success: function (result) {
                 console.log(result)
-                if (result.State != 3) {
+                if (result.State == 1) {
                     $("#IletisimFormBaslik").val(result.Result.IletisimFormBaslik)
                     $("#IletisimGonder").val(result.Result.IletisimGonder)
                     $("#IletisimIsim").val(result.Result.IletisimIsim)
@@ -302,6 +249,7 @@
                     $("#AnaSayfa").val(result.Result.AnaSayfa)
                     $("#AnaSayfaKurumsal").val(result.Result.AnaSayfaKurumsal)
                     $("#AnaSayfaHizmetlerimiz").val(result.Result.AnaSayfaHizmetlerimiz)
+                    $("#AnaSayfaUrunlerimiz").val(result.Result.AnaSayfaUrunlerimiz)
                     $("#AnaSayfaIletisim").val(result.Result.AnaSayfaIletisim)
                     $("#AnaSayfaUrunlerBaslik").val(result.Result.AnaSayfaUrunlerBaslik)
                     $("#AnaSayfaBlogBaslik").val(result.Result.AnaSayfaBlogBaslik)
@@ -317,6 +265,7 @@
                     $("#AnaSayfa").val('')
                     $("#AnaSayfaKurumsal").val('')
                     $("#AnaSayfaHizmetlerimiz").val('')
+                    $("#AnaSayfaUrunlerimiz").val('')
                     $("#AnaSayfaIletisim").val('')
                     $("#AnaSayfaUrunlerBaslik").val('')
                     $("#AnaSayfaBlogBaslik").val('')
@@ -326,7 +275,7 @@
                 }
             }
         })
-    })
+    }
     
 
 

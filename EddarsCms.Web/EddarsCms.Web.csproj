@@ -1795,6 +1795,7 @@
     <Content Include="Views\Kurumsal\Detay.cshtml" />
     <Content Include="Views\Iletisim\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Urun\Detay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1815,7 +1816,6 @@
     <Folder Include="Images\Sliders\" />
     <Folder Include="Views\ExportPdfs\" />
     <Folder Include="Views\SecurityManagement\" />
-    <Folder Include="Views\Urun\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Management\fonts\glyphicons-halflings-regular.woff2" />

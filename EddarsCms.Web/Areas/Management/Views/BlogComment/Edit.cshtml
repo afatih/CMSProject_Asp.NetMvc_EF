@@ -151,6 +151,10 @@
                         </div>
                     </div>
 
+                    <div>
+                        <button style="margin-top:15px" onclick="jsDelete('@Model.Id')" class="btn btn-danger">Sil</button>
+                    </div>
+
 
 
 
@@ -171,6 +175,25 @@
 
 
 <script>
+    function jsDelete(id) {
+        if (confirm('Seçilen öğeyi silmek istediğinize emin misiniz?')) {
+
+            $.ajax({
+                url: "/BlogComment/Delete", type: "POST", data: { id: id }, success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        window.location = "/Management/BlogComment/Index"
+                    }
+                }
+            })
+        }
+    }
+
+
 
     $("#ac").change(function () {
         var id = $("#id").val();

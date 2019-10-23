@@ -47,18 +47,20 @@
 
 <script>
     function jsDelete(id) {
-        $.ajax({
-            url: "/HumanResource/Delete", type: "POST", data: { id: id }, success: function (result) {
-                if (result.State != 1) {
-                    jsError(result.Message);
+        if (confirm('Seçilen öğeyi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: "/HumanResource/Delete", type: "POST", data: { id: id }, success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
 
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        $("#row-" + id).remove();
+                    }
                 }
-                else {
-                    jsSuccess(result.Message);
-                    $("#row-" + id).remove();
-                }
-            }
-        })
+            })
+        }
     }
 
 

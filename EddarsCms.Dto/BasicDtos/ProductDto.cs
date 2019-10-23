@@ -22,6 +22,7 @@ namespace EddarsCms.Dto.BasicDtos
         public string Content { get; set; }
         public string Description { get; set; }
         public string ImageBig { get; set; }
+        public string ImageCover { get; set; }
         public string ImageSmall { get; set; }
         public string Image3 { get; set; }
         public string Image4 { get; set; }
@@ -30,5 +31,6 @@ namespace EddarsCms.Dto.BasicDtos
         public string Video3 { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
+        public string Url { get; set; }
     }
 }

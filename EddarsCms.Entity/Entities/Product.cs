@@ -14,6 +14,7 @@ namespace EddarsCms.Entity.Entities
         public string Caption { get; set; }
         public string Content { get; set; }
         public string Description { get; set; }
+        public string ImageCover { get; set; }
         public string ImageBig { get; set; }
         public string ImageSmall { get; set; }
         public string Image3 { get; set; }
@@ -23,5 +24,7 @@ namespace EddarsCms.Entity.Entities
         public string Video3 { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
+        public string Url { get; set; }
+
     }
 }

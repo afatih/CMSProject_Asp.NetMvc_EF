@@ -51,6 +51,7 @@ namespace EddarsCms.BLL.Services
                 entity.AnaSayfa = dto.AnaSayfa;
                 entity.AnaSayfaKurumsal = dto.AnaSayfaKurumsal;
                 entity.AnaSayfaHizmetlerimiz = dto.AnaSayfaHizmetlerimiz;
+                entity.AnaSayfaUrunlerimiz = dto.AnaSayfaUrunlerimiz;
                 entity.AnaSayfaIletisim = dto.AnaSayfaIletisim;
                 entity.AnaSayfaUrunlerBaslik = dto.AnaSayfaUrunlerBaslik;
                 entity.AnaSayfaBlogBaslik = dto.AnaSayfaBlogBaslik;

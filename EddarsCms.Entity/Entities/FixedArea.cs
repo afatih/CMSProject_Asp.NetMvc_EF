@@ -21,6 +21,7 @@ namespace EddarsCms.Entity.Entities
         public string AnaSayfa { get; set; }
         public string AnaSayfaKurumsal { get; set; }
         public string AnaSayfaHizmetlerimiz { get; set; }
+        public string AnaSayfaUrunlerimiz { get; set; }
         public string AnaSayfaIletisim { get; set; }
         public string AnaSayfaUrunlerBaslik { get; set; }
         public string AnaSayfaBlogBaslik { get; set; }

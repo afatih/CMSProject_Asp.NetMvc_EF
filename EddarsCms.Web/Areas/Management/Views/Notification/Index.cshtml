@@ -71,32 +71,36 @@
 
 <script>
     function jsDelete(id) {
-        $.ajax({
-            url: "/Notification/Delete", type: "POST", data: { id: id }, success: function (result) {
-                if (result.State != 1) {
-                    jsError(result.Message);
+        if (confirm('Seçilen öğeyi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: "/Notification/Delete", type: "POST", data: { id: id }, success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        $("#row-" + id).remove();
+                    }
                 }
-                else {
-                    jsSuccess(result.Message);
-                    $("#row-" + id).remove();
-                }
-            }
-        })
+            })
+        }
     }
 
 
     function jsDeleteAll() {
-        $.ajax({
-            url: "/Notification/DeleteAll", type: "POST", success: function (result) {
-                if (result.State != 1) {
-                    jsError(result.Message);
+        if (confirm('Tüm öğeleri silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: "/Notification/DeleteAll", type: "POST", success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        $("table tbody").html('');
+                    }
                 }
-                else {
-                    jsSuccess(result.Message);
-                    $("table tbody").html('');
-                }
-            }
-        })
+            })
+        }
     }
 
 

@@ -144,17 +144,19 @@
 
 <script>
     function jsDelete(id) {
-        $.ajax({
-            url: "/ContactMail/Delete", type: "POST", data: { id: id }, success: function (result) {
-                if (result.State != 1) {
-                    jsError(result.Message);
+        if (confirm('Seçilen öğeyi silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: "/ContactMail/Delete", type: "POST", data: { id: id }, success: function (result) {
+                    if (result.State != 1) {
+                        jsError(result.Message);
+                    }
+                    else {
+                        jsSuccess(result.Message);
+                        window.location = "/Management/ContactMail/Index"
+                    }
                 }
-                else {
-                    jsSuccess(result.Message);
-                    window.location = "/Management/ContactMail/Index"
-                }
-            }
-        })
+            })
+        }
     }
 
 
