@@ -51,6 +51,7 @@
     <Compile Include="IServices\ICertificateService.cs" />
     <Compile Include="IServices\IContactInfoService.cs" />
     <Compile Include="IServices\IContactMailService.cs" />
+    <Compile Include="IServices\ICoverImageService.cs" />
     <Compile Include="IServices\IDutyService.cs" />
     <Compile Include="IServices\IFixedAreaService.cs" />
     <Compile Include="IServices\IHumanResourceService.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Services\CertificateService.cs" />
     <Compile Include="Services\ContactInfoService.cs" />
     <Compile Include="Services\ContactMailService.cs" />
+    <Compile Include="Services\CoverImageService.cs" />
     <Compile Include="Services\DutyService.cs" />
     <Compile Include="Services\FixedAreaService.cs" />
     <Compile Include="Services\HumanResourceService.cs" />

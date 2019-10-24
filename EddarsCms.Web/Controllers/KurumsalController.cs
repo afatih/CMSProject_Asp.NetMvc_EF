@@ -18,7 +18,7 @@ namespace EddarsCms.Web.Controllers
             return View();
         }
 
-        public ActionResult Detay(int id,string url)
+        public ActionResult Detay(int id)
         {
             var page = Fronted.GetPage(id);
             return View(page);

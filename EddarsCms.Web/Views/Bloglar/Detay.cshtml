@@ -23,8 +23,6 @@
                 <!-- breadcrumb -->
                 <ul class="text-center text-md-left text-uppercase">
                     <li><a href="#" class="text-dark-gray">@Model.CreatedDate.ToString("dd MMMM yyyy")</a></li>
-                    <li><span class="text-dark-gray">by <a href="blog-masonry.html">Jay Benjamin</a></span></li>
-                    <li class="text-dark-gray"><a href="blog-masonry.html">Design</a></li>
                 </ul>
                 <!-- end breadcrumb -->
             </div>
@@ -64,18 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 margin-30px-top">
-                    <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start width-100 border border-color-extra-light-gray padding-50px-all md-padding-30px-all sm-padding-20px-all">
-                        <div class="width-150px text-center sm-margin-15px-bottom sm-width-100">
-                            <img src="~/Content/images/avtar-01.jpg" class="rounded-circle width-100px" alt="" />
-                        </div>
-                        <div class="width-100 padding-40px-left last-paragraph-no-margin sm-no-padding-left text-center text-md-left">
-                            <a href="#" class="text-extra-dark-gray text-uppercase alt-font font-weight-600 margin-10px-bottom d-inline-block text-small">Alexander Harvard</a>
-                            <p class="md-width-95 sm-width-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-                            <a href="#" class="btn btn-very-small btn-black margin-20px-top">All author posts</a>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="col-12 d-flex flex-wrap p-0">
                     <div class="col-12 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
                         <div class="position-relative overflow-hidden width-100">
@@ -233,10 +220,10 @@
                         <input type="text" id="blogId" value="@Model.Id" style="display:none" />
 
                         <div class="col-12 col-lg-4">
-                            <input id="name" type="text" placeholder="İsim *" class="medium-input">
+                            <input id="name" type="text" required placeholder="İsim *" class="medium-input">
                         </div>
                         <div class="col-12 col-lg-4">
-                            <input id="email1" type="text" placeholder="E-mail *" class="medium-input">
+                            <input id="email1" type="text" required placeholder="E-mail *" class="medium-input">
                         </div>
                         <div class="col-12 col-lg-4">
                             <input id="webSite" type="url" placeholder="Website" class="medium-input">

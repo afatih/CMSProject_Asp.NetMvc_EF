@@ -152,11 +152,9 @@
         });
     });
 
-      $(function () {
-        if ('@Model.LanguageId' != 0) {
-             var languageId = @Model.LanguageId;
+     $(function () {
+        var languageId = '@Model.LanguageId';
         $("select#LanguageId.form-control").val(languageId);
-        }
     })
 
 

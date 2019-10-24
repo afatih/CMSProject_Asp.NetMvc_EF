@@ -15,7 +15,7 @@ namespace EddarsCms.Entity.Entities
         public string Surname { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
-        public string Adress { get; set; }
+        public string Message { get; set; }
         public string CV { get; set; }
         public DateTime Date { get; set; }
 

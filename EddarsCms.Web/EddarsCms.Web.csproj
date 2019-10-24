@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Management\Controllers\CoverImageController.cs" />
     <Compile Include="Areas\Management\Controllers\FixedAreaController.cs" />
     <Compile Include="Areas\Management\Controllers\HomePageController.cs" />
     <Compile Include="Areas\Management\Controllers\UserController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Areas\Management\Controllers\DutyController.cs" />
     <Compile Include="Areas\Management\Controllers\ExportPdfsController.cs" />
     <Compile Include="Controllers\BloglarController.cs" />
+    <Compile Include="Controllers\HaberController.cs" />
     <Compile Include="Controllers\HizmetlerimizController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Management\Controllers\Information\ContactMailController.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Areas\Management\Controllers\SliderController.cs" />
     <Compile Include="Areas\Management\Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\IletisimController.cs" />
+    <Compile Include="Controllers\InsanKaynaklariController.cs" />
     <Compile Include="Controllers\KurumsalController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Filters\InternationalizationAttribute.cs" />
@@ -691,6 +694,7 @@
     <Content Include="Areas\Management\Views\HomePage\Login.cshtml" />
     <Content Include="Areas\Management\Views\HomePage\ForgotPassword.cshtml" />
     <Content Include="libman.json" />
+    <Content Include="Areas\Management\Views\CoverImage\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1796,6 +1800,9 @@
     <Content Include="Views\Iletisim\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Urun\Detay.cshtml" />
+    <Content Include="Views\Haber\Index.cshtml" />
+    <Content Include="Views\Haber\Detay.cshtml" />
+    <Content Include="Views\InsanKaynaklari\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1806,6 +1813,7 @@
     <Folder Include="Images\Categories\" />
     <Folder Include="Images\Certificates\" />
     <Folder Include="Images\ContactInfos\" />
+    <Folder Include="Images\CoverImages\" />
     <Folder Include="Images\Duties\" />
     <Folder Include="Images\Language\" />
     <Folder Include="Images\News\" />

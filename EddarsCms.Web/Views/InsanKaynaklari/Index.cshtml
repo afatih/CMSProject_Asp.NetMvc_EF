@@ -1,0 +1,87 @@
+﻿
+@using EddarsCms.UserSides
+
+@{
+    var contactInfo = Fronted.GetContactInfo();
+    var fixedArea = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
+    var coverImage = Fronted.GetCoverImages().HumanResource;
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+<!-- start page title section -->
+<section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image:url('/Images/CoverImages/@coverImage');">
+    <div class="opacity-medium bg-extra-dark-gray"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 extra-small-screen page-title-large d-flex flex-column justify-content-center text-center">
+                <!-- start page title -->
+                <h1 class="text-white-2 alt-font font-weight-600 letter-spacing-minus-1 margin-15px-bottom">@fixedArea.AnaSayfaInsanKaynaklari</h1>
+                <!-- end page title -->
+                <!-- start sub title -->
+                @*<span class="text-white-2 opacity6 alt-font">Unlimited power and customization possibilities</span>*@
+                <!-- end sub title -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title section -->
+<!-- start contact form -->
+<section id="contact" class="wow fadeIn p-0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-6 p-0  wow fadeIn ">
+                <div class="padding-fifteen-all lg-padding-seven-all">
+                    @Html.Raw(fixedArea.InsanKaynaklariIcerik)
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                @Html.Raw(ViewBag.Message)
+                <div class="padding-fifteen-all bg-white border-radius-6 lg-padding-seven-all">
+                    @using (Html.BeginForm("Index", "InsanKaynaklari", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-extra-dark-gray alt-font text-large font-weight-600 margin-30px-bottom">@fixedArea.InsanKaynaklariBaslik</div>
+                        <div>
+                            <div id="success-contact-form-3" class="mx-0" style="display: none;"></div>
+                            <input type="text" required name="name" id="name" placeholder="@fixedArea.InsanKaynaklariAd" class="input-bg">
+                            <input type="text" required name="surname" id="surname" placeholder="@fixedArea.InsanKaynaklariSoyad" class="input-bg">
+                            <input type="email" required name="mail" id="mail" placeholder="@fixedArea.InsanKaynaklariMail" class="input-bg">
+                            <input type="text" name="phone" id="phone" placeholder="@fixedArea.IletisimTelefon" class="input-bg">
+                            <input type="file" name="file" id="file" placeholder="@fixedArea.InsanKaynaklariDosyaSec" class="input-bg">
+                            <textarea name="message" id="message" placeholder="@fixedArea.InsanKaynaklariMesaj" class="input-bg"></textarea>
+                            <button type="submit" class="btn btn-small border-radius-4 btn-black">@fixedArea.InsanKaynaklariGonder</button>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end contact form -->
+
+
+
+
+<script>
+    //function jsSendMessage() {
+    //    var name = $("#name").val();
+    //    var email = $("#email").val();
+    //    var content = $("#content").val();
+    //    $.ajax({
+    //        url: "/Iletisim/SendMail",
+    //        type: "POST",
+    //        date: { name: name, mail: email, content: content },
+    //        success: function (result) {
+    //            alert(result);
+    //        }
+
+
+    //    })
+    //}
+
+
+</script>

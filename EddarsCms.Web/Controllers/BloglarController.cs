@@ -15,7 +15,8 @@ namespace EddarsCms.Web.Controllers
         // GET: Bloglar
         public ActionResult Index()
         {
-            return View();
+            var blogs = Fronted.BlogList();
+            return View(blogs);
         }
 
         public ActionResult Detay(int id,string url)

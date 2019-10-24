@@ -1,8 +1,12 @@
 ﻿@using EddarsCms.Dto.BasicDtos
+@using EddarsCms.UserSides
 
 
 @model PageDto
 
+@{
+    var referances = Fronted.ReferanceList();
+}
 
 <!-- start page title section -->
 <section class="wow fadeIn cover-background background-position-top top-space" style="background-image:url('/Images/Pages/@Model.ImageCover');">
@@ -28,52 +32,83 @@
             <div class="col-12 md-margin-30px-bottom wow fadeInLeft">
                 @Html.Raw(Model.Content)
             </div>
-            
+
         </div>
         <div class="divider-full bg-extra-light-gray margin-seven-bottom margin-eight-top"></div>
         <!-- start feature box -->
         @*<div class="row">
-            <!-- start feature box item -->
-            <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp">
-                <div class="row m-0">
-                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
-                        <i class="icon-desktop text-medium-gray icon-extra-medium top-6"></i>
-                    </div>
-                    <div class="col-12 col-lg-9 col-md-8 p-0">
-                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Digital Solutions</span>
-                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- end feature box item -->
-            <!-- start feature box item -->
-            <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp" data-wow-delay="0.2s">
-                <div class="row m-0">
-                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
-                        <i class="icon-book-open text-medium-gray icon-extra-medium top-6"></i>
-                    </div>
-                    <div class="col-12 col-lg-9 col-md-8 p-0">
-                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">SEO Marketing</span>
-                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                <!-- start feature box item -->
+                <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp">
+                    <div class="row m-0">
+                        <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                            <i class="icon-desktop text-medium-gray icon-extra-medium top-6"></i>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-8 p-0">
+                            <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Digital Solutions</span>
+                            <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- end feature box item -->
-            <!-- start feature box item -->
-            <div class="col-12 col-md-4 text-center text-md-left wow fadeInUp" data-wow-delay="0.4s">
-                <div class="row m-0">
-                    <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
-                        <i class="icon-gift text-medium-gray icon-extra-medium top-6"></i>
-                    </div>
-                    <div class="col-12 col-lg-9 col-md-8 p-0">
-                        <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Creative Strategy</span>
-                        <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                <!-- end feature box item -->
+                <!-- start feature box item -->
+                <div class="col-12 col-md-4 text-center text-md-left sm-margin-15px-bottom wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="row m-0">
+                        <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                            <i class="icon-book-open text-medium-gray icon-extra-medium top-6"></i>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-8 p-0">
+                            <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">SEO Marketing</span>
+                            <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- end feature box item -->
-        </div>*@
+                <!-- end feature box item -->
+                <!-- start feature box item -->
+                <div class="col-12 col-md-4 text-center text-md-left wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="row m-0">
+                        <div class="col-12 col-lg-3 col-md-4 pl-0 sm-no-padding-lr float-left sm-margin-15px-bottom">
+                            <i class="icon-gift text-medium-gray icon-extra-medium top-6"></i>
+                        </div>
+                        <div class="col-12 col-lg-9 col-md-8 p-0">
+                            <span class="margin-5px-bottom text-extra-dark-gray alt-font d-block font-weight-600">Creative Strategy</span>
+                            <p class="width-75 lg-width-100">Lorem Ipsum is simply text the printing and typesetting standard industry.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end feature box item -->
+            </div>*@
         <!-- start feature box -->
     </div>
 </section>
 <!-- end story section -->
+<section id="clients" class="parallax wow fadeIn" data-stellar-background-ratio="0.4" style="background-image: url('/Content/images/homepage-9-parallax-img5.jpg'); background-position: 0px -36.3149px; visibility: visible; animation-name: fadeIn;">
+    <div class="opacity-medium bg-extra-dark-gray"></div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="swiper-slider-clients swiper-container white-move swiper-container-initialized swiper-container-horizontal">
+                <div class="swiper-wrapper" style="transform: translate3d(-1170px, 0px, 0px); transition-duration: 0ms;">
+                    @if (referances != null)
+                    {
+                        if (referances.Count > 0)
+                        {
+                            foreach (var item in referances)
+                            {
+                                <!-- start slide item-->
+                                <div class="swiper-slide text-center" style="padding-right:40px; width: 292.5px" >
+                                    <a href="#">
+                                        <img src="~/Images/Referances/@item.Image" alt="" data-no-retina="">
+                                    </a>
+                                    <div>@item.Name</div>
+                                </div><!-- end slide item -->
+                            }
+                        }
+                    }
+
+
+
+                </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </div>
+    </div>
+</section>

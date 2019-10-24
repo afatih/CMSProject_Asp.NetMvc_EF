@@ -15,9 +15,9 @@ namespace EddarsCms.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var item = Fronted.DutyList();
+            return View(item);
         }
-
 
         public ActionResult Detay(int id,string url)
         {

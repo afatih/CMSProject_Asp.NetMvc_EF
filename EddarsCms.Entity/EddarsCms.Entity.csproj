@@ -58,6 +58,7 @@
     <Compile Include="Entities\Certificate.cs" />
     <Compile Include="Entities\ContactInfo.cs" />
     <Compile Include="Entities\ContactMail.cs" />
+    <Compile Include="Entities\CoverImage.cs" />
     <Compile Include="Entities\Duty.cs" />
     <Compile Include="Entities\FixedArea.cs" />
     <Compile Include="Entities\HumanResource.cs" />

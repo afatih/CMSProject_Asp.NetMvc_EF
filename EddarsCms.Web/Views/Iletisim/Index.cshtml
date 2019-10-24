@@ -5,6 +5,7 @@
     var contactInfo = Fronted.GetContactInfo();
     var fixedArea = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
     var socialMedias = Fronted.SocialMediaList();
+    var coverImage = Fronted.GetCoverImages().Contact;
 }
 
 @*<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>*@
@@ -13,7 +14,7 @@
 
 
 <!-- start page title section -->
-<section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image:url('/Content/images/parallax-bg13.jpg');">
+<section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image:url('/Images/CoverImages/@coverImage');">
     <div class="opacity-medium bg-extra-dark-gray"></div>
     <div class="container">
         <div class="row">
@@ -108,7 +109,7 @@
                         <input type="text" name="phone" id="phone" placeholder="@fixedArea.IletisimTelefon" class="bg-transparent border-color-medium-dark-gray medium-input">
                     </div>
                     <div class="col-12 col-lg-6">
-                        <input type="text" name="email" id="email" required placeholder="E-mail *" class="bg-transparent border-color-medium-dark-gray medium-input">
+                        <input type="email" name="mail" id="mail" required placeholder="E-mail *" class="bg-transparent border-color-medium-dark-gray medium-input">
                     </div>
 
                     <div class="col-12">

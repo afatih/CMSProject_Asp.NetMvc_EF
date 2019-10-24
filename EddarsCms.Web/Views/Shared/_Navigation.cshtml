@@ -71,7 +71,7 @@
                             @foreach (var item in Fronted.PageList())
                             {
                                 <li>
-                                    <a href="@Url.Action("Detay","Kurumsal", new { @id=item.Id,@url=item.Url})"> @item.Caption</a>
+                                    <a href="@Url.Action("Detay","Kurumsal", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
                                 </li>
                             }
                         </ul>
@@ -83,20 +83,20 @@
                             @foreach (var item in Fronted.DutyList())
                             {
                                 <li>
-                                    <a href="@Url.Action("Detay","Hizmetlerimiz",new { id=item.Id,url=item.Url })"> @item.Caption</a>
+                                    <a href="@Url.Action("Detay","Hizmetlerimiz", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
                                 </li>
                             }
                         </ul>
                     </li>
 
                     <li class="dropdown simple-dropdown">
-                        <a href="@Url.Action("Index","Urun")">@fixedAreas.AnaSayfaUrunlerimiz</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <a href="#">@fixedAreas.AnaSayfaUrunlerimiz</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <ul class="dropdown-menu" role="menu">
                             @foreach (var item in Fronted.ProductList())
                             {
                                 <li>
-                                    <a href="@Url.Action("Detay","Urun",new { id=item.Id,url=item.Url })"> @item.Caption</a>
+                                    <a href="@Url.Action("Detay","Urun", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
                                 </li>
                             }
                         </ul>
@@ -105,6 +105,11 @@
                         <a href="@Url.Action("Index","Bloglar")" title="Blog">Blog</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <!-- end sub menu -->
+                    </li>
+
+                    <li class="dropdown simple-dropdown">
+                        <a href="@Url.Action("Index","InsanKaynaklari")">@fixedAreas.AnaSayfaInsanKaynaklari</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+
                     </li>
 
                     <li class="dropdown simple-dropdown">

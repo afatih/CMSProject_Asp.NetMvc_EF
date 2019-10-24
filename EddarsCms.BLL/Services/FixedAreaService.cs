@@ -55,6 +55,28 @@ namespace EddarsCms.BLL.Services
                 entity.AnaSayfaIletisim = dto.AnaSayfaIletisim;
                 entity.AnaSayfaUrunlerBaslik = dto.AnaSayfaUrunlerBaslik;
                 entity.AnaSayfaBlogBaslik = dto.AnaSayfaBlogBaslik;
+                entity.FooterEnSonBloglar = dto.FooterEnSonBloglar;
+                entity.FooterHaberdarOl = dto.FooterHaberdarOl;
+                entity.FooterHaberdarOlAciklama = dto.FooterHaberdarOlAciklama;
+                entity.FooterHaberdarOlEPosta = dto.FooterHaberdarOlEPosta;
+                entity.FooterInstagram = dto.FooterInstagram;
+
+                entity.AnaSayfaInsanKaynaklari = dto.AnaSayfaInsanKaynaklari;
+                entity.AnaSayfaHaberOku = dto.AnaSayfaHaberOku;
+
+                entity.InsanKaynaklariBaslik = dto.InsanKaynaklariBaslik;
+                entity.InsanKaynaklariAd = dto.InsanKaynaklariAd;
+                entity.InsanKaynaklariSoyad = dto.InsanKaynaklariSoyad;
+                entity.InsanKaynaklariMail = dto.InsanKaynaklariMail;
+                entity.InsanKaynaklariTelefon = dto.InsanKaynaklariTelefon;
+                entity.InsanKaynaklariDosyaSec = dto.InsanKaynaklariDosyaSec;
+                entity.InsanKaynaklariMesaj = dto.InsanKaynaklariMesaj;
+                entity.InsanKaynaklariGonder = dto.InsanKaynaklariGonder;
+                entity.InsanKaynaklariIcerik = dto.InsanKaynaklariIcerik;
+
+
+
+
                 var result = uow.Save();
                 return result;
 

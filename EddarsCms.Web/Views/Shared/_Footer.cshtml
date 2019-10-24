@@ -3,7 +3,9 @@
 
 @{
     var socialMedias = Fronted.SocialMediaList();
+    var pages = Fronted.PageList();
     var contactInfo = Fronted.GetContactInfo();
+    var fixedArea = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
     var blog3 = Fronted.BlogList().OrderByDescending(x => x.Id).Take(3).ToList();
 }
 
@@ -53,13 +55,21 @@
             <div class="row">
                 <!-- start about -->
                 <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left last-paragraph-no-margin">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Hakkımızda</div>
-                    <p class="text-small width-95 sm-width-100">@contactInfo.Description</p>
+                    @if (pages != null)
+                    {
+                        if (pages.Count > 0)
+                        {
+                            var page = pages.First();
+                            <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@page.Caption</div>
+                            <p class="text-small width-95 sm-width-100">@page.Description</p>
+                        }
+                    }
+                    
                 </div>
                 <!-- end about -->
                 <!-- start blog post -->
                 <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600 text-center text-md-left">En Son Eklenen Bloglar</div>
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600 text-center text-md-left">@fixedArea.FooterEnSonBloglar</div>
                     <ul class="latest-post position-relative">
                         @if (blog3 != null)
                         {
@@ -71,7 +81,7 @@
                                         <figure>
                                             <a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })"><img style="width:60px" src="~/Images/Blogs/@item.ImageBig" alt=""></a>
                                         </figure>
-                                        <div class="media-body text-small"><a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })" class="d-block mb-1">@item.Caption</a> <span class="clearfix"></span>@item.CreatedDate.ToString("dd MMMM yyyy")| by <a href="blog-grid.html">Herman Miller</a></div>
+                                        <div class="media-body text-small"><a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })" class="d-block mb-1">@item.Caption</a> <span class="clearfix"></span>@item.CreatedDate.ToString("dd MMMM yyyy")</div>
                                     </li>
                                 }
 
@@ -83,12 +93,12 @@
                 <!-- end blog post -->
                 <!-- start newsletter -->
                 <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Bizden Haberdar Olun</div>
-                    <p class="text-small width-90 sm-width-100">Şirketimizle alakalı güncel gelişmeleri takip edebilmek için aşağıdaki alanı doldurunuz...</p>
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@fixedArea.FooterHaberdarOl</div>
+                    <p class="text-small width-90 sm-width-100">@fixedArea.FooterHaberdarOlAciklama</p>
                     <form id="subscribenewsletterform" action="javascript:void(0)" method="post">
                         <div class="position-relative newsletter width-95">
                             <div id="success-subscribe-newsletter" class="mx-0"></div>
-                            <input type="text" id="email" name="email" class="bg-transparent text-small m-0 border-color-medium-dark-gray" placeholder="E Posta adresinizi giriniz...">
+                            <input type="text" id="email" name="email" class="bg-transparent text-small m-0 border-color-medium-dark-gray" placeholder="@fixedArea.FooterHaberdarOlEPosta">
                             <button id="button-subscribe-newsletter" onclick="jsSendInfoMail()" type="submit" class="btn btn-arrow-small position-absolute border-color-medium-dark-gray"><i class="fas fa-caret-right no-margin-left"></i></button>
                         </div>
                     </form>
@@ -96,7 +106,7 @@
                 <!-- end newsletter -->
                 <!-- start instagram -->
                 <div class="col-lg-3 col-md-6 widget md-margin-5px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">Follow us Instagram</div>
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">@fixedArea.FooterInstagram</div>
                     <div class="instagram-follow-api">
                         <ul id="instaFeed-footer"></ul>
                     </div>

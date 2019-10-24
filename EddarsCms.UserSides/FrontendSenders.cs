@@ -65,35 +65,32 @@ namespace EddarsCms.UserSides
         }
 
 
-        //eklenecek alanlara göre düzenlenecek
+        public static int SendCv(HumanResourceDto dto)
+        {
 
-        //public static int SendMail(BlogCommentDto dto)
-        //{
+            var result = 0;
+            try
+            {
+                using (SqlProgress sql = new SqlProgress())
+                {
+                    result = sql.SetExecuteNonQuery("insert into HumanResources (Name,Surname,Phone,Mail,Cv,Message,Date) values (@Name,@Surname,@Phone,@Mail,@Cv,@Message,@Date)", CommandType.Text, new SqlParameter("@Name", dto.Name), new SqlParameter("@Surname",dto.Surname), new SqlParameter("@Phone", dto.Phone), new SqlParameter("@Mail", dto.Mail), new SqlParameter("@Cv", dto.CV), new SqlParameter("@Message", dto.Message), new SqlParameter("@Date", DateTime.Now));
 
-        //    var result = 0;
-        //    try
-        //    {
-        //        using (SqlProgress sql = new SqlProgress())
-        //        {
-        //            result = sql.SetExecuteNonQuery("insert into BlogComments (BlogId,UserName,UserEmail,Comment,WebSite,Date,LanguageId) values (@BlogId,@UserName,@UserEmail,@Comment,@WebSite,@Date,@LanguageId)", CommandType.Text, new SqlParameter("@BlogId", dto.BlogId), new SqlParameter("@UserName", dto.UserName), new SqlParameter("@UserEmail", dto.UserEmail), new SqlParameter("@Comment", dto.Comment), new SqlParameter("@WebSite", dto.WebSite), new SqlParameter("@Date", DateTime.Now), new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                    if (result > 0)
+                    {
+                        var result2 = sql.SetExecuteNonQuery("insert into notifications (Caption,Description,Date,Icon) values (@Caption,@Description,@Date,@Icon)", CommandType.Text, new SqlParameter("@Caption", "Yeni iş başvurusu var"), new SqlParameter("@Description", "Kullanıcı Adı Soyadı: " + dto.Name +dto.Surname+ ", Mail: " + dto.Mail+ ", Telefon: " + dto.Phone + ", Mesaj:" + dto.Message), new SqlParameter("@Icon", "bg-green icon-notification glyph-icon icon-user"), new SqlParameter("@Date", DateTime.Now));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
 
-        //            if (result > 0)
-        //            {
-        //                var result2 = sql.SetExecuteNonQuery("insert into notifications (Caption,Description,Date,Icon) values (@Caption,@Description,@Date,@Icon)", CommandType.Text, new SqlParameter("@Caption", "Bir blog yorumu var"), new SqlParameter("@Description", "Kullanıcı Adı: " + dto.UserName + ", BlogId: " + dto.BlogId + ", Yorum:" + dto.Comment), new SqlParameter("@Icon", "bg-orange icon-notification glyph-icon icon-user"), new SqlParameter("@Date", DateTime.Now));
+                //service result dönülürse eğer hata mesajı da uı a kadar iletilebilir  
+            }
+            return result;
+        }
 
 
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
 
-        //        //service result dönülürse eğer hata mesajı da uı a kadar iletilebilir  
-        //    }
-
-        //    return result;
-
-        //}
 
 
         public static MailInfoDto GetMailInfo()
@@ -168,6 +165,34 @@ namespace EddarsCms.UserSides
             return returnMessage;
         }
 
+        public static int SendMailManagement(ContactMailDto dto)
+        {
+
+            var result = 0;
+            try
+            {
+                using (SqlProgress sql = new SqlProgress())
+                {
+                    result = sql.SetExecuteNonQuery("insert into contactMails (Name,Phone,Mail,Caption,Content,Date) values (@Name,@Phone,@Mail,@Caption,@Content,@Date)", CommandType.Text,new SqlParameter("Name",dto.Name), new SqlParameter("Phone", dto.Phone), new SqlParameter("Mail", dto.Mail), new SqlParameter("Caption", dto.Caption), new SqlParameter("Content", dto.Content), new SqlParameter("Date", DateTime.Now));
+
+                    if (result > 0)
+                    {
+                        var result2 = sql.SetExecuteNonQuery("insert into notifications (Caption,Description,Date,Icon) values (@Caption,@Description,@Date,@Icon)", CommandType.Text, new SqlParameter("@Caption", "Yeni mail var"), new SqlParameter("@Description", "Kullanıcı Adı: " + dto.Name + ", Caption:" + dto.Caption + ", Phone: " + dto.Phone + ", Email:" + dto.Mail + ", Mesaj:" + dto.Content), new SqlParameter("@Icon", "bg-blue icon-notification glyph-icon icon-user"), new SqlParameter("@Date", DateTime.Now));
+
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                //service result dönülürse eğer hata mesajı da uı a kadar iletilebilir  
+            }
+
+            return result;
+
+        }
+
         public static string SendMail(ContactMailDto dto)
         {
             var contact = GetMailInfo();
@@ -201,6 +226,7 @@ namespace EddarsCms.UserSides
                 {
                     smtp.Send(mess);
                     returnMessage = "<script>jsSuccess('Göndermiş olduğunuz mail tarafımıza iletiliştir.');$('.form-control').val('')</script>";
+                    var result2 = SendMailManagement(dto);
                 }
                 return returnMessage;
 

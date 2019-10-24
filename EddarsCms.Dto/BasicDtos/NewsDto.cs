@@ -17,5 +17,6 @@ namespace EddarsCms.Dto.BasicDtos
         public string ImageBig { get; set; }
 
         public string Description { get; set; }
+        public string Url { get; set; }
     }
 }

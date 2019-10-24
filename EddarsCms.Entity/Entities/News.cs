@@ -17,6 +17,7 @@ namespace EddarsCms.Entity.Entities
         public string ImageBig { get; set; }
 
         public string Description { get; set; }
+        public string Url { get; set; }
 
 
     }

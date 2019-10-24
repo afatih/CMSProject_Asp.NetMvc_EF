@@ -82,6 +82,15 @@
 
 
                         <div class="form-group">
+                            @Html.ValidationMessageFor(x => x.Url)
+                            <label for="Url" class=" control-label">Haber Url</label>
+                            <div>
+                                <input type="text" required class="form-control" name="Url" id="Url" value="@Model.Url" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
                             <label for="Description" class="float-left control-label ">Haber Özeti</label>
                             <div>
                                 <textarea type="text" class="form-control" name="Description" id="Description" rows="5">@Model.Description</textarea>
