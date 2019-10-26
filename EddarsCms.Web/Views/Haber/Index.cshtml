@@ -5,10 +5,12 @@
 
 @model List<NewsDto>
 
-@{ 
+@{
     var coverImage = Fronted.GetCoverImages().News;
+    var fixedAreas = Fronted.GetFixedArea();
 }
-
+<meta name="title" content="" />
+<meta name="description" content="" />
 
 <!-- start page title section -->
 <section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image:url('/Images/CoverImages/@coverImage');">
@@ -17,8 +19,8 @@
         <div class="row align-items-center">
             <div class="col-12 d-flex flex-column justify-content-center text-center extra-small-screen page-title-large">
                 <!-- start page title -->
-                <h1 class="text-white-2 alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">HABERLER</h1>
-                <span class="text-white-2 opacity6 alt-font">(Fixed areadan çekilecek daha sonra)</span>
+                <h1 class="text-white-2 alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">@fixedAreas.AnaSayfaHaber</h1>
+                <span class="text-white-2 opacity6 alt-font"></span>
                 <!-- end page title -->
             </div>
         </div>
@@ -41,8 +43,8 @@
                         <div class="col-12 col-lg-4 col-md-6 grid-item margin-30px-bottom text-center text-md-left wow fadeInUp">
                             <div class="blog-post bg-light-gray inner-match-height">
                                 <div class="blog-post-images overflow-hidden position-relative">
-                                    <a href="@Url.Action("Detay","Haber",new {id=item.Id,url=item.Url })">
-                                        <img src="~/Images/News/@item.ImageBig" alt="">
+                                    <a title="@item.Caption" href="@Url.Action("Detay","Haber",new {id=item.Id,url=item.Url })">
+                                        <img src="~/Images/News/@item.ImageBig" alt="@item.Caption">
                                         <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
                                     </a>
                                 </div>
@@ -63,18 +65,18 @@
 
         </div>
         @*<!-- start pagination -->
-        <div class=" text-center margin-100px-top md-margin-50px-top wow fadeInUp">
-            <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                <ul class="mx-auto">
-                    <li><a href="#"><i class="fas fa-long-arrow-alt-left margin-5px-right d-none d-md-inline-block"></i> Prev</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">Next <i class="fas fa-long-arrow-alt-right margin-5px-left d-none d-md-inline-block"></i></a></li>
-                </ul>
+            <div class=" text-center margin-100px-top md-margin-50px-top wow fadeInUp">
+                <div class="pagination text-small text-uppercase text-extra-dark-gray">
+                    <ul class="mx-auto">
+                        <li><a href="#"><i class="fas fa-long-arrow-alt-left margin-5px-right d-none d-md-inline-block"></i> Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next <i class="fas fa-long-arrow-alt-right margin-5px-left d-none d-md-inline-block"></i></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!-- end pagination -->*@
+            <!-- end pagination -->*@
     </div>
 </section>
 <!-- end blog content section -->

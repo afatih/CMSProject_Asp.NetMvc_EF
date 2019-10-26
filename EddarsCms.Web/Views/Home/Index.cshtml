@@ -11,7 +11,11 @@
     var news = Fronted.NewsList();
     var blogs = Fronted.BlogList();
 
-    var fixedAreas = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
+    var fixedAreas = Fronted.GetFixedArea();
+    var contactInfo = Fronted.GetContactInfo();
+
+    ViewBag.SeoTitle = contactInfo.SeoTitle;
+    ViewBag.SeoDescription = contactInfo.SeoDescription;
 
 }
 
@@ -35,7 +39,7 @@
                                         <div class="slider-text-middle">
                                             <h1 class="alt-font text-extra-dark-gray font-weight-700 letter-spacing-minus-1 line-height-80 width-55 margin-35px-bottom lg-width-60 md-width-70 lg-line-height-auto sm-width-100 sm-margin-15px-bottom">@slider.Caption</h1>
                                             <p class="text-extra-dark-gray text-large margin-four-bottom width-40 lg-width-50 md-width-60 sm-width-100 sm-margin-15px-bottom">@slider.Description</p>
-                                            <div class="btn-dual"><a href="https://1.envato.market/g7jrr" target="_blank" class="btn btn-dark-gray btn-rounded btn-small no-margin-lr">@slider.ButtonText</a></div>
+                                            <div class="btn-dual"><a href="https://@slider.Url" target="@(slider.OpenNewTab?"_blank":"")" class="btn btn-dark-gray btn-rounded btn-small no-margin-lr">@slider.ButtonText</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +71,7 @@
                     {
                         <div class="col-12 col-md-4 feature-box-1 sm-margin-30px-bottom wow fadeIn last-paragraph-no-margin">
                             <div class="margin-15px-bottom alt-font">
-                                <h3 class="char-value text-deep-pink letter-spacing-minus-1 text-medium-gray font-weight-600">@count<span>.</span></h3>
+                                <h3 class="char-value text-deep-pink letter-spacing-minus-1 text-medium-gray font-weight-600"><span></span></h3>
                                 <span class="text-large text-extra-dark-gray line-height-22 padding-20px-left md-padding-15px w-100 d-table-cell align-middle">@page.Caption</span>
                             </div>
                             <p class="width-90 md-width-100">@page.Description</p>
@@ -218,9 +222,9 @@
                                     <li class="grid-item wow zoomIn last-paragraph-no-margin">
                                         <figure>
                                             <div class="portfolio-img bg-deep-pink position-relative text-center overflow-hidden">
-                                                <img src="~/Images/Products/@item.ImageBig" alt="" />
+                                                <img alt="@item.Name" src="~/Images/Products/@item.ImageBig" />
                                                 <div class="portfolio-icon">
-                                                    <a href="@Html.Action("Detay","Urun", new {@id=item.Id,@url=item.Url}))"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
+                                                    <a  title="@item.Caption" href="@Url.Action("Detay","Urun", new {@id=item.Id,@url=item.Url})"><i class="fas fa-link text-extra-dark-gray" aria-hidden="true"></i></a>
                                                     <a class="gallery-link" title="Lightbox gallery image title..." href="~/Images/Products/@item.ImageBig"><i class="fas fa-search text-extra-dark-gray" aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
@@ -304,8 +308,8 @@
                     //Bu kısma ilk haber gelebilir
                     var selectedNews = news.Last();
                     <div class="col-12 col-lg-6 text-center md-margin-50px-bottom sm-margin-30px-bottom">
-                        <a  href="@Url.Action("Detay","Haber",new {id=selectedNews.Id,Url=selectedNews.Url })">
-                            <img src="~/Images/News/@selectedNews.ImageBig" alt="" class="w-100">
+                        <a title="@selectedNews.Caption" href="@Url.Action("Detay","Haber",new {id=selectedNews.Id,Url=selectedNews.Url })">
+                            <img src="~/Images/News/@selectedNews.ImageBig" alt="@selectedNews.Caption" class="w-100">
                         </a>
                     </div>
 
@@ -405,8 +409,8 @@
                         <div class="grid-item col-12 col-md-6 col-lg-4 md-margin-30px-bottom text-center text-md-left wow fadeInUp">
                             <div class="blog-post bg-light-gray">
                                 <div class="blog-post-images overflow-hidden position-relative">
-                                    <a href="@Url.Action("Detay","Bloglar", new {@id=item.Id,@url=item.Url})">
-                                        <img style="width:100%" src="~/Images/Blogs/@item.ImageBig" alt="">
+                                    <a title="@item.Caption" href="@Url.Action("Detay","Bloglar", new {@id=item.Id,@url=item.Url})">
+                                        <img style="width:100%" src="~/Images/Blogs/@item.ImageBig" alt="@item.Caption">
                                         <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
                                     </a>
                                 </div>

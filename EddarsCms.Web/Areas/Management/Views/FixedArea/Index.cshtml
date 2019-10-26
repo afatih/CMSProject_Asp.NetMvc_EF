@@ -53,250 +53,374 @@
             <div class="panel">
                 <div class="panel-body">
 
-                    <div class="main-box-header">
-                        <h3>Ana Sayfa</h3>
-                    </div>
-                    <div class="main-box-body">
+                    <div id="anaSayfa">
+                        <div class="main-box-header">
+                            <h3>Ana Sayfa</h3>
+                        </div>
+                        <div class="main-box-body">
 
-                        <div class="form-group">
-                            <label id="LanguageId" class="control-label">Sayfa Dili</label>
-                            <div>
-                                <select class="form-control" id="LanguageId" name="LanguageId">
-                                    @if (languages != null)
-                                    {
-                                        if (languages.Count > 0)
+                            <div class="form-group">
+                                <label id="LanguageId" class="control-label">Sayfa Dili</label>
+                                <div>
+                                    <select class="form-control" id="LanguageId" name="LanguageId">
+                                        @if (languages != null)
                                         {
-                                            foreach (var language in languages)
+                                            if (languages.Count > 0)
                                             {
-                                                <option value="@language.Id">@language.Name</option>
+                                                foreach (var language in languages)
+                                                {
+                                                    <option value="@language.Id">@language.Name</option>
+                                                }
                                             }
                                         }
-                                    }
-                                </select>
+                                    </select>
+                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="form-group">
+                                <label for="AnaSayfa" class=" control-label">@Model.AnaSayfa</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfa" id="AnaSayfa" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="AnaSayfaKurumsal" class=" control-label">@Model.AnaSayfaKurumsal</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaKurumsal" id="AnaSayfaKurumsal" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="AnaSayfaHizmetlerimiz" class=" control-label">@Model.AnaSayfaHizmetlerimiz</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaHizmetlerimiz" id="AnaSayfaHizmetlerimiz" />
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="AnaSayfa" class=" control-label">@Model.AnaSayfa</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfa" id="AnaSayfa" />
+                            <div class="form-group">
+                                <label for="AnaSayfaBlog" class=" control-label">@Model.AnaSayfaBlog</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaBlog" id="AnaSayfaBlog" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="AnaSayfaKurumsal" class=" control-label">@Model.AnaSayfaKurumsal</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaKurumsal" id="AnaSayfaKurumsal" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="AnaSayfaHizmetlerimiz" class=" control-label">@Model.AnaSayfaHizmetlerimiz</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaHizmetlerimiz" id="AnaSayfaHizmetlerimiz" />
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="AnaSayfaInsanKaynaklari" class=" control-label">@Model.AnaSayfaInsanKaynaklari</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaInsanKaynaklari" id="AnaSayfaInsanKaynaklari" />
+                            <div class="form-group">
+                                <label for="AnaSayfaInsanKaynaklari" class=" control-label">@Model.AnaSayfaInsanKaynaklari</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaInsanKaynaklari" id="AnaSayfaInsanKaynaklari" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="AnaSayfaIletisim" class=" control-label">@Model.AnaSayfaIletisim</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaIletisim" id="AnaSayfaIletisim" />
+                            <div class="form-group">
+                                <label for="AnaSayfaIletisim" class=" control-label">@Model.AnaSayfaIletisim</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaIletisim" id="AnaSayfaIletisim" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="AnaSayfaUrunlerimiz" class=" control-label">@Model.AnaSayfaUrunlerimiz</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaUrunlerimiz" id="AnaSayfaUrunlerimiz" />
+                            <div class="form-group">
+                                <label for="AnaSayfaHaber" class=" control-label">@Model.AnaSayfaHaber</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaHaber" id="AnaSayfaHaber" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="AnaSayfaHaberOku" class=" control-label">@Model.AnaSayfaHaberOku (Buton Yazısı)</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaHaberOku" id="AnaSayfaHaberOku" />
+                            <div class="form-group">
+                                <label for="AnaSayfaUrunlerimiz" class=" control-label">@Model.AnaSayfaUrunlerimiz</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaUrunlerimiz" id="AnaSayfaUrunlerimiz" />
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div class="form-group">
-                            <label for="AnaSayfaUrunlerBaslik" class=" control-label">@Model.AnaSayfaUrunlerBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaUrunlerBaslik" id="AnaSayfaUrunlerBaslik" />
+                            <div class="form-group">
+                                <label for="AnaSayfaHaberOku" class=" control-label">@Model.AnaSayfaHaberOku (Buton Yazısı)</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaHaberOku" id="AnaSayfaHaberOku" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="AnaSayfaBlogBaslik" class=" control-label">@Model.AnaSayfaBlogBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="AnaSayfaBlogBaslik" id="AnaSayfaBlogBaslik" />
-                            </div>
-                        </div>
 
 
-
-                    </div>
-
-                    <div class="main-box-header">
-                        <h3>İletişim Sayfası</h3>
-                    </div>
-                    <div class="main-box-body">
-                        <div class="form-group">
-                            <label for="IletisimBilgiBaslik" class=" control-label">@Model.IletisimBilgiBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimBilgiBaslik" id="IletisimBilgiBaslik" />
+                            <div class="form-group">
+                                <label for="AnaSayfaUrunlerBaslik" class=" control-label">@Model.AnaSayfaUrunlerBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaUrunlerBaslik" id="AnaSayfaUrunlerBaslik" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimAdresBaslik" class=" control-label">@Model.IletisimAdresBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimAdresBaslik" id="IletisimAdresBaslik" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimFormBaslik" class=" control-label">@Model.IletisimFormBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimFormBaslik" id="IletisimFormBaslik" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimIsim" class=" control-label">@Model.IletisimIsim</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimIsim" id="IletisimIsim" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimKonu" class=" control-label">@Model.IletisimKonu</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimKonu" id="IletisimKonu" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimTelefon" class=" control-label">@Model.IletisimTelefon</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimTelefon" id="IletisimTelefon" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimMesaj" class=" control-label">@Model.IletisimMesaj</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimMesaj" id="IletisimMesaj" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="IletisimGonder" class=" control-label">@Model.IletisimGonder</label>
-                            <div>
-                                <input type="text" class="form-control" name="IletisimGonder" id="IletisimGonder" />
+                            <div class="form-group">
+                                <label for="AnaSayfaBlogBaslik" class=" control-label">@Model.AnaSayfaBlogBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="AnaSayfaBlogBaslik" id="AnaSayfaBlogBaslik" />
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
+                    @*entity.GenelBiziTakipEt = dto.GenelBiziTakipEt;
+                        entity.GenelBizdenHaberdarOl = dto.GenelBizdenHaberdarOl;
+                        entity.GenelInstagram = dto.GenelInstagram;*@
+
+                    <div id="genel">
 
 
-
-
-
-                    <div class="main-box-header">
-                        <h3>Footer</h3>
-                    </div>
-                    <div class="main-box-body">
-                        <div class="form-group">
-                            <label for="FooterEnSonBloglar" class=" control-label">@Model.FooterEnSonBloglar</label>
-                            <div>
-                                <input type="text" class="form-control" name="FooterEnSonBloglar" id="FooterEnSonBloglar" />
-                            </div>
+                        <div class="main-box-header">
+                            <h3>Genel Sayfa Ayarları</h3>
                         </div>
-                        <div class="form-group">
-                            <label for="FooterHaberdarOl" class=" control-label">@Model.FooterHaberdarOl</label>
-                            <div>
-                                <input type="text" class="form-control" name="FooterHaberdarOl" id="FooterHaberdarOl" />
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <label for="GenelBiziTakipEt" class=" control-label">@Model.GenelBiziTakipEt</label>
+                                <div>
+                                    <input type="text" class="form-control" name="GenelBiziTakipEt" id="GenelBiziTakipEt" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="FooterHaberdarOlAciklama" class=" control-label">@Model.FooterHaberdarOlAciklama</label>
-                            <div>
-                                <input type="text" class="form-control" name="FooterHaberdarOlAciklama" id="FooterHaberdarOlAciklama" />
+                            <div class="form-group">
+                                <label for="GenelBizdenHaberdarOl" class=" control-label">@Model.GenelBizdenHaberdarOl</label>
+                                <div>
+                                    <input type="text" class="form-control" name="GenelBizdenHaberdarOl" id="GenelBizdenHaberdarOl" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="FooterHaberdarOlEPosta" class=" control-label">@Model.FooterHaberdarOlEPosta</label>
-                            <div>
-                                <input type="text" class="form-control" name="FooterHaberdarOlEPosta" id="FooterHaberdarOlEPosta" />
+
+                            <div class="form-group">
+                                <label for="GenelEpostaGir" class=" control-label">@Model.GenelEpostaGir</label>
+                                <div>
+                                    <input type="text" class="form-control" name="GenelEpostaGir" id="GenelEpostaGir" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="FooterInstagram" class=" control-label">@Model.FooterInstagram</label>
-                            <div>
-                                <input type="text" class="form-control" name="FooterInstagram" id="FooterInstagram" />
+                            <div class="form-group">
+                                <label for="GenelInstagram" class=" control-label">@Model.GenelInstagram</label>
+                                <div>
+                                    <input type="text" class="form-control" name="GenelInstagram" id="GenelInstagram" />
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <div id="iletisim">
 
-                    <div class="main-box-header">
-                        <h3>İnsan Kaynakları</h3>
+
+                        <div class="main-box-header">
+                            <h3>İletişim Sayfası</h3>
+                        </div>
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <label for="IletisimBilgiBaslik" class=" control-label">@Model.IletisimBilgiBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimBilgiBaslik" id="IletisimBilgiBaslik" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimEMailBaslik" class=" control-label">@Model.IletisimEMailBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimEMailBaslik" id="IletisimEMailBaslik" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimAdresBaslik" class=" control-label">@Model.IletisimAdresBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimAdresBaslik" id="IletisimAdresBaslik" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimFormBaslik" class=" control-label">@Model.IletisimFormBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimFormBaslik" id="IletisimFormBaslik" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimIsim" class=" control-label">@Model.IletisimIsim</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimIsim" id="IletisimIsim" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimKonu" class=" control-label">@Model.IletisimKonu</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimKonu" id="IletisimKonu" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimTelefon" class=" control-label">@Model.IletisimTelefon</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimTelefon" id="IletisimTelefon" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimEMail" class=" control-label">@Model.IletisimEMail</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimEMail" id="IletisimEMail" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimMesaj" class=" control-label">@Model.IletisimMesaj</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimMesaj" id="IletisimMesaj" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="IletisimGonder" class=" control-label">@Model.IletisimGonder</label>
+                                <div>
+                                    <input type="text" class="form-control" name="IletisimGonder" id="IletisimGonder" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="main-box-body">
-                        <div class="form-group">
-                            <label for="InsanKaynaklariBaslik" class=" control-label">@Model.InsanKaynaklariBaslik</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariBaslik" id="InsanKaynaklariBaslik" />
+
+
+                    <div id="blogDetay">
+
+
+                        <div class="main-box-header">
+                            <h3>Blog Detay</h3>
+                        </div>
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <label for="BlogDetayIliskiliPost" class=" control-label">@Model.BlogDetayIliskiliPost</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayIliskiliPost" id="BlogDetayIliskiliPost" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayYorumSayi" class=" control-label">@Model.BlogDetayYorumSayi</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayYorumSayi" id="BlogDetayYorumSayi" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayYorumBaslik" class=" control-label">@Model.BlogDetayYorumBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayYorumBaslik" id="BlogDetayYorumBaslik" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayIsim" class=" control-label">@Model.BlogDetayIsim</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayIsim" id="BlogDetayIsim" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayEmail" class=" control-label">@Model.BlogDetayEmail</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayEmail" id="BlogDetayEmail" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayWebSite" class=" control-label">@Model.BlogDetayWebSite</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayWebSite" id="BlogDetayWebSite" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayYorumYaz" class=" control-label">@Model.BlogDetayYorumYaz</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayYorumYaz" id="BlogDetayYorumYaz" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BlogDetayGonder" class=" control-label">@Model.BlogDetayGonder</label>
+                                <div>
+                                    <input type="text" class="form-control" name="BlogDetayGonder" id="BlogDetayGonder" />
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariAd" class=" control-label">@Model.InsanKaynaklariAd</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariAd" id="InsanKaynaklariAd" />
-                            </div>
+                    </div>
+
+
+                    <div id="footer">
+
+
+                        <div class="main-box-header">
+                            <h3>Footer</h3>
                         </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariSoyad" class=" control-label">@Model.InsanKaynaklariSoyad</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariSoyad" id="InsanKaynaklariSoyad" />
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <label for="FooterEnSonBloglar" class=" control-label">@Model.FooterEnSonBloglar</label>
+                                <div>
+                                    <input type="text" class="form-control" name="FooterEnSonBloglar" id="FooterEnSonBloglar" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariMail" class=" control-label">@Model.InsanKaynaklariMail</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariMail" id="InsanKaynaklariMail" />
+
+                            <div class="form-group">
+                                <label for="FooterHaberdarOlAciklama" class=" control-label">@Model.FooterHaberdarOlAciklama</label>
+                                <div>
+                                    <input type="text" class="form-control" name="FooterHaberdarOlAciklama" id="FooterHaberdarOlAciklama" />
+                                </div>
                             </div>
+
                         </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariTelefon" class=" control-label">@Model.InsanKaynaklariTelefon</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariTelefon" id="InsanKaynaklariTelefon" />
+                    </div>
+
+                    <div id="insanKaynaklari">
+                        <div class="main-box-header">
+                            <h3>İnsan Kaynakları</h3>
+                        </div>
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <label for="InsanKaynaklariBaslik" class=" control-label">@Model.InsanKaynaklariBaslik</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariBaslik" id="InsanKaynaklariBaslik" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariDosyaSec" class=" control-label">@Model.InsanKaynaklariDosyaSec</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariDosyaSec" id="InsanKaynaklariDosyaSec" />
+                            <div class="form-group">
+                                <label for="InsanKaynaklariAd" class=" control-label">@Model.InsanKaynaklariAd</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariAd" id="InsanKaynaklariAd" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariMesaj" class=" control-label">@Model.InsanKaynaklariMesaj</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariMesaj" id="InsanKaynaklariMesaj" />
+                            <div class="form-group">
+                                <label for="InsanKaynaklariSoyad" class=" control-label">@Model.InsanKaynaklariSoyad</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariSoyad" id="InsanKaynaklariSoyad" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariGonder" class=" control-label">@Model.InsanKaynaklariGonder</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariGonder" id="InsanKaynaklariGonder" />
+                            <div class="form-group">
+                                <label for="InsanKaynaklariMail" class=" control-label">@Model.InsanKaynaklariMail</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariMail" id="InsanKaynaklariMail" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InsanKaynaklariIcerik" class=" control-label">@Model.InsanKaynaklariIcerik</label>
-                            <div>
-                                <input type="text" class="form-control" name="InsanKaynaklariIcerik" id="InsanKaynaklariIcerik" />
+                            <div class="form-group">
+                                <label for="InsanKaynaklariTelefon" class=" control-label">@Model.InsanKaynaklariTelefon</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariTelefon" id="InsanKaynaklariTelefon" />
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="InsanKaynaklariDosyaSec" class=" control-label">@Model.InsanKaynaklariDosyaSec</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariDosyaSec" id="InsanKaynaklariDosyaSec" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InsanKaynaklariMesaj" class=" control-label">@Model.InsanKaynaklariMesaj</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariMesaj" id="InsanKaynaklariMesaj" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InsanKaynaklariGonder" class=" control-label">@Model.InsanKaynaklariGonder</label>
+                                <div>
+                                    <input type="text" class="form-control" name="InsanKaynaklariGonder" id="InsanKaynaklariGonder" />
+                                </div>
+                            </div>
+
+                            <input type="hidden" style="display:none" id="Content" name="InsanKaynaklariIcerik" />
+
+                            <div class="form-group">
+                                <label for="content" class=" control-label">İnsan Kaynakları Sol Kısımdaki İçerik</label>
+                                <div>
+                                    <div class="example-box-wrapper">
+                                        <div id="summerNoteContent">
+                                            <div class="wysiwyg-editor" id="summerNote" style="display: none;"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
+
+
                     </div>
 
 
@@ -320,11 +444,14 @@
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <div class="clearfix">
+                            <div class="clearfix" id="tabs">
                                 <ul class="nav nav-tabs nav-tabs-right float-left">
-                                    <li class="active"><a href="#">Home</a></li>
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Messages</a></li>
+                                    <li class="active"><a href="#anaSayfa">AnaSayfa</a></li>
+                                    <li><a href="#genel">Genel Sayfa Ayarları</a></li>
+                                    <li><a href="#iletisim">İletişim</a></li>
+                                    <li><a href="#blogDetay">Blog Detay</a></li>
+                                    <li><a href="#footer">Footer</a></li>
+                                    <li><a href="#insanKaynaklari">İnsan Kaynakları</a></li>
                                 </ul>
                             </div>
 
@@ -339,8 +466,11 @@
 
 }
 
-
 <script>
+
+    //$(function () {
+    //    $("#tabs").tabs();
+    //});
 
     $(function () {
         GetFicedAreas();
@@ -365,22 +495,26 @@
                     $("#IletisimIsim").val(result.Result.IletisimIsim)
                     $("#IletisimKonu").val(result.Result.IletisimKonu)
                     $("#IletisimTelefon").val(result.Result.IletisimTelefon)
+                    $("#IletisimEMail").val(result.Result.IletisimEMail)
                     $("#IletisimMesaj").val(result.Result.IletisimMesaj)
                     $("#IletisimBilgiBaslik").val(result.Result.IletisimBilgiBaslik)
                     $("#IletisimAdresBaslik").val(result.Result.IletisimAdresBaslik)
+                    $("#IletisimEMailBaslik").val(result.Result.IletisimEMailBaslik)
+
+
                     $("#AnaSayfa").val(result.Result.AnaSayfa)
                     $("#AnaSayfaKurumsal").val(result.Result.AnaSayfaKurumsal)
                     $("#AnaSayfaHizmetlerimiz").val(result.Result.AnaSayfaHizmetlerimiz)
                     $("#AnaSayfaUrunlerimiz").val(result.Result.AnaSayfaUrunlerimiz)
+                    $("#AnaSayfaBlog").val(result.Result.AnaSayfaBlog)
                     $("#AnaSayfaIletisim").val(result.Result.AnaSayfaIletisim)
+                    $("#AnaSayfaHaber").val(result.Result.AnaSayfaHaber)
                     $("#AnaSayfaUrunlerBaslik").val(result.Result.AnaSayfaUrunlerBaslik)
                     $("#AnaSayfaBlogBaslik").val(result.Result.AnaSayfaBlogBaslik)
 
                     $("#FooterEnSonBloglar").val(result.Result.FooterEnSonBloglar)
-                    $("#FooterHaberdarOl").val(result.Result.FooterHaberdarOl)
                     $("#FooterHaberdarOlAciklama").val(result.Result.FooterHaberdarOlAciklama)
-                    $("#FooterHaberdarOlEPosta").val(result.Result.FooterHaberdarOlEPosta)
-                    $("#FooterInstagram").val(result.Result.FooterInstagram)
+
 
 
                     $("#InsanKaynaklariBaslik").val(result.Result.InsanKaynaklariBaslik)
@@ -399,15 +533,41 @@
 
 
 
+                    $("#BlogDetayIliskiliPost").val(result.Result.BlogDetayIliskiliPost)
+                    $("#BlogDetayYorumSayi").val(result.Result.BlogDetayYorumSayi)
+                    $("#BlogDetayYorumBaslik").val(result.Result.BlogDetayYorumBaslik)
+                    $("#BlogDetayIsim").val(result.Result.BlogDetayIsim)
+                    $("#BlogDetayEmail").val(result.Result.BlogDetayEmail)
+                    $("#BlogDetayWebSite").val(result.Result.BlogDetayWebSite)
+                    $("#BlogDetayYorumYaz").val(result.Result.BlogDetayYorumYaz)
+                    $("#BlogDetayGonder").val(result.Result.BlogDetayGonder)
+
+
+
+                    $("#GenelBiziTakipEt").val(result.Result.GenelBiziTakipEt)
+                    $("#GenelBizdenHaberdarOl").val(result.Result.GenelBizdenHaberdarOl)
+                    $("#GenelEpostaGir").val(result.Result.GenelEpostaGir)
+                    $("#GenelInstagram").val(result.Result.GenelInstagram)
+
+
+                    $("div.note-editor div.note-editable").html(result.Result.InsanKaynaklariIcerik);
+
+
+
+
                 } else if (result.State == 2) {
                     $("#IletisimFormBaslik").val('')
                     $("#IletisimGonder").val('')
                     $("#IletisimIsim").val('')
                     $("#IletisimKonu").val('')
                     $("#IletisimTelefon").val('')
+                    $("#IletisimEMail").val('')
                     $("#IletisimMesaj").val('')
                     $("#IletisimBilgiBaslik").val('')
                     $("#IletisimAdresBaslik").val('')
+                    $("#IletisimEMailBaslik").val('')
+
+
                     $("#AnaSayfa").val('')
                     $("#AnaSayfaKurumsal").val('')
                     $("#AnaSayfaHizmetlerimiz").val('')
@@ -417,10 +577,8 @@
                     $("#AnaSayfaBlogBaslik").val('')
 
                     $("#FooterEnSonBloglar").val('')
-                    $("#FooterHaberdarOl").val('')
                     $("#FooterHaberdarOlAciklama").val('')
-                    $("#FooterHaberdarOlEPosta").val('')
-                    $("#FooterInstagram").val('')
+
 
 
                     $("#InsanKaynaklariBaslik").val('')
@@ -436,13 +594,60 @@
                     $("#AnaSayfaInsanKaynaklari").val('')
                     $("#AnaSayfaHaberOku").val('')
 
+
+                    $("#BlogDetayIliskiliPost").val('')
+                    $("#BlogDetayYorumSayi").val('')
+                    $("#BlogDetayYorumBaslik").val('')
+                    $("#BlogDetayIsim").val('')
+                    $("#BlogDetayEmail").val('')
+                    $("#BlogDetayWebSite").val('')
+                    $("#BlogDetayYorumYaz").val('')
+                    $("#BlogDetayGonder").val('')
+
+                    $("#GenelBiziTakipEt").val('')
+                    $("#GenelBizdenHaberdarOl").val('')
+                    $("#GenelEpostaGir").val('')
+                    $("#GenelInstagram").val('')
+
+                    $("div.note-editor div.note-editable").html('');
+
                 } else {
                     jsError(result.Message);
                 }
             }
         })
     }
-    
+
+
+    /* WYSIWYG editor */
+
+    $(function () {
+        "use strict";
+        $('.wysiwyg-editor').summernote({
+            height: 350
+        });
+    });
+
+    $(function () {
+        "use strict";
+        $("input[id='rowNumber']").TouchSpin({
+            verticalbuttons: true,
+            verticalupclass: 'glyph-icon icon-plus',
+            verticaldownclass: 'glyph-icon icon-minus'
+        });
+    });
+
+
+    $("#summerNoteContent").mouseleave(function () {
+        var summerNoteContent = $("div.note-editor div.note-editable").html();
+        $("#Content").val(summerNoteContent);
+    })
+
+    $("button[type=submit]").hover(function () {
+        var summerNoteContent = $("div.note-editor div.note-editable").html();
+        $("#Content").val(summerNoteContent);
+    })
+
 
 
 </script>

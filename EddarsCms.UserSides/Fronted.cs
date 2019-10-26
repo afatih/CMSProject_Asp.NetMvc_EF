@@ -93,6 +93,38 @@ namespace EddarsCms.UserSides
             return list;
         }
 
+
+        //rasgele 3 bloğu çeker
+        public static List<BlogDto> RelatedBlogList()
+        {
+            List<BlogDto> list = new List<BlogDto>();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select top 3 * from Blogs where State=1 and LanguageId=@LanguageId order by NEWID() ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            BlogDto Blog = new BlogDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                BlogBegin = dr.IsNull("BlogBegin") ? "" : dr["BlogBegin"].ToString(),
+                                ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                                CreatedDate = dr.IsNull("CreatedDate") ? DateTime.Now : Convert.ToDateTime(dr["CreatedDate"]),
+                            };
+                            list.Add(Blog);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
         public static BlogDto GetBlog(int id)
         {
             BlogDto blog = new BlogDto();
@@ -114,7 +146,9 @@ namespace EddarsCms.UserSides
                             ImageCover = dr.IsNull("ImageCover") ? "" : dr["ImageCover"].ToString(),
                             AcceptComment = dr.IsNull("AcceptComment") ? false : Convert.ToBoolean(dr["AcceptComment"]),
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
-                            Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+                            Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
                         };
                     }
                 }
@@ -130,7 +164,7 @@ namespace EddarsCms.UserSides
 
             using (SqlProgress sql = new SqlProgress())
             {
-                var dt = sql.GetDataTable("select * from BlogComments where State=1 and LanguageId=@LanguageId and BlogId=@BlogId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id), new SqlParameter("@BlogId", blogId));
+                var dt = sql.GetDataTable("select * from BlogComments where State=1 and BlogId=@BlogId order by RowNumber ", CommandType.Text, new SqlParameter("@BlogId", blogId));
                 if (dt != null)
                 {
                     if (dt.Rows.Count > 0)
@@ -205,7 +239,9 @@ namespace EddarsCms.UserSides
                             ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
                             ImageCover = dr.IsNull("ImageCover") ? "" : dr["ImageCover"].ToString(),
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
-                            Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+                            Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
                         };
                     }
                 }
@@ -278,6 +314,8 @@ namespace EddarsCms.UserSides
                             Video2 = dr.IsNull("Video2") ? "" : dr["Video2"].ToString(),
                             Video3 = dr.IsNull("Video3") ? "" : dr["Video3"].ToString(),
                             Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
 
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
                         };
@@ -323,36 +361,6 @@ namespace EddarsCms.UserSides
 
         }
 
-        //public static DutyDto GetDuty(int id)
-        //{
-        //    DutyDto Duty = new DutyDto();
-        //    using (SqlProgress sql = new SqlProgress())
-        //    {
-        //        var dt = sql.GetDataTable("select * from Duties where Id=@Id", CommandType.Text, new SqlParameter("@Id", id));
-        //        if (dt != null)
-        //        {
-        //            if (dt.Rows.Count > 0)
-        //            {
-        //                DataRow dr = dt.Rows[0];
-        //                Duty = new DutyDto()
-        //                {
-        //                    Id = Convert.ToInt32(dr["Id"]),
-        //                    Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
-        //                    Description = dr.IsNull("Description") ? "" : dr["Description"].ToString(),
-        //                    Content = dr.IsNull("Content") ? "" : dr["Content"].ToString(),
-        //                    ImageCover = dr.IsNull("ImageCover") ? "" : dr["ImageCover"].ToString(),
-        //                    ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
-        //                    Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
-        //                    RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
-        //                };
-        //            }
-        //        }
-        //    }
-
-        //    return Duty;
-
-        //}
-
         public static DutyDto GetDuty(int id)
         {
             DutyDto Duty = new DutyDto();
@@ -374,6 +382,9 @@ namespace EddarsCms.UserSides
                             ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
                             Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+ 
                         };
                     }
                 }
@@ -439,6 +450,9 @@ namespace EddarsCms.UserSides
                             ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
                             RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
                             Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+
                         };
                     }
                 }
@@ -501,6 +515,10 @@ namespace EddarsCms.UserSides
                             Phone2 = dr.IsNull("Phone2") ? "" : dr["Phone2"].ToString(),
                             MapLocation = dr.IsNull("MapLocation") ? "" : dr["MapLocation"].ToString(),
                             Description = dr.IsNull("Description") ? "" : dr["Description"].ToString(),
+
+                            SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
+                            SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+                              
                         };
                     }
                 }
@@ -510,12 +528,12 @@ namespace EddarsCms.UserSides
 
         }
 
-        public static FixedAreaDto GetFixedArea(int langId)
+        public static FixedAreaDto GetFixedArea()
         {
             FixedAreaDto FixedArea = new FixedAreaDto();
             using (SqlProgress sql = new SqlProgress())
             {
-                var dt = sql.GetDataTable("select * from FixedAreas where LanguageId=@LanguageId", CommandType.Text, new SqlParameter("@LanguageId", langId));
+                var dt = sql.GetDataTable("select * from FixedAreas where LanguageId=@LanguageId", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
                 if (dt != null)
                 {
                     if (dt.Rows.Count > 0)
@@ -528,39 +546,60 @@ namespace EddarsCms.UserSides
                             IletisimGonder = dr.IsNull("IletisimGonder") ? "" : dr["IletisimGonder"].ToString(),
                             IletisimIsim = dr.IsNull("IletisimIsim") ? "" : dr["IletisimIsim"].ToString(),
                             IletisimKonu = dr.IsNull("IletisimKonu") ? "" : dr["IletisimKonu"].ToString(),
+                            IletisimEMail = dr.IsNull("IletisimEMail") ? "" : dr["IletisimEMail"].ToString(),
                             IletisimTelefon = dr.IsNull("IletisimTelefon") ? "" : dr["IletisimTelefon"].ToString(),
                             IletisimMesaj = dr.IsNull("IletisimMesaj") ? "" : dr["IletisimMesaj"].ToString(),
                             IletisimBilgiBaslik = dr.IsNull("IletisimBilgiBaslik") ? "" : dr["IletisimBilgiBaslik"].ToString(),
                             IletisimAdresBaslik = dr.IsNull("IletisimAdresBaslik") ? "" : dr["IletisimAdresBaslik"].ToString(),
+                            IletisimEMailBaslik = dr.IsNull("IletisimEMailBaslik") ? "" : dr["IletisimEMailBaslik"].ToString(),
+
+
                             AnaSayfa = dr.IsNull("AnaSayfa") ? "" : dr["AnaSayfa"].ToString(),
                             AnaSayfaKurumsal = dr.IsNull("AnaSayfaKurumsal") ? "" : dr["AnaSayfaKurumsal"].ToString(),
                             AnaSayfaHizmetlerimiz = dr.IsNull("AnaSayfaHizmetlerimiz") ? "" : dr["AnaSayfaHizmetlerimiz"].ToString(),
                             AnaSayfaUrunlerimiz = dr.IsNull("AnaSayfaUrunlerimiz") ? "" : dr["AnaSayfaUrunlerimiz"].ToString(),
+                            AnaSayfaBlog = dr.IsNull("AnaSayfaBlog") ? "" : dr["AnaSayfaBlog"].ToString(),
                             AnaSayfaIletisim = dr.IsNull("AnaSayfaIletisim") ? "" : dr["AnaSayfaIletisim"].ToString(),
+                            AnaSayfaHaber = dr.IsNull("AnaSayfaHaber") ? "" : dr["AnaSayfaHaber"].ToString(),
                             AnaSayfaUrunlerBaslik = dr.IsNull("AnaSayfaUrunlerBaslik") ? "" : dr["AnaSayfaUrunlerBaslik"].ToString(),
                             AnaSayfaBlogBaslik = dr.IsNull("AnaSayfaBlogBaslik") ? "" : dr["AnaSayfaBlogBaslik"].ToString(),
-                            FooterEnSonBloglar = dr.IsNull("FooterEnSonBloglar") ? "" : dr["FooterEnSonBloglar"].ToString(),
-                            FooterHaberdarOl = dr.IsNull("FooterHaberdarOl") ? "" : dr["FooterHaberdarOl"].ToString(),
-                            FooterHaberdarOlAciklama = dr.IsNull("FooterHaberdarOlAciklama") ? "" : dr["FooterHaberdarOlAciklama"].ToString(),
-                            FooterHaberdarOlEPosta = dr.IsNull("FooterHaberdarOlEPosta") ? "" : dr["FooterHaberdarOlEPosta"].ToString(),
-                            FooterInstagram = dr.IsNull("FooterInstagram") ? "" : dr["FooterInstagram"].ToString(),
-
-
                             AnaSayfaInsanKaynaklari = dr.IsNull("AnaSayfaInsanKaynaklari") ? "" : dr["AnaSayfaInsanKaynaklari"].ToString(),
                             AnaSayfaHaberOku = dr.IsNull("AnaSayfaHaberOku") ? "" : dr["AnaSayfaHaberOku"].ToString(),
 
+                            FooterEnSonBloglar = dr.IsNull("FooterEnSonBloglar") ? "" : dr["FooterEnSonBloglar"].ToString(),
+                            FooterHaberdarOlAciklama = dr.IsNull("FooterHaberdarOlAciklama") ? "" : dr["FooterHaberdarOlAciklama"].ToString(),
+                             
 
                             InsanKaynaklariBaslik = dr.IsNull("InsanKaynaklariBaslik") ? "" : dr["InsanKaynaklariBaslik"].ToString(),
                             InsanKaynaklariAd = dr.IsNull("InsanKaynaklariAd") ? "" : dr["InsanKaynaklariAd"].ToString(),
                             InsanKaynaklariDosyaSec = dr.IsNull("InsanKaynaklariDosyaSec") ? "" : dr["InsanKaynaklariDosyaSec"].ToString(),
                             InsanKaynaklariGonder = dr.IsNull("InsanKaynaklariGonder") ? "" : dr["InsanKaynaklariGonder"].ToString(),
-                            InsanKaynaklariIcerik= dr.IsNull("InsanKaynaklariIcerik") ? "" : dr["InsanKaynaklariIcerik"].ToString(),
-                            InsanKaynaklariMail= dr.IsNull("InsanKaynaklariMail") ? "" : dr["InsanKaynaklariMail"].ToString(),
-                            InsanKaynaklariMesaj= dr.IsNull("InsanKaynaklariMesaj") ? "" : dr["InsanKaynaklariMesaj"].ToString(),
-                            InsanKaynaklariSoyad= dr.IsNull("InsanKaynaklariSoyad") ? "" : dr["InsanKaynaklariSoyad"].ToString(),
-                            InsanKaynaklariTelefon= dr.IsNull("InsanKaynaklariTelefon") ? "" : dr["InsanKaynaklariTelefon"].ToString(),
+                            InsanKaynaklariIcerik = dr.IsNull("InsanKaynaklariIcerik") ? "" : dr["InsanKaynaklariIcerik"].ToString(),
+                            InsanKaynaklariMail = dr.IsNull("InsanKaynaklariMail") ? "" : dr["InsanKaynaklariMail"].ToString(),
+                            InsanKaynaklariMesaj = dr.IsNull("InsanKaynaklariMesaj") ? "" : dr["InsanKaynaklariMesaj"].ToString(),
+                            InsanKaynaklariSoyad = dr.IsNull("InsanKaynaklariSoyad") ? "" : dr["InsanKaynaklariSoyad"].ToString(),
+                            InsanKaynaklariTelefon = dr.IsNull("InsanKaynaklariTelefon") ? "" : dr["InsanKaynaklariTelefon"].ToString(),
 
-                    };
+
+
+                            BlogDetayIliskiliPost = dr.IsNull("BlogDetayIliskiliPost") ? "" : dr["BlogDetayIliskiliPost"].ToString(),
+                            BlogDetayYorumSayi = dr.IsNull("BlogDetayYorumSayi") ? "" : dr["BlogDetayYorumSayi"].ToString(),
+                            BlogDetayYorumBaslik = dr.IsNull("BlogDetayYorumBaslik") ? "" : dr["BlogDetayYorumBaslik"].ToString(),
+                            BlogDetayIsim = dr.IsNull("BlogDetayIsim") ? "" : dr["BlogDetayIsim"].ToString(),
+                            BlogDetayEmail = dr.IsNull("BlogDetayEmail") ? "" : dr["BlogDetayEmail"].ToString(),
+                            BlogDetayWebSite = dr.IsNull("BlogDetayWebSite") ? "" : dr["BlogDetayWebSite"].ToString(),
+                            BlogDetayYorumYaz = dr.IsNull("BlogDetayYorumYaz") ? "" : dr["BlogDetayYorumYaz"].ToString(),
+                            BlogDetayGonder = dr.IsNull("BlogDetayGonder") ? "" : dr["BlogDetayGonder"].ToString(),
+
+
+
+                            GenelBiziTakipEt = dr.IsNull("GenelBiziTakipEt") ? "" : dr["GenelBiziTakipEt"].ToString(),
+                            GenelBizdenHaberdarOl = dr.IsNull("GenelBizdenHaberdarOl") ? "" : dr["GenelBizdenHaberdarOl"].ToString(),
+                            GenelEpostaGir = dr.IsNull("GenelEpostaGir") ? "" : dr["GenelEpostaGir"].ToString(),
+                            GenelInstagram = dr.IsNull("GenelInstagram") ? "" : dr["GenelInstagram"].ToString(),
+
+
+                        };
                     }
                 }
             }
@@ -614,12 +653,12 @@ namespace EddarsCms.UserSides
                         CoverImage = new CoverImageDto()
                         {
 
-                             Blog = dr.IsNull("Blog") ? "" : dr["Blog"].ToString(),
-                             Contact= dr.IsNull("Contact") ? "" : dr["Contact"].ToString(),
-                             Duty= dr.IsNull("Duty") ? "" : dr["Duty"].ToString(),
-                             HumanResource= dr.IsNull("HumanResource") ? "" : dr["HumanResource"].ToString(),
-                             News= dr.IsNull("News") ? "" : dr["News"].ToString(),
-                             Product= dr.IsNull("Product") ? "" : dr["Product"].ToString(),
+                            Blog = dr.IsNull("Blog") ? "" : dr["Blog"].ToString(),
+                            Contact = dr.IsNull("Contact") ? "" : dr["Contact"].ToString(),
+                            Duty = dr.IsNull("Duty") ? "" : dr["Duty"].ToString(),
+                            HumanResource = dr.IsNull("HumanResource") ? "" : dr["HumanResource"].ToString(),
+                            News = dr.IsNull("News") ? "" : dr["News"].ToString(),
+                            Product = dr.IsNull("Product") ? "" : dr["Product"].ToString(),
 
                         };
                     }
@@ -629,6 +668,247 @@ namespace EddarsCms.UserSides
             return CoverImage;
 
         }
+
+
+
+        #region Layout için metodlar
+        public static List<PageDto> ShortPageList()
+        {
+            List<PageDto> list = new List<PageDto>();
+            var langId = LanguageOperation.GetLang().Id;
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from Pages where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", langId));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            PageDto Page = new PageDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+                            };
+                            list.Add(Page);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
+
+        public static List<DutyDto> ShortDutyList()
+        {
+            List<DutyDto> list = new List<DutyDto>();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from Duties where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            DutyDto Duty = new DutyDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+
+                            };
+                            list.Add(Duty);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
+
+        public static List<ProductDto> ShortProductList()
+        {
+            List<ProductDto> list = new List<ProductDto>();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from Products where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            ProductDto Product = new ProductDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+                            };
+                            list.Add(Product);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
+
+        public static List<ProductDto> ShortNewsList()
+        {
+            List<ProductDto> list = new List<ProductDto>();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from News where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            ProductDto Product = new ProductDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString()
+                            };
+                            list.Add(Product);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
+
+
+        public static List<BlogDto> ShortBlogListLast3()
+        {
+            List<BlogDto> list = new List<BlogDto>();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select top 3 * from Blogs where State=1 and LanguageId=@LanguageId order by Id desc ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            BlogDto Blog = new BlogDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                                CreatedDate = dr.IsNull("CreatedDate") ? DateTime.Now : Convert.ToDateTime(dr["CreatedDate"])
+                            };
+                            list.Add(Blog);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static PageDto ShortFirstPageAboutUs()
+        {
+            PageDto item = new PageDto();
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select top 1 * from Pages where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        DataRow dr = dt.Rows[0];
+
+                        item = new PageDto()
+                        {
+                            Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                            Description = dr.IsNull("Description") ? "" : dr["Description"].ToString(),
+                        };
+
+
+                    }
+                }
+            }
+            return item;
+        }
+
+        public static ContactInfoDto ShortGetLogo()
+        {
+            ContactInfoDto ContactInfo = new ContactInfoDto();
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from ContactInfoes", CommandType.Text);
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        DataRow dr = dt.Rows[0];
+                        ContactInfo = new ContactInfoDto()
+                        {
+                            Image = dr.IsNull("Image") ? "" : dr["Image"].ToString(),
+                        };
+                    }
+                }
+            }
+
+            return ContactInfo;
+
+        }
+
+        public static List<BlogDto> ShortBlogList()
+        {
+            List<BlogDto> list = new List<BlogDto>();
+            var langId = LanguageOperation.GetLang().Id;
+
+            using (SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.GetDataTable("select * from Blogs where State=1 and LanguageId=@LanguageId order by RowNumber ", CommandType.Text, new SqlParameter("@LanguageId", langId));
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            BlogDto Blog = new BlogDto()
+                            {
+                                Id = Convert.ToInt32(dr["Id"]),
+                                Caption = dr.IsNull("Caption") ? "" : dr["Caption"].ToString(),
+                                Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                            };
+                            list.Add(Blog);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
+
+        public static int CountBlogComment(int id)
+        {
+            var result = 0;
+            using(SqlProgress sql = new SqlProgress())
+            {
+                var dt = sql.SetExecuteScalar("select COUNT(*) from BlogComments where BlogId=@BlogId and State=1", CommandType.Text, new SqlParameter("@BlogId", id));
+                if (dt!=null)
+                {
+                    result = Convert.ToInt32(dt);
+                }
+            }
+            return result;
+        }
+
+        #endregion
 
 
 

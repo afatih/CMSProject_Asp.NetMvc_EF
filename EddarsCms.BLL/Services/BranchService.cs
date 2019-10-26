@@ -85,6 +85,7 @@ namespace EddarsCms.BLL.Services
             Branch.MapLocation= dto.MapLocation;
             Branch.Email= dto.Email;
             Branch.Fax= dto.Fax;
+            Branch.Description = dto.Description;
             var result = uow.Save();
             return result;
         }

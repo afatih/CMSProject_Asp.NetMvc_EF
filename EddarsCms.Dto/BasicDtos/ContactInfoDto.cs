@@ -17,5 +17,9 @@ namespace EddarsCms.Dto.BasicDtos
         public string MapLocation { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
+
+        public string SeoTitle { get; set; }
+        public string SeoDescription { get; set; }
+
     }
 }

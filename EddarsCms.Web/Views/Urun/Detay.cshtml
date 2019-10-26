@@ -4,6 +4,8 @@
 @model ProductDto
 
 
+<meta name="title" content="@Model.SeoTitle" />
+<meta name="description" content="@Model.SeoDescription" />
 
 
 <!-- start product banner section -->
@@ -28,17 +30,17 @@
                 @Html.Raw(Model.Content)
             </div>
             @*<div class="col-12 col-lg-5 offset-lg-1 line-height-28 last-paragraph-no-margin md-margin-50px-bottom sm-margin-30px-bottom wow fadeIn">
-                <p>@Model.Description</p>
-            </div>*@
+                    <p>@Model.Description</p>
+                </div>*@
             @*<div class="col-12 col-lg-4 offset-lg-1 line-height-26 wow fadeIn">
-                <ul class="list-style-6 margin-twelve-left">
-                    <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Client:</label>Jason Richardson</li>
-                    <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Industry:</label>Adventure  /  Travel</li>
-                    <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Services:</label>Design, Art Direction, Website</li>
-                    <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Date:</label>January 16th, 2017</li>
-                    <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Website:</label><a href="https://1.envato.market/g7jrr" target="_blank">www.mammutadventure.com</a></li>
-                </ul>
-            </div>*@
+                    <ul class="list-style-6 margin-twelve-left">
+                        <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Client:</label>Jason Richardson</li>
+                        <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Industry:</label>Adventure  /  Travel</li>
+                        <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Services:</label>Design, Art Direction, Website</li>
+                        <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Date:</label>January 16th, 2017</li>
+                        <li class="margin-5px-bottom"><label class="width-30 d-inline-block">Website:</label><a href="https://1.envato.market/g7jrr" target="_blank">www.mammutadventure.com</a></li>
+                    </ul>
+                </div>*@
         </div>
     </div>
 </section>
@@ -49,17 +51,17 @@
         <div class="row">
             <!-- start product item -->
             <div class="col-12 col-md-4 sm-margin-30px-bottom wow fadeInUp">
-                <img src="~/Images/Products/@Model.ImageSmall" alt="brochure image" />
+                <img src="~/Images/Products/@Model.ImageSmall" alt="@Model.Name" />
             </div>
             <!-- end product item -->
             <!-- start product item -->
             <div class="col-12 col-md-4 sm-margin-30px-bottom wow fadeInUp" data-wow-delay="0.2s">
-                <img src="~/Images/Products/@Model.Image3" alt="brochure image" />
+                <img src="~/Images/Products/@Model.Image3" alt="@Model.Name" />
             </div>
             <!-- end product item -->
             <!-- start product item -->
             <div class="col-12 col-md-4 wow fadeInUp" data-wow-delay="0.4s">
-                <img src="~/Images/Products/@Model.Image4" alt="brochure image" />
+                <img src="~/Images/Products/@Model.Image4" alt="@Model.Name" />
             </div>
             <!-- end product item -->
         </div>

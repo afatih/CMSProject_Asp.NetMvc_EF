@@ -16,5 +16,6 @@ namespace EddarsCms.Dto.BasicDtos
         public string Image { get; set; }
         public string Email { get; set; }
         public string Fax { get; set; }
+        public string Description { get; set; }
     }
 }

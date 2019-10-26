@@ -1,6 +1,7 @@
 ﻿using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
+using EddarsCms.Common;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Web.Filters;
@@ -104,10 +105,12 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     }
                 }
 
+
+                pageDto.Content= Helper.ChangeQuatitionForDb(pageDto.Content);
+
                 var result = pageServ.Add(pageDto);
                 if (result.State == ProcessStateEnum.Success)
                 {
-                    //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
                     return View(new PageDto());
                 }
@@ -131,6 +134,9 @@ namespace EddarsCms.Web.Areas.Management.Controllers
             {
                 ViewBag.Message = page.Message;
             }
+
+            page.Result.Content =  Helper.ChangeQuatitionForEditor(page.Result.Content);
+
             return View(page.Result);
         }
 
@@ -208,11 +214,17 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     pageDto.ImageBig = OldBig;
                 }
 
+                pageDto.Content = Helper.ChangeQuatitionForDb(pageDto.Content);
                 var result = pageServ.Update(pageDto);
+                pageDto.Content= Helper.ChangeQuatitionForEditor(pageDto.Content);
+
                 if (result.State == ProcessStateEnum.Success)
                 {
                     //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
+                   
+
+
                     return View(pageDto);
                 }
                 else

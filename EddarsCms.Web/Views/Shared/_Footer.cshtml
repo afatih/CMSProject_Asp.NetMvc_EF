@@ -1,12 +1,14 @@
 ﻿@using EddarsCms.UserSides
 @using EddarsCms.Common
+@using EddarsCms.Dto.BasicDtos
 
 @{
-    var socialMedias = Fronted.SocialMediaList();
-    var pages = Fronted.PageList();
-    var contactInfo = Fronted.GetContactInfo();
-    var fixedArea = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
-    var blog3 = Fronted.BlogList().OrderByDescending(x => x.Id).Take(3).ToList();
+    FixedAreaDto fixedArea = (FixedAreaDto)this.ViewData["fixedArea"];
+    ContactInfoDto contactInfo = (ContactInfoDto)this.ViewData["contactInfo"];
+    List<SocialMediaDto> socialMedias = (List<SocialMediaDto>)this.ViewData["socialMedias"];
+    PageDto aboutUsPage = (PageDto)this.ViewData["aboutUsPage"];
+    List<BlogDto> blog3 = (List<BlogDto>)this.ViewData["blog3"];
+
 }
 
 
@@ -22,7 +24,7 @@
                 <!-- end slogan -->
                 <!-- start logo -->
                 <div class="col-lg-4 col-md-2 text-center sm-margin-10px-bottom">
-                    <a href="@Url.Action("Index","Home")"><img class="footer-logo" src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="images/logo-white@2x.png" alt="Pofo"></a>
+                    <a href="@Url.Action("Index","Home")" title="@contactInfo.Name"><img class="footer-logo" src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="images/logo-white@2x.png" alt="@contactInfo.Name"></a>
                 </div>
                 <!-- end logo -->
                 <!-- start social media -->
@@ -55,16 +57,8 @@
             <div class="row">
                 <!-- start about -->
                 <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left last-paragraph-no-margin">
-                    @if (pages != null)
-                    {
-                        if (pages.Count > 0)
-                        {
-                            var page = pages.First();
-                            <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@page.Caption</div>
-                            <p class="text-small width-95 sm-width-100">@page.Description</p>
-                        }
-                    }
-                    
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@aboutUsPage.Caption</div>
+                    <p class="text-small width-95 sm-width-100">@aboutUsPage.Description</p>
                 </div>
                 <!-- end about -->
                 <!-- start blog post -->
@@ -79,7 +73,7 @@
                                 {
                                     <li class="media border-bottom border-color-medium-dark-gray">
                                         <figure>
-                                            <a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })"><img style="width:60px" src="~/Images/Blogs/@item.ImageBig" alt=""></a>
+                                            <a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })" title="@item.Caption"><img style="width:60px" src="~/Images/Blogs/@item.ImageBig" alt="@item.Caption"></a>
                                         </figure>
                                         <div class="media-body text-small"><a href="@Url.Action("Detay","Bloglar",new {id=item.Id,url=item.Url })" class="d-block mb-1">@item.Caption</a> <span class="clearfix"></span>@item.CreatedDate.ToString("dd MMMM yyyy")</div>
                                     </li>
@@ -93,20 +87,21 @@
                 <!-- end blog post -->
                 <!-- start newsletter -->
                 <div class="col-lg-3 col-md-6 widget md-margin-30px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@fixedArea.FooterHaberdarOl</div>
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">@fixedArea.GenelBizdenHaberdarOl</div>
                     <p class="text-small width-90 sm-width-100">@fixedArea.FooterHaberdarOlAciklama</p>
                     <form id="subscribenewsletterform" action="javascript:void(0)" method="post">
                         <div class="position-relative newsletter width-95">
                             <div id="success-subscribe-newsletter" class="mx-0"></div>
-                            <input type="text" id="email" name="email" class="bg-transparent text-small m-0 border-color-medium-dark-gray" placeholder="@fixedArea.FooterHaberdarOlEPosta">
+                            <input type="text" id="email" name="email" class="bg-transparent text-small m-0 border-color-medium-dark-gray" placeholder="@fixedArea.GenelEpostaGir">
                             <button id="button-subscribe-newsletter" onclick="jsSendInfoMail()" type="submit" class="btn btn-arrow-small position-absolute border-color-medium-dark-gray"><i class="fas fa-caret-right no-margin-left"></i></button>
+                            <div id="errorMessageFooter"></div>
                         </div>
                     </form>
                 </div>
                 <!-- end newsletter -->
                 <!-- start instagram -->
                 <div class="col-lg-3 col-md-6 widget md-margin-5px-bottom text-center text-md-left">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">@fixedArea.FooterInstagram</div>
+                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-20px-bottom font-weight-600">@fixedArea.GenelInstagram</div>
                     <div class="instagram-follow-api">
                         <ul id="instaFeed-footer"></ul>
                     </div>
@@ -119,8 +114,8 @@
         <div class="footer-bottom border-top border-color-medium-dark-gray padding-30px-top">
             <div class="row">
                 <!-- start copyright -->
-                <div class="col-lg-6 col-md-6 text-small text-md-left text-center">POFO - Portfolio Concept Theme</div>
-                <div class="col-lg-6 col-md-6 text-small text-md-right text-center">&COPY; 2019 POFO is Proudly Powered by <a href="http://www.themezaa.com/" target="_blank" title="ThemeZaa">ThemeZaa</a></div>
+                <div class="col-lg-6 col-md-6 text-small text-md-left text-center"></div>
+                <div class="col-lg-6 col-md-6 text-small text-md-right text-center">&COPY; 2019 Copyright tüm hakları saklıdır</div>
                 <!-- end copyright -->
             </div>
         </div>
@@ -129,26 +124,42 @@
 <!-- end footer -->
 
 
+
 <script>
     function jsSendInfoMail() {
         var email = $("#email").val();
+        if (email == "") {
+            $("#errorMessageFooter").html('Lütfen e-posta alanını doldurunuz');
+            return;
+        }
+
+        if (!checkEmailAddress(email)) {
+            $("#errorMessageFooter").html('Lütfen uygun formatta bir e-posta giriniz ');
+            return;
+        }
+
         $.ajax({
             url: "/Home/SendInfoMail",
             type: "POST",
             data: { Mail: email },
             success: function (result) {
                 if (result > 0) {
-                    jsSuccess('İşleminiz başarılı')
-                    $("#email").val('')
+                    $("#errorMessageFooter").html('');
+                    $("#email").val('');
                 } else {
-                    jsError('İşleminiz başarısız')
+                    alert('İşleminiz başarısız');
                 }
             },
             error: function () {
-                jsError('İşleminiz başarısız')
+                alert('İşleminiz başarısız');
             }
 
         })
     }
+
+    function checkEmailAddress(emailAddress) {
+        var reg = new RegExp(/^[^0-9][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[@@][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[.][a-zA-Z]{2,4}$/i);
+        return reg.test(emailAddress);
+    };
 
 </script>

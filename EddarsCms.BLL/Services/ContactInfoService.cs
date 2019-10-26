@@ -50,6 +50,8 @@ namespace EddarsCms.BLL.Services
                 entity.EMail = dto.EMail;
                 entity.Fax = dto.Fax;
                 entity.Description = dto.Description;
+                entity.SeoTitle = dto.SeoTitle;
+                entity.SeoDescription = dto.SeoDescription;
 
                 var result = uow.Save();
                 return result;

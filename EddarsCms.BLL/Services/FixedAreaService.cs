@@ -45,21 +45,24 @@ namespace EddarsCms.BLL.Services
                 entity.IletisimKonu = dto.IletisimKonu;
                 entity.IletisimTelefon = dto.IletisimTelefon;
                 entity.IletisimMesaj = dto.IletisimMesaj;
+                entity.IletisimEMail = dto.IletisimEMail;
                 entity.IletisimGonder = dto.IletisimGonder;
                 entity.IletisimBilgiBaslik = dto.IletisimBilgiBaslik;
                 entity.IletisimAdresBaslik = dto.IletisimAdresBaslik;
+                entity.IletisimEMailBaslik = dto.IletisimEMailBaslik;
+
                 entity.AnaSayfa = dto.AnaSayfa;
                 entity.AnaSayfaKurumsal = dto.AnaSayfaKurumsal;
                 entity.AnaSayfaHizmetlerimiz = dto.AnaSayfaHizmetlerimiz;
                 entity.AnaSayfaUrunlerimiz = dto.AnaSayfaUrunlerimiz;
                 entity.AnaSayfaIletisim = dto.AnaSayfaIletisim;
                 entity.AnaSayfaUrunlerBaslik = dto.AnaSayfaUrunlerBaslik;
+                entity.AnaSayfaBlog = dto.AnaSayfaBlog;
+                entity.AnaSayfaHaber = dto.AnaSayfaHaber;
                 entity.AnaSayfaBlogBaslik = dto.AnaSayfaBlogBaslik;
+
                 entity.FooterEnSonBloglar = dto.FooterEnSonBloglar;
-                entity.FooterHaberdarOl = dto.FooterHaberdarOl;
                 entity.FooterHaberdarOlAciklama = dto.FooterHaberdarOlAciklama;
-                entity.FooterHaberdarOlEPosta = dto.FooterHaberdarOlEPosta;
-                entity.FooterInstagram = dto.FooterInstagram;
 
                 entity.AnaSayfaInsanKaynaklari = dto.AnaSayfaInsanKaynaklari;
                 entity.AnaSayfaHaberOku = dto.AnaSayfaHaberOku;
@@ -73,6 +76,25 @@ namespace EddarsCms.BLL.Services
                 entity.InsanKaynaklariMesaj = dto.InsanKaynaklariMesaj;
                 entity.InsanKaynaklariGonder = dto.InsanKaynaklariGonder;
                 entity.InsanKaynaklariIcerik = dto.InsanKaynaklariIcerik;
+
+
+
+
+                entity.BlogDetayIliskiliPost = dto.BlogDetayIliskiliPost;
+                entity.BlogDetayYorumSayi = dto.BlogDetayYorumSayi;
+                entity.BlogDetayYorumBaslik = dto.BlogDetayYorumBaslik;
+                entity.BlogDetayIsim = dto.BlogDetayIsim;
+                entity.BlogDetayEmail = dto.BlogDetayEmail;
+                entity.BlogDetayWebSite = dto.BlogDetayWebSite;
+                entity.BlogDetayYorumYaz = dto.BlogDetayYorumYaz;
+                entity.BlogDetayGonder = dto.BlogDetayGonder;
+
+
+
+                entity.GenelBiziTakipEt = dto.GenelBiziTakipEt;
+                entity.GenelBizdenHaberdarOl = dto.GenelBizdenHaberdarOl;
+                entity.GenelEpostaGir = dto.GenelEpostaGir;
+                entity.GenelInstagram = dto.GenelInstagram;
 
 
 

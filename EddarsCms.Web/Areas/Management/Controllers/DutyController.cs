@@ -1,6 +1,7 @@
 ﻿using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
+using EddarsCms.Common;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Web.Filters;
@@ -104,10 +105,12 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     }
                 }
 
+                dutyDto.Content = Helper.ChangeQuatitionForDb(dutyDto.Content);
+
                 var result = dutyServ.Add(dutyDto);
+
                 if (result.State == ProcessStateEnum.Success)
                 {
-                    //ViewBag.Message = result.Message;
                     ViewBag.Message = "<script>jsSuccess('" + result.Message + "')</script>";
                     return View(new DutyDto());
                 }
@@ -131,6 +134,8 @@ namespace EddarsCms.Web.Areas.Management.Controllers
             {
                 ViewBag.Message = duty.Message;
             }
+
+            duty.Result.Content = Helper.ChangeQuatitionForEditor(duty.Result.Content);
             return View(duty.Result);
         }
 
@@ -208,7 +213,10 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     dutyDto.ImageBig = OldBig;
                 }
 
+                dutyDto.Content = Helper.ChangeQuatitionForDb(dutyDto.Content);
                 var result = dutyServ.Update(dutyDto);
+                dutyDto.Content = Helper.ChangeQuatitionForEditor(dutyDto.Content);
+
                 if (result.State == ProcessStateEnum.Success)
                 {
                     //ViewBag.Message = result.Message;

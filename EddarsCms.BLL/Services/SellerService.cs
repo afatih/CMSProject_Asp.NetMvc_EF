@@ -87,6 +87,7 @@ namespace EddarsCms.BLL.Services
             Seller.AuthorityPlace= dto.AuthorityPlace;
             Seller.Mail= dto.Mail;
             Seller.MapLocation= dto.MapLocation;
+            Seller.Description= dto.Description;
             
 
 

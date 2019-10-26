@@ -6,7 +6,12 @@
 
 @{
     var referances = Fronted.ReferanceList();
+    ViewBag.SeoTitle = Model.SeoTitle;
+    ViewBag.SeoDescription = Model.SeoDescription;
 }
+
+
+
 
 <!-- start page title section -->
 <section class="wow fadeIn cover-background background-position-top top-space" style="background-image:url('/Images/Pages/@Model.ImageCover');">
@@ -94,10 +99,10 @@
                             foreach (var item in referances)
                             {
                                 <!-- start slide item-->
-                                <div class="swiper-slide text-center" style="padding-right:40px; width: 292.5px" >
-                                    <a href="#">
-                                        <img src="~/Images/Referances/@item.Image" alt="" data-no-retina="">
-                                    </a>
+                                <div class="swiper-slide text-center" style="padding-right:40px; width: 292.5px">
+                                    @*<a href="#" title="@item.Name">*@
+                                        <img src="~/Images/Referances/@item.Image" alt="@item.Name" data-no-retina="">
+                                    @*</a>*@
                                     <div>@item.Name</div>
                                 </div><!-- end slide item -->
                             }

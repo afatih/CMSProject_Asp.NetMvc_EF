@@ -1,6 +1,7 @@
 ﻿using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
+using EddarsCms.Common;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Dto.OtherDtos;
 using EddarsCms.Web.Filters;
@@ -178,6 +179,7 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     }
                 }
 
+                ProductDto.Content = Helper.ChangeQuatitionForDb(ProductDto.Content);
                 var result = productServ.Add(ProductDto);
 
                 var allProducts = productServ.GetAll().Result;
@@ -223,6 +225,9 @@ namespace EddarsCms.Web.Areas.Management.Controllers
             {
                 ViewBag.Message = "<script>jsError('" + result.Message + "')</script>";
             }
+
+            //Editöre basmadan once db deki içerikteki tırnakları temizliyoruz
+            result.Result.Content = Helper.ChangeQuatitionForEditor(result.Result.Content);
             return View(result.Result);
 
         }
@@ -390,7 +395,10 @@ namespace EddarsCms.Web.Areas.Management.Controllers
                     ProductDto.Image4 = Old4;
                 }
 
+                ProductDto.Content = Helper.ChangeQuatitionForDb(ProductDto.Content);
                 var result = productServ.Update(ProductDto);
+                ProductDto.Content = Helper.ChangeQuatitionForEditor(ProductDto.Content);
+
 
                 var allProducts = productServ.GetAll().Result;
                 ViewBag.AllProducts = allProducts;

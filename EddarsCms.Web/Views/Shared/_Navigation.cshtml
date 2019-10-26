@@ -1,10 +1,18 @@
 ﻿@using EddarsCms.UserSides;
 @using EddarsCms.Dto.OtherDtos;
 
-@{ 
-    var contactInfo = Fronted.GetContactInfo();
+@using EddarsCms.Dto.BasicDtos
 
-    var fixedAreas = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
+@{
+
+    FixedAreaDto fixedAreas = (FixedAreaDto)this.ViewData["fixedArea"];
+    ContactInfoDto contactInfo = (ContactInfoDto)this.ViewData["contactInfo"];
+    List<ProductDto> products = (List<ProductDto>)this.ViewData["products"];
+    List<PageDto> pages = (List<PageDto>)this.ViewData["pages"];
+    List<DutyDto> duties = (List<DutyDto>)this.ViewData["duties"];
+
+
+
 }
 
 
@@ -45,7 +53,7 @@
     <div class="container nav-header-container">
         <!-- start logo -->
         <div class="col-auto pl-lg-0">
-            <a href="@Url.Action("Index","Home")" title="Pofo" class="logo"><img src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="~/Content/imageslogo@2x.png" class="logo-dark default" alt="Pofo"><img src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="~/Content/imageslogo-white@2x.png" alt="Pofo" class="logo-light"></a>
+            <a href="@Url.Action("Index","Home")" title="@contactInfo.Name" class="logo"><img src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="~/Content/imageslogo@2x.png" class="logo-dark default" alt="@contactInfo.Name"><img src="~/Images/ContactInfos/@contactInfo.Image" data-rjs="~/Content/imageslogo-white@2x.png" title="@contactInfo.Name" alt="@contactInfo.Name" class="logo-light"></a>
         </div>
         <!-- end logo -->
         <div class="col accordion-menu pr-0 pr-md-3">
@@ -68,7 +76,7 @@
                         <a href="#">@fixedAreas.AnaSayfaKurumsal</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <ul class="dropdown-menu" role="menu">
-                            @foreach (var item in Fronted.PageList())
+                            @foreach (var item in pages)
                             {
                                 <li>
                                     <a href="@Url.Action("Detay","Kurumsal", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
@@ -80,7 +88,7 @@
                         <a href="@Url.Action("Index","Hizmetlerimiz")">@fixedAreas.AnaSayfaHizmetlerimiz</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <ul class="dropdown-menu" role="menu">
-                            @foreach (var item in Fronted.DutyList())
+                            @foreach (var item in duties)
                             {
                                 <li>
                                     <a href="@Url.Action("Detay","Hizmetlerimiz", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
@@ -93,7 +101,7 @@
                         <a href="#">@fixedAreas.AnaSayfaUrunlerimiz</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <ul class="dropdown-menu" role="menu">
-                            @foreach (var item in Fronted.ProductList())
+                            @foreach (var item in products)
                             {
                                 <li>
                                     <a href="@Url.Action("Detay","Urun", new {@id=item.Id,@url=item.Url})"> @item.Caption</a>
@@ -102,7 +110,7 @@
                         </ul>
                     </li>
                     <li class="dropdown simple-dropdown">
-                        <a href="@Url.Action("Index","Bloglar")" title="Blog">Blog</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                        <a href="@Url.Action("Index","Bloglar")">@fixedAreas.AnaSayfaBlog</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                         <!-- start sub menu -->
                         <!-- end sub menu -->
                     </li>

@@ -19,6 +19,7 @@ namespace EddarsCms.Entity.Entities
         public string Mail { get; set; }
         public string Image { get; set; }
         public string MapLocation { get; set; }
+        public string Description { get; set; }
 
     }
 }

@@ -3,15 +3,17 @@
 
 @{
     var contactInfo = Fronted.GetContactInfo();
-    var fixedArea = Fronted.GetFixedArea(LanguageOperation.GetLang().Id);
+    var fixedArea = Fronted.GetFixedArea();
     var socialMedias = Fronted.SocialMediaList();
     var coverImage = Fronted.GetCoverImages().Contact;
 }
 
 @*<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>*@
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 
+<meta name="title" content="" />
+<meta name="description" content="" />
 
 <!-- start page title section -->
 <section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image:url('/Images/CoverImages/@coverImage');">
@@ -62,7 +64,7 @@
                 <div class="d-inline-block margin-20px-bottom">
                     <div class="bg-extra-dark-gray icon-round-medium"><i class="icon-envelope icon-medium text-white-2"></i></div>
                 </div>
-                <div class="text-extra-dark-gray text-uppercase text-small font-weight-600 alt-font margin-5px-bottom">E-MAİL</div>
+                <div class="text-extra-dark-gray text-small font-weight-600 alt-font margin-5px-bottom">@fixedArea.IletisimEMailBaslik</div>
                 <p class="mx-auto">@contactInfo.EMail</p>
             </div>
             <!-- end contact info item -->
@@ -90,45 +92,40 @@
             <div class="col-12 col-lg-6 text-center padding-six-lr padding-five-half-tb md-padding-ten-half-tb md-padding-twelve-half-lr sm-padding-15px-lr wow fadeIn">
                 <div class="text-medium-gray alt-font text-small text-uppercase margin-5px-bottom sm-margin-three-bottom"></div>
                 <h5 class="margin-55px-bottom text-white-2 alt-font font-weight-700 sm-margin-ten-bottom">@fixedArea.IletisimFormBaslik</h5>
-                @*<form id="project-contact-form" action="javascript:void(0)" method="post">*@
-                @using (Ajax.BeginForm("SendMail", "Iletisim", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message"}))
-                    {
-                <div id="message"></div>
+                @using (Ajax.BeginForm("SendMail", "Iletisim", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "message" }))
+                {
+                    <div id="message"></div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div id="success-project-contact-form" class="mx-0"></div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <input type="text" name="name" id="name" required placeholder="@fixedArea.IletisimIsim" class="bg-transparent border-color-medium-dark-gray medium-input">
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <input type="text" name="caption" id="caption" placeholder="@fixedArea.IletisimKonu " class="bg-transparent border-color-medium-dark-gray medium-input">
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <input type="text" name="phone" id="phone" placeholder="@fixedArea.IletisimTelefon" class="bg-transparent border-color-medium-dark-gray medium-input">
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <input type="email" name="mail" id="mail" required placeholder="E-mail *" class="bg-transparent border-color-medium-dark-gray medium-input">
-                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="success-project-contact-form" class="mx-0"></div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <input type="text" name="name" id="name" required placeholder="@fixedArea.IletisimIsim" class="bg-transparent border-color-medium-dark-gray medium-input">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <input type="text" name="caption" id="caption" placeholder="@fixedArea.IletisimKonu " class="bg-transparent border-color-medium-dark-gray medium-input">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <input type="text" name="phone" id="phone" placeholder="@fixedArea.IletisimTelefon" class="bg-transparent border-color-medium-dark-gray medium-input">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <input type="email" name="mail" id="mail" required placeholder="@fixedArea.IletisimEMail" class="bg-transparent border-color-medium-dark-gray medium-input">
+                        </div>
 
-                    <div class="col-12">
-                        <textarea name="content" id="content" placeholder="@fixedArea.IletisimMesaj...  " rows="7" class="bg-transparent border-color-medium-dark-gray medium-textarea"></textarea>
+                        <div class="col-12">
+                            <textarea name="content" id="content" required placeholder="@fixedArea.IletisimMesaj" rows="7" class="bg-transparent border-color-medium-dark-gray medium-textarea"></textarea>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button onclick="jsSendMessage()" type="submit" class="btn btn-deep-pink btn-medium margin-15px-top">@fixedArea.IletisimGonder</button>
+                        </div>
                     </div>
-                    <div class="col-12 text-center">
-                        <button onclick="jsSendMessage()"  type="submit" class="btn btn-deep-pink btn-medium margin-15px-top">@fixedArea.IletisimGonder</button>
-                    </div>
-                </div>
                 }
-                @*</form>*@
             </div>
         </div>
     </div>
 </section>
 <!-- end contact form -->
-@*<!-- start map section -->
-    <section class="p-0 one-second-screen md-height-400px wow fadeIn"><iframe class="w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.843821917424!2d144.956054!3d-37.817127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2sin!4v1427947693651"></iframe></section>
-    <!-- end map section -->*@
 <!-- start social section -->
 <section class="wow fadeIn">
     <div class="container">
@@ -153,25 +150,3 @@
     </div>
 </section>
 <!-- end social section -->
-
-
-
-<script>
-    //function jsSendMessage() {
-    //    var name = $("#name").val();
-    //    var email = $("#email").val();
-    //    var content = $("#content").val();
-    //    $.ajax({
-    //        url: "/Iletisim/SendMail",
-    //        type: "POST",
-    //        date: { name: name, mail: email, content: content },
-    //        success: function (result) {
-    //            alert(result);
-    //        }
-
-
-    //    })
-    //}
-
-
-</script>

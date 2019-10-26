@@ -4,21 +4,26 @@
 @model DutyDto
 
 
-    @{
+@{
+    var fixedAreas = Fronted.GetFixedArea();
+    var duties = Fronted.ShortDutyList();
+    ViewBag.SeoTitle = Model.SeoTitle;
+    ViewBag.SeoDescription = Model.SeoDescription;
+}
 
-    }
 
 
-    <!-- start page title section -->
-    <section class="wow fadeIn bg-light-gray padding-35px-tb page-title-small top-space">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-8 col-md-6 d-flex flex-column justify-content-center text-center text-md-left">
-                    <!-- start page title -->
-                    <h1 class="alt-font text-extra-dark-gray font-weight-600 no-margin-bottom text-uppercase">@Model.Caption</h1>
-                    <!-- end page title -->
-                </div>
-                @*<div class="col-xl-4 col-md-6 alt-font breadcrumb justify-content-center justify-content-md-end text-small sm-margin-10px-top">
+
+<!-- start page title section -->
+<section class="wow fadeIn bg-light-gray padding-35px-tb page-title-small top-space">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-8 col-md-6 d-flex flex-column justify-content-center text-center text-md-left">
+                <!-- start page title -->
+                <h1 class="alt-font text-extra-dark-gray font-weight-600 no-margin-bottom text-uppercase">@Model.Caption</h1>
+                <!-- end page title -->
+            </div>
+            @*<div class="col-xl-4 col-md-6 alt-font breadcrumb justify-content-center justify-content-md-end text-small sm-margin-10px-top">
                     <!-- breadcrumb -->
                     <ul class="text-center text-md-left text-uppercase">
                         <li><a href="#" class="text-dark-gray">25 April 2017</a></li>
@@ -27,74 +32,62 @@
                     </ul>
                     <!-- end breadcrumb -->
                 </div>*@
-            </div>
         </div>
-    </section>
-    <!-- end page title section -->
-    <!-- start post content section -->
-    <section>
-        <div class="container">
-            <div class="row">
-                <main class="col-12 col-lg-9 right-sidebar md-margin-60px-bottom sm-margin-40px-bottom pl-0 md-no-padding-right">
-                    <div class="col-12 blog-details-text last-paragraph-no-margin">
-                        @Html.Raw(Model.Content)
-                    </div>
+    </div>
+</section>
+<!-- end page title section -->
+<!-- start post content section -->
+<section>
+    <div class="container">
+        <div class="row">
+            <main class="col-12 col-lg-9 right-sidebar md-margin-60px-bottom sm-margin-40px-bottom pl-0 md-no-padding-right">
+                <div class="col-12 blog-details-text last-paragraph-no-margin">
+                    @Html.Raw(Model.Content)
+                </div>
 
-       
-                    <div class="col-12 margin-eight-top">
-                        <div class="divider-full bg-medium-light-gray"></div>
-                    </div>
 
-                </main>
-                <aside class="col-12 col-lg-3 float-right">
-                    <div class="d-inline-block width-100 margin-45px-bottom sm-margin-25px-bottom">
-                        <form>
-                            <div class="position-relative">
-                                <input type="text" class="bg-transparent text-small m-0 border-color-extra-light-gray medium-input float-left" placeholder="Enter your keywords...">
-                                <button type="submit" class="bg-transparent  btn position-absolute right-0 top-1"><i class="fas fa-search ml-0"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
-                        <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>About Me</span></div>
-                        <a href="about-me.html"><img src="~/Content/images/aside-image-1.jpg" alt="" class="margin-25px-bottom" /></a>
-                        <p class="margin-20px-bottom text-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard.</p>
-                        <a class="btn btn-very-small btn-dark-gray text-uppercase" href="about-me.html">About Author</a>
-                    </div>
-                    <div class="margin-50px-bottom">
-                        <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Follow Us</span></div>
-                        <div class="social-icon-style-1 text-center">
-                            <ul class="extra-small-icon">
-                                <li><a class="facebook" href="http://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="http://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="google" href="http://google.com/" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a class="dribbble" href="http://dribbble.com/" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a class="linkedin" href="http://linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
-                        <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Categories</span></div>
-                        <ul class="list-style-6 margin-50px-bottom text-small">
-                            <li><a href="blog-masonry.html">Arts and Entertainment</a><span>12</span></li>
-                            <li><a href="blog-masonry.html">Blog</a><span>05</span></li>
-                            <li><a href="blog-masonry.html">Blog Full width</a><span>08</span></li>
-                            <li><a href="blog-masonry.html">Blog Grid</a><span>10</span></li>
-                            <li><a href="blog-masonry.html">Branding</a><span>21</span></li>
-                            <li><a href="blog-masonry.html">Design Tutorials</a><span>09</span></li>
-                            <li><a href="blog-masonry.html">Designing</a><span>07</span></li>
-                            <li><a href="blog-masonry.html">Feature</a><span>06</span></li>
-                            <li><a href="blog-masonry.html">Home Blog</a><span>10</span></li>
-                            <li><a href="blog-masonry.html">Onepage Fashion</a><span>11</span></li>
-                            <li><a href="blog-masonry.html">Sample</a><span>06</span></li>
+                <div class="col-12 margin-eight-top">
+                    <div class="divider-full bg-medium-light-gray"></div>
+                </div>
+
+            </main>
+            <aside class="col-12 col-lg-3 float-right">
+
+                <div class="margin-50px-bottom">
+                    <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>@fixedAreas.GenelBiziTakipEt</span></div>
+                    <div class="social-icon-style-1 text-center">
+                        <ul class="extra-small-icon">
+                            <li><a class="facebook" href="http://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a class="twitter" href="http://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a class="google" href="http://google.com/" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li><a class="dribbble" href="http://dribbble.com/" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                            <li><a class="linkedin" href="http://linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
-                    <div class="bg-deep-pink padding-30px-all text-white-2 text-center margin-45px-bottom sm-margin-25px-bottom">
-                        <i class="fas fa-quote-left icon-small margin-15px-bottom d-block"></i>
-                        <span class="text-extra-large font-weight-300 margin-20px-bottom d-block">The future belongs to those who believe in the beauty of their dreams.</span>
-                        <a class="btn btn-very-small btn-transparent-white border-width-1 text-uppercase" href="portfolio-boxed-grid-overlay.html">Explore Portfolio</a>
-                    </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
+                </div>
+                <div class="margin-45px-bottom sm-margin-25px-bottom">
+                    <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>@fixedAreas.AnaSayfaHizmetlerimiz</span></div>
+                    <ul class="list-style-6 margin-50px-bottom text-small">
+
+                        @if (duties != null)
+                        {
+                            if (duties.Count > 0)
+                            {
+                                foreach (var item in duties)
+                                {
+                                    <li><a href="@Url.Action("Detay","Hizmetlerimiz",new {id=item.Id,Url=item.Url })">@item.Caption</a><span></span></li>
+                                }
+
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="bg-deep-pink padding-30px-all text-white-2 text-center margin-45px-bottom sm-margin-25px-bottom">
+                    <i class="fas fa-quote-left icon-small margin-15px-bottom d-block"></i>
+                    <span class="text-extra-large font-weight-300 margin-20px-bottom d-block">The future belongs to those who believe in the beauty of their dreams.</span>
+                    <a class="btn btn-very-small btn-transparent-white border-width-1 text-uppercase" href="portfolio-boxed-grid-overlay.html">Explore Portfolio</a>
+                </div>
+                @*<div class="margin-45px-bottom sm-margin-25px-bottom">
                         <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Popular post</span></div>
                         <ul class="latest-post position-relative">
                             <li class="media">
@@ -150,55 +143,69 @@
                             <li><a href="blog-grid.html">February 2017</a><span>09</span></li>
                             <li><a href="blog-grid.html">January 2017</a><span>07</span></li>
                         </ul>
-                    </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
-                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Newsletter</span></div>
-                        <div class="d-inline-block width-100">
-                     
-                                <div class="position-relative">
-                                    <input type="email" id="email2" class="bg-transparent text-small m-0 border-color-extra-light-gray medium-input float-left" placeholder="Enter your email...">
-                                    <button type="submit" onclick="jsSendInfoMail2()" class="bg-transparent text-large btn position-absolute right-0 top-3"><i class="far fa-envelope ml-0"></i></button>
-                                </div>
-                          
+                    </div>*@
+                <div class="margin-45px-bottom sm-margin-25px-bottom">
+                    <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>@fixedAreas.GenelBizdenHaberdarOl</span></div>
+                    <div class="d-inline-block width-100">
+                        <div class="position-relative">
+                            <input type="email" id="email2" class="bg-transparent text-small m-0 border-color-extra-light-gray medium-input float-left" placeholder="@fixedAreas.GenelEpostaGir">
+                            <button type="submit" onclick="jsSendInfoMail2()" class="bg-transparent text-large btn position-absolute right-0 top-3"><i class="far fa-envelope no-margin-left"></i></button>
+                            <div id="errorMessage"></div>
                         </div>
                     </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
-                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Instagram</span></div>
-                        <div class="instagram-follow-api">
-                            <ul id="instaFeed-aside"></ul>
-                        </div>
+                </div>
+                <div class="margin-45px-bottom sm-margin-25px-bottom">
+                    <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>@fixedAreas.GenelInstagram</span></div>
+                    <div class="instagram-follow-api">
+                        <ul id="instaFeed-aside"></ul>
                     </div>
-                    <div class="margin-45px-bottom sm-margin-25px-bottom">
+                </div>
+                @*<div class="margin-45px-bottom sm-margin-25px-bottom">
                         <a href="#"><img src="~/Content/images/menu-banner-01.png" alt="" class="width-100" /></a>
-                    </div>
-                </aside>
-            </div>
+                    </div>*@
+            </aside>
         </div>
-    </section>
-    <!-- end blog content section -->
+    </div>
+</section>
+<!-- end blog content section -->
 
 
 
-    <script>
-        function jsSendInfoMail2() {
-            var email = $("#email2").val();
-            $.ajax({
-                url: "/Home/SendInfoMail",
-                type: "POST",
-                data: { Mail: email },
-                success: function (result) {
-                    if (result > 0) {
-                        jsSuccess('İşleminiz başarılı')
-                        $("#email2").val('')
-                    } else {
-                        jsError('İşleminiz başarısız')
-                    }
-                },
-                error: function () {
-                    jsError('İşleminiz başarısız')
-                }
-
-            })
+<script>
+    function jsSendInfoMail2() {
+        var email = $("#email2").val();
+        if (email == "") {
+            $("#errorMessage").html('Lütfen e-posta alanını doldurunuz');
+            return;
         }
 
-    </script>
+        if (!checkEmailAddress(email)) {
+            $("#errorMessage").html('Lütfen uygun formatta bir e-posta giriniz ');
+            return;
+        }
+
+        $.ajax({
+            url: "/Home/SendInfoMail",
+            type: "POST",
+            data: { Mail: email },
+            success: function (result) {
+                if (result > 0) {
+                    $("#errorMessage").html('');
+                    $("#email2").val('');
+                } else {
+                    alert('İşleminiz başarısız');
+                }
+            },
+            error: function () {
+                alert('İşleminiz başarısız');
+            }
+
+        })
+    }
+
+    function checkEmailAddress(emailAddress) {
+        var reg = new RegExp(/^[^0-9][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[@@][a-zA-z0-9_]+([.][a-zA-z0-9_]+)*[.][a-zA-Z]{2,4}$/i);
+        return reg.test(emailAddress);
+    };
+
+</script>

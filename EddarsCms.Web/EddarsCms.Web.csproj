@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Management\Controllers\CoverImageController.cs" />
+    <Compile Include="Areas\Management\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Management\Controllers\FixedAreaController.cs" />
     <Compile Include="Areas\Management\Controllers\HomePageController.cs" />
     <Compile Include="Areas\Management\Controllers\UserController.cs" />
@@ -569,6 +570,10 @@
     <Content Include="Areas\Management\Content\assets\widgets\xeditable\xeditable-demo.js" />
     <Content Include="Areas\Management\Content\assets\widgets\xeditable\xeditable.css" />
     <Content Include="Areas\Management\Content\assets\widgets\xeditable\xeditable.js" />
+    <Content Include="Areas\Management\Content\blueimp.github.io\Gallery\js\jquery.blueimp-gallery.min.js" />
+    <Content Include="Areas\Management\Content\blueimp.github.io\JavaScript-Canvas-to-Blob\js\canvas-to-blob.min.js" />
+    <Content Include="Areas\Management\Content\blueimp.github.io\JavaScript-Load-Image\js\load-image.all.min.js" />
+    <Content Include="Areas\Management\Content\blueimp.github.io\JavaScript-Templates\js\tmpl.min.js" />
     <Content Include="Areas\Management\Content\demo\admin-template\admin-blog.html" />
     <Content Include="Areas\Management\Content\demo\admin-template\admin-pricing.html" />
     <Content Include="Areas\Management\Content\demo\admin-template\advanced-datatables.html" />
@@ -654,6 +659,7 @@
     <Content Include="Areas\Management\Content\demo\admin-template\view-profile.html" />
     <Content Include="Areas\Management\Content\demo\admin-template\xcharts.html" />
     <Content Include="Areas\Management\Content\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Areas\Management\Content\netdna.bootstrapcdn.com\bootstrap\3.2.0\js\bootstrap.min.js" />
     <Content Include="Content\css\jgrowl.css" />
     <Content Include="Content\js\jgrowl-demo.js" />
     <Content Include="Content\js\jgrowl.js" />
@@ -1807,6 +1813,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Management\Models\" />
+    <Folder Include="Areas\Management\Views\FileUpload\" />
     <Folder Include="Documents\HumanResource\" />
     <Folder Include="Images\Blogs\" />
     <Folder Include="Images\Branches\" />

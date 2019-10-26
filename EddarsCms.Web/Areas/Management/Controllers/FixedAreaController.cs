@@ -1,6 +1,7 @@
 ﻿using Core.Results;
 using EddarsCms.BLL.IServices;
 using EddarsCms.BLL.Services;
+using EddarsCms.Common;
 using EddarsCms.Dto.BasicDtos;
 using EddarsCms.Web.Filters;
 using System;
@@ -30,13 +31,15 @@ namespace EddarsCms.Web.Areas.Management.Controllers
             return View(result.Result);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
         public JsonResult Index(FixedAreaDto dto)
         {
             var message = "<script>jsError('İşleminiz başarısız')</script>";
             try
             {
+                dto.InsanKaynaklariIcerik = Helper.ChangeQuatitionForDb(dto.InsanKaynaklariIcerik);
                 var result = fixedAreaServ.AddOrUpdate(dto);
+                dto.InsanKaynaklariIcerik = Helper.ChangeQuatitionForEditor(dto.InsanKaynaklariIcerik);
                 if (result.State == ProcessStateEnum.Success)
                 {
                     message = "<script>jsSuccess('" + result.Message + "')</script>";

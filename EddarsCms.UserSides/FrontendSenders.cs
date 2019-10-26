@@ -21,7 +21,7 @@ namespace EddarsCms.UserSides
             {
                 using (SqlProgress sql = new SqlProgress())
                 {
-                    result = sql.SetExecuteNonQuery("insert into BlogComments (BlogId,UserName,UserEmail,Comment,WebSite,Date,LanguageId) values (@BlogId,@UserName,@UserEmail,@Comment,@WebSite,@Date,@LanguageId)", CommandType.Text, new SqlParameter("@BlogId", dto.BlogId), new SqlParameter("@UserName", dto.UserName), new SqlParameter("@UserEmail", dto.UserEmail), new SqlParameter("@Comment", dto.Comment), new SqlParameter("@WebSite", dto.WebSite), new SqlParameter("@Date", DateTime.Now), new SqlParameter("@LanguageId", LanguageOperation.GetLang().Id));
+                    result = sql.SetExecuteNonQuery("insert into BlogComments (BlogId,UserName,UserEmail,Comment,WebSite,Date) values (@BlogId,@UserName,@UserEmail,@Comment,@WebSite,@Date)", CommandType.Text, new SqlParameter("@BlogId", dto.BlogId), new SqlParameter("@UserName", dto.UserName), new SqlParameter("@UserEmail", dto.UserEmail), new SqlParameter("@Comment", dto.Comment), new SqlParameter("@WebSite", dto.WebSite), new SqlParameter("@Date", DateTime.Now));
 
                     if (result>0)
                     {
