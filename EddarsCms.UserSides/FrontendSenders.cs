@@ -21,7 +21,7 @@ namespace EddarsCms.UserSides
             {
                 using (SqlProgress sql = new SqlProgress())
                 {
-                    result = sql.SetExecuteNonQuery("insert into BlogComments (BlogId,UserName,UserEmail,Comment,WebSite,Date) values (@BlogId,@UserName,@UserEmail,@Comment,@WebSite,@Date)", CommandType.Text, new SqlParameter("@BlogId", dto.BlogId), new SqlParameter("@UserName", dto.UserName), new SqlParameter("@UserEmail", dto.UserEmail), new SqlParameter("@Comment", dto.Comment), new SqlParameter("@WebSite", dto.WebSite), new SqlParameter("@Date", DateTime.Now));
+                    result = sql.SetExecuteNonQuery("insert into BlogComments (BlogId,UserName,UserEmail,Comment,WebSite,Date) values (@BlogId,@UserName,@UserEmail,@Comment,@WebSite,@Date)", CommandType.Text, new SqlParameter("@BlogId", dto.BlogId), new SqlParameter("@UserName", dto.UserName), new SqlParameter("@UserEmail", dto.UserEmail), new SqlParameter("@Comment", dto.Comment), new SqlParameter("@WebSite", dto.WebSite??""), new SqlParameter("@Date", DateTime.Now));
 
                     if (result>0)
                     {
@@ -73,11 +73,11 @@ namespace EddarsCms.UserSides
             {
                 using (SqlProgress sql = new SqlProgress())
                 {
-                    result = sql.SetExecuteNonQuery("insert into HumanResources (Name,Surname,Phone,Mail,Cv,Message,Date) values (@Name,@Surname,@Phone,@Mail,@Cv,@Message,@Date)", CommandType.Text, new SqlParameter("@Name", dto.Name), new SqlParameter("@Surname",dto.Surname), new SqlParameter("@Phone", dto.Phone), new SqlParameter("@Mail", dto.Mail), new SqlParameter("@Cv", dto.CV), new SqlParameter("@Message", dto.Message), new SqlParameter("@Date", DateTime.Now));
+                    result = sql.SetExecuteNonQuery("insert into HumanResources (Name,Surname,Phone,Mail,Cv,Message,Date) values (@Name,@Surname,@Phone,@Mail,@Cv,@Message,@Date)", CommandType.Text, new SqlParameter("@Name", dto.Name), new SqlParameter("@Surname",dto.Surname), new SqlParameter("@Phone", dto.Phone??""), new SqlParameter("@Mail", dto.Mail), new SqlParameter("@Cv", dto.CV??""), new SqlParameter("@Message", dto.Message ?? ""), new SqlParameter("@Date", DateTime.Now));
 
                     if (result > 0)
                     {
-                        var result2 = sql.SetExecuteNonQuery("insert into notifications (Caption,Description,Date,Icon) values (@Caption,@Description,@Date,@Icon)", CommandType.Text, new SqlParameter("@Caption", "Yeni iş başvurusu var"), new SqlParameter("@Description", "Kullanıcı Adı Soyadı: " + dto.Name +dto.Surname+ ", Mail: " + dto.Mail+ ", Telefon: " + dto.Phone + ", Mesaj:" + dto.Message), new SqlParameter("@Icon", "bg-green icon-notification glyph-icon icon-user"), new SqlParameter("@Date", DateTime.Now));
+                        var result2 = sql.SetExecuteNonQuery("insert into notifications (Caption,Description,Date,Icon) values (@Caption,@Description,@Date,@Icon)", CommandType.Text, new SqlParameter("@Caption", "Yeni iş başvurusu var"), new SqlParameter("@Description", "Kullanıcı Adı Soyadı: " + dto.Name +dto.Surname+ ", Mail: " + dto.Mail+ ", Telefon: " + dto.Phone ?? "" + ", Mesaj:" + dto.Message ?? ""), new SqlParameter("@Icon", "bg-green icon-notification glyph-icon icon-user"), new SqlParameter("@Date", DateTime.Now));
                     }
                 }
             }

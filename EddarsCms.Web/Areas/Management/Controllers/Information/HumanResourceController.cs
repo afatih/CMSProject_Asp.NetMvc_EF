@@ -60,11 +60,20 @@ namespace EddarsCms.Web.Areas.Management.Controllers.Information
 
         public void DownloadFolder(string fileName)
         {
-            Response.Clear();
-            Response.ContentType = "application/octet-stream";
-            Response.AppendHeader("Content-Disposition", "filename=" + fileName);
-            Response.TransmitFile(Server.MapPath("~/Documents/HumanResource/") + fileName);
-            Response.End();
+            try
+            {
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "filename=" + fileName);
+                Response.TransmitFile(Server.MapPath("~/Documents/HumanResource/") + fileName);
+                Response.End();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+           
         }
     }
 }

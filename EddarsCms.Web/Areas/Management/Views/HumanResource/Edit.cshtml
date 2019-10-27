@@ -117,7 +117,14 @@
                                 <label control-label">CV Dosyası</label>
                             </div>
                             <div class="col-lg-9" style="margin-top:15px">
-                                <a href="@Url.Action("DownloadFolder","HumanResource",new { filename=Model.CV })"> İndir</a>
+                                @if (!string.IsNullOrEmpty(Model.CV))
+                                {
+                                    <a href="@Url.Action("DownloadFolder","HumanResource",new { filename=Model.CV })"> İndir</a>
+                                }
+                                else
+                                {
+                                    <div>Cv Dosyası Seçilmedi</div>
+                                }
                             </div>
                         </div>
                     </div>

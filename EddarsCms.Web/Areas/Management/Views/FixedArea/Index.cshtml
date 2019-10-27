@@ -46,19 +46,27 @@
     <div id="message"></div>
 
     <input type="text" style="display:none" name="Id" value="@Model.Id" />
-
+   
 
     <div class="row main-box">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="panel">
                 <div class="panel-body">
 
-                    <div id="anaSayfa">
-                        <div class="main-box-header">
-                            <h3>Ana Sayfa</h3>
-                        </div>
-                        <div class="main-box-body">
+                    <div class="clearfix" id="tabs">
+                        <ul class="nav nav-tabs mrg25B">
+                            <li data-tab="anaSayfa" class="active"><a href="#">Ana Sayfa</a></li>
+                            <li data-tab="genel"><a href="#">Genel Sayfa Ayarları</a></li>
+                            <li data-tab="iletisim"><a href="#">İletişim</a></li>
+                            <li data-tab="blogDetay"><a href="#">Blog Detay</a></li>
+                            <li data-tab="footer"><a href="#">Footer</a></li>
+                            <li data-tab="insanKaynaklari"><a href="#">İnsan Kaynakları</a></li>
+                        </ul>
+                    </div>
 
+
+                    <div>
+                        <div class="main-box-body">
                             <div class="form-group">
                                 <label id="LanguageId" class="control-label">Sayfa Dili</label>
                                 <div>
@@ -77,7 +85,16 @@
                                 </div>
 
                             </div>
+                        </div>
+                    </div>
 
+
+
+                    <div id="anaSayfa" class="tabCaption">
+                        <div class="main-box-header">
+                            <h3>Ana Sayfa</h3>
+                        </div>
+                        <div class="main-box-body">
                             <div class="form-group">
                                 <label for="AnaSayfa" class=" control-label">@Model.AnaSayfa</label>
                                 <div>
@@ -157,10 +174,10 @@
 
 
                     @*entity.GenelBiziTakipEt = dto.GenelBiziTakipEt;
-                        entity.GenelBizdenHaberdarOl = dto.GenelBizdenHaberdarOl;
-                        entity.GenelInstagram = dto.GenelInstagram;*@
+        entity.GenelBizdenHaberdarOl = dto.GenelBizdenHaberdarOl;
+        entity.GenelInstagram = dto.GenelInstagram;*@
 
-                    <div id="genel">
+                    <div id="genel" class="tabCaption">
 
 
                         <div class="main-box-header">
@@ -195,7 +212,7 @@
                         </div>
                     </div>
 
-                    <div id="iletisim">
+                    <div id="iletisim" class="tabCaption">
 
 
                         <div class="main-box-header">
@@ -266,7 +283,7 @@
                     </div>
 
 
-                    <div id="blogDetay">
+                    <div id="blogDetay" class="tabCaption">
 
 
                         <div class="main-box-header">
@@ -325,7 +342,7 @@
                     </div>
 
 
-                    <div id="footer">
+                    <div id="footer" class="tabCaption">
 
 
                         <div class="main-box-header">
@@ -349,7 +366,7 @@
                         </div>
                     </div>
 
-                    <div id="insanKaynaklari">
+                    <div id="insanKaynaklari" class="tabCaption">
                         <div class="main-box-header">
                             <h3>İnsan Kaynakları</h3>
                         </div>
@@ -416,27 +433,34 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-
-
                     </div>
 
 
+                    <div>
+                        <div class="main-box-body">
+                            <div class="form-group">
+                                <div>
+                                    <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
 
 
+          
 
 
-
+           
 
         </div>
 
-        <div class="col-lg-4">
+        @*<div class="col-lg-4">
             <div class="panel">
                 <div class="panel-body">
                     <div class="main-box-header">
@@ -444,24 +468,15 @@
                     </div>
                     <div class="main-box-body">
                         <div class="form-group">
-                            <div class="clearfix" id="tabs">
-                                <ul class="nav nav-tabs nav-tabs-right float-left">
-                                    <li class="active"><a href="#anaSayfa">AnaSayfa</a></li>
-                                    <li><a href="#genel">Genel Sayfa Ayarları</a></li>
-                                    <li><a href="#iletisim">İletişim</a></li>
-                                    <li><a href="#blogDetay">Blog Detay</a></li>
-                                    <li><a href="#footer">Footer</a></li>
-                                    <li><a href="#insanKaynaklari">İnsan Kaynakları</a></li>
-                                </ul>
-                            </div>
 
-                            <div><button style="margin-top:10px" type="submit" class="btn btn-success">Kaydet</button></div>
+
+                          
                         </div>
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>*@
     </div>
 
 }
@@ -649,5 +664,32 @@
     })
 
 
+
+
+    $("ul li").click(function () {
+        var selectedTab = $(this).attr("data-tab");
+        $(".tabCaption#" + selectedTab).css("display", "block");
+        $(".tabCaption:not(#" + selectedTab + ")").css("display", "none");
+        $(this).addClass("active")
+        $.each($("ul li"), function () {
+            var tabName = $(this).attr("data-tab");
+            if (tabName != selectedTab) {
+                $(this).removeClass("active");
+            }
+        })
+    })
+
+    $(function () {
+            var selectedTab = "anaSayfa";
+            $(".tabCaption#" + selectedTab).css("display", "block");
+            $(".tabCaption:not(#" + selectedTab + ")").css("display", "none");
+            $("#anaSayfa").addClass("active")
+            $.each($("ul li"), function () {
+                var tabName = $(this).attr("data-tab");
+                if (tabName != selectedTab) {
+                    $(this).removeClass("active");
+                }
+            })
+    })
 
 </script>

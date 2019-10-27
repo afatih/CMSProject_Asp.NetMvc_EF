@@ -29,7 +29,10 @@
                             <td>@item.Name @item.Surname</td>
                             <td width="20%">@item.Date</td>
                             <td width="20%">
-                                <a class="btn btn-success" href="@Url.Action("DownloadFolder","HumanResource",new { filename=item.CV })"> İndir</a>
+                                @if (!string.IsNullOrEmpty(item.CV))
+                                {
+                                    <a class="btn btn-success" href="@Url.Action("DownloadFolder","HumanResource",new { filename=item.CV })"> İndir</a>
+                                }
                                 <button onclick="jsDelete(@item.Id)" class="btn btn-danger">Sil</button>
                                 <a href="@Url.Action("Edit","HumanResource",new {id=item.Id })" class="btn btn-warning">İncele</a>
                             </td>

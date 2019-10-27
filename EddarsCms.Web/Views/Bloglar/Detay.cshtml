@@ -169,10 +169,11 @@
                         <div class="col-12">
                             <textarea id="comment" required placeholder="@fixedAreas.BlogDetayYorumYaz" rows="8" class="medium-textarea"></textarea>
                         </div>
+                        <div  id="commentError" style="margin-left:16px;"></div>
                         <div class="col-12 text-center">
                             <button onclick="jsSendComment()" class="btn btn-dark-gray btn-small margin-15px-top" type="submit">@fixedAreas.BlogDetayGonder</button>
                         </div>
-                        <div id="commentError"></div>
+
 
 
 
@@ -314,6 +315,12 @@
             return;
         }
 
+
+        if (!checkEmailAddress(email)) {
+            $("#commentError").html('Lütfen uygun formatta bir email hesabı giriniz');
+            return;
+        }
+
         $.ajax({
             url: "/Bloglar/SendComment",
             type: "POST",
@@ -342,6 +349,7 @@
             $("#errorMessage").html('Lütfen e-posta alanını doldurunuz');
             return;
         }
+
 
         if (!checkEmailAddress(email)) {
             $("#errorMessage").html('Lütfen uygun formatta bir e-posta giriniz ');

@@ -103,7 +103,7 @@ namespace EddarsCms.BLL.Services
 
 
 
-                return new ServiceResult<List<BlogCommentDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result2.OrderBy(x => x.Date).ToList());
+                return new ServiceResult<List<BlogCommentDto>>(ProcessStateEnum.Success, "İşmeniniz başarılı", result2.OrderByDescending(x => x.Id).ToList());
             }
             catch (Exception e)
             {

@@ -45,40 +45,35 @@ namespace EddarsCms.Web.Filters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            // Languages from our db
-            _ourLanguages = LanguageOperation.GetAllLangs();
-
-
-            // Set default locale
-            _defaultLang = _ourLanguages.Where(x => x.Id == 1).SingleOrDefault().Url;
-
-            // Get locale from route values
-            string lang = (string)filterContext.RouteData.Values["lang"] ?? _defaultLang;
-
-            SetLanguageToSession(lang);
-
-
-
-            // If we haven't found appropriate culture - seet default locale then
-            if (_ourLanguages.Where(x => x.Url == lang).Count() == 0)
+            try
             {
+                // Languages from our db
+                _ourLanguages = LanguageOperation.GetAllLangs();
+
+
+                // Set default locale
+                _defaultLang = _ourLanguages.Where(x => x.Id == 1).SingleOrDefault().Url;
+
+                // Get locale from route values
+                string lang = (string)filterContext.RouteData.Values["lang"] ?? _defaultLang;
+
                 SetLanguageToSession(lang);
+
+
+
+                // If we haven't found appropriate culture - seet default locale then
+                if (_ourLanguages.Where(x => x.Url == lang).Count() == 0)
+                {
+                    SetLanguageToSession(lang);
+                }
+            }
+            catch (Exception e)
+            {
+
+               
             }
 
 
-
-            //var req = System.Web.HttpContext.Current.Request;
-
-            //if (req.Cookies["lang"] != null)
-            //{
-            //    _currentLang = req.Cookies["lang"].Value;
-            //}
-
-
-            //if (_currentLang == "")
-            //{
-            //    SetLanguageToCookie(lang);
-            //}
         }
     }
 }
