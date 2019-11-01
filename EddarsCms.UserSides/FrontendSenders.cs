@@ -193,10 +193,10 @@ namespace EddarsCms.UserSides
 
         }
 
-        public static string SendMail(ContactMailDto dto)
+        public static int SendMail(ContactMailDto dto)
         {
             var contact = GetMailInfo();
-            string returnMessage = "<script>jsError()</script>";
+            int result=0 ;
             //info @modafen.com.tr
             try
             {
@@ -225,19 +225,20 @@ namespace EddarsCms.UserSides
                 })
                 {
                     smtp.Send(mess);
-                    returnMessage = "<script>jsSuccess('Göndermiş olduğunuz mail tarafımıza iletiliştir.');$('.form-control').val('')</script>";
+                    
                     var result2 = SendMailManagement(dto);
+                    result = 1;
                 }
-                return returnMessage;
+                return result;
 
             }
             catch (Exception e)
             {
-                returnMessage = "<script>jsError('" + e.Message + "')</script>";
+
 
             }
 
-            return returnMessage;
+            return 0;
 
         }
 

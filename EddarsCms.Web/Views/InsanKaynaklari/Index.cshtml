@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                @Html.Raw(ViewBag.Message)
+          
                 <div class="padding-fifteen-all bg-white border-radius-6 lg-padding-seven-all">
                     @using (Html.BeginForm("Index", "InsanKaynaklari", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -54,10 +54,12 @@
                             <input type="file" name="file" id="file" placeholder="@fixedArea.InsanKaynaklariDosyaSec" class="input-bg">
                             <div id="errorCv" style="margin-bottom:10px"></div>
                             <textarea name="message" required id="message" placeholder="@fixedArea.InsanKaynaklariMesaj" class="input-bg"></textarea>
+                            <div id="errorMessage"></div>
                             <button type="submit" class="btn btn-small border-radius-4 btn-black">@fixedArea.InsanKaynaklariGonder</button>
 
                         </div>
                     }
+                    @Html.Raw(ViewBag.Message)
                 </div>
             </div>
         </div>

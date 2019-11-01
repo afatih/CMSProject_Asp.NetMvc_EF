@@ -22,7 +22,7 @@ namespace EddarsCms.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
+                ViewBag.Message = "<script>$('#errorMessage').html('İşleminiz başarısız')</script>";
                 return View(dto);
             }
 
@@ -55,18 +55,18 @@ namespace EddarsCms.Web.Controllers
                 if (result>0)
                 {
                     //ViewBag.Message = result.Message;
-                    ViewBag.Message = "<script>jsSuccess('İşleminiz başarılı')</script>";
+                    ViewBag.Message = "<script>$('#errorMessage').html('Başvurunuz başarıyla tarafımıza iletilmiştir.')</script>";
                     return View(new HumanResourceDto());
                 }
                 else
                 {
-                    ViewBag.Message = "<script>jsError('İşleminiz başarısız')</script>";
+                    ViewBag.Message = "<script>$('#errorMessage').html('İşleminiz başarısız')</script>";
                     return View(dto);
                 }
             }
             catch (Exception e)
             {
-                ViewBag.Message = "<script>jsError('" + e.Message + "')</script>";
+                ViewBag.Message = "<script>$('#errorMessage').html('İşleminiz başarısız')</script>";
                 return View(dto);
             }
         }

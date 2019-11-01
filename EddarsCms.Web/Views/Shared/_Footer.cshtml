@@ -146,12 +146,13 @@
                 if (result > 0) {
                     $("#errorMessageFooter").html('');
                     $("#email").val('');
+                    $("#errorMessageFooter").html('E-posta kaydınız alınmıştır.');
                 } else {
-                    alert('İşleminiz başarısız');
+                    $("#errorMessageFooter").html('İşleminiz başarısız');
                 }
             },
             error: function () {
-                alert('İşleminiz başarısız');
+                $("#errorMessageFooter").html('İşleminiz başarısız');
             }
 
         })

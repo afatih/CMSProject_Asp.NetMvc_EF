@@ -149,6 +149,7 @@ namespace EddarsCms.UserSides
                             Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
                             SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
                             SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+                            CreatedDate = dr.IsNull("CreatedDate") ? DateTime.Now : Convert.ToDateTime(dr["CreatedDate"])
                         };
                     }
                 }
@@ -418,6 +419,7 @@ namespace EddarsCms.UserSides
                                 ImageBig = dr.IsNull("ImageBig") ? "" : dr["ImageBig"].ToString(),
                                 RowNumber = dr.IsNull("RowNumber") ? 0 : Convert.ToInt32(dr["RowNumber"]),
                                 Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
+                                CreatedDate = dr.IsNull("CreatedDate") ? DateTime.Now : Convert.ToDateTime(dr["CreatedDate"]),
 
                             };
                             list.Add(News);
@@ -452,6 +454,7 @@ namespace EddarsCms.UserSides
                             Url = dr.IsNull("Url") ? "" : dr["Url"].ToString(),
                             SeoTitle = dr.IsNull("SeoTitle") ? "" : dr["SeoTitle"].ToString(),
                             SeoDescription = dr.IsNull("SeoDescription") ? "" : dr["SeoDescription"].ToString(),
+                            CreatedDate = dr.IsNull("CreatedDate") ? DateTime.Now : Convert.ToDateTime(dr["CreatedDate"]),
 
                         };
                     }
@@ -489,7 +492,7 @@ namespace EddarsCms.UserSides
                     }
                 }
             }
-            return list.Take(4).ToList();
+            return list.ToList();
 
         }
 

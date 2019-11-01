@@ -21,7 +21,12 @@ namespace EddarsCms.Web.Controllers
         public JsonResult SendMail(ContactMailDto dto)
         {
             var result = FrontendSenders.SendMail(dto);
-            return Json (result,JsonRequestBehavior.AllowGet);
+            string message = "<script>$('#errorMessage').html('İşleminiz başarısız')</script>";
+            if (result>0)
+            {
+                message = "<script>$('.medium-input').val('');$('.medium-textarea').val('');$('#errorMessage').html('Mesajınız başarıyla tarafımıza iletilmiştir.');</script>";
+            }
+            return Json (message, JsonRequestBehavior.AllowGet);
         }
     }
 }
